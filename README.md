@@ -24,8 +24,9 @@ awk '/REQUIRED_PACKAGES/ {print FILENAME ": " $0}' */Makefile > ~/solaris-gnome-
 
 Now we do have all the dependencies found within the gnome components.
 
-Then I use a little c program to identify the unique dependencies (system packages) and those linked to another component within the gnome components folder (see check4.c)
+Then I use a little c program to identify the unique dependencies (system packages) and those linked to another component within the gnome components folder (see gnome-dep-check.c)
 
+Ok, now we have to check whether the packages without dependencies are available on OpenIndiana (add) or not available at all (e.g. accountsservice exists on Solaris but not on OpenIndiana).
 
 
 
