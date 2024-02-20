@@ -20,6 +20,7 @@ Ok, great we do now have all the required components so lets copy the solaris-us
 awk seems to do the job (cd to the directory you copied the gnome components and execute): 
 
 awk '/REQUIRED_PACKAGES/ {print FILENAME ": " $0}' */Makefile
+
 awk '/REQUIRED_PACKAGES/ {print FILENAME ": " $0}' */Makefile > ~/solaris-gnome-dependencies
 
 Now we do have all the dependencies found within the gnome components.
