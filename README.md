@@ -15,6 +15,21 @@ https://github.com/OpenIndiana/oi-userland
 
 https://github.com/oracle/solaris-userland
 
+Ok, great we do now have all the required components so lets copy the solaris-userland gnome components to oi-userland components folder. Once this is done we need to extract all the REQUIRED_PACKAGES dependencies from the 126 gnome components that build GNOME on Solaris.
+
+awk seems to do the job (cd to the directory you copied the gnome components and execute): 
+
+# awk '/REQUIRED_PACKAGES/ {print FILENAME ": " $0}' */Makefile
+# awk '/REQUIRED_PACKAGES/ {print FILENAME ": " $0}' */Makefile > ~/solaris-gnome-dependencies
+
+Now we do have all the dependencies found within the gnome components.
+
+Then I use a little c program to identify the unique dependencies (system packages) and those linked to another component within the gnome components folder (see check4.c)
+
+
+
+
+
 
 
 
