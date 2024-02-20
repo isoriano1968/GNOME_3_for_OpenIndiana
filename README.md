@@ -9,7 +9,7 @@ The idea is leveraging solaris-userland's GNOME packages and adopt to oi-userlan
 
 For sure it is important to have both userland components available (OpenIndiana and Solaris) to pick and modify as it looks like for several years both have developed separately and therefore we will have to do modify each indivodual component within the gnome components folder to be able to be build on OpenIndiana.
 
-I do not want to provide a step by step approach but the following links should provide enough information to get the userland environments for OpenIndiana and Solaris 11.4.42 CBE
+I do not want to provide a step by step approach but the following links should provide enough information to get the userland environments for OpenIndiana and Solaris 11.4.42 CBE to your local machine.
 
 https://github.com/OpenIndiana/oi-userland
 
