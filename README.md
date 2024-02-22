@@ -11,13 +11,15 @@ For sure it is important to have both userland components available (OpenIndiana
 
 I do not want to provide a step by step approach but the following links should provide enough information to get the userland environments for OpenIndiana and Solaris 11.4.42 CBE to your local machine.
 
+# Setup
+
+https://docs.openindiana.org/dev/userland/#downloading-oi-userland
+
 https://github.com/OpenIndiana/oi-userland
 
 https://github.com/oracle/solaris-userland
 
-# Setup
 
-https://docs.openindiana.org/dev/userland/#downloading-oi-userland
 
 Ok, great we do now have all the required components so lets copy the solaris-userland gnome components to oi-userland components folder. Once this is done we need to extract all the REQUIRED_PACKAGES dependencies from the 126 gnome components that build GNOME on Solaris.
 
