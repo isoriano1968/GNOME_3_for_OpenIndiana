@@ -15,6 +15,10 @@ https://github.com/OpenIndiana/oi-userland
 
 https://github.com/oracle/solaris-userland
 
+# Setup
+
+https://docs.openindiana.org/dev/userland/#downloading-oi-userland
+
 Ok, great we do now have all the required components so lets copy the solaris-userland gnome components to oi-userland components folder. Once this is done we need to extract all the REQUIRED_PACKAGES dependencies from the 126 gnome components that build GNOME on Solaris.
 
 awk seems to do the job (cd to the directory you copied the gnome components and execute): 
