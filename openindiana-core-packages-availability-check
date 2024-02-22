@@ -1,0 +1,3259 @@
+[1mParsed package name: itstool(B[m
+Package info for itstool:
+             Name: text/itstool
+          Summary: ITS Tool allows you to translate your XML documents with PO
+                   files using rules from the W3C Internationalization Tag Set
+         Category: System/Text Tools
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.0.7
+           Branch: 2023.0.0.1
+   Packaging Date: September 15, 2023 at 05:41:39 PM
+Last Install Time: February 20, 2024 at 11:33:03 PM
+             Size: 132.59 kB
+             FMRI: pkg://openindiana.org/text/itstool@2.0.7-2023.0.0.1:20230915T174139Z
+      Project URL: http://itstool.org/
+       Source URL: http://files.itstool.org/itstool/itstool-2.0.7.tar.bz2
+[1mParsed package name: librsvg(B[m
+Package info for librsvg:
+             Name: image/library/librsvg
+          Summary: Library for SVG support for GNOME
+         Category: System/Multimedia Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.57.1
+           Branch: 2023.0.0.0
+   Packaging Date: December 16, 2023 at 09:20:09 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 44.74 MB
+             FMRI: pkg://openindiana.org/image/library/librsvg@2.57.1-2023.0.0.0:20231216T092009Z
+      Project URL: https://wiki.gnome.org/Projects/LibRsvg
+       Source URL: https://download.gnome.org/sources/librsvg/2.57/librsvg-2.57.1.tar.xz
+[1mParsed package name: at-spi2-core(B[m
+Package info for at-spi2-core:
+             Name: gnome/accessibility/at-spi2-core
+          Summary: Assistive Technology Service Provider Interface
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.24.1
+           Branch: 2024.0.0.3
+   Packaging Date: February 21, 2024 at 03:37:59 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 22, 2024 at 08:19:54 AM
+             Size: 1.62 MB
+             FMRI: pkg://openindiana.org/gnome/accessibility/at-spi2-core@2.24.1-2024.0.0.3:20240221T153759Z
+      Project URL: http://www.gnome.org
+       Source URL: https://download.gnome.org/sources/at-spi2-core/2.24/at-spi2-core-2.24.1.tar.xz
+[1mParsed package name: atk(B[m
+Package info for atk:
+             Name: library/desktop/atk
+          Summary: GNOME accesibility toolkit libraries
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.38.0
+           Branch: 2023.0.0.1
+   Packaging Date: February  2, 2023 at 12:20:00 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 2.67 MB
+             FMRI: pkg://openindiana.org/library/desktop/atk@2.38.0-2023.0.0.1:20230202T122000Z
+      Project URL: https://www.gnome.org
+       Source URL: https://download.gnome.org/sources/atk/2.38/atk-2.38.0.tar.xz
+[1mParsed package name: gdk-pixbuf(B[m
+Package info for gdk-pixbuf:
+             Name: library/desktop/gdk-pixbuf
+          Summary: GNOME gdk-pixbuf
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.36.12
+           Branch: 2023.0.0.6
+   Packaging Date: October 12, 2023 at 04:19:52 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 4.05 MB
+             FMRI: pkg://openindiana.org/library/desktop/gdk-pixbuf@2.36.12-2023.0.0.6:20231012T161952Z
+      Project URL: https://gitlab.gnome.org/GNOME/gdk-pixbuf
+       Source URL: https://download.gnome.org/sources/gdk-pixbuf/2.36/gdk-pixbuf-2.36.12.tar.xz
+[1mParsed package name: gobject-introspection(B[m
+Package info for gobject-introspection:
+             Name: library/desktop/gobject/gobject-introspection
+          Summary: Introspection for GObject libraries
+         Category: Development/GNOME and GTK+
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.72.0
+           Branch: 2022.1.0.0
+   Packaging Date: December 31, 2022 at 03:01:54 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 13.25 MB
+             FMRI: pkg://openindiana.org/library/desktop/gobject/gobject-introspection@1.72.0-2022.1.0.0:20221231T150154Z
+      Project URL: https://live.gnome.org/GObjectIntrospection
+       Source URL: https://download.gnome.org/sources/gobject-introspection/1.72/gobject-introspection-1.72.0.tar.xz
+[1mParsed package name: gtk3(B[m
+Package info for gtk3:
+             Name: library/desktop/gtk3
+          Summary: GTK+ - GIMP Toolkit Library for creation of graphical user
+                   interfaces
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.24.34
+           Branch: 2023.0.0.4
+   Packaging Date: December  1, 2023 at 12:07:43 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 78.15 MB
+             FMRI: pkg://openindiana.org/library/desktop/gtk3@3.24.34-2023.0.0.4:20231201T120743Z
+      Project URL: https://www.gtk.org/
+       Source URL: https://download.gnome.org/sources/gtk+/3.24/gtk+-3.24.34.tar.xz
+[1mParsed package name: libwnck3(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 13.43 seconds
+No updates necessary for this image.
+[1mParsed package name: pango(B[m
+Package info for pango:
+             Name: library/desktop/pango
+          Summary: GNOME core text and font handling libraries
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.51.2
+           Branch: 2024.0.0.0
+   Packaging Date: February 13, 2024 at 09:07:07 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 15, 2024 at 07:30:19 PM
+             Size: 6.63 MB
+             FMRI: pkg://openindiana.org/library/desktop/pango@1.51.2-2024.0.0.0:20240213T210707Z
+      Project URL: https://www.pango.org/
+       Source URL: https://gitlab.gnome.org/GNOME/pango/-/archive/1.51.2/pango-1.51.2.tar.bz2
+[1mParsed package name: libxml2(B[m
+Package info for libxml2:
+             Name: library/libxml2
+          Summary: Libxml2 is the XML C parser and toolkit developed for the
+                   Gnome project
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.12.5
+           Branch: 2024.0.0.1
+   Packaging Date: February 12, 2024 at 04:05:26 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 6.93 MB
+             FMRI: pkg://openindiana.org/library/libxml2@2.12.5-2024.0.0.1:20240212T160526Z
+      Project URL: https://gitlab.gnome.org/GNOME/libxml2
+       Source URL: https://download.gnome.org/sources/libxml2/2.12/libxml2-2.12.5.tar.xz
+[1mParsed package name: pyatspi2-311(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: pycairo-311(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: pygobject-3-311(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: python-311(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: gnu-gettext(B[m
+Package info for gnu-gettext:
+             Name: text/gnu-gettext
+          Summary: GNU gettext - message handling utilities
+         Category: Development/GNU
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.22.4
+           Branch: 2023.0.0.0
+   Packaging Date: November 22, 2023 at 06:00:53 PM
+Last Install Time: February 18, 2024 at 08:26:39 PM
+             Size: 9.63 MB
+             FMRI: pkg://openindiana.org/text/gnu-gettext@0.22.4-2023.0.0.0:20231122T180053Z
+      Project URL: https://www.gnu.org/software/gettext/
+       Source URL: https://ftp.gnu.org/pub/gnu/gettext/gettext-0.22.4.tar.xz
+[1mParsed package name: xml-parser(B[m
+Package info for xml-parser:
+             Name: library/perl-5/xml-parser
+          Summary: XML::Parser - A perl module for parsing XML documents
+         Category: Development/Perl
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.47
+           Branch: 2023.0.0.0
+   Packaging Date: December 29, 2023 at 08:17:05 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 0.00 B
+             FMRI: pkg://openindiana.org/library/perl-5/xml-parser@2.47-2023.0.0.0:20231229T081705Z
+      Project URL: https://metacpan.org/pod/XML::Parser
+       Source URL: https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.47.tar.gz
+[1mParsed package name: gtk-doc(B[m
+Package info for gtk-doc:
+             Name: developer/documentation-tool/gtk-doc
+          Summary: GTK+ DocBook Documentation Generator
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.33.2
+           Branch: 2023.0.0.5
+   Packaging Date: April  4, 2023 at 09:52:26 AM
+Last Install Time: February 21, 2024 at 08:41:31 PM
+             Size: 2.45 MB
+             FMRI: pkg://openindiana.org/developer/documentation-tool/gtk-doc@1.33.2-2023.0.0.5:20230404T095226Z
+      Project URL: https://gitlab.gnome.org/GNOME/gtk-doc
+       Source URL: https://download.gnome.org/sources/gtk-doc/1.33/gtk-doc-1.33.2.tar.xz
+[1mParsed package name: glib2(B[m
+Package info for glib2:
+             Name: library/glib2
+          Summary: GNOME core libraries
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.74.7
+           Branch: 2023.0.0.1
+   Packaging Date: October 29, 2023 at 09:37:47 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 21.70 MB
+             FMRI: pkg://openindiana.org/library/glib2@2.74.7-2023.0.0.1:20231029T093747Z
+      Project URL: https://wiki.gnome.org/Projects/GLib/
+       Source URL: https://download.gnome.org/sources/glib/2.74/glib-2.74.7.tar.xz
+[1mParsed package name: libxslt(B[m
+Package info for libxslt:
+             Name: library/libxslt
+          Summary: XSLT support for libxml2 (XML toolkit from the GNOME project)
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.1.39
+           Branch: 2024.0.0.1
+   Packaging Date: February 12, 2024 at 04:02:30 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 1.18 MB
+             FMRI: pkg://openindiana.org/library/libxslt@1.1.39-2024.0.0.1:20240212T160230Z
+      Project URL: http://xmlsoft.org/XSLT/
+       Source URL: https://download.gnome.org/sources/libxslt/1.1/libxslt-1.1.39.tar.xz
+[1mParsed package name: libdbus(B[m
+Package info for libdbus:
+             Name: system/library/libdbus
+          Summary: $(COMPOENT_SUMMARY)
+         Category: System/Services
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.14.10
+           Branch: 2024.0.0.0
+   Packaging Date: January 14, 2024 at 05:59:41 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 1.24 MB
+             FMRI: pkg://openindiana.org/system/library/libdbus@1.14.10-2024.0.0.0:20240114T175941Z
+      Project URL: https://dbus.freedesktop.org
+       Source URL: https://dbus.freedesktop.org/releases/dbus/dbus-1.14.10.tar.xz
+[1mParsed package name: libx11(B[m
+Package info for libx11:
+             Name: x11/library/libx11
+          Summary: libX11 - X11 core protocol client library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.7.5
+           Branch: 2023.0.0.1
+   Packaging Date: March 17, 2023 at 11:40:42 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 13.54 MB
+             FMRI: pkg://openindiana.org/x11/library/libx11@1.7.5-2023.0.0.1:20230317T114042Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libX11-1.7.5.tar.xz
+[1mParsed package name: libxext(B[m
+Package info for libxext:
+             Name: x11/library/libxext
+          Summary: libXext - X11 protocol common extensions client library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.3.6
+           Branch: 2024.0.0.0
+   Packaging Date: February  7, 2024 at 09:37:43 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 639.60 kB
+             FMRI: pkg://openindiana.org/x11/library/libxext@1.3.6-2024.0.0.0:20240207T093743Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXext-1.3.6.tar.xz
+[1mParsed package name: libxrender(B[m
+Package info for libxrender:
+             Name: x11/library/libxrender
+          Summary: libXrender - X Render extension library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.9.11
+           Branch: 2022.0.0.0
+   Packaging Date: October 26, 2022 at 04:12:04 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 144.56 kB
+             FMRI: pkg://openindiana.org/x11/library/libxrender@0.9.11-2022.0.0.0:20221026T161204Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXrender-0.9.11.tar.xz
+[1mParsed package name: libxtst(B[m
+Package info for libxtst:
+             Name: x11/library/libxtst
+          Summary: libXtst - Client library for X Record and Test extensions
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.2.4
+           Branch: 2023.0.0.1
+   Packaging Date: September 17, 2023 at 08:22:22 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 321.58 kB
+             FMRI: pkg://openindiana.org/x11/library/libxtst@1.2.4-2023.0.0.1:20230917T082222Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXtst-1.2.4.tar.xz
+[1mParsed package name: xorg(B[m
+Package info for xorg:
+             Name: x11/server/xorg
+          Summary: Xorg - X11R7 X server
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.19.7
+           Branch: 2023.0.0.11
+   Packaging Date: October 18, 2023 at 04:21:40 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 6.51 MB
+             FMRI: pkg://openindiana.org/x11/server/xorg@1.19.7-2023.0.0.11:20231018T162140Z
+      Project URL: https://www.x.org/
+       Source URL: https://ftp.x.org/pub/individual/xserver/xorg-server-1.19.7.tar.bz2
+[1mParsed package name: gsettings-desktop-schemas(B[m
+Package info for gsettings-desktop-schemas:
+             Name: gnome/config/gsettings-desktop-schemas
+          Summary: Collection of GSettings schemas for settings shared by
+                   various components of a desktop
+            State: Installed
+        Publisher: openindiana.org
+          Version: 45.0
+           Branch: 2024.0.0.0
+   Packaging Date: February  6, 2024 at 09:51:26 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 4.95 MB
+             FMRI: pkg://openindiana.org/gnome/config/gsettings-desktop-schemas@45.0-2024.0.0.0:20240206T215126Z
+      Project URL: https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas
+       Source URL: https://download.gnome.org/sources/gsettings-desktop-schemas/45/gsettings-desktop-schemas-45.0.tar.xz
+[1mParsed package name: libxi(B[m
+Package info for libxi:
+             Name: x11/library/libxi
+          Summary: libXi - X Input extension client library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.8.1
+           Branch: 2023.0.0.0
+   Packaging Date: September 19, 2023 at 05:22:58 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 1.27 MB
+             FMRI: pkg://openindiana.org/x11/library/libxi@1.8.1-2023.0.0.0:20230919T172258Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXi-1.8.1.tar.xz
+[1mParsed package name: doxygen(B[m
+Package info for doxygen:
+             Name: developer/documentation-tool/doxygen
+          Summary: Doxygen - Source Code Documentation Tool
+         Category: Development/Distribution Tools
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.10.0
+           Branch: 2023.0.0.0
+   Packaging Date: December 31, 2023 at 01:49:49 PM
+Last Install Time: February 21, 2024 at 08:42:44 PM
+             Size: 33.34 MB
+             FMRI: pkg://openindiana.org/developer/documentation-tool/doxygen@1.10.0-2023.0.0.0:20231231T134949Z
+      Project URL: https://www.doxygen.nl
+       Source URL: https://github.com/doxygen/doxygen/archive/Release_1_10_0.tar.gz
+[1mParsed package name: graphviz(B[m
+Package info for graphviz:
+             Name: image/graphviz
+          Summary: Graph visualization software
+         Category: Applications/System Utilities
+            State: Installed
+        Publisher: openindiana.org
+          Version: 9.0.0
+           Branch: 2024.0.0.4
+   Packaging Date: February 11, 2024 at 11:17:28 PM
+Last Install Time: February 21, 2024 at 08:51:34 PM
+             Size: 6.83 MB
+             FMRI: pkg://openindiana.org/image/graphviz@9.0.0-2024.0.0.4:20240211T231728Z
+      Project URL: https://www.graphviz.org/
+       Source URL: https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/9.0.0/graphviz-9.0.0.tar.xz
+[1mParsed package name: glibmm(B[m
+Package info for glibmm:
+             Name: library/c++/glibmm
+          Summary: glibmm - C++ Wrapper for the Glib2 Library
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.66.6
+           Branch: 2023.0.0.1
+   Packaging Date: October 29, 2023 at 07:08:51 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 11.51 MB
+             FMRI: pkg://openindiana.org/library/c++/glibmm@2.66.6-2023.0.0.1:20231029T190851Z
+      Project URL: https://www.gtkmm.org/
+       Source URL: https://download.gnome.org/sources/glibmm/2.66/glibmm-2.66.6.tar.xz
+[1mParsed package name: sigcpp(B[m
+Package info for sigcpp:
+             Name: library/c++/sigcpp
+          Summary: Libsigc++ - a library that implements a typesafe callback
+                   system for standard C++ (g++ - compiled)
+         Category: Development/C++
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.10.0
+           Branch: 2023.0.0.2
+   Packaging Date: October 29, 2023 at 09:37:41 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 13.84 MB
+             FMRI: pkg://openindiana.org/library/c++/sigcpp@2.10.0-2023.0.0.2:20231029T093741Z
+      Project URL: http://libsigc.sourceforge.net
+       Source URL: https://download.gnome.org/sources/libsigc++/2.10/libsigc++-2.10.0.tar.xz
+[1mParsed package name: gcc-c++-runtime(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: gcc-c-runtime(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: gnome-shell(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: clutter(B[m
+Package info for clutter:
+             Name: library/desktop/clutter
+          Summary: clutter - a library for creating fast, visually rich and
+                   animated graphical user interfaces
+         Category: System/Multimedia Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.26.4
+           Branch: 2023.0.0.0
+   Packaging Date: November 28, 2023 at 06:43:36 AM
+Last Install Time: February 21, 2024 at 08:44:13 PM
+             Size: 18.74 MB
+             FMRI: pkg://openindiana.org/library/desktop/clutter@1.26.4-2023.0.0.0:20231128T064336Z
+      Project URL: https://wiki.gnome.org/Projects/Clutter
+       Source URL: https://download.gnome.org/sources/clutter/1.26/clutter-1.26.4.tar.xz
+[1mParsed package name: gnome-desktop(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 12.95 seconds
+No updates necessary for this image.
+[1mParsed package name: vala(B[m
+Package info for vala:
+             Name: developer/vala
+          Summary: Vala programming language
+         Category: Development/Other Languages
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.56.14
+           Branch: 2023.0.0.0
+   Packaging Date: November 16, 2023 at 07:13:29 PM
+Last Install Time: February 21, 2024 at 08:51:34 PM
+             Size: 16.05 MB
+             FMRI: pkg://openindiana.org/developer/vala@0.56.14-2023.0.0.0:20231116T191329Z
+      Project URL: https://wiki.gnome.org/Vala
+       Source URL: https://download.gnome.org/sources/vala/0.56/vala-0.56.14.tar.xz
+[1mParsed package name: cairo(B[m
+Package info for cairo:
+             Name: library/desktop/cairo
+          Summary: Vector graphics library
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.18.0
+           Branch: 2023.0.0.0
+   Packaging Date: November 12, 2023 at 07:49:07 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 2.22 MB
+             FMRI: pkg://openindiana.org/library/desktop/cairo@1.18.0-2023.0.0.0:20231112T194907Z
+      Project URL: https://cairographics.org/
+       Source URL: https://cairographics.org/releases/cairo-1.18.0.tar.xz
+[1mParsed package name: libhandy(B[m
+Package info for libhandy:
+             Name: library/libhandy
+          Summary: Library full of GTK+ widgets for mobile phones
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.8.3
+           Branch: 2024.0.0.0
+   Packaging Date: February 13, 2024 at 09:06:46 PM
+Last Install Time: February 12, 2024 at 05:19:53 PM
+ Last Update Time: February 15, 2024 at 07:30:19 PM
+             Size: 2.81 MB
+             FMRI: pkg://openindiana.org/library/libhandy@1.8.3-2024.0.0.0:20240213T210646Z
+      Project URL: https://gitlab.gnome.org/GNOME/libhandy
+       Source URL: https://download.gnome.org/sources/libhandy/1.8/libhandy-1.8.3.tar.xz
+[1mParsed package name: math(B[m
+Package info for math:
+             Name: system/library/math
+          Summary: Math Libraries
+      Description: Math Libraries
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.5.11 (3863692f70)
+           Branch: 2024.0.0.22050
+   Packaging Date: February 22, 2024 at 01:20:18 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 22, 2024 at 08:19:54 AM
+             Size: 2.28 MB
+             FMRI: pkg://openindiana.org/system/library/math@0.5.11-2024.0.0.22050:20240222T012018Z
+[1mParsed package name: gstreamer-1(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: gst-plugins-base(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: cogl(B[m
+Package info for cogl:
+             Name: library/desktop/cogl
+          Summary: cogl - An open source GPU graphics & utilities API
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.22.8
+           Branch: 2023.0.0.0
+   Packaging Date: November 26, 2023 at 05:43:56 PM
+Last Install Time: February 21, 2024 at 08:44:11 PM
+             Size: 5.25 MB
+             FMRI: pkg://openindiana.org/library/desktop/cogl@1.22.8-2023.0.0.0:20231126T174356Z
+      Project URL: https://rib.github.io/cogl/
+       Source URL: https://download.gnome.org/sources/cogl/1.22/cogl-1.22.8.tar.xz
+[1mParsed package name: json-glib(B[m
+Package info for json-glib:
+             Name: library/desktop/json-glib
+          Summary: JSON parser library for GLib
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.8.0
+           Branch: 2023.0.0.0
+   Packaging Date: October  8, 2023 at 11:26:22 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 1.61 MB
+             FMRI: pkg://openindiana.org/library/desktop/json-glib@1.8.0-2023.0.0.0:20231008T112622Z
+      Project URL: https://live.gnome.org/JsonGlib
+       Source URL: https://download.gnome.org/sources/json-glib/1.8/json-glib-1.8.0.tar.xz
+[1mParsed package name: fontconfig(B[m
+Package info for fontconfig:
+             Name: system/library/fontconfig
+          Summary: Fontconfig - Font configuration and customization library
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.15.0
+           Branch: 2023.0.0.0
+   Packaging Date: December 24, 2023 at 10:06:52 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 2.57 MB
+             FMRI: pkg://openindiana.org/system/library/fontconfig@2.15.0-2023.0.0.0:20231224T100652Z
+      Project URL: https://www.freedesktop.org/wiki/Software/fontconfig/
+       Source URL: https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.15.0.tar.xz
+[1mParsed package name: libxcomposite(B[m
+Package info for libxcomposite:
+             Name: x11/library/libxcomposite
+          Summary: libXcomposite - X11 Composite extension library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.4.6
+           Branch: 2023.0.0.1
+   Packaging Date: September 28, 2023 at 10:58:07 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 49.33 kB
+             FMRI: pkg://openindiana.org/x11/library/libxcomposite@0.4.6-2023.0.0.1:20230928T225807Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXcomposite-0.4.6.tar.xz
+[1mParsed package name: libxdamage(B[m
+Package info for libxdamage:
+             Name: x11/library/libxdamage
+          Summary: libXdamage - X Damage extension library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.1.6
+           Branch: 2022.0.0.0
+   Packaging Date: December  5, 2022 at 06:17:18 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 33.31 kB
+             FMRI: pkg://openindiana.org/x11/library/libxdamage@1.1.6-2022.0.0.0:20221205T181718Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXdamage-1.1.6.tar.xz
+[1mParsed package name: ogl-select(B[m
+Package info for ogl-select:
+             Name: service/opengl/ogl-select
+          Summary: ogl-select - boot time selection of OpenGL vendor files
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.5.11
+           Branch: 2020.0.1.5
+   Packaging Date: March 30, 2020 at 04:36:49 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 17.56 kB
+             FMRI: pkg://openindiana.org/service/opengl/ogl-select@0.5.11-2020.0.1.5:20200330T163649Z
+      Project URL: https://www.openindiana.org/
+[1mParsed package name: libxfixes(B[m
+Package info for libxfixes:
+             Name: x11/library/libxfixes
+          Summary: libXfixes - XFIXES extension client library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 6.0.1
+           Branch: 2023.0.0.1
+   Packaging Date: September 19, 2023 at 05:22:31 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 71.73 kB
+             FMRI: pkg://openindiana.org/x11/library/libxfixes@6.0.1-2023.0.0.1:20230919T172231Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXfixes-6.0.1.tar.xz
+[1mParsed package name: libxrandr(B[m
+Package info for libxrandr:
+             Name: x11/library/libxrandr
+          Summary: libXrandr - X Resize and Rotate extension library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.5.4
+           Branch: 2023.0.0.0
+   Packaging Date: October  5, 2023 at 10:06:37 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 136.43 kB
+             FMRI: pkg://openindiana.org/x11/library/libxrandr@1.5.4-2023.0.0.0:20231005T100637Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXrandr-1.5.4.tar.xz
+[1mParsed package name: dconf(B[m
+Package info for dconf:
+             Name: gnome/config/dconf
+          Summary: GNOME Configuration Framework
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.40.0
+           Branch: 2024.0.0.1
+   Packaging Date: January 18, 2024 at 09:16:46 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 841.37 kB
+             FMRI: pkg://openindiana.org/gnome/config/dconf@0.40.0-2024.0.0.1:20240118T211646Z
+      Project URL: https://wiki.gnome.org/Projects/dconf
+       Source URL: https://download.gnome.org/sources/dconf/0.40/dconf-0.40.0.tar.xz
+[1mParsed package name: webkitgtk4(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: zlib(B[m
+Package info for zlib:
+             Name: library/zlib
+          Summary: The Zip compression library
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.3.1
+           Branch: 2024.0.0.0
+   Packaging Date: January 23, 2024 at 09:41:07 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 348.94 kB
+             FMRI: pkg://openindiana.org/library/zlib@1.3.1-2024.0.0.0:20240123T214107Z
+      Project URL: https://zlib.net/
+       Source URL: https://zlib.net/zlib-1.3.1.tar.gz
+[1mParsed package name: libexif(B[m
+Package info for libexif:
+             Name: image/library/libexif
+          Summary: EXIF tag parsing library for digital cameras
+         Category: System/Multimedia Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.6.24
+           Branch: 2023.0.0.2
+   Packaging Date: October  5, 2023 at 09:47:00 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 3.69 MB
+             FMRI: pkg://openindiana.org/image/library/libexif@0.6.24-2023.0.0.2:20231005T094700Z
+      Project URL: https://libexif.github.io/
+       Source URL: https://github.com/libexif/libexif/archive/refs/tags/v0.6.24.tar.gz
+[1mParsed package name: libjpeg(B[m
+Package info for libjpeg:
+             Name: image/library/libjpeg
+          Summary: Joint Photographic Experts Group library
+         Category: Meta Packages/Group Packages
+            State: Installed
+        Publisher: openindiana.org
+          Version: 6.0.2
+           Branch: 2020.0.1.0
+   Packaging Date: March 30, 2020 at 03:17:34 PM
+Last Install Time: February 21, 2024 at 08:53:35 PM
+             Size: 0.00 B
+             FMRI: pkg://openindiana.org/image/library/libjpeg@6.0.2-2020.0.1.0:20200330T151734Z
+[1mParsed package name: eog(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 13.46 seconds
+No updates necessary for this image.
+[1mParsed package name: clutter-gtk(B[m
+Package info for clutter-gtk:
+             Name: library/desktop/clutter/clutter-gtk
+          Summary: GTK+ integration library for clutter
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.8.4
+           Branch: 2023.0.0.0
+   Packaging Date: November 29, 2023 at 04:42:20 PM
+Last Install Time: February 21, 2024 at 08:54:47 PM
+             Size: 185.02 kB
+             FMRI: pkg://openindiana.org/library/desktop/clutter/clutter-gtk@1.8.4-2023.0.0.0:20231129T164220Z
+      Project URL: http://www.clutter-project.org/
+       Source URL: https://download.gnome.org/sources/clutter-gtk/1.8/clutter-gtk-1.8.4.tar.xz
+[1mParsed package name: libchamplain(B[m
+Package info for libchamplain:
+             Name: library/desktop/libchamplain
+          Summary: libchamplain - a Clutter based widget to display rich,
+                   eye-candy and interactive maps
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.12.21
+           Branch: 2023.0.0.0
+   Packaging Date: November 29, 2023 at 06:07:41 PM
+Last Install Time: February 21, 2024 at 08:55:35 PM
+             Size: 1.23 MB
+             FMRI: pkg://openindiana.org/library/desktop/libchamplain@0.12.21-2023.0.0.0:20231129T180741Z
+      Project URL: http://projects.gnome.org/libchamplain/
+       Source URL: https://download.gnome.org/sources/libchamplain/0.12/libchamplain-0.12.21.tar.xz
+[1mParsed package name: libgdata(B[m
+Package info for libgdata:
+             Name: library/desktop/libgdata
+          Summary: libgdata is a collection library providing GObject-based
+                   interfaces and classes for commonly used data structures
+         Category: Development/GNOME and GTK+
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.18.1
+           Branch: 2023.0.0.1
+   Packaging Date: November 24, 2023 at 05:47:54 PM
+Last Install Time: February 21, 2024 at 08:56:21 PM
+             Size: 2.43 MB
+             FMRI: pkg://openindiana.org/library/desktop/libgdata@0.18.1-2023.0.0.1:20231124T174754Z
+      Project URL: https://wiki.gnome.org/Projects/libgdata
+       Source URL: https://download.gnome.org/sources/libgdata/0.18/libgdata-0.18.1.tar.xz
+[1mParsed package name: exempi(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: libpeas(B[m
+Package info for libpeas:
+             Name: library/desktop/libpeas
+          Summary: A gobject-based plugins engine for GNOME
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.20.0
+           Branch: 2023.0.0.5
+   Packaging Date: December  1, 2023 at 03:43:00 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 766.86 kB
+             FMRI: pkg://openindiana.org/library/desktop/libpeas@1.20.0-2023.0.0.5:20231201T154300Z
+      Project URL: https://wiki.gnome.org/Projects/Libpeas
+       Source URL: https://download.gnome.org/sources/libpeas/1.20/libpeas-1.20.0.tar.xz
+[1mParsed package name: lcms2(B[m
+Package info for lcms2:
+             Name: library/lcms2
+          Summary: The Little Color Management System
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.16
+           Branch: 2023.0.0.0
+   Packaging Date: December  9, 2023 at 08:11:42 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 957.39 kB
+             FMRI: pkg://openindiana.org/library/lcms2@2.16-2023.0.0.0:20231209T201142Z
+      Project URL: https://www.littlecms.com/
+       Source URL: https://sourceforge.net/projects/lcms/files/lcms/2.16/lcms2-2.16.tar.gz
+[1mParsed package name: shared-mime-info(B[m
+Package info for shared-mime-info:
+             Name: desktop/shared-mime-info
+          Summary: application/MIME type registry
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.4
+           Branch: 2023.0.0.0
+   Packaging Date: November 15, 2023 at 04:41:27 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 7.25 MB
+             FMRI: pkg://openindiana.org/desktop/shared-mime-info@2.4-2023.0.0.0:20231115T164127Z
+      Project URL: https://www.freedesktop.org/Software/shared-mime-info
+       Source URL: https://gitlab.freedesktop.org/xdg/shared-mime-info/-/archive/2.4/shared-mime-info-2.4.tar.bz2
+[1mParsed package name: eog-plugins(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 13.05 seconds
+No updates necessary for this image.
+[1mParsed package name: poppler-viewer(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: nautilus(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 12.82 seconds
+No updates necessary for this image.
+[1mParsed package name: libtiff(B[m
+Package info for libtiff:
+             Name: image/library/libtiff
+          Summary: libtiff - library for reading and writing TIFF
+         Category: System/Multimedia Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 4.6.0
+           Branch: 2023.0.0.0
+   Packaging Date: September 17, 2023 at 05:33:45 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 6.16 MB
+             FMRI: pkg://openindiana.org/image/library/libtiff@4.6.0-2023.0.0.0:20230917T173345Z
+      Project URL: https://www.simplesystems.org/libtiff/
+       Source URL: https://download.osgeo.org/libtiff/tiff-4.6.0.tar.gz
+[1mParsed package name: libgxps(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: libsecret(B[m
+Package info for libsecret:
+             Name: library/libsecret
+          Summary: GObject based library for accessing the Secret Service API
+         Category: System/Security
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.20.5
+           Branch: 2023.0.0.0
+   Packaging Date: September  7, 2023 at 07:51:09 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 5.69 MB
+             FMRI: pkg://openindiana.org/library/libsecret@0.20.5-2023.0.0.0:20230907T195109Z
+      Project URL: https://www.gnome.org
+       Source URL: https://download.gnome.org/sources/libsecret/0.20/libsecret-0.20.5.tar.xz
+[1mParsed package name: libarchive(B[m
+Package info for libarchive:
+             Name: library/libarchive
+          Summary: multi-format archive and compression library
+      Description: The libarchive(3LIB) library provides a flexible interface
+                   for reading and writing archives in various formats such as
+                   tar(1) and cpio(1). libarchive also supports reading and
+                   writing archives compressed using various compression filters
+                   such as gzip(1) and bzip2(1). The library is inherently
+                   stream-oriented; readers serially iterate through the
+                   archive, writers serially add things to the archive.
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.7.2
+           Branch: 2023.0.0.0
+   Packaging Date: September 14, 2023 at 08:39:10 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 2.73 MB
+             FMRI: pkg://openindiana.org/library/libarchive@3.7.2-2023.0.0.0:20230914T203910Z
+      Project URL: https://www.libarchive.org/
+       Source URL: https://www.libarchive.org/downloads/libarchive-3.7.2.tar.gz
+[1mParsed package name: libspectre(B[m
+Package info for libspectre:
+             Name: library/libspectre
+          Summary: libspectre - A small library for rendering Postscript
+                   documents
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.2.12
+           Branch: 2023.0.0.0
+   Packaging Date: February  7, 2023 at 09:57:16 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 213.62 kB
+             FMRI: pkg://openindiana.org/library/libspectre@0.2.12-2023.0.0.0:20230207T215716Z
+      Project URL: https://www.freedesktop.org/wiki/Software/libspectre/
+       Source URL: https://libspectre.freedesktop.org/releases/libspectre-0.2.12.tar.gz
+[1mParsed package name: poppler(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: libc(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: berkeleydb-5(B[m
+Package info for berkeleydb-5:
+               Name: database/berkeleydb-5
+            Summary: Berkeley DB is a computer software library that provides a
+                     high-performance embedded database for key/value data
+           Category: System/Databases
+              State: Installed
+          Publisher: openindiana.org
+            Version: 5.3.28
+             Branch: 2023.0.0.2
+     Packaging Date: August 31, 2023 at 06:46:38 PM
+  Last Install Time: October 27, 2023 at 03:45:22 PM
+               Size: 100.87 MB
+               FMRI: pkg://openindiana.org/database/berkeleydb-5@5.3.28-2023.0.0.2:20230831T184638Z
+Additional Keywords: bdb
+        Project URL: https://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
+         Source URL: https://download.oracle.com/berkeley-db/db-5.3.28.tar.gz
+[1mParsed package name: sqlite-3(B[m
+Package info for sqlite-3:
+             Name: database/sqlite-3
+          Summary: in-process SQL database engine library
+         Category: Development/Databases
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.45.1
+           Branch: 2024.0.0.0
+   Packaging Date: February  4, 2024 at 11:26:55 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 6.88 MB
+             FMRI: pkg://openindiana.org/database/sqlite-3@3.45.1-2024.0.0.0:20240204T112655Z
+      Project URL: https://www.sqlite.org
+       Source URL: https://www.sqlite.org/2024/sqlite-src-3450100.zip
+[1mParsed package name: gtk4(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: libgweather(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 12.85 seconds
+No updates necessary for this image.
+[1mParsed package name: libcanberra(B[m
+Package info for libcanberra:
+             Name: library/desktop/xdg/libcanberra
+          Summary: Event Sound API Using XDG Sound Theming Specification
+         Category: System/Multimedia Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.30
+           Branch: 2023.0.0.0
+   Packaging Date: December 17, 2023 at 06:22:27 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 427.08 kB
+             FMRI: pkg://openindiana.org/library/desktop/xdg/libcanberra@0.30-2023.0.0.0:20231217T182227Z
+      Project URL: http://0pointer.de/lennart/projects/libcanberra/
+       Source URL: http://0pointer.de/lennart/projects/libcanberra/libcanberra-0.30.tar.xz
+[1mParsed package name: gnome-online-accounts(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: icu(B[m
+Package info for icu:
+             Name: library/icu
+          Summary: International Components for Unicode
+         Category: System/Internationalization
+            State: Installed
+        Publisher: openindiana.org
+          Version: 72.1
+           Branch: 2024.0.0.4
+   Packaging Date: January 17, 2024 at 11:07:39 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 76.61 MB
+             FMRI: pkg://openindiana.org/library/icu@72.1-2024.0.0.4:20240117T230739Z
+      Project URL: https://icu.unicode.org/
+       Source URL: https://github.com/unicode-org/icu/releases/download/release-72-1/icu4c-72_1-src.tgz
+[1mParsed package name: libical(B[m
+Package info for libical:
+             Name: library/libical
+          Summary: libical is an Open Source implementation of the IETF's
+                   iCalendar Calendaring and Scheduling protocols
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.0.17
+           Branch: 2023.0.0.2
+   Packaging Date: November 23, 2023 at 10:47:36 PM
+Last Install Time: February 21, 2024 at 09:00:32 PM
+             Size: 7.66 MB
+             FMRI: pkg://openindiana.org/library/libical@3.0.17-2023.0.0.2:20231123T224736Z
+      Project URL: https://libical.github.io/libical
+       Source URL: https://github.com/libical/libical/archive/refs/tags/v3.0.17.tar.gz
+[1mParsed package name: libsoup-3(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: nspr(B[m
+Package info for nspr:
+             Name: library/nspr
+          Summary: Netscape Portable Runtime
+         Category: Development/System
+            State: Installed
+        Publisher: openindiana.org
+          Version: 4.35
+           Branch: 2022.0.0.0
+   Packaging Date: September 15, 2022 at 08:47:36 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 6.33 MB
+             FMRI: pkg://openindiana.org/library/nspr@4.35-2022.0.0.0:20220915T084736Z
+      Project URL: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSPR
+       Source URL: https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v4.35/src/nspr-4.35.tar.gz
+[1mParsed package name: nss(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: perl-536(B[m
+Package info for perl-536:
+             Name: runtime/perl-536
+          Summary: Perl 5.36.3
+         Category: Development/Perl
+            State: Installed
+        Publisher: openindiana.org
+          Version: 5.36.3
+           Branch: 2023.0.0.0
+   Packaging Date: November 30, 2023 at 07:18:19 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 74.10 MB
+             FMRI: pkg://openindiana.org/runtime/perl-536@5.36.3-2023.0.0.0:20231130T191819Z
+      Project URL: https://www.perl.org/
+       Source URL: https://www.cpan.org/src/5.0/perl-5.36.3.tar.xz
+[1mParsed package name: kerberos-5(B[m
+Package info for kerberos-5:
+             Name: service/security/kerberos-5
+          Summary: Kerberos version 5 support
+      Description: Kerberos version 5 support
+         Category: System/Security
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.5.11 (3863692f70)
+           Branch: 2024.0.0.22050
+   Packaging Date: February 22, 2024 at 01:13:38 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 22, 2024 at 08:19:54 AM
+             Size: 3.63 MB
+             FMRI: pkg://openindiana.org/service/security/kerberos-5@0.5.11-2024.0.0.22050:20240222T011338Z
+[1mParsed package name: openldap(B[m
+Package info for openldap:
+             Name: library/openldap
+          Summary: OpenLDAP is an open source implementation of the Lightweight
+                   Directory Access Protocol
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.6.7
+           Branch: 2024.0.0.0
+   Packaging Date: February  1, 2024 at 12:24:22 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 6.95 MB
+             FMRI: pkg://openindiana.org/library/openldap@2.6.7-2024.0.0.0:20240201T122422Z
+      Project URL: https://www.openldap.org/
+       Source URL: https://openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.6.7.tgz
+[1mParsed package name: libnotify(B[m
+Package info for libnotify:
+             Name: library/libnotify
+          Summary: Library for desktop notifications
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.7.12
+           Branch: 2023.0.0.0
+   Packaging Date: April  7, 2023 at 06:26:03 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 378.15 kB
+             FMRI: pkg://openindiana.org/library/libnotify@0.7.12-2023.0.0.0:20230407T182603Z
+      Project URL: https://github.com/GNOME/libnotify
+       Source URL: https://download.gnome.org/sources/libnotify/0.7/libnotify-0.7.12.tar.xz
+[1mParsed package name: evolution-data-server(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 14.62 seconds
+No updates necessary for this image.
+[1mParsed package name: libgee(B[m
+Package info for libgee:
+             Name: library/desktop/libgee
+          Summary: GObject based collection and utility library
+         Category: Development/GNOME and GTK+
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.20.6
+           Branch: 2022.0.0.0
+   Packaging Date: December 11, 2022 at 07:52:29 AM
+Last Install Time: February 21, 2024 at 09:02:36 PM
+             Size: 3.74 MB
+             FMRI: pkg://openindiana.org/library/desktop/libgee@0.20.6-2022.0.0.0:20221211T075229Z
+      Project URL: https://wiki.gnome.org/Projects/Libgee
+       Source URL: https://download.gnome.org/sources/libgee/0.20/libgee-0.20.6.tar.xz
+[1mParsed package name: tracker(B[m
+Package info for tracker:
+             Name: library/desktop/search/tracker
+          Summary: Desktop search tool
+         Category: Applications/System Utilities
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.8.3
+           Branch: 2024.0.0.14
+   Packaging Date: February 12, 2024 at 04:07:56 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 7.73 MB
+             FMRI: pkg://openindiana.org/library/desktop/search/tracker@1.8.3-2024.0.0.14:20240212T160756Z
+      Project URL: https://gitlab.gnome.org/GNOME/tracker
+       Source URL: https://download.gnome.org/sources/tracker/1.8/tracker-1.8.3.tar.xz
+[1mParsed package name: ncurses(B[m
+Package info for ncurses:
+             Name: library/ncurses
+          Summary: A CRT screen handling and optimization package.
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 6.4
+           Branch: 2022.1.0.0
+   Packaging Date: January  1, 2023 at 01:00:34 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 5.29 MB
+             FMRI: pkg://openindiana.org/library/ncurses@6.4-2022.1.0.0:20230101T130034Z
+      Project URL: https://www.gnu.org/software/ncurses/
+       Source URL: https://invisible-mirror.net/archives/ncurses/ncurses-6.4.tar.gz
+[1mParsed package name: readline(B[m
+Package info for readline:
+             Name: library/readline
+          Summary: GNU readline provides interactive line-editing and history
+      Description: The GNU Readline library provides a set of functions for use
+                   by applications that allow users to edit command lines as
+                   they are typed in
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 6.3
+           Branch: 2023.0.0.6
+   Packaging Date: October 28, 2023 at 12:33:17 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 1.95 MB
+             FMRI: pkg://openindiana.org/library/readline@6.3-2023.0.0.6:20231028T123317Z
+      Project URL: https://cnswww.cns.cwru.edu/php/chet/readline/rltop.html
+       Source URL: https://ftp.gnu.org/gnu/readline/readline-6.3.tar.gz
+[1mParsed package name: telepathy-glib(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: library(B[m
+Package info for library:
+             Name: database/mariadb-106/library
+          Summary: MariaDB 10.6 libraries
+         Category: Development/Databases
+            State: Installed
+        Publisher: openindiana.org
+          Version: 10.6.16
+           Branch: 2024.0.0.0
+   Packaging Date: January 28, 2024 at 08:12:41 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 33.30 MB
+             FMRI: pkg://openindiana.org/database/mariadb-106/library@10.6.16-2024.0.0.0:20240128T201241Z
+      Project URL: https://www.mariadb.org/
+       Source URL: https://dlm.mariadb.com/3588628/MariaDB/mariadb-10.6.16/source/mariadb-10.6.16.tar.gz
+
+             Name: database/postgres-15/library
+          Summary: PostgreSQL 15 client libraries
+         Category: System/Databases
+            State: Installed
+        Publisher: openindiana.org
+          Version: 15.6
+           Branch: 2024.0.0.0
+   Packaging Date: February 13, 2024 at 08:12:37 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 15, 2024 at 07:30:19 PM
+             Size: 1.72 MB
+             FMRI: pkg://openindiana.org/database/postgres-15/library@15.6-2024.0.0.0:20240213T201237Z
+      Project URL: https://www.postgresql.org
+       Source URL: https://ftp.postgresql.org/pub/source/v15.6/postgresql-15.6.tar.bz2
+
+             Name: diagnostic/ddu/library
+          Summary: Device Driver Utility (DDU) Common Library
+         Category: System/Hardware
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.3.1
+           Branch: 2023.0.0.41
+   Packaging Date: August 22, 2023 at 04:56:56 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 295.86 kB
+             FMRI: pkg://openindiana.org/diagnostic/ddu/library@1.3.1-2023.0.0.41:20230822T165656Z
+      Project URL: https://github.com/OpenIndiana/ddu
+
+             Name: system/library
+          Summary: Core Solaris, (Shared Libs)
+      Description: core shared libraries for a specific instruction-set
+                   architecture
+         Category: System/Core
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.5.11 (3863692f70)
+           Branch: 2024.0.0.22050
+   Packaging Date: February 22, 2024 at 01:17:53 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 22, 2024 at 08:19:54 AM
+             Size: 52.54 MB
+             FMRI: pkg://openindiana.org/system/library@0.5.11-2024.0.0.22050:20240222T011753Z
+[1mParsed package name: p11-kit(B[m
+Package info for p11-kit:
+             Name: library/desktop/p11-kit
+          Summary: p11-kit provides a way to load and enumerate PKCS#11 modules
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.25.3
+           Branch: 2023.0.0.0
+   Packaging Date: November 16, 2023 at 07:02:39 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 27.77 MB
+             FMRI: pkg://openindiana.org/library/desktop/p11-kit@0.25.3-2023.0.0.0:20231116T070239Z
+      Project URL: https://p11-glue.github.io/p11-glue/p11-kit.html
+       Source URL: https://github.com/p11-glue/p11-kit/releases/download/0.25.3/p11-kit-0.25.3.tar.xz
+[1mParsed package name: libgcrypt(B[m
+Package info for libgcrypt:
+             Name: system/library/security/libgcrypt
+          Summary: GnuPG libgcrypt library
+         Category: System/Security
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.10.3
+           Branch: 2023.0.0.0
+   Packaging Date: November 17, 2023 at 06:26:50 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 1.65 MB
+             FMRI: pkg://openindiana.org/system/library/security/libgcrypt@1.10.3-2023.0.0.0:20231117T182650Z
+      Project URL: https://www.gnu.org/software/libgcrypt/
+       Source URL: ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-1.10.3.tar.bz2
+[1mParsed package name: gnupg(B[m
+Package info for gnupg:
+             Name: crypto/gnupg
+          Summary: GNU Privacy Guard
+      Description: A complete and free implementation of the OpenPGP Standard as
+                   defined by RFC4880
+         Category: Applications/System Utilities
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.4.4
+           Branch: 2024.0.0.0
+   Packaging Date: January 25, 2024 at 10:27:39 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 13.69 MB
+             FMRI: pkg://openindiana.org/crypto/gnupg@2.4.4-2024.0.0.0:20240125T222739Z
+      Project URL: https://gnupg.org/
+       Source URL: https://gnupg.org//ftp/gcrypt/gnupg/gnupg-2.4.4.tar.bz2
+[1mParsed package name: libgpg-error(B[m
+Package info for libgpg-error:
+             Name: library/security/libgpg-error
+          Summary: GnuPG Error Library
+         Category: System/Security
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.47
+           Branch: 2023.0.0.0
+   Packaging Date: April  7, 2023 at 07:47:49 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 1.33 MB
+             FMRI: pkg://openindiana.org/library/security/libgpg-error@1.47-2023.0.0.0:20230407T074749Z
+      Project URL: https://www.gnupg.org/related_software/libgpg-error/
+       Source URL: https://gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.47.tar.bz2
+[1mParsed package name: libpng16(B[m
+Package info for libpng16:
+             Name: image/library/libpng16
+          Summary: Portable Network Graphics library version 1.6.42
+         Category: System/Multimedia Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.6.42
+           Branch: 2024.0.0.0
+   Packaging Date: January 30, 2024 at 10:02:54 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 1.01 MB
+             FMRI: pkg://openindiana.org/image/library/libpng16@1.6.42-2024.0.0.0:20240130T220254Z
+      Project URL: http://www.libpng.org/pub/png/
+       Source URL: https://sourceforge.net/projects/libpng/files/libpng16/1.6.42/libpng-1.6.42.tar.xz/download
+[1mParsed package name: core-os(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: iso-codes(B[m
+Package info for iso-codes:
+             Name: data/iso-codes
+          Summary: ISO code lists and translations
+         Category: Desktop (GNOME)/Localizations
+            State: Installed
+        Publisher: openindiana.org
+          Version: 4.16.0
+           Branch: 2024.0.0.0
+   Packaging Date: January 18, 2024 at 06:22:20 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 18.82 MB
+             FMRI: pkg://openindiana.org/data/iso-codes@4.16.0-2024.0.0.0:20240118T182220Z
+      Project URL: https://salsa.debian.org/iso-codes-team/iso-codes
+       Source URL: https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/v4.16.0/iso-codes-v4.16.0.tar.bz2
+[1mParsed package name: gnu-coreutils(B[m
+Package info for gnu-coreutils:
+             Name: file/gnu-coreutils
+          Summary: GNU Core Utilities are the basic file, shell and text
+                   manipulation utilities
+         Category: Applications/System Utilities
+            State: Installed
+        Publisher: openindiana.org
+          Version: 9.4
+           Branch: 2023.0.0.0
+   Packaging Date: September 16, 2023 at 07:42:52 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 26.28 MB
+             FMRI: pkg://openindiana.org/file/gnu-coreutils@9.4-2023.0.0.0:20230916T194252Z
+      Project URL: https://www.gnu.org/software/coreutils/
+       Source URL: https://ftp.gnu.org/gnu/coreutils/coreutils-9.4.tar.xz
+[1mParsed package name: orca(B[m
+Package info for orca:
+             Name: gnome/accessibility/orca
+          Summary: Orca screen reader/magnifier
+         Category: Applications/Universal Access
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.24.0
+           Branch: 2023.0.0.2
+   Packaging Date: December  1, 2023 at 10:11:47 AM
+Last Install Time: February 21, 2024 at 09:04:27 PM
+             Size: 13.18 MB
+             FMRI: pkg://openindiana.org/gnome/accessibility/orca@3.24.0-2023.0.0.2:20231201T101147Z
+      Project URL: http://www.gnome.org
+       Source URL: https://download.gnome.org/sources/orca/3.24/orca-3.24.0.tar.xz
+[1mParsed package name: gnome-session(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 15.00 seconds
+No updates necessary for this image.
+[1mParsed package name: zenity(B[m
+Package info for zenity:
+             Name: gnome/zenity
+          Summary: GNOME graphical dialog box generator
+         Category: Development/GNOME and GTK+
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.44.3
+           Branch: 2024.0.0.0
+   Packaging Date: February  2, 2024 at 07:06:25 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 10.64 MB
+             FMRI: pkg://openindiana.org/gnome/zenity@3.44.3-2024.0.0.0:20240202T190625Z
+      Project URL: http://www.gnome.org
+       Source URL: https://download.gnome.org/sources/zenity/3.44/zenity-3.44.3.tar.xz
+
+             Name: network/ssh-askpass/zenity
+          Summary: The SSH-AskPass GUI helper utility as a zenity script
+      Description: An implementation of the SSH-AskPass GUI helper utility
+                   allows ssh-add to request key passphrase in an X11 session
+         Category: Applications/Internet (org.opensolaris.category.2008)
+                   System/Security (org.opensolaris.category.2008)
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.0
+           Branch: 2020.0.1.0
+   Packaging Date: March 30, 2020 at 03:22:41 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 26.34 kB
+             FMRI: pkg://openindiana.org/network/ssh-askpass/zenity@1.0-2020.0.1.0:20200330T152241Z
+[1mParsed package name: yelp-tools(B[m
+Package info for yelp-tools:
+             Name: library/gnome/yelp-tools
+          Summary: Yelp Tools
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 42.1
+           Branch: 2024.0.0.0
+   Packaging Date: January 20, 2024 at 03:16:02 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 144.64 kB
+             FMRI: pkg://openindiana.org/library/gnome/yelp-tools@42.1-2024.0.0.0:20240120T151602Z
+      Project URL: http://www.gnome.org
+       Source URL: https://download.gnome.org/sources/yelp-tools/42/yelp-tools-42.1.tar.xz
+[1mParsed package name: consolekit(B[m
+Package info for consolekit:
+             Name: library/xdg/consolekit
+          Summary: Framework for tracking users, login sessions, and seats
+         Category: Desktop (GNOME)/Sessions
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.4.6
+           Branch: 2024.0.0.1
+   Packaging Date: January 14, 2024 at 07:32:43 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 676.82 kB
+             FMRI: pkg://openindiana.org/library/xdg/consolekit@0.4.6-2024.0.0.1:20240114T193243Z
+      Project URL: https://www.freedesktop.org/wiki/Software/ConsoleKit
+       Source URL: https://www.freedesktop.org/software/ConsoleKit/dist/ConsoleKit-0.4.6.tar.xz
+[1mParsed package name: audio(B[m
+Package info for audio:
+             Name: driver/audio
+          Summary: Audio Drivers
+      Description: SunOS audio device drivers
+         Category: Drivers/Media
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.5.11 (3863692f70)
+           Branch: 2024.0.0.22050
+   Packaging Date: February 22, 2024 at 12:56:47 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 22, 2024 at 08:19:54 AM
+             Size: 618.86 kB
+             FMRI: pkg://openindiana.org/driver/audio@0.5.11-2024.0.0.22050:20240222T005647Z
+[1mParsed package name: accountsservice(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: dbus(B[m
+Package info for dbus:
+             Name: system/library/dbus
+          Summary: Simple IPC library based on messages
+         Category: System/Services
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.14.10
+           Branch: 2024.0.0.0
+   Packaging Date: January 14, 2024 at 05:59:27 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 26.49 MB
+             FMRI: pkg://openindiana.org/system/library/dbus@1.14.10-2024.0.0.0:20240114T175927Z
+      Project URL: https://dbus.freedesktop.org
+       Source URL: https://dbus.freedesktop.org/releases/dbus/dbus-1.14.10.tar.xz
+[1mParsed package name: devinfo(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: pam-core(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: xterm(B[m
+Package info for xterm:
+             Name: terminal/xterm
+          Summary: Xterm - terminal emulator for X
+         Category: Applications/System Utilities
+            State: Installed
+        Publisher: openindiana.org
+          Version: 389
+           Branch: 2024.0.0.0
+   Packaging Date: January  2, 2024 at 11:47:59 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 1.47 MB
+             FMRI: pkg://openindiana.org/terminal/xterm@389-2024.0.0.0:20240102T234759Z
+      Project URL: https://invisible-island.net/xterm/
+       Source URL: https://invisible-mirror.net/archives/xterm/xterm-389.tgz
+[1mParsed package name: xkb-utilities(B[m
+Package info for xkb-utilities:
+             Name: x11/keyboard/xkb-utilities
+          Summary: X Window System X Keyboard Extension (XKB) Utilties
+         Category: Meta Packages/Group Packages
+            State: Installed
+        Publisher: openindiana.org
+          Version: 7.5
+           Branch: 2020.0.1.0
+   Packaging Date: March 30, 2020 at 03:18:32 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 0.00 B
+             FMRI: pkg://openindiana.org/x11/keyboard/xkb-utilities@7.5-2020.0.1.0:20200330T151832Z
+[1mParsed package name: libxau(B[m
+Package info for libxau:
+             Name: x11/library/libxau
+          Summary: libXau - X11 Authorization Protocol library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.0.11
+           Branch: 2023.0.0.1
+   Packaging Date: August  5, 2023 at 11:58:11 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 42.30 kB
+             FMRI: pkg://openindiana.org/x11/library/libxau@1.0.11-2023.0.0.1:20230805T115811Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXau-1.0.11.tar.xz
+[1mParsed package name: libxcb(B[m
+Package info for libxcb:
+             Name: x11/library/libxcb
+          Summary: The X protocol C-language Binding (XCB): Libraries
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.16
+           Branch: 2023.0.0.0
+   Packaging Date: September  2, 2023 at 09:28:55 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 6.46 MB
+             FMRI: pkg://openindiana.org/x11/library/libxcb@1.16-2023.0.0.0:20230902T092855Z
+      Project URL: https://xcb.freedesktop.org
+       Source URL: https://xorg.freedesktop.org/releases/individual/lib/libxcb-1.16.tar.xz
+[1mParsed package name: libxdmcp(B[m
+Package info for libxdmcp:
+             Name: x11/library/libxdmcp
+          Summary: libXdmcp - X Display Manager Control Protocol (XDMCP) library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.1.4
+           Branch: 2023.0.0.1
+   Packaging Date: August  5, 2023 at 11:58:01 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 64.32 kB
+             FMRI: pkg://openindiana.org/x11/library/libxdmcp@1.1.4-2023.0.0.1:20230805T115801Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXdmcp-1.1.4.tar.xz
+[1mParsed package name: libxft(B[m
+Package info for libxft:
+             Name: x11/library/libxft
+          Summary: libXft - X FreeType library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.3.8
+           Branch: 2023.0.0.0
+   Packaging Date: April 23, 2023 at 06:32:23 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 300.71 kB
+             FMRI: pkg://openindiana.org/x11/library/libxft@2.3.8-2023.0.0.0:20230423T063223Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXft-2.3.8.tar.xz
+[1mParsed package name: libxinerama(B[m
+Package info for libxinerama:
+             Name: x11/library/libxinerama
+          Summary: libXinerama - X PanoramiX extension library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.1.5
+           Branch: 2022.0.0.0
+   Packaging Date: November 13, 2022 at 11:07:14 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 41.38 kB
+             FMRI: pkg://openindiana.org/x11/library/libxinerama@1.1.5-2022.0.0.0:20221113T110714Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXinerama-1.1.5.tar.xz
+[1mParsed package name: xephyr(B[m
+Package info for xephyr:
+             Name: x11/server/xephyr
+          Summary: Xephyr - X server displaying to a window on a pre-existing X
+                   display
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.19.7
+           Branch: 2023.0.0.11
+   Packaging Date: October 18, 2023 at 04:21:32 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 3.37 MB
+             FMRI: pkg://openindiana.org/x11/server/xephyr@1.19.7-2023.0.0.11:20231018T162132Z
+      Project URL: https://www.x.org/
+       Source URL: https://ftp.x.org/pub/individual/xserver/xorg-server-1.19.7.tar.bz2
+[1mParsed package name: xserver-common(B[m
+Package info for xserver-common:
+             Name: x11/server/xserver-common
+          Summary: X server common files
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.19.7
+           Branch: 2023.0.0.11
+   Packaging Date: October 18, 2023 at 04:21:50 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 229.62 kB
+             FMRI: pkg://openindiana.org/x11/server/xserver-common@1.19.7-2023.0.0.11:20231018T162150Z
+      Project URL: https://www.x.org/
+       Source URL: https://ftp.x.org/pub/individual/xserver/xorg-server-1.19.7.tar.bz2
+[1mParsed package name: xinit(B[m
+Package info for xinit:
+             Name: x11/session/xinit
+          Summary: xinit - X Window System initializer
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.4.2
+           Branch: 2022.0.0.0
+   Packaging Date: December  5, 2022 at 06:41:50 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 46.49 kB
+             FMRI: pkg://openindiana.org/x11/session/xinit@1.4.2-2022.0.0.0:20221205T184150Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/app/xinit-1.4.2.tar.xz
+[1mParsed package name: x11-server-utilities(B[m
+Package info for x11-server-utilities:
+             Name: x11/x11-server-utilities
+          Summary: X11 server state utilities
+         Category: Meta Packages/Group Packages
+            State: Installed
+        Publisher: openindiana.org
+          Version: 7.5
+           Branch: 2020.0.1.0
+   Packaging Date: March 30, 2020 at 03:18:16 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 0.00 B
+             FMRI: pkg://openindiana.org/x11/x11-server-utilities@7.5-2020.0.1.0:20200330T151816Z
+[1mParsed package name: check(B[m
+Package info for check:
+             Name: developer/check
+          Summary: Unit Testing Framework for C
+         Category: Development/C
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.15.2
+           Branch: 2020.0.1.0
+   Packaging Date: July  7, 2021 at 08:07:41 PM
+Last Install Time: February 21, 2024 at 09:06:15 PM
+             Size: 425.02 kB
+             FMRI: pkg://openindiana.org/developer/check@0.15.2-2020.0.1.0:20210707T200741Z
+      Project URL: https://libcheck.github.io/check
+       Source URL: https://github.com/libcheck/check/releases/download/0.15.2/check-0.15.2.tar.gz
+[1mParsed package name: gedit(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 14.36 seconds
+No updates necessary for this image.
+[1mParsed package name: gtksourceview(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 13.08 seconds
+No updates necessary for this image.
+[1mParsed package name: libsoup(B[m
+Package info for libsoup:
+             Name: library/libsoup
+          Summary: Libsoup is an HTTP client/server library for GNOME
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.74.3
+           Branch: 2023.0.0.1
+   Packaging Date: November 29, 2023 at 04:42:25 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 5.01 MB
+             FMRI: pkg://openindiana.org/library/libsoup@2.74.3-2023.0.0.1:20231129T164225Z
+      Project URL: https://www.gnome.org
+       Source URL: https://download.gnome.org/sources/libsoup/2.74/libsoup-2.74.3.tar.xz
+[1mParsed package name: enchant(B[m
+Package info for enchant:
+             Name: library/spell-checking/enchant
+          Summary: GNOME spell checker component
+         Category: Applications/Accessories
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.6.7
+           Branch: 2024.0.0.0
+   Packaging Date: February  9, 2024 at 09:08:02 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 214.82 kB
+             FMRI: pkg://openindiana.org/library/spell-checking/enchant@2.6.7-2024.0.0.0:20240209T210802Z
+      Project URL: https://abiword.github.io/enchant/
+       Source URL: https://github.com/AbiWord/enchant/releases/download/v2.6.7/enchant-2.6.7.tar.gz
+[1mParsed package name: libffi(B[m
+Package info for libffi:
+             Name: library/libffi
+          Summary: Foreign Function Interface Library
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.2.1
+           Branch: 2020.0.1.0
+   Packaging Date: March 30, 2020 at 12:22:08 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 147.10 kB
+             FMRI: pkg://openindiana.org/library/libffi@3.2.1-2020.0.1.0:20200330T122208Z
+      Project URL: http://sourceware.org/libffi/
+       Source URL: ftp://sourceware.org/pub/libffi/libffi-3.2.1.tar.gz
+[1mParsed package name: libmozjs-115(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: gjs(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: gnutls-3(B[m
+Package info for gnutls-3:
+             Name: library/gnutls-3
+          Summary: GNU transport layer security library
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.8.3
+           Branch: 2024.0.0.0
+   Packaging Date: January 17, 2024 at 07:59:18 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 9.99 MB
+             FMRI: pkg://openindiana.org/library/gnutls-3@3.8.3-2024.0.0.0:20240117T195918Z
+      Project URL: https://gnutls.org/
+       Source URL: https://www.gnupg.org/ftp/gcrypt/gnutls/v3.8/gnutls-3.8.3.tar.xz
+[1mParsed package name: libproxy(B[m
+Package info for libproxy:
+             Name: library/libproxy
+          Summary: Libproxy is a library that provides automatic proxy
+                   configuration management
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.4.18
+           Branch: 2023.0.0.1
+   Packaging Date: November  6, 2023 at 06:41:10 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 6.10 MB
+             FMRI: pkg://openindiana.org/library/libproxy@0.4.18-2023.0.0.1:20231106T184110Z
+      Project URL: https://libproxy.github.io/libproxy/
+       Source URL: https://github.com/libproxy/libproxy/releases/download/0.4.18/libproxy-0.4.18.tar.xz
+[1mParsed package name: docbook-dtds(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: docbook-style-dsssl(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: docbook-style-xsl(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: sgml-common(B[m
+Package info for sgml-common:
+             Name: data/docbook/sgml-common
+          Summary: Common SGML catalog and DTD files
+         Category: Desktop (GNOME)/Documentation
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.6.3
+           Branch: 2020.0.1.0
+   Packaging Date: March 30, 2020 at 12:04:04 PM
+Last Install Time: February 21, 2024 at 09:09:48 PM
+             Size: 169.15 kB
+             FMRI: pkg://openindiana.org/data/docbook/sgml-common@0.6.3-2020.0.1.0:20200330T120404Z
+       Source URL: ftp://sources.redhat.com/pub/docbook-tools/new-trials/SOURCES/sgml-common-0.6.3.tgz
+[1mParsed package name: xml-common(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: desktop-file-utils(B[m
+Package info for desktop-file-utils:
+             Name: library/desktop/desktop-file-utils
+          Summary: A few command line utilities for working with desktop entries
+         Category: Desktop (GNOME)/Scripts
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.27
+           Branch: 2023.0.0.1
+   Packaging Date: October 19, 2023 at 02:55:47 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 267.36 kB
+             FMRI: pkg://openindiana.org/library/desktop/desktop-file-utils@0.27-2023.0.0.1:20231019T145547Z
+      Project URL: https://www.freedesktop.org/wiki/Software/desktop-file-utils/
+       Source URL: https://www.freedesktop.org/software/desktop-file-utils/releases/desktop-file-utils-0.27.tar.xz
+[1mParsed package name: gamin(B[m
+Package info for gamin:
+             Name: library/file-monitor/gamin
+          Summary: Library providing the FAM File Alteration Monitor API
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.1.10
+           Branch: 2023.0.0.4
+   Packaging Date: February 14, 2023 at 07:38:18 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 1.31 MB
+             FMRI: pkg://openindiana.org/library/file-monitor/gamin@0.1.10-2023.0.0.4:20230214T193818Z
+      Project URL: https://www.gnome.org
+       Source URL: https://download.gnome.org/sources/gamin/0.1/gamin-0.1.10.tar.gz
+[1mParsed package name: pcre2(B[m
+Package info for pcre2:
+             Name: library/pcre2
+          Summary: Version 2 of Perl-Compatible Regular Expressions
+         Category: Development/C
+            State: Installed
+        Publisher: openindiana.org
+          Version: 10.43
+           Branch: 2024.0.0.0
+   Packaging Date: February 17, 2024 at 04:54:25 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 22, 2024 at 08:19:54 AM
+             Size: 5.59 MB
+             FMRI: pkg://openindiana.org/library/pcre2@10.43-2024.0.0.0:20240217T165425Z
+      Project URL: https://pcre.org/
+       Source URL: https://github.com/PhilipHazel/pcre2/releases/download/pcre2-10.43/pcre2-10.43.tar.bz2
+[1mParsed package name: libidn2(B[m
+Package info for libidn2:
+             Name: library/libidn2
+          Summary: An implementation of IDNA2008 internationalized domain names
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.3.4
+           Branch: 2023.0.0.2
+   Packaging Date: September 14, 2023 at 05:51:19 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 657.90 kB
+             FMRI: pkg://openindiana.org/library/libidn2@2.3.4-2023.0.0.2:20230914T175119Z
+      Project URL: https://www.gnu.org/software/libidn/
+       Source URL: https://ftp.gnu.org/gnu/libidn/libidn2-2.3.4.tar.gz
+[1mParsed package name: gpgme(B[m
+Package info for gpgme:
+             Name: library/security/gpgme
+          Summary: GnuPG Made Easy
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.23.2
+           Branch: 2023.0.0.0
+   Packaging Date: November 29, 2023 at 07:28:40 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 1.84 MB
+             FMRI: pkg://openindiana.org/library/security/gpgme@1.23.2-2023.0.0.0:20231129T192840Z
+      Project URL: https://www.gnupg.org/related_software/gpgme/
+       Source URL: ftp://ftp.gnupg.org/gcrypt/gpgme/gpgme-1.23.2.tar.bz2
+[1mParsed package name: pygobject-3-39(B[m
+Package info for pygobject-3-39:
+             Name: library/python/pygobject-3-39
+          Summary: PyGObject - Python bindings for GObject Introspection
+         Category: Development/Python
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.46.0
+           Branch: 2023.0.0.0
+   Packaging Date: December  5, 2023 at 03:12:47 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 25.82 kB
+             FMRI: pkg://openindiana.org/library/python/pygobject-3-39@3.46.0-2023.0.0.0:20231205T151247Z
+      Project URL: https://pygobject.readthedocs.io
+       Source URL: https://files.pythonhosted.org/packages/ac/4a/f24ddf1d20cc4b56affc7921e29928559a06c922eb60077448392792b914/PyGObject-3.46.0.tar.gz
+[1mParsed package name: python-39(B[m
+Package info for python-39:
+             Name: runtime/python-39
+          Summary: The Python interpreter, libraries and utilities
+         Category: Development/Python
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.9.18
+           Branch: 2024.0.0.2
+   Packaging Date: February 16, 2024 at 02:46:39 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 22, 2024 at 08:19:54 AM
+             Size: 65.85 MB
+             FMRI: pkg://openindiana.org/runtime/python-39@3.9.18-2024.0.0.2:20240216T144639Z
+      Project URL: https://python.org/
+       Source URL: https://python.org/ftp/python/3.9.18/Python-3.9.18.tar.xz
+[1mParsed package name: libgee (B[m
+Package info for libgee :
+             Name: library/desktop/libgee
+          Summary: GObject based collection and utility library
+         Category: Development/GNOME and GTK+
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.20.6
+           Branch: 2022.0.0.0
+   Packaging Date: December 11, 2022 at 07:52:29 AM
+Last Install Time: February 21, 2024 at 09:02:36 PM
+             Size: 3.74 MB
+             FMRI: pkg://openindiana.org/library/desktop/libgee@0.20.6-2022.0.0.0:20221211T075229Z
+      Project URL: https://wiki.gnome.org/Projects/Libgee
+       Source URL: https://download.gnome.org/sources/libgee/0.20/libgee-0.20.6.tar.xz
+[1mParsed package name: gmp(B[m
+Package info for gmp:
+             Name: library/gmp
+          Summary: GNU Multiple Precision Bignum Library
+         Category: Development/High Performance Computing
+            State: Installed
+        Publisher: openindiana.org
+          Version: 6.3.0
+           Branch: 2023.0.0.2
+   Packaging Date: October 31, 2023 at 11:54:23 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 1.97 MB
+             FMRI: pkg://openindiana.org/library/gmp@6.3.0-2023.0.0.2:20231031T115423Z
+      Project URL: https://gmplib.org/
+       Source URL: https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.bz2
+[1mParsed package name: mpc(B[m
+Package info for mpc:
+             Name: library/mpc
+          Summary: Multiprecision complex data type evaluation library
+         Category: Development/High Performance Computing
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.3.1
+           Branch: 2022.1.0.0
+   Packaging Date: December 31, 2022 at 10:02:25 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 432.99 kB
+             FMRI: pkg://openindiana.org/library/mpc@1.3.1-2022.1.0.0:20221231T220225Z
+      Project URL: https://www.multiprecision.org/
+       Source URL: https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz
+[1mParsed package name: mpfr(B[m
+Package info for mpfr:
+             Name: library/mpfr
+          Summary: The GNU Multiple Precision with IEEE Rounding Floating-Point
+                   Library
+         Category: Development/High Performance Computing
+            State: Installed
+        Publisher: openindiana.org
+          Version: 4.2.1
+           Branch: 2023.0.0.0
+   Packaging Date: August 22, 2023 at 08:00:55 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 1.88 MB
+             FMRI: pkg://openindiana.org/library/mpfr@4.2.1-2023.0.0.0:20230822T200055Z
+      Project URL: https://www.mpfr.org/
+       Source URL: https://www.mpfr.org/mpfr-4.2.1/mpfr-4.2.1.tar.bz2
+[1mParsed package name: geoclue(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: libdazzle(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: geocode-glib(B[m
+Package info for geocode-glib:
+             Name: library/desktop/geocode-glib
+          Summary: A library for geocode and reverse geocoding
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.24.0
+           Branch: 2022.0.0.2
+   Packaging Date: July 25, 2022 at 02:51:40 PM
+Last Install Time: February 21, 2024 at 09:13:05 PM
+             Size: 482.75 kB
+             FMRI: pkg://openindiana.org/library/desktop/geocode-glib@3.24.0-2022.0.0.2:20220725T145140Z
+      Project URL: https://www.gnome.org
+       Source URL: https://download.gnome.org/sources/geocode-glib/3.24/geocode-glib-3.24.0.tar.xz
+[1mParsed package name: gsound(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: automake-116(B[m
+Package info for automake-116:
+             Name: developer/build/automake-116
+          Summary: A Makefile generator
+         Category: Development/GNU
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.16.5
+           Branch: 2024.0.0.2
+   Packaging Date: January 31, 2024 at 05:26:41 PM
+Last Install Time: February 21, 2024 at 09:14:40 PM
+             Size: 2.10 MB
+             FMRI: pkg://openindiana.org/developer/build/automake-116@1.16.5-2024.0.0.2:20240131T172641Z
+      Project URL: https://www.gnu.org/software/automake/
+       Source URL: https://ftp.gnu.org/pub/gnu/automake/automake-1.16.5.tar.xz
+[1mParsed package name: intltool(B[m
+Package info for intltool:
+             Name: text/intltool
+          Summary: Set of tools to centralize translation of many different file
+                   formats using GNU gettext-compatible PO files
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.51.0
+           Branch: 2024.0.0.2
+   Packaging Date: January 16, 2024 at 07:00:59 AM
+Last Install Time: February 21, 2024 at 09:15:24 PM
+             Size: 170.39 kB
+             FMRI: pkg://openindiana.org/text/intltool@0.51.0-2024.0.0.2:20240116T070059Z
+      Project URL: https://freedesktop.org/wiki/Software/intltool/
+       Source URL: https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz
+[1mParsed package name: gnome-common(B[m
+Package info for gnome-common:
+             Name: gnome/gnome-common
+          Summary: Multiply used files used by the GNOME 2.0 platform
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.28.0
+           Branch: 2024.0.0.2
+   Packaging Date: January 16, 2024 at 06:10:59 PM
+Last Install Time: February 21, 2024 at 09:16:06 PM
+             Size: 62.12 kB
+             FMRI: pkg://openindiana.org/gnome/gnome-common@2.28.0-2024.0.0.2:20240116T181059Z
+      Project URL: http://www.gnome.org
+       Source URL: https://download.gnome.org/sources/gnome-common/2.28/gnome-common-2.28.0.tar.bz2
+[1mParsed package name: gnome-settings-daemon(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 14.23 seconds
+No updates necessary for this image.
+[1mParsed package name: pulseaudio(B[m
+Package info for pulseaudio:
+             Name: library/audio/pulseaudio
+          Summary: Sample Rate Converter for audio
+         Category: System/Multimedia Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 17.0
+           Branch: 2024.0.0.0
+   Packaging Date: February 16, 2024 at 10:28:30 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 22, 2024 at 08:19:54 AM
+             Size: 8.48 MB
+             FMRI: pkg://openindiana.org/library/audio/pulseaudio@17.0-2024.0.0.0:20240216T222830Z
+      Project URL: https://www.freedesktop.org/wiki/Software/PulseAudio/
+       Source URL: https://freedesktop.org/software/pulseaudio/releases/pulseaudio-17.0.tar.xz
+[1mParsed package name: colord-gtk(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: grilo(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: libgtop(B[m
+Package info for libgtop:
+             Name: library/libgtop
+          Summary: Library to get system specific data
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.40.0
+           Branch: 2023.0.0.1
+   Packaging Date: February 11, 2023 at 02:27:35 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 1.06 MB
+             FMRI: pkg://openindiana.org/library/libgtop@2.40.0-2023.0.0.1:20230211T142735Z
+      Project URL: https://www.gnome.org
+       Source URL: https://download.gnome.org/sources/libgtop/2.40/libgtop-2.40.0.tar.xz
+[1mParsed package name: colord(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: ibus(B[m
+Package info for ibus:
+             Name: system/input-method/ibus
+          Summary: iBus - Intelligent Input Bus
+         Category: System/Internationalization
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.5.26
+           Branch: 2023.0.0.2
+   Packaging Date: February  6, 2023 at 05:09:22 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 12.62 MB
+             FMRI: pkg://openindiana.org/system/input-method/ibus@1.5.26-2023.0.0.2:20230206T170922Z
+      Project URL: https://github.com/ibus/ibus
+       Source URL: https://github.com/ibus/ibus/releases/download/1.5.26/ibus-1.5.26.tar.gz
+[1mParsed package name: libv12n(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: polkit(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: upower(B[m
+Package info for upower:
+             Name: system/upower
+          Summary: A service for enumerating and querying data related to power
+                   devices
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.99.11
+           Branch: 2022.0.0.3
+   Packaging Date: November 16, 2022 at 03:47:20 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 814.12 kB
+             FMRI: pkg://openindiana.org/system/upower@0.99.11-2022.0.0.3:20221116T154720Z
+      Project URL: http://upower.freedesktop.org/
+       Source URL: http://upower.freedesktop.org/releases/upower-0.99.11.tar.xz
+[1mParsed package name: libepoxy(B[m
+Package info for libepoxy:
+             Name: x11/library/libepoxy
+          Summary: library for handling OpenGL function pointers
+         Category: System/Hardware
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.5.10
+           Branch: 2022.0.0.0
+   Packaging Date: July 21, 2022 at 09:14:42 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 5.11 MB
+             FMRI: pkg://openindiana.org/x11/library/libepoxy@1.5.10-2022.0.0.0:20220721T211442Z
+      Project URL: https://www.x.org/
+       Source URL: https://github.com/anholt/libepoxy/archive/refs/tags/1.5.10.tar.gz
+[1mParsed package name: mesa(B[m
+Package info for mesa:
+             Name: x11/library/mesa
+          Summary: The Mesa 3-D Graphics Library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 13.0.6
+           Branch: 2023.0.0.8
+   Packaging Date: July 14, 2023 at 06:45:23 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 39.30 MB
+             FMRI: pkg://openindiana.org/x11/library/mesa@13.0.6-2023.0.0.8:20230714T064523Z
+      Project URL: http://www.mesa3d.org/
+       Source URL: https://mesa.freedesktop.org/archive/older-versions/13.x/13.0.6/mesa-13.0.6.tar.xz
+[1mParsed package name: libxkbcommon(B[m
+Package info for libxkbcommon:
+             Name: x11/library/libxkbcommon
+          Summary: xkbcommon - library to handle keyboard descriptions
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.4.1
+           Branch: 2022.0.0.0
+   Packaging Date: November 17, 2022 at 08:06:19 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 2.38 MB
+             FMRI: pkg://openindiana.org/x11/library/libxkbcommon@1.4.1-2022.0.0.0:20221117T080619Z
+      Project URL: https://xkbcommon.org/
+       Source URL: https://github.com/xkbcommon/libxkbcommon/archive/xkbcommon-1.4.1.tar.gz
+[1mParsed package name: harfbuzz(B[m
+Package info for harfbuzz:
+             Name: library/c++/harfbuzz
+          Summary: HarfBuzz - an OpenType text shaping engine.
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 8.3.0
+           Branch: 2023.0.0.0
+   Packaging Date: November 13, 2023 at 08:23:05 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 5.57 MB
+             FMRI: pkg://openindiana.org/library/c++/harfbuzz@8.3.0-2023.0.0.0:20231113T202305Z
+      Project URL: https://www.freedesktop.org/wiki/Software/HarfBuzz/
+       Source URL: https://github.com/harfbuzz/harfbuzz/releases/download/8.3.0/harfbuzz-8.3.0.tar.xz
+[1mParsed package name: freetype-2(B[m
+Package info for freetype-2:
+             Name: system/library/freetype-2
+          Summary: FreeType 2 font engine
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.13.2
+           Branch: 2023.0.0.1
+   Packaging Date: December 23, 2023 at 03:46:03 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 1.90 MB
+             FMRI: pkg://openindiana.org/system/library/freetype-2@2.13.2-2023.0.0.1:20231223T154603Z
+      Project URL: https://freetype.org/
+       Source URL: https://download.savannah.gnu.org/releases/freetype/freetype-2.13.2.tar.xz
+[1mParsed package name: librest(B[m
+Package info for librest:
+             Name: library/desktop/librest
+          Summary: A library designed to make it easier to access web services
+                   that claim to be 'RESTful'
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.8.1
+           Branch: 2022.1.0.1
+   Packaging Date: December 19, 2022 at 08:12:04 PM
+Last Install Time: February 21, 2024 at 09:20:24 PM
+             Size: 671.12 kB
+             FMRI: pkg://openindiana.org/library/desktop/librest@0.8.1-2022.1.0.1:20221219T201204Z
+      Project URL: https://wiki.gnome.org/Projects/Librest
+       Source URL: https://download.gnome.org/sources/rest/0.8/rest-0.8.1.tar.xz
+[1mParsed package name: gdm(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 12.91 seconds
+No updates necessary for this image.
+[1mParsed package name: gcr(B[m
+Package info for gcr:
+             Name: library/gnome/gcr
+          Summary: A GNOME library for displaying certificates and crypto UI
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.38.1
+           Branch: 2023.0.0.3
+   Packaging Date: March 11, 2023 at 08:28:54 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 14.85 MB
+             FMRI: pkg://openindiana.org/library/gnome/gcr@3.38.1-2023.0.0.3:20230311T202854Z
+      Project URL: https://github.com/GNOME/gcr
+       Source URL: https://download.gnome.org/sources/gcr/3.38/gcr-3.38.1.tar.xz
+[1mParsed package name: ssh(B[m
+Package info for ssh:
+             Name: network/ssh
+          Summary: OpenSSH client and associated utilities
+      Description: OpenSSH provides end-to-end encrypted replacement of
+                   applications such as telnet, rlogin, and ftp. Unlike these
+                   legacy applications, OpenSSH never passes anything (including
+                   user name and password) over the wire in unencrypted form.
+                   OpenSSH provides the SSH known host mechanism which verifies
+                   that the system you connect to is really the one you intended
+                   to. OpenSSH provides secure tunneling capabilities and
+                   several authentication methods. It also supports forwarding
+                   X11 connections and arbitrary TCP ports over the secure
+                   channel.
+         Category: Applications/Internet (org.opensolaris.category.2008)
+                   System/Security (org.opensolaris.category.2008)
+            State: Installed
+        Publisher: openindiana.org
+          Version: 9.6.0.1 (9.6p1)
+           Branch: 2023.0.0.1
+   Packaging Date: December 24, 2023 at 01:08:10 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 4.36 MB
+             FMRI: pkg://openindiana.org/network/ssh@9.6.0.1-2023.0.0.1:20231224T130810Z
+      Project URL: https://www.openssh.org
+       Source URL: https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.6p1.tar.gz
+
+             Name: service/network/ssh
+          Summary: OpenSSH servers and SSH (Secure Shell) services
+         Category: Applications/Internet (org.opensolaris.category.2008)
+                   System/Security (org.opensolaris.category.2008)
+            State: Installed
+        Publisher: openindiana.org
+          Version: 9.6.0.1 (9.6p1)
+           Branch: 2023.0.0.1
+   Packaging Date: December 24, 2023 at 01:08:00 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 3.40 MB
+             FMRI: pkg://openindiana.org/service/network/ssh@9.6.0.1-2023.0.0.1:20231224T130800Z
+      Project URL: https://www.openssh.org
+       Source URL: https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.6p1.tar.gz
+[1mParsed package name: dbus-x11(B[m
+Package info for dbus-x11:
+             Name: system/library/dbus/dbus-x11
+          Summary: Simple IPC library based on messages - X11
+         Category: System/Services
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.14.10
+           Branch: 2024.0.0.0
+   Packaging Date: January 14, 2024 at 05:59:14 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 329.84 kB
+             FMRI: pkg://openindiana.org/system/library/dbus/dbus-x11@1.14.10-2024.0.0.0:20240114T175914Z
+      Project URL: https://dbus.freedesktop.org
+       Source URL: https://dbus.freedesktop.org/releases/dbus/dbus-1.14.10.tar.xz
+[1mParsed package name: libice(B[m
+Package info for libice:
+             Name: x11/library/libice
+          Summary: libICE - Inter-Client Exchange Library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.1.1
+           Branch: 2023.0.0.0
+   Packaging Date: February  2, 2023 at 03:27:26 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 957.94 kB
+             FMRI: pkg://openindiana.org/x11/library/libice@1.1.1-2023.0.0.0:20230202T152726Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libICE-1.1.1.tar.xz
+[1mParsed package name: libsm(B[m
+Package info for libsm:
+             Name: x11/library/libsm
+          Summary: libSM - Session Management library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.2.4
+           Branch: 2023.0.0.0
+   Packaging Date: February  7, 2023 at 10:37:08 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 733.52 kB
+             FMRI: pkg://openindiana.org/x11/library/libsm@1.2.4-2023.0.0.0:20230207T223708Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libSM-1.2.4.tar.xz
+[1mParsed package name: gcr-4(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: cups-libs(B[m
+Package info for cups-libs:
+             Name: library/print/cups-libs
+          Summary: Common Unix Print System (CUPS) runtime libraries
+         Category: System/Printing
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.4.7
+           Branch: 2023.0.0.4
+   Packaging Date: November  5, 2023 at 09:09:05 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 1.50 MB
+             FMRI: pkg://openindiana.org/library/print/cups-libs@2.4.7-2023.0.0.4:20231105T210905Z
+      Project URL: https://openprinting.github.io/cups/
+       Source URL: https://github.com/OpenPrinting/cups/archive/refs/tags/v2.4.7.tar.gz
+[1mParsed package name: mutter(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: gnome-menus(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 15.29 seconds
+No updates necessary for this image.
+[1mParsed package name: gnome-clocks(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: at-spi2-atk(B[m
+Package info for at-spi2-atk:
+             Name: gnome/accessibility/at-spi2-atk
+          Summary: Assistive Technology Service Provider Interface
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.24.1
+           Branch: 2022.0.0.0
+   Packaging Date: January 31, 2022 at 08:52:04 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 540.02 kB
+             FMRI: pkg://openindiana.org/gnome/accessibility/at-spi2-atk@2.24.1-2022.0.0.0:20220131T205204Z
+      Project URL: http://www.gnome.org
+       Source URL: https://download.gnome.org/sources/at-spi2-atk/2.24/at-spi2-atk-2.24.1.tar.xz
+[1mParsed package name: gnome-autoar(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: graphene(B[m
+Package info for graphene:
+             Name: library/desktop/graphene
+          Summary: Math classes for graphic libraries
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.10.8
+           Branch: 2024.0.0.0
+   Packaging Date: January  3, 2024 at 07:31:36 AM
+Last Install Time: February 21, 2024 at 09:26:33 PM
+             Size: 1.01 MB
+             FMRI: pkg://openindiana.org/library/desktop/graphene@1.10.8-2024.0.0.0:20240103T073136Z
+      Project URL: https://ebassi.github.io/graphene
+       Source URL: https://github.com/ebassi/graphene/archive/refs/tags/1.10.8.tar.gz
+[1mParsed package name: simplejson-311(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: atkmm(B[m
+Package info for atkmm:
+             Name: library/desktop/c++/atkmm
+          Summary: atkmm - C++ Wrapper for the atk Library
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.28.3
+           Branch: 2023.0.0.1
+   Packaging Date: October 29, 2023 at 07:26:43 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 1.19 MB
+             FMRI: pkg://openindiana.org/library/desktop/c++/atkmm@2.28.3-2023.0.0.1:20231029T192643Z
+      Project URL: https://www.gtkmm.org/
+       Source URL: https://download.gnome.org/sources/atkmm/2.28/atkmm-2.28.3.tar.xz
+[1mParsed package name: cairomm(B[m
+Package info for cairomm:
+             Name: library/desktop/c++/cairomm
+          Summary: cairomm - C++ Wrapper for the cairo Library
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.14.5
+           Branch: 2023.0.0.1
+   Packaging Date: October 29, 2023 at 07:16:53 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 762.51 kB
+             FMRI: pkg://openindiana.org/library/desktop/c++/cairomm@1.14.5-2023.0.0.1:20231029T191653Z
+      Project URL: https://cairographics.org/cairomm/
+       Source URL: https://cairographics.org/releases/cairomm-1.14.5.tar.xz
+[1mParsed package name: gtkmm3(B[m
+Package info for gtkmm3:
+             Name: library/desktop/c++/gtkmm3
+          Summary: gtkmm - C++ Wrapper for the Gtk+ Library
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.24.8
+           Branch: 2023.0.0.1
+   Packaging Date: November  4, 2023 at 08:24:22 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 20.07 MB
+             FMRI: pkg://openindiana.org/library/desktop/c++/gtkmm3@3.24.8-2023.0.0.1:20231104T202422Z
+      Project URL: https://www.gtkmm.org/
+       Source URL: https://download.gnome.org/sources/gtkmm/3.24/gtkmm-3.24.8.tar.xz
+[1mParsed package name: mm-common(B[m
+Package info for mm-common:
+             Name: library/desktop/c++/mm-common
+          Summary: GNOME C++ bindings effort https://www.gtkmm.org support tools
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.0.6
+           Branch: 2024.0.0.0
+   Packaging Date: January 20, 2024 at 11:29:25 PM
+Last Install Time: February 21, 2024 at 09:29:21 PM
+             Size: 3.85 MB
+             FMRI: pkg://openindiana.org/library/desktop/c++/mm-common@1.0.6-2024.0.0.0:20240120T232925Z
+      Project URL: https://www.gnome.org
+       Source URL: https://download.gnome.org/sources/mm-common/1.0/mm-common-1.0.6.tar.xz
+[1mParsed package name: pangomm(B[m
+Package info for pangomm:
+             Name: library/desktop/c++/pangomm
+          Summary: pangomm - C++ Wrapper for the pango Library
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.46.3
+           Branch: 2023.0.0.2
+   Packaging Date: October 29, 2023 at 07:07:33 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 912.31 kB
+             FMRI: pkg://openindiana.org/library/desktop/c++/pangomm@2.46.3-2023.0.0.2:20231029T190733Z
+      Project URL: https://www.gtkmm.org/
+       Source URL: https://download.gnome.org/sources/pangomm/2.46/pangomm-2.46.3.tar.xz
+[1mParsed package name: vte3(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: gtk2(B[m
+Package info for gtk2:
+             Name: library/desktop/gtk2
+          Summary: GTK+ - GIMP Toolkit Library for creation of graphical user
+                   interfaces
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.24.33
+           Branch: 2023.0.0.1
+   Packaging Date: November 26, 2023 at 10:45:44 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 38.80 MB
+             FMRI: pkg://openindiana.org/library/desktop/gtk2@2.24.33-2023.0.0.1:20231126T104544Z
+      Project URL: https://www.gtk.org/
+       Source URL: https://download.gnome.org/sources/gtk+/2.24/gtk+-2.24.33.tar.xz
+[1mParsed package name: bison(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 16.47 seconds
+No updates necessary for this image.
+[1mParsed package name: iconv-core(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: gmime(B[m
+Package info for gmime:
+             Name: library/gmime
+          Summary: Libraries and binaries to parse and index mail messages
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.6.23
+           Branch: 2022.1.0.1
+   Packaging Date: December 24, 2022 at 02:09:18 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 3.87 MB
+             FMRI: pkg://openindiana.org/library/gmime@2.6.23-2022.1.0.1:20221224T140918Z
+      Project URL: https://www.gnome.org
+       Source URL: https://download.gnome.org/sources/gmime/2.6/gmime-2.6.23.tar.xz
+[1mParsed package name: gom(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: libmediaart(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: liboauth(B[m
+Package info for liboauth:
+             Name: library/liboauth
+          Summary: A library for processing data according to the oAuth standard
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.0.3
+           Branch: 2020.0.1.0
+   Packaging Date: March 30, 2020 at 12:25:12 PM
+Last Install Time: February 21, 2024 at 09:34:44 PM
+             Size: 171.99 kB
+             FMRI: pkg://openindiana.org/library/liboauth@1.0.3-2020.0.1.0:20200330T122512Z
+      Project URL: http://sourceforge.net/projects/liboauth
+       Source URL: http://sourceforge.net/projects/liboauth/files/liboauth-1.0.3.tar.gz/download
+[1mParsed package name: totem-pl-parser(B[m
+Package info for totem-pl-parser:
+             Name: library/media-player/totem-pl-parser
+          Summary: a library to parse playlist
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.10.7
+           Branch: 2022.0.0.3
+   Packaging Date: March  7, 2022 at 02:42:43 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 991.02 kB
+             FMRI: pkg://openindiana.org/library/media-player/totem-pl-parser@3.10.7-2022.0.0.3:20220307T144243Z
+      Project URL: http://www.gnome.org
+       Source URL: https://download.gnome.org/sources/totem-pl-parser/3.10/totem-pl-parser-3.10.7.tar.xz
+[1mParsed package name: lua(B[m
+Package info for lua:
+             Name: runtime/lua
+          Summary: Lua Programming language
+      Description: Lua is a powerful, fast, lightweight, embeddable scripting
+                   language.
+         Category: Development/Other Languages
+            State: Installed
+        Publisher: openindiana.org
+          Version: 5.2.4
+           Branch: 2020.0.1.3
+   Packaging Date: March 30, 2020 at 04:12:56 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 1.04 MB
+             FMRI: pkg://openindiana.org/runtime/lua@5.2.4-2020.0.1.3:20200330T161256Z
+      Project URL: http://www.lua.org/
+       Source URL: http://www.lua.org/ftp/lua-5.2.4.tar.gz
+[1mParsed package name: avahi(B[m
+Package info for avahi:
+             Name: system/network/avahi
+          Summary: Avahi client and bridge to pkg://service/network/dns/mdns
+         Category: Applications/Internet
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.7
+           Branch: 2023.0.0.7
+   Packaging Date: December 25, 2023 at 04:43:45 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 2.53 MB
+             FMRI: pkg://openindiana.org/system/network/avahi@0.7-2023.0.0.7:20231225T164345Z
+      Project URL: https://avahi.org
+       Source URL: https://github.com/lathiat/avahi/releases/download/v0.7/avahi-0.7.tar.gz
+[1mParsed package name: gui(B[m
+Package info for gui:
+             Name: system/network/avahi/gui
+          Summary: Avahi client GUI libs/utils
+         Category: Applications/Internet
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.7
+           Branch: 2023.0.0.7
+   Packaging Date: December 25, 2023 at 04:43:35 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 200.14 kB
+             FMRI: pkg://openindiana.org/system/network/avahi/gui@0.7-2023.0.0.7:20231225T164335Z
+      Project URL: https://avahi.org
+       Source URL: https://github.com/lathiat/avahi/releases/download/v0.7/avahi-0.7.tar.gz
+[1mParsed package name: docbook-style-xsl (B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: openjade(B[m
+Package info for openjade:
+             Name: developer/documentation-tool/openjade
+          Summary: OpenJade DSSSL-Engine for SGML documents
+         Category: System/Text Tools
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.3.2
+           Branch: 2023.0.0.6
+   Packaging Date: November  4, 2023 at 09:31:37 AM
+Last Install Time: February 21, 2024 at 09:36:27 PM
+             Size: 5.10 MB
+             FMRI: pkg://openindiana.org/developer/documentation-tool/openjade@1.3.2-2023.0.0.6:20231104T093137Z
+      Project URL: https://openjade.sourceforge.net/
+       Source URL: https://sourceforge.net/projects/openjade/files/openjade/1.3.2/openjade-1.3.2.tar.gz
+[1mParsed package name: vim(B[m
+Package info for vim:
+             Name: editor/vim
+          Summary: Vi IMproved
+      Description: Vim is a clone of the Unix editor 'vi'.  It is a modal text
+                   editor with support for syntax highlighting,
+                   context-sensitive indentation, and extension scripting in
+                   numerous languages.
+         Category: Development/Editors (org.opensolaris.category.2008)
+                   System/Text Tools (org.opensolaris.category.2008)
+            State: Installed
+        Publisher: openindiana.org
+          Version: 9.1.113 (9.1.0113)
+           Branch: 2024.0.0.0
+   Packaging Date: February 17, 2024 at 06:08:13 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 22, 2024 at 08:19:54 AM
+             Size: 36.76 MB
+             FMRI: pkg://openindiana.org/editor/vim@9.1.113-2024.0.0.0:20240217T180813Z
+  Project Contact: vim-dev@vim.org
+      Project URL: https://www.vim.org/
+       Source URL: https://github.com/vim/vim/archive/v9.1.0113.tar.gz
+[1mParsed package name: libxml2-311(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: libsasl2(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: gnu-indent(B[m
+Package info for gnu-indent:
+             Name: developer/gnu-indent
+          Summary: GNU indent - a tool for improving C source code style
+         Category: Development/GNU
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.2.13
+           Branch: 2023.0.0.0
+   Packaging Date: April 10, 2023 at 04:36:32 PM
+Last Install Time: February 21, 2024 at 09:37:43 PM
+             Size: 610.12 kB
+             FMRI: pkg://openindiana.org/developer/gnu-indent@2.2.13-2023.0.0.0:20230410T163632Z
+      Project URL: https://www.gnu.org/software/indent/
+       Source URL: https://ftp.gnu.org/gnu/indent/indent-2.2.13.tar.xz
+[1mParsed package name: cups(B[m
+Package info for cups:
+             Name: print/cups
+          Summary: Common Unix Print System (CUPS)
+         Category: System/Printing
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.4.7
+           Branch: 2023.0.0.4
+   Packaging Date: November  5, 2023 at 09:09:09 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 14.27 MB
+             FMRI: pkg://openindiana.org/print/cups@2.4.7-2023.0.0.4:20231105T210909Z
+      Project URL: https://openprinting.github.io/cups/
+       Source URL: https://github.com/OpenPrinting/cups/archive/refs/tags/v2.4.7.tar.gz
+[1mParsed package name: linker(B[m
+Package info for linker:
+             Name: developer/linker
+          Summary: Programming Tools
+      Description: utilities for software development, including ld, ldd, od,
+                   and truss
+         Category: Development/System
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.5.11 (3863692f70)
+           Branch: 2024.0.0.22050
+   Packaging Date: February 22, 2024 at 12:56:20 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 22, 2024 at 08:19:54 AM
+             Size: 1.21 MB
+             FMRI: pkg://openindiana.org/developer/linker@0.5.11-2024.0.0.22050:20240222T005620Z
+[1mParsed package name: libxcursor(B[m
+Package info for libxcursor:
+             Name: x11/library/libxcursor
+          Summary: libXcursor - Client-side cursor loading library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.2.1
+           Branch: 2022.0.0.0
+   Packaging Date: April 19, 2022 at 04:16:45 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 148.29 kB
+             FMRI: pkg://openindiana.org/x11/library/libxcursor@1.2.1-2022.0.0.0:20220419T161645Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXcursor-1.2.1.tar.xz
+[1mParsed package name: xvfb(B[m
+Package info for xvfb:
+             Name: x11/server/xvfb
+          Summary: Xvfb - virtual framebuffer X server
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.19.7
+           Branch: 2023.0.0.11
+   Packaging Date: October 18, 2023 at 04:21:58 PM
+Last Install Time: February 21, 2024 at 09:38:56 PM
+             Size: 3.08 MB
+             FMRI: pkg://openindiana.org/x11/server/xvfb@1.19.7-2023.0.0.11:20231018T162158Z
+      Project URL: https://www.x.org/
+       Source URL: https://ftp.x.org/pub/individual/xserver/xorg-server-1.19.7.tar.bz2
+[1mParsed package name: fribidi(B[m
+Package info for fribidi:
+             Name: library/fribidi
+          Summary: Free Implementation of the Unicode Bidirectional Algorithm
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.0.13
+           Branch: 2023.0.0.0
+   Packaging Date: May 18, 2023 at 11:26:58 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 477.94 kB
+             FMRI: pkg://openindiana.org/library/fribidi@1.0.13-2023.0.0.0:20230518T112658Z
+      Project URL: https://github.com/fribidi/fribidi
+       Source URL: https://github.com/fribidi/fribidi/releases/download/v1.0.13/fribidi-1.0.13.tar.xz
+[1mParsed package name: locale(B[m
+Package info for locale:
+             Name: diagnostic/ddu/locale
+          Summary: Localization for Device Driver Utility(DDU)
+         Category: System/Localizations
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.3.1
+           Branch: 2023.0.0.41
+   Packaging Date: August 22, 2023 at 04:57:30 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 555.24 kB
+             FMRI: pkg://openindiana.org/diagnostic/ddu/locale@1.3.1-2023.0.0.41:20230822T165730Z
+      Project URL: https://github.com/OpenIndiana/ddu
+
+             Name: system/install/locale
+          Summary: Localization for system install libraries and commands
+      Description: Localization for core software libraries and commands used
+                   for system installation
+         Category: System/Localizations
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.5.11
+           Branch: 2013.0.0.0
+   Packaging Date: October 27, 2015 at 07:52:58 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 1.42 MB
+             FMRI: pkg://openindiana.org/system/install/locale@0.5.11-2013.0.0.0:20151027T075258Z
+
+             Name: text/locale
+          Summary: System Localization
+      Description: localization utilities and C locale (POSIX default)
+                   definitions
+         Category: System/Localizations
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.5.11 (3863692f70)
+           Branch: 2024.0.0.22050
+   Packaging Date: February 22, 2024 at 01:24:09 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 22, 2024 at 08:19:54 AM
+             Size: 493.61 kB
+             FMRI: pkg://openindiana.org/text/locale@0.5.11-2024.0.0.22050:20240222T012409Z
+[1mParsed package name: uhttpmock(B[m
+Package info for uhttpmock:
+             Name: library/uhttpmock
+          Summary: A library for mocking web service APIs which use HTTP or
+                   HTTPS
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.5.3
+           Branch: 2023.0.0.2
+   Packaging Date: March 13, 2023 at 11:08:03 AM
+Last Install Time: February 21, 2024 at 09:42:28 PM
+             Size: 408.33 kB
+             FMRI: pkg://openindiana.org/library/uhttpmock@0.5.3-2023.0.0.2:20230313T110803Z
+      Project URL: https://gitlab.com/uhttpmock/
+       Source URL: https://tecnocode.co.uk/downloads/uhttpmock/uhttpmock-0.5.3.tar.xz
+[1mParsed package name: bzip2(B[m
+Package info for bzip2:
+             Name: compress/bzip2
+          Summary: high-quality block-sorting file compressor
+         Category: Applications/System Utilities
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.0.8
+           Branch: 2022.1.0.1
+   Packaging Date: December 19, 2022 at 05:52:56 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 401.87 kB
+             FMRI: pkg://openindiana.org/compress/bzip2@1.0.8-2022.1.0.1:20221219T175256Z
+      Project URL: https://sourceware.org/bzip2/
+       Source URL: https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz
+[1mParsed package name: glade(B[m
+Package info for glade:
+             Name: developer/ui-designer/glade
+          Summary: GLADE User Interface Builder for GNOME
+         Category: Development/GNOME and GTK+
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.40.0
+           Branch: 2023.0.0.1
+   Packaging Date: December 15, 2023 at 05:21:26 PM
+Last Install Time: February 12, 2024 at 05:19:53 PM
+             Size: 11.48 MB
+             FMRI: pkg://openindiana.org/developer/ui-designer/glade@3.40.0-2023.0.0.1:20231215T172126Z
+      Project URL: https://wiki.gnome.org/Apps/Glade
+       Source URL: https://download.gnome.org/sources/glade/3.40/glade-3.40.0.tar.xz
+[1mParsed package name: xmlto(B[m
+Package info for xmlto:
+             Name: text/xmlto
+          Summary: xmlto is a shell-script tool for converting XML files to
+                   various formats
+         Category: System/Text Tools
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.0.28
+           Branch: 2022.1.0.2
+   Packaging Date: January  5, 2023 at 09:52:03 AM
+Last Install Time: February 21, 2024 at 09:44:16 PM
+             Size: 112.83 kB
+             FMRI: pkg://openindiana.org/text/xmlto@0.0.28-2022.1.0.2:20230105T095203Z
+      Project URL: https://fedorahosted.org/xmlto/
+       Source URL: http://dlc.openindiana.org/oi-userland/source-archives//xmlto-0.0.28.tar.bz2
+[1mParsed package name: lgi-54(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: pygobject-3(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 13.83 seconds
+No updates necessary for this image.
+[1mParsed package name: libpsl(B[m
+Package info for libpsl:
+             Name: library/libpsl
+          Summary: Public Suffix List Library
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.21.5
+           Branch: 2024.0.0.0
+   Packaging Date: January 26, 2024 at 09:56:36 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 132.88 kB
+             FMRI: pkg://openindiana.org/library/libpsl@0.21.5-2024.0.0.0:20240126T215636Z
+      Project URL: https://github.com/rockdaboot/libpsl
+       Source URL: https://github.com/rockdaboot/libpsl/releases/download/0.21.5/libpsl-0.21.5.tar.gz
+[1mParsed package name: nghttp2(B[m
+Package info for nghttp2:
+             Name: library/nghttp2
+          Summary: HTTP/2 C Library
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.59.0
+           Branch: 2024.0.0.0
+   Packaging Date: January 23, 2024 at 07:40:32 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 875.17 kB
+             FMRI: pkg://openindiana.org/library/nghttp2@1.59.0-2024.0.0.0:20240123T194032Z
+      Project URL: https://nghttp2.org/
+       Source URL: https://github.com/nghttp2/nghttp2/releases/download/v1.59.0/nghttp2-1.59.0.tar.xz
+[1mParsed package name: glib-networking(B[m
+Package info for glib-networking:
+             Name: library/glib-networking
+          Summary: Network-related giomodules for glib
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 2.66.0
+           Branch: 2023.0.0.0
+   Packaging Date: October 21, 2023 at 01:26:25 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 600.32 kB
+             FMRI: pkg://openindiana.org/library/glib-networking@2.66.0-2023.0.0.0:20231021T132625Z
+      Project URL: https://www.gnome.org
+       Source URL: https://download.gnome.org/sources/glib-networking/2.66/glib-networking-2.66.0.tar.xz
+[1mParsed package name: startup-notification(B[m
+Package info for startup-notification:
+             Name: library/desktop/startup-notification
+          Summary: Startup Notification Library
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.12
+           Branch: 2020.0.1.0
+   Packaging Date: March 30, 2020 at 03:14:23 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 142.58 kB
+             FMRI: pkg://openindiana.org/library/desktop/startup-notification@0.12-2020.0.1.0:20200330T151423Z
+      Project URL: http://www.freedesktop.org
+       Source URL: http://www.freedesktop.org/software/startup-notification/releases/startup-notification-0.12.tar.gz
+[1mParsed package name: libxres(B[m
+Package info for libxres:
+             Name: x11/library/libxres
+          Summary: libXres - X Resource extension library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.2.2
+           Branch: 2023.0.0.1
+   Packaging Date: October 17, 2023 at 07:32:08 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 44.08 kB
+             FMRI: pkg://openindiana.org/x11/library/libxres@1.2.2-2023.0.0.1:20231017T073208Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libXres-1.2.2.tar.xz
+[1mParsed package name: tkinter-311(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: ksh93(B[m
+Package info for ksh93:
+             Name: shell/ksh93
+          Summary: ksh - Shell, the standard command language interpreter
+      Description: ksh93 - the AT&T Korn Shell
+         Category: System/Shells
+            State: Installed
+        Publisher: openindiana.org
+          Version: 93.21.1.20120801 (3863692f70)
+           Branch: 2024.0.0.22050
+   Packaging Date: February 22, 2024 at 01:14:02 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 22, 2024 at 08:19:54 AM
+             Size: 5.10 MB
+             FMRI: pkg://openindiana.org/shell/ksh93@93.21.1.20120801-2024.0.0.22050:20240222T011402Z
+[1mParsed package name: libxkbfile(B[m
+Package info for libxkbfile:
+             Name: x11/library/libxkbfile
+          Summary: libxkbfile - XKB file library
+         Category: System/X11
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.1.3
+           Branch: 2024.0.0.0
+   Packaging Date: February  7, 2024 at 10:13:23 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 426.74 kB
+             FMRI: pkg://openindiana.org/x11/library/libxkbfile@1.1.3-2024.0.0.0:20240207T101323Z
+      Project URL: https://www.x.org/
+       Source URL: https://www.x.org/releases/individual/lib/libxkbfile-1.1.3.tar.xz
+[1mParsed package name: brltty(B[m
+Package info for brltty:
+             Name: library/accessibility/brltty
+          Summary: Braille support
+         Category: Applications/Universal Access
+            State: Installed
+        Publisher: openindiana.org
+          Version: 6.6
+           Branch: 2023.0.0.0
+   Packaging Date: July 28, 2023 at 10:11:48 AM
+Last Install Time: February 21, 2024 at 09:49:37 PM
+             Size: 9.69 MB
+             FMRI: pkg://openindiana.org/library/accessibility/brltty@6.6-2023.0.0.0:20230728T101148Z
+      Project URL: https://brltty.app/
+       Source URL: https://brltty.app//archive/brltty-6.6.tar.xz
+[1mParsed package name: liblouis(B[m
+Package info for liblouis:
+             Name: library/liblouis
+          Summary: The Liblouis software suite provides an open-source braille
+                   translator, back-translator and formatter for a large number
+                   of languages and braille codes
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.28.0
+           Branch: 2023.0.0.0
+   Packaging Date: December  6, 2023 at 08:34:18 PM
+Last Install Time: February 21, 2024 at 09:49:36 PM
+             Size: 13.07 MB
+             FMRI: pkg://openindiana.org/library/liblouis@3.28.0-2023.0.0.0:20231206T203418Z
+      Project URL: https://liblouis.io/
+       Source URL: https://github.com/liblouis/liblouis/archive/refs/tags/v3.28.0.tar.gz
+[1mParsed package name: python-37(B[m
+Package info for python-37:
+             Name: runtime/python-37
+          Summary: The Python interpreter, libraries and utilities
+         Category: Development/Python
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.7.16
+           Branch: 2023.0.0.2
+   Packaging Date: February 19, 2023 at 11:29:33 PM
+Last Install Time: February 21, 2024 at 09:53:03 PM
+             Size: 87.42 MB
+             FMRI: pkg://openindiana.org/runtime/python-37@3.7.16-2023.0.0.2:20230219T232933Z
+      Project URL: https://python.org/
+       Source URL: https://python.org/ftp/python/3.7.16/Python-3.7.16.tar.xz
+[1mParsed package name: dbus-python(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: libdbus-glib(B[m
+Package info for libdbus-glib:
+             Name: system/library/libdbus-glib
+          Summary: D-Bus GLib bindings
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.112
+           Branch: 2024.0.0.4
+   Packaging Date: January 14, 2024 at 06:56:42 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 718.65 kB
+             FMRI: pkg://openindiana.org/system/library/libdbus-glib@0.112-2024.0.0.4:20240114T185642Z
+      Project URL: https://dbus.freedesktop.org/doc/dbus-glib/
+       Source URL: https://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-0.112.tar.gz
+[1mParsed package name: pycairo(B[m
+Package info for pycairo:
+             Name: library/python/pycairo
+          Summary: pycairo - Python interface for cairo
+         Category: Development/Python
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.26.0
+           Branch: 2024.0.0.0
+   Packaging Date: February 12, 2024 at 10:37:30 AM
+Last Install Time: February 21, 2024 at 09:54:43 PM
+             Size: 0.00 B
+             FMRI: pkg://openindiana.org/library/python/pycairo@1.26.0-2024.0.0.0:20240212T103730Z
+      Project URL: https://pycairo.readthedocs.io
+       Source URL: https://files.pythonhosted.org/packages/source/p/pycairo/pycairo-1.26.0.tar.gz
+[1mParsed package name: evince(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+Planning: Solver setup ... Done
+Planning: Running solver ... Done
+Planning: Consolidating action changes ... Done
+Planning: Evaluating mediators ... Done
+Planning: Planning completed in 13.51 seconds
+No updates necessary for this image.
+[1mParsed package name: clutter-gst(B[m
+Package info for clutter-gst:
+             Name: library/desktop/clutter/clutter-gst
+          Summary: gstreamer integration library for clutter
+            State: Installed
+        Publisher: openindiana.org
+          Version: 3.0.27
+           Branch: 2023.0.0.0
+   Packaging Date: November 29, 2023 at 04:41:06 PM
+Last Install Time: February 21, 2024 at 09:56:27 PM
+             Size: 1.23 MB
+             FMRI: pkg://openindiana.org/library/desktop/clutter/clutter-gst@3.0.27-2023.0.0.0:20231129T164106Z
+      Project URL: http://www.clutter-project.org/
+       Source URL: https://download.gnome.org/sources/clutter-gst/3.0/clutter-gst-3.0.27.tar.xz
+[1mParsed package name: clutter-gst3(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: flac(B[m
+Package info for flac:
+             Name: codec/flac
+          Summary: An Open Source Lossless Audio Codec
+         Category: System/Multimedia Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.4.3
+           Branch: 2023.0.0.2
+   Packaging Date: November  9, 2023 at 11:33:38 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 7.52 MB
+             FMRI: pkg://openindiana.org/codec/flac@1.4.3-2023.0.0.2:20231109T113338Z
+      Project URL: https://xiph.org/flac
+       Source URL: https://downloads.us.xiph.org/releases/flac/flac-1.4.3.tar.xz
+[1mParsed package name: libvorbis(B[m
+Package info for libvorbis:
+             Name: library/libvorbis
+          Summary: libvorbis - general-purpose compressed audio format
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.3.7
+           Branch: 2022.0.0.0
+   Packaging Date: August 13, 2022 at 04:27:39 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+             Size: 2.56 MB
+             FMRI: pkg://openindiana.org/library/libvorbis@1.3.7-2022.0.0.0:20220813T162739Z
+      Project URL: https://xiph.org/vorbis/
+       Source URL: https://ftp.osuosl.org/pub/xiph/releases/vorbis/libvorbis-1.3.7.tar.xz
+[1mParsed package name: libgsf(B[m
+Package info for libgsf:
+             Name: library/desktop/libgsf
+          Summary: GNOME Structured File Library
+         Category: Desktop (GNOME)/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.14.52
+           Branch: 2024.0.0.0
+   Packaging Date: February  7, 2024 at 12:27:30 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 2.36 MB
+             FMRI: pkg://openindiana.org/library/desktop/libgsf@1.14.52-2024.0.0.0:20240207T122730Z
+      Project URL: https://www.gnome.org
+       Source URL: https://download.gnome.org/sources/libgsf/1.14/libgsf-1.14.52.tar.xz
+[1mParsed package name: taglib(B[m
+Package info for taglib:
+             Name: library/audio/taglib
+          Summary: taglib is a library for reading and editing the meta-data of
+                   several popular audio formats
+         Category: System/Multimedia Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 1.13.1
+           Branch: 2023.0.0.1
+   Packaging Date: November  9, 2023 at 11:32:41 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 3.69 MB
+             FMRI: pkg://openindiana.org/library/audio/taglib@1.13.1-2023.0.0.1:20231109T113241Z
+      Project URL: https://taglib.github.io/
+       Source URL: https://taglib.github.io/releases/taglib-1.13.1.tar.gz
+[1mParsed package name: hal(B[m
+Package info for hal:
+             Name: service/hal
+          Summary: Hardware Abstraction Layer
+      Description: Hardware Abstraction Layer, HAL (freedesktop.org)
+         Category: System/Hardware
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.5.11 (3863692f70)
+           Branch: 2024.0.0.22050
+   Packaging Date: February 22, 2024 at 01:12:43 AM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 22, 2024 at 08:19:54 AM
+             Size: 1.35 MB
+             FMRI: pkg://openindiana.org/service/hal@0.5.11-2024.0.0.22050:20240222T011243Z
+[1mParsed package name: gtk-vnc(B[m
+Package info for gtk-vnc:
+             Name: library/desktop/gtk-vnc
+          Summary: gtk-vnc - A GTK widget for VNC client
+         Category: Development/GNOME and GTK+
+            State: Installed
+        Publisher: openindiana.org
+          Version: 0.7.2
+           Branch: 2022.1.0.2
+   Packaging Date: December 26, 2022 at 10:29:19 AM
+Last Install Time: February 21, 2024 at 10:00:43 PM
+             Size: 1.27 MB
+             FMRI: pkg://openindiana.org/library/desktop/gtk-vnc@0.7.2-2022.1.0.2:20221226T102919Z
+      Project URL: https://wiki.gnome.org/Projects/gtk-vnc
+       Source URL: https://download.gnome.org/sources/gtk-vnc/0.7/gtk-vnc-0.7.2.tar.xz
+[1mParsed package name: yelp-xsl(B[m
+Package info for yelp-xsl:
+             Name: library/gnome/yelp-xsl
+          Summary: Yelp Tools
+         Category: System/Libraries
+            State: Installed
+        Publisher: openindiana.org
+          Version: 42.1
+           Branch: 2024.0.0.0
+   Packaging Date: January 19, 2024 at 11:21:18 PM
+Last Install Time: October 27, 2023 at 03:45:22 PM
+ Last Update Time: February 12, 2024 at 05:19:53 PM
+             Size: 1.38 MB
+             FMRI: pkg://openindiana.org/library/gnome/yelp-xsl@42.1-2024.0.0.0:20240119T232118Z
+      Project URL: http://www.gnome.org
+       Source URL: https://download.gnome.org/sources/yelp-xsl/42/yelp-xsl-42.1.tar.xz
+[1mParsed package name: lxml-311(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+[1mParsed package name: ducktype(B[m
+ Startup: Refreshing catalog 'hipster-encumbered' ... Done
+ Startup: Refreshing catalog 'openindiana.org' ... Done
+
+Packages that could not be installed:
+libwnck3
+pyatspi2-311
+pycairo-311
+pygobject-3-311
+python-311
+gcc-c++-runtime
+gcc-c-runtime
+gnome-shell
+gnome-desktop
+gstreamer-1
+gst-plugins-base
+webkitgtk4
+eog
+exempi
+eog-plugins
+poppler-viewer
+nautilus
+libgxps
+poppler
+libc
+gtk4
+libgweather
+gnome-online-accounts
+libsoup-3
+nss
+evolution-data-server
+telepathy-glib
+core-os
+gnome-session
+accountsservice
+devinfo
+pam-core
+gedit
+gtksourceview
+libmozjs-115
+gjs
+docbook-dtds
+docbook-style-dsssl
+docbook-style-xsl
+xml-common
+geoclue
+libdazzle
+gsound
+gnome-settings-daemon
+colord-gtk
+grilo
+colord
+libv12n
+polkit
+gdm
+gcr-4
+mutter
+gnome-menus
+gnome-clocks
+gnome-autoar
+simplejson-311
+vte3
+bison
+iconv-core
+gom
+libmediaart
+docbook-style-xsl 
+libxml2-311
+libsasl2
+lgi-54
+pygobject-3
+tkinter-311
+dbus-python
+evince
+clutter-gst3
+lxml-311
+ducktype

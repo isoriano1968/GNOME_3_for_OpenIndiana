@@ -1,0 +1,2205 @@
+Searching for: itstool
+Searching for: librsvg
+librsvg in accerciser/Makefile: REQUIRED_PACKAGES += image/library/librsvg needs librsvg 
+Searching for: at-spi2-core
+at-spi2-core in accerciser/Makefile: REQUIRED_PACKAGES += library/desktop/at-spi2-core needs at-spi2-core 
+Searching for: atk
+atk in accerciser/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: gdk-pixbuf
+gdk-pixbuf in accerciser/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in accerciser/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in accerciser/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libwnck3
+libwnck3 in accerciser/Makefile: REQUIRED_PACKAGES += library/desktop/libwnck3 needs libwnck3 
+Searching for: pango
+pango in accerciser/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: libxml2
+Searching for: pyatspi2-311
+Searching for: pycairo-311
+Searching for: pygobject-3-311
+Searching for: python-311
+Searching for: gnu-gettext
+Searching for: xml-parser
+Searching for: gtk-doc
+gtk-doc in at-spi2-atk/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: at-spi2-core
+at-spi2-core in at-spi2-atk/Makefile: REQUIRED_PACKAGES += library/desktop/at-spi2-core needs at-spi2-core 
+Searching for: atk
+atk in at-spi2-atk/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: glib2
+glib2 in at-spi2-atk/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxml2
+Searching for: libxslt
+Searching for: xml-parser
+Searching for: libdbus
+Searching for: libx11
+Searching for: libxext
+Searching for: libxrender
+Searching for: libxtst
+Searching for: xorg
+Searching for: gtk-doc
+gtk-doc in at-spi2-core/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in at-spi2-core/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: gobject-introspection
+gobject-introspection in at-spi2-core/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in at-spi2-core/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxml2
+Searching for: libxslt
+Searching for: xml-parser
+Searching for: libdbus
+Searching for: libx11
+Searching for: libxext
+Searching for: libxi
+Searching for: libxrender
+Searching for: libxtst
+Searching for: xorg
+Searching for: gtk-doc
+gtk-doc in atk/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gobject-introspection
+gobject-introspection in atk/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in atk/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: doxygen
+Searching for: graphviz
+Searching for: glibmm
+glibmm in atkmm/Makefile: REQUIRED_PACKAGES += library/c++/glibmm needs glibmm 
+Searching for: sigcpp
+sigcpp in atkmm/Makefile: REQUIRED_PACKAGES += library/c++/sigcpp needs sigcpp 
+Searching for: atk
+atk in atkmm/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: glib2
+glib2 in atkmm/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxslt
+Searching for: gcc-c++-runtime
+Searching for: gcc-c-runtime
+Searching for: gnome-shell
+gnome-shell in background-logo-extension/Makefile: REQUIRED_PACKAGES += gnome/gnome-shell needs gnome-shell 
+Searching for: clutter
+clutter in background-logo-extension/Makefile: REQUIRED_PACKAGES += library/desktop/clutter needs clutter 
+Searching for: gdk-pixbuf
+gdk-pixbuf in background-logo-extension/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in background-logo-extension/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in background-logo-extension/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: gnome-desktop
+gnome-desktop in background-logo-extension/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: vala
+vala in baobab/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in baobab/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in baobab/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in baobab/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libhandy
+libhandy in baobab/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: pango
+pango in baobab/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in baobab/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: math
+Searching for: gtk-doc
+gtk-doc in clutter-gst/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: clutter
+clutter in clutter-gst/Makefile: REQUIRED_PACKAGES += library/desktop/clutter needs clutter 
+Searching for: gobject-introspection
+gobject-introspection in clutter-gst/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gstreamer-1
+Searching for: gst-plugins-base
+Searching for: glib2
+glib2 in clutter-gst/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: cogl
+cogl in clutter-gst/Makefile: REQUIRED_PACKAGES += library/graphics/cogl needs cogl 
+Searching for: libx11
+Searching for: gtk-doc
+gtk-doc in clutter-gst3/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: clutter
+clutter in clutter-gst3/Makefile: REQUIRED_PACKAGES += library/desktop/clutter needs clutter 
+Searching for: gdk-pixbuf
+gdk-pixbuf in clutter-gst3/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in clutter-gst3/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gstreamer-1
+Searching for: gst-plugins-base
+Searching for: glib2
+glib2 in clutter-gst3/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: cogl
+cogl in clutter-gst3/Makefile: REQUIRED_PACKAGES += library/graphics/cogl needs cogl 
+Searching for: math
+Searching for: libx11
+Searching for: gtk-doc
+gtk-doc in clutter-gtk/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: cairo
+Searching for: clutter
+clutter in clutter-gtk/Makefile: REQUIRED_PACKAGES += library/desktop/clutter needs clutter 
+Searching for: gdk-pixbuf
+gdk-pixbuf in clutter-gtk/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in clutter-gtk/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in clutter-gtk/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: glib2
+glib2 in clutter-gtk/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: cogl
+cogl in clutter-gtk/Makefile: REQUIRED_PACKAGES += library/graphics/cogl needs cogl 
+Searching for: math
+Searching for: gtk-doc
+gtk-doc in clutter/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: atk
+atk in clutter/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in clutter/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in clutter/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in clutter/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in clutter/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in clutter/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: cogl
+cogl in clutter/Makefile: REQUIRED_PACKAGES += library/graphics/cogl needs cogl 
+Searching for: json-glib
+json-glib in clutter/Makefile: REQUIRED_PACKAGES += library/json-glib needs json-glib 
+Searching for: fontconfig
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: libx11
+Searching for: libxcomposite
+Searching for: libxdamage
+Searching for: libxi
+Searching for: gtk-doc
+gtk-doc in cogl/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in cogl/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in cogl/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gstreamer-1
+Searching for: gst-plugins-base
+Searching for: pango
+pango in cogl/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in cogl/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: ogl-select
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: libxdamage
+Searching for: libxext
+Searching for: libxfixes
+Searching for: libxrandr
+Searching for: libx11
+Searching for: vala
+vala in dconf-editor/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: pango
+pango in dconf-editor/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: gtk3
+gtk3 in dconf-editor/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libhandy
+libhandy in dconf-editor/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: glib2
+glib2 in dconf-editor/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: dconf
+dconf in dconf-editor/Makefile: REQUIRED_PACKAGES += library/gnome/dconf needs dconf 
+Searching for: libxml2
+Searching for: gtk-doc
+gtk-doc in dconf/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in dconf/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: glib2
+glib2 in dconf/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libdbus
+Searching for: gtk3
+gtk3 in devhelp/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in devhelp/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: webkitgtk4
+Searching for: glib2
+glib2 in devhelp/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: zlib
+Searching for: math
+Searching for: libexif
+Searching for: libjpeg
+Searching for: librsvg
+librsvg in eog-plugins/Makefile: REQUIRED_PACKAGES += image/library/librsvg needs librsvg 
+Searching for: eog
+eog in eog-plugins/Makefile: REQUIRED_PACKAGES += image/viewer/eog needs eog 
+Searching for: atk
+atk in eog-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: clutter
+clutter in eog-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/clutter needs clutter 
+Searching for: clutter-gtk
+clutter-gtk in eog-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/clutter/clutter-gtk needs clutter-gtk 
+Searching for: gdk-pixbuf
+gdk-pixbuf in eog-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in eog-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in eog-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libchamplain
+libchamplain in eog-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/libchamplain needs libchamplain 
+Searching for: libgdata
+libgdata in eog-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/libgdata needs libgdata 
+Searching for: exempi
+Searching for: glib2
+glib2 in eog-plugins/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-desktop
+gnome-desktop in eog-plugins/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: libpeas
+libpeas in eog-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/libpeas needs libpeas 
+Searching for: lcms2
+Searching for: zlib
+Searching for: math
+Searching for: libx11
+Searching for: shared-mime-info
+Searching for: libexif
+Searching for: libjpeg
+Searching for: librsvg
+librsvg in eog/Makefile: REQUIRED_PACKAGES += image/library/librsvg needs librsvg 
+Searching for: eog-plugins
+eog-plugins in eog/Makefile: REQUIRED_PACKAGES += image/viewer/eog/eog-plugins needs eog-plugins 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in eog/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: atk
+atk in eog/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in eog/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in eog/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in eog/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: exempi
+Searching for: glib2
+glib2 in eog/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-desktop
+gnome-desktop in eog/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: libpeas
+libpeas in eog/Makefile: REQUIRED_PACKAGES += library/desktop/libpeas needs libpeas 
+Searching for: lcms2
+Searching for: zlib
+Searching for: math
+Searching for: libx11
+Searching for: poppler-viewer
+Searching for: gtk-doc
+gtk-doc in evince/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: nautilus
+nautilus in evince/Makefile: REQUIRED_PACKAGES += gnome/file-manager/nautilus needs nautilus 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in evince/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: libtiff
+Searching for: atk
+atk in evince/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in evince/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gstreamer-1
+Searching for: gst-plugins-base
+Searching for: gtk3
+gtk3 in evince/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libgxps
+libgxps in evince/Makefile: REQUIRED_PACKAGES += library/desktop/libgxps needs libgxps 
+Searching for: libhandy
+libhandy in evince/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: pango
+pango in evince/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in evince/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-desktop
+gnome-desktop in evince/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: libsecret
+libsecret in evince/Makefile: REQUIRED_PACKAGES += library/gnome/libsecret needs libsecret 
+Searching for: libarchive
+Searching for: libspectre
+Searching for: libxml2
+Searching for: zlib
+Searching for: poppler
+Searching for: libc
+libc in evince/Makefile: REQUIRED_PACKAGES += system/library/libc needs libc 
+Searching for: math
+Searching for: berkeleydb-5
+Searching for: sqlite-3
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in evolution-data-server/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: cairo
+Searching for: gtk3
+gtk3 in evolution-data-server/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: gtk4
+gtk4 in evolution-data-server/Makefile: REQUIRED_PACKAGES += library/desktop/gtk4 needs gtk4 
+Searching for: libgweather
+libgweather in evolution-data-server/Makefile: REQUIRED_PACKAGES += library/desktop/libgweather needs libgweather 
+Searching for: pango
+pango in evolution-data-server/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: libcanberra
+Searching for: glib2
+glib2 in evolution-data-server/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-online-accounts
+gnome-online-accounts in evolution-data-server/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-online-accounts needs gnome-online-accounts 
+Searching for: libsecret
+libsecret in evolution-data-server/Makefile: REQUIRED_PACKAGES += library/gnome/libsecret needs libsecret 
+Searching for: icu
+Searching for: json-glib
+json-glib in evolution-data-server/Makefile: REQUIRED_PACKAGES += library/json-glib needs json-glib 
+Searching for: libical
+Searching for: libsoup-3
+libsoup-3 in evolution-data-server/Makefile: REQUIRED_PACKAGES += library/libsoup-3 needs libsoup-3 
+Searching for: libxml2
+Searching for: nspr
+Searching for: nss
+Searching for: zlib
+Searching for: perl-536
+Searching for: kerberos-5
+Searching for: gcc-c++-runtime
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: openldap
+Searching for: nautilus
+nautilus in file-roller/Makefile: REQUIRED_PACKAGES += gnome/file-manager/nautilus needs nautilus 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in file-roller/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in file-roller/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libnotify
+libnotify in file-roller/Makefile: REQUIRED_PACKAGES += library/desktop/libnotify needs libnotify 
+Searching for: pango
+pango in file-roller/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in file-roller/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: json-glib
+json-glib in file-roller/Makefile: REQUIRED_PACKAGES += library/json-glib needs json-glib 
+Searching for: libarchive
+Searching for: math
+Searching for: gtk-doc
+gtk-doc in folks/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in folks/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: evolution-data-server
+evolution-data-server in folks/Makefile: REQUIRED_PACKAGES += library/desktop/evolution-data-server needs evolution-data-server 
+Searching for: gobject-introspection
+gobject-introspection in folks/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: libgee
+libgee in folks/Makefile: REQUIRED_PACKAGES += library/desktop/libgee needs libgee 
+Searching for: tracker
+tracker in folks/Makefile: REQUIRED_PACKAGES += library/desktop/search/tracker needs tracker 
+Searching for: glib2
+glib2 in folks/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxml2
+Searching for: ncurses
+Searching for: readline
+Searching for: telepathy-glib
+Searching for: library
+Searching for: libc
+libc in fribidi/Makefile: REQUIRED_PACKAGES += system/library/libc needs libc 
+Searching for: gtk4
+gtk4 in gcr-4/Makefile: REQUIRED_PACKAGES += library/desktop/gtk4 needs gtk4 
+Searching for: p11-kit
+Searching for: pango
+pango in gcr-4/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in gcr-4/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libsecret
+libsecret in gcr-4/Makefile: REQUIRED_PACKAGES += library/gnome/libsecret needs libsecret 
+Searching for: libgcrypt
+Searching for: gnupg
+Searching for: doxygen
+Searching for: gtk-doc
+gtk-doc in gcr/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in gcr/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in gcr/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in gcr/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in gcr/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: p11-kit
+Searching for: pango
+pango in gcr/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in gcr/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libgpg-error
+Searching for: libgcrypt
+Searching for: gtk-doc
+gtk-doc in gdk-pixbuf/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: libjpeg
+Searching for: libpng16
+Searching for: libtiff
+Searching for: gobject-introspection
+gobject-introspection in gdk-pixbuf/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in gdk-pixbuf/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: core-os
+Searching for: math
+Searching for: libx11
+Searching for: iso-codes
+Searching for: itstool
+Searching for: gnu-coreutils
+Searching for: orca
+orca in gdm/Makefile: REQUIRED_PACKAGES += gnome/accessibility/orca needs orca 
+Searching for: gnome-session
+gnome-session in gdm/Makefile: REQUIRED_PACKAGES += gnome/gnome-session needs gnome-session 
+Searching for: gnome-shell
+gnome-shell in gdm/Makefile: REQUIRED_PACKAGES += gnome/gnome-shell needs gnome-shell 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gdm/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: zenity
+zenity in gdm/Makefile: REQUIRED_PACKAGES += gnome/zenity needs zenity 
+Searching for: gdk-pixbuf
+gdk-pixbuf in gdm/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in gdm/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libcanberra
+Searching for: glib2
+glib2 in gdm/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: dconf
+dconf in gdm/Makefile: REQUIRED_PACKAGES += library/gnome/dconf needs dconf 
+Searching for: yelp-tools
+yelp-tools in gdm/Makefile: REQUIRED_PACKAGES += library/gnome/yelp-tools needs yelp-tools 
+Searching for: consolekit
+Searching for: core-os
+Searching for: audio
+Searching for: accountsservice
+Searching for: dbus
+Searching for: devinfo
+Searching for: fontconfig
+Searching for: pam-core
+Searching for: xterm
+Searching for: xkb-utilities
+Searching for: libx11
+Searching for: libxau
+Searching for: libxcb
+Searching for: libxdmcp
+Searching for: libxft
+Searching for: libxi
+Searching for: libxinerama
+Searching for: xephyr
+Searching for: xserver-common
+Searching for: xinit
+Searching for: x11-server-utilities
+Searching for: check
+Searching for: libxml2
+Searching for: gedit
+gedit in gedit-plugins/Makefile: REQUIRED_PACKAGES += editor/gedit needs gedit 
+Searching for: gtk3
+gtk3 in gedit-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: gtksourceview
+gtksourceview in gedit-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/gtksourceview needs gtksourceview 
+Searching for: libpeas
+libpeas in gedit-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/libpeas needs libpeas 
+Searching for: glib2
+glib2 in gedit-plugins/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gedit/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: atk
+atk in gedit/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: pango
+pango in gedit/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: gdk-pixbuf
+gdk-pixbuf in gedit/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in gedit/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtksourceview
+gtksourceview in gedit/Makefile: REQUIRED_PACKAGES += library/desktop/gtksourceview needs gtksourceview 
+Searching for: gtk3
+gtk3 in gedit/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: glib2
+glib2 in gedit/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-desktop
+gnome-desktop in gedit/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: libpeas
+libpeas in gedit/Makefile: REQUIRED_PACKAGES += library/desktop/libpeas needs libpeas 
+Searching for: libsoup
+libsoup in gedit/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: libxml2
+Searching for: enchant
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: libx11
+Searching for: gtk-doc
+gtk-doc in geocode-glib/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gobject-introspection
+gobject-introspection in geocode-glib/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: json-glib
+json-glib in geocode-glib/Makefile: REQUIRED_PACKAGES += library/json-glib needs json-glib 
+Searching for: libsoup-3
+libsoup-3 in geocode-glib/Makefile: REQUIRED_PACKAGES += library/libsoup-3 needs libsoup-3 
+Searching for: glib2
+glib2 in geocode-glib/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: math
+Searching for: cairo
+Searching for: gobject-introspection
+gobject-introspection in gjs/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in gjs/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libffi
+Searching for: libmozjs-115
+Searching for: ncurses
+Searching for: readline
+Searching for: gcc-c++-runtime
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: libx11
+Searching for: gtk-doc
+gtk-doc in glade/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in glade/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gjs
+gjs in glade/Makefile: REQUIRED_PACKAGES += library/desktop/gjs needs gjs 
+Searching for: gtk3
+gtk3 in glade/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in glade/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: webkitgtk4
+Searching for: glib2
+glib2 in glade/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxml2
+Searching for: python-311
+Searching for: math
+Searching for: gtk-doc
+gtk-doc in glib-networking/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in glib-networking/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: glib2
+glib2 in glib-networking/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnutls-3
+Searching for: libproxy
+Searching for: gnu-gettext
+Searching for: docbook-dtds
+Searching for: docbook-style-dsssl
+Searching for: docbook-style-xsl
+Searching for: sgml-common
+Searching for: xml-common
+Searching for: desktop-file-utils
+Searching for: gtk-doc
+gtk-doc in glib2/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gamin
+Searching for: libffi
+Searching for: pcre2
+Searching for: zlib
+Searching for: python-311
+Searching for: core-os
+Searching for: dbus
+Searching for: gcc-c-runtime
+Searching for: doxygen
+Searching for: graphviz
+Searching for: sigcpp
+sigcpp in glibmm/Makefile: REQUIRED_PACKAGES += library/c++/sigcpp needs sigcpp 
+Searching for: glib2
+glib2 in glibmm/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxslt
+Searching for: gcc-c-runtime
+Searching for: gcc-c++-runtime
+Searching for: gtk-doc
+gtk-doc in gmime-3/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in gmime-3/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: gobject-introspection
+gobject-introspection in gmime-3/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in gmime-3/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libidn2
+Searching for: gpgme
+Searching for: zlib
+Searching for: gtk-doc
+gtk-doc in gmime/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in gmime/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: gobject-introspection
+gobject-introspection in gmime/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in gmime/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gpgme
+Searching for: zlib
+Searching for: gtk-doc
+gtk-doc in gnome-autoar/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gtk3
+gtk3 in gnome-autoar/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: glib2
+glib2 in gnome-autoar/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libarchive
+Searching for: xml-parser
+Searching for: pygobject-3-39
+Searching for: python-39
+Searching for: gtk-doc
+gtk-doc in gnome-calculator/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in gnome-calculator/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gnome-calculator/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: atk
+atk in gnome-calculator/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: gtk3
+gtk3 in gnome-calculator/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: gtksourceview
+gtksourceview in gnome-calculator/Makefile: REQUIRED_PACKAGES += library/desktop/gtksourceview needs gtksourceview 
+Searching for: libhandy
+libhandy in gnome-calculator/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: libgee 
+Searching for: pango
+pango in gnome-calculator/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in gnome-calculator/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gmp
+Searching for: libsoup
+libsoup in gnome-calculator/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: libxml2
+Searching for: mpc
+Searching for: mpfr
+Searching for: math
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gnome-calendar/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: cairo
+Searching for: evolution-data-server
+evolution-data-server in gnome-calendar/Makefile: REQUIRED_PACKAGES += library/desktop/evolution-data-server needs evolution-data-server 
+Searching for: geoclue
+Searching for: gtk3
+gtk3 in gnome-calendar/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libhandy
+libhandy in gnome-calendar/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: libdazzle
+libdazzle in gnome-calendar/Makefile: REQUIRED_PACKAGES += library/desktop/libdazzle needs libdazzle 
+Searching for: libgweather
+libgweather in gnome-calendar/Makefile: REQUIRED_PACKAGES += library/desktop/libgweather needs libgweather 
+Searching for: pango
+pango in gnome-calendar/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in gnome-calendar/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-online-accounts
+gnome-online-accounts in gnome-calendar/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-online-accounts needs gnome-online-accounts 
+Searching for: libical
+Searching for: libsoup-3
+libsoup-3 in gnome-calendar/Makefile: REQUIRED_PACKAGES += library/libsoup-3 needs libsoup-3 
+Searching for: library
+Searching for: libc
+libc in gnome-calendar/Makefile: REQUIRED_PACKAGES += system/library/libc needs libc 
+Searching for: math
+Searching for: vala
+vala in gnome-clocks/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gnome-clocks/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in gnome-clocks/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: geoclue
+Searching for: geocode-glib
+geocode-glib in gnome-clocks/Makefile: REQUIRED_PACKAGES += library/desktop/geocode-glib needs geocode-glib 
+Searching for: gsound
+gsound in gnome-clocks/Makefile: REQUIRED_PACKAGES += library/desktop/gsound needs gsound 
+Searching for: gtk3
+gtk3 in gnome-clocks/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libgweather
+libgweather in gnome-clocks/Makefile: REQUIRED_PACKAGES += library/desktop/libgweather needs libgweather 
+Searching for: libhandy
+libhandy in gnome-clocks/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: glib2
+glib2 in gnome-clocks/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-desktop
+gnome-desktop in gnome-clocks/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: math
+Searching for: automake-116
+Searching for: gtk-doc
+gtk-doc in gnome-common/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: intltool
+Searching for: glib2
+glib2 in gnome-common/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-common
+gnome-common in gnome-common/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-common needs gnome-common 
+Searching for: gnu-gettext
+Searching for: gnome-settings-daemon
+gnome-settings-daemon in gnome-control-center/Makefile: REQUIRED_PACKAGES += gnome/gnome-settings-daemon needs gnome-settings-daemon 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gnome-control-center/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: pulseaudio
+Searching for: atk
+atk in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: clutter
+clutter in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/desktop/clutter needs clutter 
+Searching for: clutter-gtk
+clutter-gtk in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/desktop/clutter/clutter-gtk needs clutter-gtk 
+Searching for: colord-gtk
+Searching for: gdk-pixbuf
+gdk-pixbuf in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: grilo
+grilo in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/desktop/grilo needs grilo 
+Searching for: gsound
+gsound in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/desktop/gsound needs gsound 
+Searching for: gtk3
+gtk3 in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libhandy
+libhandy in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: libgweather
+libgweather in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/desktop/libgweather needs libgweather 
+Searching for: pango
+pango in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: libcanberra
+Searching for: glib2
+glib2 in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-desktop
+gnome-desktop in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: gnome-online-accounts
+gnome-online-accounts in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-online-accounts needs gnome-online-accounts 
+Searching for: libsecret
+libsecret in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/gnome/libsecret needs libsecret 
+Searching for: libgtop
+libgtop in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/libgtop needs libgtop 
+Searching for: libsoup
+libsoup in gnome-control-center/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: libxml2
+Searching for: colord
+Searching for: ogl-select
+Searching for: ibus
+Searching for: accountsservice
+Searching for: fontconfig
+Searching for: gcc-c-runtime
+Searching for: libv12n
+Searching for: math
+Searching for: polkit
+Searching for: upower
+Searching for: libepoxy
+Searching for: libx11
+Searching for: libxi
+Searching for: mesa
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gnome-desktop/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in gnome-desktop/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in gnome-desktop/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in gnome-desktop/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: gtk4
+gtk4 in gnome-desktop/Makefile: REQUIRED_PACKAGES += library/desktop/gtk4 needs gtk4 
+Searching for: glib2
+glib2 in gnome-desktop/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: math
+Searching for: libxkbcommon
+Searching for: itstool
+Searching for: glib2
+glib2 in gnome-devel-docs/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxml2
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in gnome-font-viewer/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in gnome-font-viewer/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: harfbuzz
+Searching for: libhandy
+libhandy in gnome-font-viewer/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: pango
+pango in gnome-font-viewer/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in gnome-font-viewer/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-desktop
+gnome-desktop in gnome-font-viewer/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: fontconfig
+Searching for: freetype-2
+Searching for: math
+Searching for: itstool
+Searching for: glib2
+glib2 in gnome-getting-started-docs/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxml2
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gnome-initial-setup/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in gnome-initial-setup/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: geoclue
+Searching for: gtk3
+gtk3 in gnome-initial-setup/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libgweather
+libgweather in gnome-initial-setup/Makefile: REQUIRED_PACKAGES += library/desktop/libgweather needs libgweather 
+Searching for: librest
+Searching for: pango
+pango in gnome-initial-setup/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: webkitgtk4
+Searching for: glib2
+glib2 in gnome-initial-setup/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-desktop
+gnome-desktop in gnome-initial-setup/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: gnome-online-accounts
+gnome-online-accounts in gnome-initial-setup/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-online-accounts needs gnome-online-accounts 
+Searching for: libsecret
+libsecret in gnome-initial-setup/Makefile: REQUIRED_PACKAGES += library/gnome/libsecret needs libsecret 
+Searching for: json-glib
+json-glib in gnome-initial-setup/Makefile: REQUIRED_PACKAGES += library/json-glib needs json-glib 
+Searching for: kerberos-5
+Searching for: gdm
+gdm in gnome-initial-setup/Makefile: REQUIRED_PACKAGES += system/display-manager/gdm needs gdm 
+Searching for: ibus
+Searching for: accountsservice
+Searching for: fontconfig
+Searching for: math
+Searching for: polkit
+Searching for: glib2
+glib2 in gnome-keyring/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gcr
+gcr in gnome-keyring/Makefile: REQUIRED_PACKAGES += library/gnome/gcr needs gcr 
+Searching for: ssh
+Searching for: pam-core
+Searching for: libdbus
+Searching for: libgcrypt
+Searching for: desktop-file-utils
+Searching for: gobject-introspection
+gobject-introspection in gnome-menus/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in gnome-menus/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gtk-doc
+gtk-doc in gnome-online-accounts/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: atk
+atk in gnome-online-accounts/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: gcr
+gcr in gnome-online-accounts/Makefile: REQUIRED_PACKAGES += library/gnome/gcr needs gcr 
+Searching for: gdk-pixbuf
+gdk-pixbuf in gnome-online-accounts/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in gnome-online-accounts/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in gnome-online-accounts/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: harfbuzz
+Searching for: librest
+Searching for: p11-kit
+Searching for: pango
+pango in gnome-online-accounts/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: webkitgtk4
+Searching for: glib2
+glib2 in gnome-online-accounts/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libsecret
+libsecret in gnome-online-accounts/Makefile: REQUIRED_PACKAGES += library/gnome/libsecret needs libsecret 
+Searching for: json-glib
+json-glib in gnome-online-accounts/Makefile: REQUIRED_PACKAGES += library/json-glib needs json-glib 
+Searching for: libsoup
+libsoup in gnome-online-accounts/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: libxml2
+Searching for: telepathy-glib
+Searching for: kerberos-5
+Searching for: gcc-c-runtime
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in gnome-screenshot/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in gnome-screenshot/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libhandy
+libhandy in gnome-screenshot/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: libcanberra
+Searching for: glib2
+glib2 in gnome-screenshot/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: math
+Searching for: libx11
+Searching for: libxext
+Searching for: desktop-file-utils
+Searching for: gtk3
+gtk3 in gnome-session/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: glib2
+glib2 in gnome-session/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-desktop
+gnome-desktop in gnome-session/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: json-glib
+json-glib in gnome-session/Makefile: REQUIRED_PACKAGES += library/desktop/json-glib needs json-glib 
+Searching for: dbus-x11
+Searching for: libepoxy
+Searching for: libice
+Searching for: libsm
+Searching for: libx11
+Searching for: libxcomposite
+Searching for: mesa
+Searching for: desktop-file-utils
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gnome-settings-daemon/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: pulseaudio
+Searching for: geoclue
+Searching for: geocode-glib
+geocode-glib in gnome-settings-daemon/Makefile: REQUIRED_PACKAGES += library/desktop/geocode-glib needs geocode-glib 
+Searching for: gtk3
+gtk3 in gnome-settings-daemon/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libgweather
+libgweather in gnome-settings-daemon/Makefile: REQUIRED_PACKAGES += library/desktop/libgweather needs libgweather 
+Searching for: libnotify
+libnotify in gnome-settings-daemon/Makefile: REQUIRED_PACKAGES += library/desktop/libnotify needs libnotify 
+Searching for: p11-kit
+Searching for: libcanberra
+Searching for: glib2
+glib2 in gnome-settings-daemon/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gcr-4
+gcr-4 in gnome-settings-daemon/Makefile: REQUIRED_PACKAGES += library/gnome/gcr-4 needs gcr-4 
+Searching for: gnome-desktop
+gnome-desktop in gnome-settings-daemon/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: cups-libs
+Searching for: colord
+Searching for: fontconfig
+Searching for: math
+Searching for: polkit
+Searching for: upower
+Searching for: libx11
+Searching for: libxext
+Searching for: libxfixes
+Searching for: libxi
+Searching for: nautilus
+nautilus in gnome-shell-extensions/Makefile: REQUIRED_PACKAGES += gnome/file-manager/nautilus needs nautilus 
+Searching for: gnome-shell
+gnome-shell in gnome-shell-extensions/Makefile: REQUIRED_PACKAGES += gnome/gnome-shell needs gnome-shell 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gnome-shell-extensions/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: mutter
+mutter in gnome-shell-extensions/Makefile: REQUIRED_PACKAGES += gnome/window-manager/mutter needs mutter 
+Searching for: atk
+atk in gnome-shell-extensions/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: clutter
+clutter in gnome-shell-extensions/Makefile: REQUIRED_PACKAGES += library/desktop/clutter needs clutter 
+Searching for: gdk-pixbuf
+gdk-pixbuf in gnome-shell-extensions/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in gnome-shell-extensions/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in gnome-shell-extensions/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in gnome-shell-extensions/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in gnome-shell-extensions/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-menus
+gnome-menus in gnome-shell-extensions/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-menus needs gnome-menus 
+Searching for: gnome-clocks
+gnome-clocks in gnome-shell/Makefile: REQUIRED_PACKAGES += gnome/gnome-clocks needs gnome-clocks 
+Searching for: gnome-settings-daemon
+gnome-settings-daemon in gnome-shell/Makefile: REQUIRED_PACKAGES += gnome/gnome-settings-daemon needs gnome-settings-daemon 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gnome-shell/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: mutter
+mutter in gnome-shell/Makefile: REQUIRED_PACKAGES += gnome/window-manager/mutter needs mutter 
+Searching for: pulseaudio
+Searching for: at-spi2-atk
+at-spi2-atk in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/at-spi2-atk needs at-spi2-atk 
+Searching for: at-spi2-core
+at-spi2-core in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/at-spi2-core needs at-spi2-core 
+Searching for: atk
+atk in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: clutter
+clutter in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/clutter needs clutter 
+Searching for: evolution-data-server
+evolution-data-server in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/evolution-data-server needs evolution-data-server 
+Searching for: gdk-pixbuf
+gdk-pixbuf in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gjs
+gjs in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/gjs needs gjs 
+Searching for: gnome-autoar
+gnome-autoar in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/gnome-autoar needs gnome-autoar 
+Searching for: gobject-introspection
+gobject-introspection in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: graphene
+graphene in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/graphene needs graphene 
+Searching for: gtk3
+gtk3 in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: gtk4
+gtk4 in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/gtk4 needs gtk4 
+Searching for: libgweather
+libgweather in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/libgweather needs libgweather 
+Searching for: pango
+pango in gnome-shell/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in gnome-shell/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gcr-4
+gcr-4 in gnome-shell/Makefile: REQUIRED_PACKAGES += library/gnome/gcr-4 needs gcr-4 
+Searching for: gnome-desktop
+gnome-desktop in gnome-shell/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: cogl
+cogl in gnome-shell/Makefile: REQUIRED_PACKAGES += library/graphics/cogl needs cogl 
+Searching for: json-glib
+json-glib in gnome-shell/Makefile: REQUIRED_PACKAGES += library/json-glib needs json-glib 
+Searching for: libical
+Searching for: libsoup
+libsoup in gnome-shell/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: pygobject-3-311
+Searching for: simplejson-311
+Searching for: telepathy-glib
+Searching for: python-311
+Searching for: gdm
+gdm in gnome-shell/Makefile: REQUIRED_PACKAGES += system/display-manager/gdm needs gdm 
+Searching for: ibus
+Searching for: accountsservice
+Searching for: math
+Searching for: polkit
+Searching for: libx11
+Searching for: libxfixes
+Searching for: librsvg
+librsvg in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += image/library/librsvg needs librsvg 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: glibmm
+glibmm in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += library/c++/glibmm needs glibmm 
+Searching for: sigcpp
+sigcpp in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += library/c++/sigcpp needs sigcpp 
+Searching for: atkmm
+atkmm in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += library/desktop/c++/atkmm needs atkmm 
+Searching for: cairomm
+Searching for: gtkmm3
+gtkmm3 in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += library/desktop/c++/gtkmm3 needs gtkmm3 
+Searching for: mm-common
+mm-common in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += library/desktop/c++/mm-common needs mm-common 
+Searching for: pangomm
+pangomm in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += library/desktop/c++/pangomm needs pangomm 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libhandy
+libhandy in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: libwnck3
+libwnck3 in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += library/desktop/libwnck3 needs libwnck3 
+Searching for: pango
+pango in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libgtop
+libgtop in gnome-system-monitor/Makefile: REQUIRED_PACKAGES += library/libgtop needs libgtop 
+Searching for: gcc-c++-runtime
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: nautilus
+nautilus in gnome-terminal/Makefile: REQUIRED_PACKAGES += gnome/file-manager/nautilus needs nautilus 
+Searching for: gnome-shell
+gnome-shell in gnome-terminal/Makefile: REQUIRED_PACKAGES += gnome/gnome-shell needs gnome-shell 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gnome-terminal/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: atk
+atk in gnome-terminal/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: gobject-introspection
+gobject-introspection in gnome-terminal/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in gnome-terminal/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in gnome-terminal/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in gnome-terminal/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: dconf
+dconf in gnome-terminal/Makefile: REQUIRED_PACKAGES += library/gnome/dconf needs dconf 
+Searching for: vte3
+Searching for: gnutls-3
+Searching for: gcc-c-runtime
+Searching for: gcc-c++-runtime
+Searching for: math
+Searching for: libx11
+Searching for: intltool
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in gnome-themes-standard/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk2
+gtk2 in gnome-themes-standard/Makefile: REQUIRED_PACKAGES += library/desktop/gtk2 needs gtk2 
+Searching for: gtk3
+gtk3 in gnome-themes-standard/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: glib2
+glib2 in gnome-themes-standard/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: nautilus
+nautilus in gnome-tweaks/Makefile: REQUIRED_PACKAGES += gnome/file-manager/nautilus needs nautilus 
+Searching for: gnome-settings-daemon
+gnome-settings-daemon in gnome-tweaks/Makefile: REQUIRED_PACKAGES += gnome/gnome-settings-daemon needs gnome-settings-daemon 
+Searching for: gnome-shell
+gnome-shell in gnome-tweaks/Makefile: REQUIRED_PACKAGES += gnome/gnome-shell needs gnome-shell 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gnome-tweaks/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: mutter
+mutter in gnome-tweaks/Makefile: REQUIRED_PACKAGES += gnome/window-manager/mutter needs mutter 
+Searching for: gobject-introspection
+gobject-introspection in gnome-tweaks/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in gnome-tweaks/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libnotify
+libnotify in gnome-tweaks/Makefile: REQUIRED_PACKAGES += library/desktop/libnotify needs libnotify 
+Searching for: pango
+pango in gnome-tweaks/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: gnome-desktop
+gnome-desktop in gnome-tweaks/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: libhandy
+libhandy in gnome-tweaks/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: libsoup
+libsoup in gnome-tweaks/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: pygobject-3-311
+Searching for: python-311
+Searching for: itstool
+Searching for: glib2
+glib2 in gnome-user-docs/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxml2
+Searching for: bison
+Searching for: cairo
+Searching for: glib2
+glib2 in gobject-introspection/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libffi
+Searching for: python-311
+Searching for: gcc-c-runtime
+Searching for: iconv-core
+Searching for: math
+Searching for: sqlite-3
+Searching for: gtk-doc
+gtk-doc in gom/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gobject-introspection
+gobject-introspection in gom/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in gom/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: glib2
+glib2 in graphene/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: library
+Searching for: libc
+libc in graphene/Makefile: REQUIRED_PACKAGES += system/library/libc needs libc 
+Searching for: math
+Searching for: sqlite-3
+Searching for: libgdata
+libgdata in grilo-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/libgdata needs libgdata 
+Searching for: librest
+Searching for: tracker
+tracker in grilo-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/search/tracker needs tracker 
+Searching for: glib2
+glib2 in grilo-plugins/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gmime
+gmime in grilo-plugins/Makefile: REQUIRED_PACKAGES += library/gmime needs gmime 
+Searching for: gnome-online-accounts
+gnome-online-accounts in grilo-plugins/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-online-accounts needs gnome-online-accounts 
+Searching for: gom
+gom in grilo-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/gom needs gom 
+Searching for: grilo
+grilo in grilo-plugins/Makefile: REQUIRED_PACKAGES += library/desktop/grilo needs grilo 
+Searching for: gstreamer-1
+Searching for: libmediaart
+libmediaart in grilo-plugins/Makefile: REQUIRED_PACKAGES += library/gnome/libmediaart needs libmediaart 
+Searching for: json-glib
+json-glib in grilo-plugins/Makefile: REQUIRED_PACKAGES += library/json-glib needs json-glib 
+Searching for: libarchive
+Searching for: liboauth
+Searching for: libsoup
+libsoup in grilo-plugins/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: libxml2
+Searching for: totem-pl-parser
+totem-pl-parser in grilo-plugins/Makefile: REQUIRED_PACKAGES += library/media-player/totem-pl-parser needs totem-pl-parser 
+Searching for: lua
+Searching for: avahi
+Searching for: gui
+Searching for: gtk-doc
+gtk-doc in grilo/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in grilo/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: gdk-pixbuf
+gdk-pixbuf in grilo/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in grilo/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in grilo/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: glib2
+glib2 in grilo/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: liboauth
+Searching for: libsoup
+libsoup in grilo/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: libxml2
+Searching for: totem-pl-parser
+totem-pl-parser in grilo/Makefile: REQUIRED_PACKAGES += library/media-player/totem-pl-parser needs totem-pl-parser 
+Searching for: gcc-c-runtime
+Searching for: gobject-introspection
+gobject-introspection in gsettings-desktop-schemas/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: core-os
+Searching for: libcanberra
+Searching for: glib2
+glib2 in gsound/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: docbook-dtds
+Searching for: docbook-style-dsssl
+Searching for: docbook-style-xsl 
+Searching for: sgml-common
+Searching for: xml-common
+Searching for: itstool
+Searching for: openjade
+Searching for: intltool
+Searching for: vim
+Searching for: libxml2
+Searching for: libxslt
+Searching for: libxml2-311
+Searching for: python-311
+Searching for: gnu-gettext
+Searching for: pulseaudio
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in gtk-vnc/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in gtk-vnc/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: glib2
+glib2 in gtk-vnc/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnutls-3
+Searching for: zlib
+Searching for: math
+Searching for: libgcrypt
+Searching for: libsasl2
+Searching for: libx11
+Searching for: docbook-dtds
+Searching for: docbook-style-dsssl
+Searching for: docbook-style-xsl
+Searching for: gtk-doc
+gtk-doc in gtk2/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gnu-indent
+Searching for: atk
+atk in gtk2/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in gtk2/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in gtk2/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: pango
+pango in gtk2/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in gtk2/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxslt
+Searching for: cups-libs
+Searching for: cups
+Searching for: python-311
+Searching for: ogl-select
+Searching for: core-os
+Searching for: fontconfig
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: linker
+Searching for: libx11
+Searching for: libxcomposite
+Searching for: libxcursor
+Searching for: libxdamage
+Searching for: libxext
+Searching for: libxfixes
+Searching for: libxinerama
+Searching for: libxrandr
+Searching for: libxrender
+Searching for: xvfb
+Searching for: docbook-dtds
+Searching for: docbook-style-dsssl
+Searching for: docbook-style-xsl
+Searching for: gtk-doc
+gtk-doc in gtk3/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gnu-indent
+Searching for: at-spi2-atk
+at-spi2-atk in gtk3/Makefile: REQUIRED_PACKAGES += library/desktop/at-spi2-atk needs at-spi2-atk 
+Searching for: atk
+atk in gtk3/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: fribidi
+fribidi in gtk3/Makefile: REQUIRED_PACKAGES += library/desktop/fribidi needs fribidi 
+Searching for: gdk-pixbuf
+gdk-pixbuf in gtk3/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in gtk3/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: harfbuzz
+Searching for: librest
+Searching for: pango
+pango in gtk3/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: libcanberra
+Searching for: glib2
+glib2 in gtk3/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: json-glib
+json-glib in gtk3/Makefile: REQUIRED_PACKAGES += library/json-glib needs json-glib 
+Searching for: cups-libs
+Searching for: cups
+Searching for: colord
+Searching for: ogl-select
+Searching for: core-os
+Searching for: fontconfig
+Searching for: freetype-2
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: libepoxy
+Searching for: libx11
+Searching for: libxcomposite
+Searching for: libxcursor
+Searching for: libxdamage
+Searching for: libxext
+Searching for: libxfixes
+Searching for: libxi
+Searching for: libxinerama
+Searching for: libxrandr
+Searching for: libxrender
+Searching for: libjpeg
+Searching for: libpng16
+Searching for: librsvg
+librsvg in gtk4/Makefile: REQUIRED_PACKAGES += image/library/librsvg needs librsvg 
+Searching for: libtiff
+Searching for: cairo
+Searching for: fribidi
+fribidi in gtk4/Makefile: REQUIRED_PACKAGES += library/desktop/fribidi needs fribidi 
+Searching for: gdk-pixbuf
+gdk-pixbuf in gtk4/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: graphene
+graphene in gtk4/Makefile: REQUIRED_PACKAGES += library/desktop/graphene needs graphene 
+Searching for: harfbuzz
+Searching for: pango
+pango in gtk4/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in gtk4/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: cups-libs
+Searching for: library
+Searching for: fontconfig
+Searching for: math
+Searching for: libepoxy
+Searching for: libx11
+Searching for: libxcursor
+Searching for: libxdamage
+Searching for: libxext
+Searching for: libxfixes
+Searching for: libxi
+Searching for: libxinerama
+Searching for: libxrandr
+Searching for: doxygen
+Searching for: graphviz
+Searching for: glibmm
+glibmm in gtkmm/Makefile: REQUIRED_PACKAGES += library/c++/glibmm needs glibmm 
+Searching for: sigcpp
+sigcpp in gtkmm/Makefile: REQUIRED_PACKAGES += library/c++/sigcpp needs sigcpp 
+Searching for: atkmm
+atkmm in gtkmm/Makefile: REQUIRED_PACKAGES += library/desktop/c++/atkmm needs atkmm 
+Searching for: cairomm
+Searching for: pangomm
+pangomm in gtkmm/Makefile: REQUIRED_PACKAGES += library/desktop/c++/pangomm needs pangomm 
+Searching for: gdk-pixbuf
+gdk-pixbuf in gtkmm/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk2
+gtk2 in gtkmm/Makefile: REQUIRED_PACKAGES += library/desktop/gtk2 needs gtk2 
+Searching for: glib2
+glib2 in gtkmm/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxslt
+Searching for: gcc-c++-runtime
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: doxygen
+Searching for: graphviz
+Searching for: glibmm
+glibmm in gtkmm3/Makefile: REQUIRED_PACKAGES += library/c++/glibmm needs glibmm 
+Searching for: sigcpp
+sigcpp in gtkmm3/Makefile: REQUIRED_PACKAGES += library/c++/sigcpp needs sigcpp 
+Searching for: atkmm
+atkmm in gtkmm3/Makefile: REQUIRED_PACKAGES += library/desktop/c++/atkmm needs atkmm 
+Searching for: cairomm
+Searching for: pangomm
+pangomm in gtkmm3/Makefile: REQUIRED_PACKAGES += library/desktop/c++/pangomm needs pangomm 
+Searching for: gdk-pixbuf
+gdk-pixbuf in gtkmm3/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in gtkmm3/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: glib2
+glib2 in gtkmm3/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxslt
+Searching for: gcc-c++-runtime
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: gtk-doc
+gtk-doc in gtksourceview/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in gtksourceview/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: atk
+atk in gtksourceview/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: fribidi
+fribidi in gtksourceview/Makefile: REQUIRED_PACKAGES += library/desktop/fribidi needs fribidi 
+Searching for: gobject-introspection
+gobject-introspection in gtksourceview/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gdk-pixbuf
+gdk-pixbuf in gtksourceview/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in gtksourceview/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in gtksourceview/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in gtksourceview/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxml2
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: intltool
+Searching for: gnome-common
+gnome-common in gucharmap/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-common needs gnome-common 
+Searching for: desktop-file-utils
+Searching for: vala
+vala in gucharmap/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in gucharmap/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: atk
+atk in gucharmap/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: gobject-introspection
+gobject-introspection in gucharmap/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in gucharmap/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in gucharmap/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in gucharmap/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gcc-c-runtime
+Searching for: gtk-doc
+gtk-doc in gvfs/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gtk3
+gtk3 in gvfs/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libgdata
+libgdata in gvfs/Makefile: REQUIRED_PACKAGES += library/desktop/libgdata needs libgdata 
+Searching for: glib2
+glib2 in gvfs/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-online-accounts
+gnome-online-accounts in gvfs/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-online-accounts needs gnome-online-accounts 
+Searching for: libsecret
+libsecret in gvfs/Makefile: REQUIRED_PACKAGES += library/gnome/libsecret needs libsecret 
+Searching for: libarchive
+Searching for: libsoup-3
+libsoup-3 in gvfs/Makefile: REQUIRED_PACKAGES += library/libsoup-3 needs libsoup-3 
+Searching for: libxml2
+Searching for: libgcrypt
+Searching for: avahi
+Searching for: gui
+Searching for: gcr
+gcr in gvfs/Makefile: REQUIRED_PACKAGES += library/gnome/gcr needs gcr 
+Searching for: docbook-dtds
+Searching for: docbook-style-dsssl
+Searching for: docbook-style-xsl
+Searching for: sgml-common
+Searching for: xml-common
+Searching for: gtk-doc
+gtk-doc in json-glib/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gobject-introspection
+gobject-introspection in json-glib/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in json-glib/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxml2
+Searching for: libxslt
+Searching for: gnu-gettext
+Searching for: locale
+Searching for: sqlite-3
+Searching for: gtk-doc
+gtk-doc in libchamplain/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in libchamplain/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: cairo
+Searching for: clutter
+clutter in libchamplain/Makefile: REQUIRED_PACKAGES += library/desktop/clutter needs clutter 
+Searching for: clutter-gtk
+clutter-gtk in libchamplain/Makefile: REQUIRED_PACKAGES += library/desktop/clutter/clutter-gtk needs clutter-gtk 
+Searching for: gdk-pixbuf
+gdk-pixbuf in libchamplain/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in libchamplain/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in libchamplain/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in libchamplain/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: cogl
+cogl in libchamplain/Makefile: REQUIRED_PACKAGES += library/graphics/cogl needs cogl 
+Searching for: libsoup
+libsoup in libchamplain/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: glib2
+glib2 in libchamplain/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: math
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in libdazzle/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in libdazzle/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in libdazzle/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in libdazzle/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: gtk-doc
+gtk-doc in libgdata/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in libgdata/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: gobject-introspection
+gobject-introspection in libgdata/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in libgdata/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gcr
+gcr in libgdata/Makefile: REQUIRED_PACKAGES += library/gnome/gcr needs gcr 
+Searching for: gnome-online-accounts
+gnome-online-accounts in libgdata/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-online-accounts needs gnome-online-accounts 
+Searching for: json-glib
+json-glib in libgdata/Makefile: REQUIRED_PACKAGES += library/json-glib needs json-glib 
+Searching for: liboauth
+Searching for: libsoup
+libsoup in libgdata/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: libxml2
+Searching for: uhttpmock
+Searching for: gcc-c-runtime
+Searching for: gtk-doc
+gtk-doc in libgee/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in libgee/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: gobject-introspection
+gobject-introspection in libgee/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in libgee/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: bzip2
+Searching for: gtk-doc
+gtk-doc in libgsf/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gobject-introspection
+gobject-introspection in libgsf/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gdk-pixbuf
+gdk-pixbuf in libgsf/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: glib2
+glib2 in libgsf/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxml2
+Searching for: zlib
+Searching for: gcc-c-runtime
+Searching for: gtk-doc
+gtk-doc in libgtop/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gobject-introspection
+gobject-introspection in libgtop/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in libgtop/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gcc-c-runtime
+Searching for: libxau
+Searching for: gtk-doc
+gtk-doc in libgweather/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in libgweather/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: gdk-pixbuf
+gdk-pixbuf in libgweather/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in libgweather/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in libgweather/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: glib2
+glib2 in libgweather/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: geocode-glib
+geocode-glib in libgweather/Makefile: REQUIRED_PACKAGES += library/desktop/geocode-glib needs geocode-glib 
+Searching for: json-glib
+json-glib in libgweather/Makefile: REQUIRED_PACKAGES += library/json-glib needs json-glib 
+Searching for: libsoup-3
+libsoup-3 in libgweather/Makefile: REQUIRED_PACKAGES += library/libsoup-3 needs libsoup-3 
+Searching for: libxml2
+Searching for: math
+Searching for: gtk-doc
+gtk-doc in libgxps/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: libjpeg
+Searching for: libpng16
+Searching for: libtiff
+Searching for: cairo
+Searching for: gobject-introspection
+gobject-introspection in libgxps/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in libgxps/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: lcms2
+Searching for: libarchive
+Searching for: freetype-2
+Searching for: math
+Searching for: glade
+glade in libhandy/Makefile: REQUIRED_PACKAGES += developer/ui-designer/glade needs glade 
+Searching for: atk
+atk in libhandy/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: fribidi
+fribidi in libhandy/Makefile: REQUIRED_PACKAGES += library/desktop/fribidi needs fribidi 
+Searching for: gdk-pixbuf
+gdk-pixbuf in libhandy/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in libhandy/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in libhandy/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in libhandy/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: gtk-doc
+gtk-doc in libmediaart/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in libmediaart/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: gobject-introspection
+gobject-introspection in libmediaart/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gdk-pixbuf
+gdk-pixbuf in libmediaart/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: glib2
+glib2 in libmediaart/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gtk-doc
+gtk-doc in libnotify/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: xmlto
+Searching for: gdk-pixbuf
+gdk-pixbuf in libnotify/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in libnotify/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in libnotify/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gtk-doc
+gtk-doc in libpeas/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: xmlto
+Searching for: glade
+glade in libpeas/Makefile: REQUIRED_PACKAGES += developer/ui-designer/glade needs glade 
+Searching for: gdk-pixbuf
+gdk-pixbuf in libpeas/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in libpeas/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in libpeas/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: glib2
+glib2 in libpeas/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: lgi-54
+Searching for: pygobject-3
+Searching for: lua
+Searching for: python-311
+Searching for: gtk-doc
+gtk-doc in librsvg/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in librsvg/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in librsvg/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in librsvg/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in librsvg/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in librsvg/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in librsvg/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxml2
+Searching for: fontconfig
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: gtk-doc
+gtk-doc in libsecret/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in libsecret/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: gobject-introspection
+gobject-introspection in libsecret/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in libsecret/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: xml-parser
+Searching for: libgpg-error
+Searching for: libgcrypt
+Searching for: sqlite-3
+Searching for: glib2
+glib2 in libsoup-3/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libpsl
+Searching for: nghttp2
+Searching for: zlib
+Searching for: kerberos-5
+Searching for: sqlite-3
+Searching for: gtk-doc
+gtk-doc in libsoup/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gobject-introspection
+gobject-introspection in libsoup/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib-networking
+glib-networking in libsoup/Makefile: REQUIRED_PACKAGES += library/glib-networking needs glib-networking 
+Searching for: glib2
+glib2 in libsoup/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libpsl
+Searching for: libxml2
+Searching for: zlib
+Searching for: kerberos-5
+Searching for: gnu-gettext
+Searching for: gtk-doc
+gtk-doc in libwnck3/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: atk
+atk in libwnck3/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in libwnck3/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in libwnck3/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in libwnck3/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in libwnck3/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: startup-notification
+Searching for: glib2
+glib2 in libwnck3/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: math
+Searching for: libx11
+Searching for: libxrender
+Searching for: libxres
+Searching for: intltool
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in meld/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: gobject-introspection
+gobject-introspection in meld/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in meld/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: gtksourceview
+gtksourceview in meld/Makefile: REQUIRED_PACKAGES += library/desktop/gtksourceview needs gtksourceview 
+Searching for: pango
+pango in meld/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: pycairo-311
+Searching for: pygobject-3-311
+Searching for: tkinter-311
+Searching for: python-311
+Searching for: gnu-gettext
+Searching for: python-39
+Searching for: ksh93
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in mousetweaks/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: cairo
+Searching for: gtk3
+gtk3 in mousetweaks/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in mousetweaks/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in mousetweaks/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libx11
+Searching for: libxcursor
+Searching for: libxfixes
+Searching for: libxtst
+Searching for: gnome-settings-daemon
+gnome-settings-daemon in mutter/Makefile: REQUIRED_PACKAGES += gnome/gnome-settings-daemon needs gnome-settings-daemon 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in mutter/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: atk
+atk in mutter/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: fribidi
+fribidi in mutter/Makefile: REQUIRED_PACKAGES += library/desktop/fribidi needs fribidi 
+Searching for: gdk-pixbuf
+gdk-pixbuf in mutter/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: graphene
+graphene in mutter/Makefile: REQUIRED_PACKAGES += library/desktop/graphene needs graphene 
+Searching for: gtk4
+gtk4 in mutter/Makefile: REQUIRED_PACKAGES += library/desktop/gtk4 needs gtk4 
+Searching for: harfbuzz
+Searching for: pango
+pango in mutter/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: startup-notification
+Searching for: libcanberra
+Searching for: glib2
+glib2 in mutter/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-desktop
+gnome-desktop in mutter/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: json-glib
+json-glib in mutter/Makefile: REQUIRED_PACKAGES += library/json-glib needs json-glib 
+Searching for: lcms2
+Searching for: colord
+Searching for: fontconfig
+Searching for: math
+Searching for: libice
+Searching for: libsm
+Searching for: libx11
+Searching for: libxcb
+Searching for: libxcomposite
+Searching for: libxcursor
+Searching for: libxdamage
+Searching for: libxext
+Searching for: libxfixes
+Searching for: libxi
+Searching for: libxinerama
+Searching for: libxkbcommon
+Searching for: libxkbfile
+Searching for: libxrandr
+Searching for: libxtst
+Searching for: mesa
+Searching for: desktop-file-utils
+Searching for: gtk-doc
+gtk-doc in nautilus/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in nautilus/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: libexif
+Searching for: atk
+atk in nautilus/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in nautilus/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gnome-autoar
+gnome-autoar in nautilus/Makefile: REQUIRED_PACKAGES += library/desktop/gnome-autoar needs gnome-autoar 
+Searching for: gobject-introspection
+gobject-introspection in nautilus/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gstreamer-1
+Searching for: gst-plugins-base
+Searching for: gtk3
+gtk3 in nautilus/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in nautilus/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: tracker
+tracker in nautilus/Makefile: REQUIRED_PACKAGES += library/desktop/search/tracker needs tracker 
+Searching for: exempi
+Searching for: glib2
+glib2 in nautilus/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-desktop
+gnome-desktop in nautilus/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: libxml2
+Searching for: math
+Searching for: libx11
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in orca/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: brltty
+Searching for: at-spi2-core
+at-spi2-core in orca/Makefile: REQUIRED_PACKAGES += library/desktop/at-spi2-core needs at-spi2-core 
+Searching for: atk
+atk in orca/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: gobject-introspection
+gobject-introspection in orca/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in orca/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libwnck3
+libwnck3 in orca/Makefile: REQUIRED_PACKAGES += library/desktop/libwnck3 needs libwnck3 
+Searching for: liblouis
+Searching for: pyatspi2-311
+Searching for: pygobject-3-311
+Searching for: python-311
+Searching for: cairo
+Searching for: fribidi
+fribidi in pango/Makefile: REQUIRED_PACKAGES += library/desktop/fribidi needs fribidi 
+Searching for: gobject-introspection
+gobject-introspection in pango/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: harfbuzz
+Searching for: glib2
+glib2 in pango/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: fontconfig
+Searching for: freetype-2
+Searching for: gcc-c-runtime
+Searching for: math
+Searching for: libxft
+Searching for: libx11
+Searching for: libxrender
+Searching for: xorg
+Searching for: doxygen
+Searching for: graphviz
+Searching for: glibmm
+glibmm in pangomm/Makefile: REQUIRED_PACKAGES += library/c++/glibmm needs glibmm 
+Searching for: sigcpp
+sigcpp in pangomm/Makefile: REQUIRED_PACKAGES += library/c++/sigcpp needs sigcpp 
+Searching for: cairomm
+Searching for: pango
+pango in pangomm/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in pangomm/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxslt
+Searching for: gcc-c++-runtime
+Searching for: gcc-c-runtime
+Searching for: pygobject-3
+Searching for: python-37
+Searching for: python-39
+Searching for: python-311
+Searching for: atk
+atk in pyatspi/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: gtk2
+gtk2 in pyatspi/Makefile: REQUIRED_PACKAGES += library/desktop/gtk2 needs gtk2 
+Searching for: glib2
+glib2 in pyatspi/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libxml2
+Searching for: dbus-python
+Searching for: libdbus
+Searching for: libdbus-glib
+Searching for: cairo
+Searching for: gobject-introspection
+gobject-introspection in pygobject3/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in pygobject3/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libffi
+Searching for: pycairo
+Searching for: python-37
+Searching for: python-39
+Searching for: python-311
+Searching for: gtk-doc
+gtk-doc in rest/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gobject-introspection
+gobject-introspection in rest/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in rest/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libsoup
+libsoup in rest/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: libxml2
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in seahorse/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: atk
+atk in seahorse/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: gdk-pixbuf
+gdk-pixbuf in seahorse/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in seahorse/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libhandy
+libhandy in seahorse/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: glib2
+glib2 in seahorse/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gcr
+gcr in seahorse/Makefile: REQUIRED_PACKAGES += library/gnome/gcr needs gcr 
+Searching for: libsecret
+libsecret in seahorse/Makefile: REQUIRED_PACKAGES += library/gnome/libsecret needs libsecret 
+Searching for: libsoup
+libsoup in seahorse/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: libxslt
+Searching for: gpgme
+Searching for: math
+Searching for: avahi
+Searching for: gui
+Searching for: openldap
+Searching for: doxygen
+Searching for: graphviz
+Searching for: mm-common
+mm-common in sigcpp/Makefile: REQUIRED_PACKAGES += library/desktop/c++/mm-common needs mm-common 
+Searching for: libxslt
+Searching for: gcc-c-runtime
+Searching for: gcc-c++-runtime
+Searching for: evince
+evince in sushi/Makefile: REQUIRED_PACKAGES += desktop/pdf-viewer/evince needs evince 
+Searching for: cairo
+Searching for: clutter
+clutter in sushi/Makefile: REQUIRED_PACKAGES += library/desktop/clutter needs clutter 
+Searching for: clutter-gst
+clutter-gst in sushi/Makefile: REQUIRED_PACKAGES += library/desktop/clutter/clutter-gst needs clutter-gst 
+Searching for: clutter-gst3
+clutter-gst3 in sushi/Makefile: REQUIRED_PACKAGES += library/desktop/clutter/clutter-gst3 needs clutter-gst3 
+Searching for: clutter-gtk
+clutter-gtk in sushi/Makefile: REQUIRED_PACKAGES += library/desktop/clutter/clutter-gtk needs clutter-gtk 
+Searching for: gdk-pixbuf
+gdk-pixbuf in sushi/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gjs
+gjs in sushi/Makefile: REQUIRED_PACKAGES += library/desktop/gjs needs gjs 
+Searching for: gobject-introspection
+gobject-introspection in sushi/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gstreamer-1
+Searching for: gst-plugins-base
+Searching for: gtk3
+gtk3 in sushi/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: gtksourceview
+gtksourceview in sushi/Makefile: REQUIRED_PACKAGES += library/desktop/gtksourceview needs gtksourceview 
+Searching for: harfbuzz
+Searching for: pango
+pango in sushi/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: webkitgtk4
+Searching for: glib2
+glib2 in sushi/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: freetype-2
+Searching for: libepoxy
+Searching for: libx11
+Searching for: gtk-doc
+gtk-doc in totem-pl-parser/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: gobject-introspection
+gobject-introspection in totem-pl-parser/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: glib2
+glib2 in totem-pl-parser/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gmime
+gmime in totem-pl-parser/Makefile: REQUIRED_PACKAGES += library/gmime needs gmime 
+Searching for: libarchive
+Searching for: libsoup
+libsoup in totem-pl-parser/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: libxml2
+Searching for: libgcrypt
+Searching for: gsettings-desktop-schemas
+gsettings-desktop-schemas in totem/Makefile: REQUIRED_PACKAGES += gnome/gsettings-desktop-schemas needs gsettings-desktop-schemas 
+Searching for: atk
+atk in totem/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in totem/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in totem/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: grilo
+grilo in totem/Makefile: REQUIRED_PACKAGES += library/desktop/grilo needs grilo 
+Searching for: gstreamer-1
+Searching for: gst-plugins-base
+Searching for: gtk3
+gtk3 in totem/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libhandy
+libhandy in totem/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: libpeas
+libpeas in totem/Makefile: REQUIRED_PACKAGES += library/desktop/libpeas needs libpeas 
+Searching for: pango
+pango in totem/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in totem/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-desktop
+gnome-desktop in totem/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-desktop needs gnome-desktop 
+Searching for: totem-pl-parser
+totem-pl-parser in totem/Makefile: REQUIRED_PACKAGES += library/media-player/totem-pl-parser needs totem-pl-parser 
+Searching for: math
+Searching for: flac
+Searching for: libvorbis
+Searching for: intltool
+Searching for: poppler-viewer
+Searching for: libexif
+Searching for: libjpeg
+Searching for: libpng16
+Searching for: libtiff
+Searching for: gstreamer-1
+Searching for: gst-plugins-base
+Searching for: libgsf
+libgsf in tracker-miners/Makefile: REQUIRED_PACKAGES += library/desktop/libgsf needs libgsf 
+Searching for: libgxps
+libgxps in tracker-miners/Makefile: REQUIRED_PACKAGES += library/desktop/libgxps needs libgxps 
+Searching for: tracker
+tracker in tracker-miners/Makefile: REQUIRED_PACKAGES += library/desktop/search/tracker needs tracker 
+Searching for: exempi
+Searching for: glib2
+glib2 in tracker-miners/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: icu
+Searching for: libxml2
+Searching for: totem-pl-parser
+totem-pl-parser in tracker-miners/Makefile: REQUIRED_PACKAGES += library/media-player/totem-pl-parser needs totem-pl-parser 
+Searching for: library
+Searching for: libc
+libc in tracker-miners/Makefile: REQUIRED_PACKAGES += system/library/libc needs libc 
+Searching for: math
+Searching for: upower
+Searching for: flac
+Searching for: libvorbis
+Searching for: sqlite-3
+Searching for: poppler-viewer
+Searching for: nautilus
+nautilus in tracker/Makefile: REQUIRED_PACKAGES += gnome/file-manager/nautilus needs nautilus 
+Searching for: libexif
+Searching for: libjpeg
+Searching for: libpng16
+Searching for: libtiff
+Searching for: taglib
+Searching for: atk
+atk in tracker/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: gdk-pixbuf
+gdk-pixbuf in tracker/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gstreamer-1
+Searching for: gst-plugins-base
+Searching for: gtk3
+gtk3 in tracker/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libgsf
+libgsf in tracker/Makefile: REQUIRED_PACKAGES += library/desktop/libgsf needs libgsf 
+Searching for: libgxps
+libgxps in tracker/Makefile: REQUIRED_PACKAGES += library/desktop/libgxps needs libgxps 
+Searching for: exempi
+Searching for: glib2
+glib2 in tracker/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: icu
+Searching for: json-glib
+json-glib in tracker/Makefile: REQUIRED_PACKAGES += library/json-glib needs json-glib 
+Searching for: libsoup
+libsoup in tracker/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: libxml2
+Searching for: totem-pl-parser
+totem-pl-parser in tracker/Makefile: REQUIRED_PACKAGES += library/media-player/totem-pl-parser needs totem-pl-parser 
+Searching for: poppler
+Searching for: hal
+Searching for: libc
+libc in tracker/Makefile: REQUIRED_PACKAGES += system/library/libc needs libc 
+Searching for: libdbus
+Searching for: libdbus-glib
+Searching for: math
+Searching for: doxygen
+Searching for: graphviz
+Searching for: glib2
+glib2 in vala/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in vinagre/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk-vnc
+gtk-vnc in vinagre/Makefile: REQUIRED_PACKAGES += library/desktop/gtk-vnc needs gtk-vnc 
+Searching for: gtk3
+gtk3 in vinagre/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: glib2
+glib2 in vinagre/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-common
+gnome-common in vinagre/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-common needs gnome-common 
+Searching for: libsecret
+libsecret in vinagre/Makefile: REQUIRED_PACKAGES += library/gnome/libsecret needs libsecret 
+Searching for: vte3
+Searching for: libxml2
+Searching for: telepathy-glib
+Searching for: library
+Searching for: libdbus-glib
+Searching for: libjpeg
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in vino/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in vino/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libnotify
+libnotify in vino/Makefile: REQUIRED_PACKAGES += library/desktop/libnotify needs libnotify 
+Searching for: glib2
+glib2 in vino/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnome-common
+gnome-common in vino/Makefile: REQUIRED_PACKAGES += library/gnome/gnome-common needs gnome-common 
+Searching for: libsecret
+libsecret in vino/Makefile: REQUIRED_PACKAGES += library/gnome/libsecret needs libsecret 
+Searching for: gnutls-3
+Searching for: telepathy-glib
+Searching for: zlib
+Searching for: libdbus
+Searching for: libdbus-glib
+Searching for: libgcrypt
+Searching for: avahi
+Searching for: gui
+Searching for: libice
+Searching for: libsm
+Searching for: libx11
+Searching for: libxdamage
+Searching for: libxext
+Searching for: libxfixes
+Searching for: libxtst
+Searching for: gtk-doc
+gtk-doc in vte/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: vala
+vala in vte/Makefile: REQUIRED_PACKAGES += developer/vala needs vala 
+Searching for: atk
+atk in vte/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: fribidi
+fribidi in vte/Makefile: REQUIRED_PACKAGES += library/desktop/fribidi needs fribidi 
+Searching for: gdk-pixbuf
+gdk-pixbuf in vte/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gobject-introspection
+gobject-introspection in vte/Makefile: REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection needs gobject-introspection 
+Searching for: gtk3
+gtk3 in vte/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: pango
+pango in vte/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: glib2
+glib2 in vte/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: gnutls-3
+Searching for: icu
+Searching for: pcre2
+Searching for: zlib
+Searching for: gcc-c-runtime
+Searching for: gcc-c++-runtime
+Searching for: math
+Searching for: docbook-dtds
+Searching for: yelp-xsl
+yelp-xsl in yelp-tools/Makefile: REQUIRED_PACKAGES += library/gnome/yelp-xsl needs yelp-xsl 
+Searching for: libxslt
+Searching for: lxml-311
+Searching for: python-311
+Searching for: itstool
+Searching for: ducktype
+Searching for: libxslt
+Searching for: sqlite-3
+Searching for: gtk-doc
+gtk-doc in yelp/Makefile: REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc needs gtk-doc 
+Searching for: atk
+atk in yelp/Makefile: REQUIRED_PACKAGES += library/desktop/atk needs atk 
+Searching for: cairo
+Searching for: gdk-pixbuf
+gdk-pixbuf in yelp/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in yelp/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: harfbuzz
+Searching for: libhandy
+libhandy in yelp/Makefile: REQUIRED_PACKAGES += library/desktop/libhandy needs libhandy 
+Searching for: pango
+pango in yelp/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: webkitgtk4
+Searching for: glib2
+glib2 in yelp/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: yelp-xsl
+yelp-xsl in yelp/Makefile: REQUIRED_PACKAGES += library/gnome/yelp-xsl needs yelp-xsl 
+Searching for: libsoup
+libsoup in yelp/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: libxml2
+Searching for: libxslt
+Searching for: math
+Searching for: gdk-pixbuf
+gdk-pixbuf in zenity/Makefile: REQUIRED_PACKAGES += library/desktop/gdk-pixbuf needs gdk-pixbuf 
+Searching for: gtk3
+gtk3 in zenity/Makefile: REQUIRED_PACKAGES += library/desktop/gtk3 needs gtk3 
+Searching for: libnotify
+libnotify in zenity/Makefile: REQUIRED_PACKAGES += library/desktop/libnotify needs libnotify 
+Searching for: pango
+pango in zenity/Makefile: REQUIRED_PACKAGES += library/desktop/pango needs pango 
+Searching for: webkitgtk4
+Searching for: glib2
+glib2 in zenity/Makefile: REQUIRED_PACKAGES += library/glib2 needs glib2 
+Searching for: libsoup
+libsoup in zenity/Makefile: REQUIRED_PACKAGES += library/libsoup needs libsoup 
+Searching for: libx11
