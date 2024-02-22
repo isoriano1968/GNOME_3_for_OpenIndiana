@@ -25,11 +25,10 @@ awk '/REQUIRED_PACKAGES/ {print FILENAME ": " $0}' */Makefile > ~/solaris-gnome-
 
 Now we do have all the dependencies found within the gnome components.
 
-Then I use a little c program to identify the unique dependencies (system packages) and those linked to another component within the gnome components folder (see gnome-dep-check.c)
+Then I use a little c program (https://github.com/isoriano1968/GNOME_3_for_OpenIndiana/blob/main/gnome-dep-check.c) to identify the unique dependencies (system packages) and those linked to another component within the gnome components folder (see gnome-dep-check.c)
 
 Ok, now we have to check whether the packages without dependencies are available on OpenIndiana (add) or not available at all (e.g. accountsservice exists on Solaris but not on OpenIndiana).
-
-This small bash script (openindiana-check-package-install-v2.sh) takes the input from the before mentioned output (gnome-dependencies-check) and checks whether it finds the packages in the OpenIndiana repository and installs them (if possible) or prints out at the end a list of packages it could not find within the OpenIndiana repository.
+This small bash script (https://github.com/isoriano1968/GNOME_3_for_OpenIndiana/blob/main/openindiana-check-package-install-v2.sh) takes the input from the before mentioned output (gnome-dependencies-check) and checks whether it finds the packages in the OpenIndiana repository and installs them (if possible) or prints out at the end a list of packages it could not find within the OpenIndiana repository (openindiana-core-packages-availability-check).
 
 This step is required for the next step which will be building the gnome-packages which only have a reference to a package within the gnome components folder. The OpenIndiana system would have all the required packages to start building gnome.
 
