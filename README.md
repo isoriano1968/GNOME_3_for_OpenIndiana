@@ -29,6 +29,10 @@ Then I use a little c program to identify the unique dependencies (system packag
 
 Ok, now we have to check whether the packages without dependencies are available on OpenIndiana (add) or not available at all (e.g. accountsservice exists on Solaris but not on OpenIndiana).
 
+This small bash script (openindiana-check-package-install-v2.sh) takes the input from the before mentioned output (gnome-dependencies-check) and checks whether it finds the packages in the OpenIndiana repository and installs them (if possible) or prints out at the end a list of packages it could not find within the OpenIndiana repository.
+
+This step is required for the next step which will be building the gnome-packages which only have a reference to a package within the gnome components folder. The OpenIndiana system would have all the required packages to start building gnome.
+
 
 
 
