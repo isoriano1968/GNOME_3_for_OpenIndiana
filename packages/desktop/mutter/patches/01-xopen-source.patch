@@ -1,0 +1,32 @@
+Origin: solaris-userland@9d7a655 components/gnome/mutter/patches/01-xopen-source.patch
+
+If _XOPEN_SOURCE is defined, the library must be built as an xpg6
+application, however it is not, so we instead define __EXTENSIONS__ in the
+Makefile and then avoid defining _XOPEN_SOURCE.
+
+Needs investigation before contributing to upstream.
+
+--- a/src/core/delete.c	2023-12-29 18:59:18.817056379 -0800
++++ b/src/core/delete.c	2023-12-29 18:59:41.033815642 -0800
+@@ -20,7 +20,9 @@
+  * along with this program; if not, see <http://www.gnu.org/licenses/>.
+  */
+ 
++#ifndef __EXTENSIONS__
+ #define _XOPEN_SOURCE /* for kill() */
++#endif
+ 
+ #define MAX_QUEUED_EVENTS 400
+ 
+--- a/src/x11/window-props.c	2023-12-29 19:00:32.228561482 -0800
++++ b/src/x11/window-props.c	2023-12-29 19:00:52.179668820 -0800
+@@ -33,7 +33,9 @@
+  * along with this program; if not, see <http://www.gnu.org/licenses/>.
+  */
+ 
++#ifndef __EXTENSIONS__
+ #define _XOPEN_SOURCE 600 /* for gethostname() */
++#endif
+ 
+ #include "config.h"
+ 

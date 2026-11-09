@@ -1,0 +1,16 @@
+Origin: solaris-userland@9d7a655 components/gnome/gdm/patches/0025-meson.patch
+
+Workaround differences between GNU & Solaris linker version scripts.
+
+Need to make dependent on linker type (GNU vs. Solaris) to send upstream
+
+--- gdm-45.0.1/libgdm/meson.build
++++ gdm-45.0.1/libgdm/meson.build
+@@ -60,7 +60,6 @@ libgdmcommon_dep,
+ ]
+ 
+ libgdm_link_flags = [
+-  '-Wl,--version-script,@0@/libgdm.map'.format(meson.current_source_dir()),
+ ]
+ 
+ libgdm = library('gdm',

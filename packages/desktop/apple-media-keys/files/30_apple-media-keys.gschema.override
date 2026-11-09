@@ -1,0 +1,11 @@
+# Apple keyboards on illumos: the media keys come in as plain F7-F12 (the
+# fn bit is not seen in boot protocol), and FS-UAE needs F11/F12 itself.
+# So the media functions are on Super (Cmd) + F7-F12, the F-keys stay free.
+# Users can change these in Settings > Keyboard > Keyboard Shortcuts.
+[org.gnome.settings-daemon.plugins.media-keys]
+previous=['<Super>F7']
+play=['<Super>F8']
+next=['<Super>F9']
+volume-mute=['<Super>F10']
+volume-down=['<Super>F11']
+volume-up=['<Super>F12']

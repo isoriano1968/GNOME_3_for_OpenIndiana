@@ -1,0 +1,17 @@
+Origin: solaris-userland@9d7a655 components/gnome/gdm/patches/0020-no-gnome-initial-setup.patch
+
+On some systems, we have seen gdm unable to start because it doesn't find
+the gnome-initial-setup user.  We will never have gnome-initial-setup user
+and shouldn't have gnome-intial-setup start with gdm as the username, so 
+disabling it in the conf file.
+
+--- a/data/gdm.conf-custom.in	2020-03-26 13:52:08.182751950 -0700
++++ b/data/gdm.conf-custom.in	2020-03-26 13:52:38.364063798 -0700
+@@ -1,6 +1,7 @@
+ # GDM configuration storage
+ 
+ [daemon]
++InitialSetupEnable=False
+ 
+ [security]
+ 

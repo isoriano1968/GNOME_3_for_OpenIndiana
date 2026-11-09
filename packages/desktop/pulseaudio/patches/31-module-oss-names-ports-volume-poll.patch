@@ -1,0 +1,520 @@
+module-oss (OSSv4, illumos):
+- open the mixer that belongs to the dsp device (/dev/dspN -> sound/X:Ndsp
+  -> /dev/sound/X:Nmixer): SNDCTL_MIXERINFO with mi.dev = N named the
+  other device on a machine with two audiohd instances, so the built-in
+  audio's volume moved the HDMI volume;
+- "Built-in Audio (codec)" / "HDMI / DisplayPort Audio" descriptions, form
+  factor and icon from SNDCTL_CARDINFO;
+- Speakers and Headphones ports on the mixer's speaker/headphones controls
+  (audiohd), an HDMI port for digital-only devices;
+- mute in the hardware mixer (volume control to 0, PA's volume back at
+  unmute), so that it also silences programs using the devices directly;
+- poll the hardware volume and mute every second (OSS has no change
+  notification).
+OpenIndiana project, 2026.
+
+diff --git a/src/modules/oss/module-oss.c b/src/modules/oss/module-oss.c
+index 4e4404c..396f491 100644
+--- a/src/modules/oss/module-oss.c
++++ b/src/modules/oss/module-oss.c
+@@ -66,6 +66,9 @@
+ #include <pulsecore/thread-mq.h>
+ #include <pulsecore/rtpoll.h>
+ #include <pulsecore/poll.h>
++#include <pulsecore/device-port.h>
++#include <pulse/rtclock.h>
++#include <pulse/timeval.h>
+ 
+ #if defined(__NetBSD__) && !defined(SNDCTL_DSP_GETODELAY)
+ #include <sys/audioio.h>
+@@ -134,6 +137,17 @@ struct userdata {
+     int mixer_dsp_fd;
+     oss_mixext sink_mixext;
+     oss_mixext source_mixext;
++
++    /* Output ports on the mixer's own "speaker" and "headphones" controls */
++    int port_mixer_fd;
++    int port_ctrl[2];
++    int port_type[2];
++    int port_max[2];
++    int port_saved[2];
++    pa_device_port *port[2];
++
++    pa_time_event *volume_poll;
++    bool hw_muted;      /* sink mute done in the mixer: control at 0 */
+ #else
+     int mixer_devmask;
+ #endif
+@@ -951,6 +965,10 @@ static void sink_get_volume(pa_sink *s) {
+ 
+     pa_assert_se(u = s->userdata);
+ 
++    /* Muted in hardware: the control reads 0, keep PA's volume. */
++    if (u->hw_muted)
++        return;
++
+     if (pa_oss_get_volume(u->mixer_dsp_fd, &(u->sink_mixext), &s->sample_spec, &s->real_volume) >= 0)
+         return;
+ 
+@@ -962,6 +980,10 @@ static void sink_set_volume(pa_sink *s) {
+ 
+     pa_assert_se(u = s->userdata);
+ 
++    /* Muted in hardware: the new volume is written at unmute. */
++    if (u->hw_muted)
++        return;
++
+     if (pa_oss_set_volume(u->mixer_dsp_fd, &(u->sink_mixext), &s->sample_spec, &s->real_volume) >= 0)
+         return;
+ 
+@@ -1351,6 +1373,332 @@ fail:
+     pa_asyncmsgq_wait_for(u->thread_mq.inq, PA_MESSAGE_SHUTDOWN);
+ }
+ 
++#ifdef HAVE_OSSV4
++
++/*
++ * illumos: describe the device, and give the sink "Speakers" and
++ * "Headphones" ports when its mixer has audiohd's "speaker" and
++ * "headphones" controls (audioctl show-control).  Choosing a port turns
++ * the other output's control down and the chosen one back up.  The
++ * hardware volume is polled, since OSS does not report mixer changes
++ * made by others (audioctl, mixer applets).
++ */
++
++#define PORT_SPEAKERS   0
++#define PORT_HEADPHONES 1
++#define VOLUME_POLL_USEC (1 * PA_USEC_PER_SEC)
++
++static const char *const port_ctrl_names[2] = { "speaker", "headphones" };
++
++/*
++ * The mixer node of an illumos dsp device: /dev/dspN -> sound/audiohd:0dsp
++ * -> /dev/sound/audiohd:0mixer.  SNDCTL_MIXERINFO with mi.dev = N is not
++ * reliable for this: on a machine with two audiohd instances, N = 0 gave
++ * the second device's mixer, so the built-in audio's volume slider moved
++ * the HDMI device's volume.
++ */
++static bool mixer_node_for_dsp(const char *dev, char *buf, size_t l) {
++    char *target, *t;
++    size_t n;
++
++    if (!(target = pa_readlink(dev)))
++        target = pa_xstrdup(dev);
++
++    n = strlen(target);
++    if (n < 3 || !pa_streq(target + n - 3, "dsp")) {
++        pa_xfree(target);
++        return false;
++    }
++    target[n - 3] = 0;
++    t = target;
++    if (t[0] == '/')
++        pa_snprintf(buf, l, "%smixer", t);
++    else {
++        while (pa_startswith(t, "../"))
++            t += 3;
++        pa_snprintf(buf, l, "/dev/%smixer", t);
++    }
++    pa_xfree(target);
++    return true;
++}
++
++/* Open the mixer of the OSS device "dev" (as pa__init does for volume). */
++static int open_device_mixer(const char *dev) {
++    struct oss_sysinfo si;
++    struct oss_mixerinfo mi;
++    char node[128];
++    int fd, xfd, n;
++
++    if (mixer_node_for_dsp(dev, node, sizeof(node)) &&
++        (xfd = pa_oss_open_mixer(node)) >= 0)
++        return xfd;
++
++    if ((fd = pa_oss_open_mixer_for_device(dev)) < 0)
++        return -1;
++
++    memset(&si, 0, sizeof(si));
++    memset(&mi, 0, sizeof(mi));
++    n = pa_oss_get_device_number(dev);
++    if (ioctl(fd, SNDCTL_SYSINFO, &si) < 0 || n < 0 || n >= si.nummixers) {
++        pa_close(fd);
++        return -1;
++    }
++    mi.dev = n;
++    if (ioctl(fd, SNDCTL_MIXERINFO, &mi) < 0) {
++        pa_close(fd);
++        return -1;
++    }
++    pa_close(fd);
++
++    xfd = pa_oss_open_mixer(mi.devnode);
++    return xfd;
++}
++
++/*
++ * Find the output controls.  Sets *analog when the device has any analog
++ * output control (an HDMI/DisplayPort codec only has the master volume).
++ */
++static void probe_output_controls(struct userdata *u, bool *analog) {
++    int i, n = -1;
++
++    u->port_ctrl[0] = u->port_ctrl[1] = -1;
++    *analog = false;
++
++    if (u->port_mixer_fd < 0 || ioctl(u->port_mixer_fd, SNDCTL_MIX_NREXT, &n) < 0)
++        return;
++
++    for (i = 0; i < n; i++) {
++        oss_mixext e;
++        int k;
++
++        memset(&e, 0, sizeof(e));
++        e.dev = -1;
++        e.ctrl = i;
++        if (ioctl(u->port_mixer_fd, SNDCTL_MIX_EXTINFO, &e) < 0)
++            continue;
++
++        if (pa_streq(e.extname, "speaker") || pa_streq(e.extname, "headphones") ||
++            pa_streq(e.extname, "front") || pa_streq(e.extname, "line-out") ||
++            pa_streq(e.extname, "rear") || pa_streq(e.extname, "surround"))
++            *analog = true;
++
++        for (k = 0; k < 2; k++)
++            if (pa_streq(e.extname, port_ctrl_names[k]) &&
++                (e.type == MIXT_STEREOSLIDER || e.type == MIXT_MONOSLIDER)) {
++                u->port_ctrl[k] = i;
++                u->port_type[k] = e.type;
++                u->port_max[k] = e.maxvalue;
++            }
++    }
++}
++
++static int read_ctrl(struct userdata *u, int k, int *value) {
++    oss_mixer_value v;
++
++    memset(&v, 0, sizeof(v));
++    v.dev = -1;
++    v.ctrl = u->port_ctrl[k];
++    if (ioctl(u->port_mixer_fd, SNDCTL_MIX_READ, &v) < 0)
++        return -1;
++    *value = v.value;
++    return 0;
++}
++
++static int write_ctrl(struct userdata *u, int k, int value) {
++    oss_mixer_value v;
++
++    memset(&v, 0, sizeof(v));
++    v.dev = -1;
++    v.ctrl = u->port_ctrl[k];
++    v.value = value;
++    if (ioctl(u->port_mixer_fd, SNDCTL_MIX_WRITE, &v) < 0) {
++        pa_log_warn("Failed to set mixer control %s: %s", port_ctrl_names[k], pa_cstrerror(errno));
++        return -1;
++    }
++    return 0;
++}
++
++static int sink_set_port_cb(pa_sink *s, pa_device_port *p) {
++    struct userdata *u;
++    int on, off, cur;
++
++    pa_assert_se(u = s->userdata);
++
++    on = (p == u->port[PORT_HEADPHONES]) ? PORT_HEADPHONES : PORT_SPEAKERS;
++    off = 1 - on;
++
++    /* Remember the level of the output that goes quiet. */
++    if (read_ctrl(u, off, &cur) >= 0 && cur != 0)
++        u->port_saved[off] = cur;
++    write_ctrl(u, off, 0);
++
++    /* Bring the chosen one back (75 %, audiohd's default, if it was 0). */
++    if (read_ctrl(u, on, &cur) >= 0 && cur == 0) {
++        int v = u->port_saved[on];
++
++        if (v == 0) {
++            v = u->port_max[on] * 3 / 4;
++            if (u->port_type[on] == MIXT_STEREOSLIDER)
++                v |= v << 8;
++        }
++        write_ctrl(u, on, v);
++    }
++
++    pa_log_info("Output port %s", p->name);
++    return 0;
++}
++
++static void add_output_ports(struct userdata *u, pa_sink_new_data *data) {
++    pa_device_port_new_data pd;
++    static const struct { const char *name, *desc; unsigned prio; } ports[2] = {
++        { "analog-output-speaker", "Speakers", 10000 },
++        { "analog-output-headphones", "Headphones", 9900 },
++    };
++    int k;
++
++    for (k = 0; k < 2; k++) {
++        pa_device_port_new_data_init(&pd);
++        pa_device_port_new_data_set_name(&pd, ports[k].name);
++        pa_device_port_new_data_set_description(&pd, ports[k].desc);
++        pa_device_port_new_data_set_direction(&pd, PA_DIRECTION_OUTPUT);
++        pa_device_port_new_data_set_available(&pd, PA_AVAILABLE_UNKNOWN);
++        u->port[k] = pa_device_port_new(u->core, &pd, 0);
++        pa_device_port_new_data_done(&pd);
++        u->port[k]->priority = ports[k].prio;
++        pa_hashmap_put(data->ports, u->port[k]->name, u->port[k]);
++        pa_device_port_ref(u->port[k]);
++    }
++}
++
++static void add_hdmi_port(pa_core *c, pa_sink_new_data *data) {
++    pa_device_port_new_data pd;
++    pa_device_port *port;
++
++    pa_device_port_new_data_init(&pd);
++    pa_device_port_new_data_set_name(&pd, "hdmi-output-0");
++    pa_device_port_new_data_set_description(&pd, "HDMI / DisplayPort");
++    pa_device_port_new_data_set_direction(&pd, PA_DIRECTION_OUTPUT);
++    pa_device_port_new_data_set_available(&pd, PA_AVAILABLE_UNKNOWN);
++    port = pa_device_port_new(c, &pd, 0);
++    pa_device_port_new_data_done(&pd);
++    pa_hashmap_put(data->ports, port->name, port);
++}
++
++/* Description and form factor from the driver's hardware info. */
++static void describe_device(int fd, bool analog, char *desc, size_t l,
++                            char *product, size_t pl, const char **form_factor,
++                            const char **icon) {
++    oss_card_info ci;
++    const char *codec = NULL;
++
++    memset(&ci, 0, sizeof(ci));
++    ci.card = -1;
++    product[0] = 0;
++    if (ioctl(fd, SNDCTL_CARDINFO, &ci) >= 0) {
++        ci.hw_info[sizeof(ci.hw_info) - 1] = 0;
++        ci.hw_info[strcspn(ci.hw_info, "\n")] = 0;
++        pa_strlcpy(product, ci.hw_info, pl);
++        if (pa_startswith(ci.hw_info, "HD codec: "))
++            codec = ci.hw_info + strlen("HD codec: ");
++        else if (pa_startswith(ci.hw_info, "AC'97 codec: "))
++            codec = ci.hw_info + strlen("AC'97 codec: ");
++    }
++
++    if (!analog) {
++        pa_snprintf(desc, l, "HDMI / DisplayPort Audio");
++        *form_factor = NULL;
++        *icon = "video-display";
++    } else if (pa_startswith(ci.shortname, "usb_ac")) {
++        pa_snprintf(desc, l, "USB Audio");
++        *form_factor = NULL;
++        *icon = "audio-card-usb";
++    } else {
++        if (codec && *codec)
++            pa_snprintf(desc, l, "Built-in Audio (%s)", codec);
++        else
++            pa_snprintf(desc, l, "Built-in Audio");
++        *form_factor = "internal";
++        *icon = "audio-card";
++    }
++}
++
++/*
++ * Mute in the hardware mixer, so that it also silences programs that use
++ * the OSS/Sun audio devices directly (audiotest, OSS players): the sink's
++ * volume control goes to 0, and back to PA's volume at unmute.  A change
++ * of that control by someone else (audioctl) while muted counts as unmute.
++ */
++static int mixer_raw_read(int fd, int ctrl, int *value) {
++    oss_mixer_value v;
++
++    memset(&v, 0, sizeof(v));
++    v.dev = -1;
++    v.ctrl = ctrl;
++    if (ioctl(fd, SNDCTL_MIX_READ, &v) < 0)
++        return -1;
++    *value = v.value;
++    return 0;
++}
++
++static int mixer_raw_write(int fd, int ctrl, int value) {
++    oss_mixer_value v;
++
++    memset(&v, 0, sizeof(v));
++    v.dev = -1;
++    v.ctrl = ctrl;
++    v.value = value;
++    return ioctl(fd, SNDCTL_MIX_WRITE, &v) < 0 ? -1 : 0;
++}
++
++static void sink_set_mute_cb(pa_sink *s) {
++    struct userdata *u;
++
++    pa_assert_se(u = s->userdata);
++
++    if (s->muted && !u->hw_muted) {
++        if (mixer_raw_write(u->mixer_dsp_fd, u->sink_mixext.ctrl, 0) < 0) {
++            pa_log_warn("Failed to mute %s: %s", u->device_name, pa_cstrerror(errno));
++            return;
++        }
++        u->hw_muted = true;
++    } else if (!s->muted && u->hw_muted) {
++        u->hw_muted = false;
++        if (pa_oss_set_volume(u->mixer_dsp_fd, &(u->sink_mixext), &s->sample_spec, &s->real_volume) < 0)
++            pa_log_warn("Failed to unmute %s: %s", u->device_name, pa_cstrerror(errno));
++    }
++}
++
++static int sink_get_mute_cb(pa_sink *s, bool *mute) {
++    struct userdata *u;
++    int v;
++
++    pa_assert_se(u = s->userdata);
++
++    if (u->hw_muted && mixer_raw_read(u->mixer_dsp_fd, u->sink_mixext.ctrl, &v) >= 0 && v != 0) {
++        /* Turned up by someone else: no longer muted. */
++        u->hw_muted = false;
++    }
++    *mute = u->hw_muted;
++    return 0;
++}
++
++static void volume_poll_cb(pa_mainloop_api *a, pa_time_event *e, const struct timeval *t, void *userdata) {
++    struct userdata *u = userdata;
++
++    pa_assert(u);
++
++    if (u->sink && u->sink->get_mute && PA_SINK_IS_LINKED(u->sink->state))
++        pa_sink_get_mute(u->sink, true);
++    if (u->sink && u->sink->get_volume && PA_SINK_IS_LINKED(u->sink->state))
++        pa_sink_get_volume(u->sink, true);
++    if (u->source && u->source->get_volume && PA_SOURCE_IS_LINKED(u->source->state))
++        pa_source_get_volume(u->source, true);
++
++    pa_core_rttime_restart(u->core, e, pa_rtclock_now() + VOLUME_POLL_USEC);
++}
++
++#endif
++
+ int pa__init(pa_module*m) {
+ 
+ #ifdef HAVE_OSSV4
+@@ -1465,6 +1813,9 @@ int pa__init(pa_module*m) {
+     u->mode = mode;
+     u->frame_size = pa_frame_size(&ss);
+     u->device_name = pa_xstrdup(dev);
++#ifdef HAVE_OSSV4
++    u->port_mixer_fd = -1;
++#endif
+     u->in_nfrags = u->out_nfrags = (uint32_t) (u->nfrags = nfrags);
+     u->out_fragment_size = u->in_fragment_size = (uint32_t) (u->frag_size = frag_size);
+     u->orig_frag_size = orig_frag_size;
+@@ -1595,6 +1946,28 @@ int pa__init(pa_module*m) {
+         pa_proplist_sets(sink_new_data.proplist, PA_PROP_DEVICE_STRING, dev);
+         pa_proplist_sets(sink_new_data.proplist, PA_PROP_DEVICE_API, "oss");
+         pa_proplist_sets(sink_new_data.proplist, PA_PROP_DEVICE_DESCRIPTION, hwdesc[0] ? hwdesc : dev);
++#ifdef HAVE_OSSV4
++        {
++            bool analog = true;
++            char desc[128], product[128];
++            const char *form_factor, *icon;
++
++            u->port_mixer_fd = open_device_mixer(dev);
++            probe_output_controls(u, &analog);
++            describe_device(fd, analog, desc, sizeof(desc), product, sizeof(product), &form_factor, &icon);
++            pa_proplist_sets(sink_new_data.proplist, PA_PROP_DEVICE_DESCRIPTION, desc);
++            if (product[0])
++                pa_proplist_sets(sink_new_data.proplist, PA_PROP_DEVICE_PRODUCT_NAME, product);
++            if (form_factor)
++                pa_proplist_sets(sink_new_data.proplist, PA_PROP_DEVICE_FORM_FACTOR, form_factor);
++            pa_proplist_sets(sink_new_data.proplist, PA_PROP_DEVICE_ICON_NAME, icon);
++
++            if (u->port_ctrl[PORT_SPEAKERS] >= 0 && u->port_ctrl[PORT_HEADPHONES] >= 0)
++                add_output_ports(u, &sink_new_data);
++            else if (!analog)
++                add_hdmi_port(m->core, &sink_new_data);
++        }
++#endif
+         pa_proplist_sets(sink_new_data.proplist, PA_PROP_DEVICE_ACCESS_MODE, use_mmap ? "mmap" : "serial");
+         pa_proplist_setf(sink_new_data.proplist, PA_PROP_DEVICE_BUFFERING_BUFFER_SIZE, "%lu", (unsigned long) (u->out_hwbuf_size));
+         pa_proplist_setf(sink_new_data.proplist, PA_PROP_DEVICE_BUFFERING_FRAGMENT_SIZE, "%lu", (unsigned long) (u->out_fragment_size));
+@@ -1618,6 +1991,10 @@ int pa__init(pa_module*m) {
+         u->sink->parent.process_msg = sink_process_msg;
+         u->sink->set_state_in_io_thread = sink_set_state_in_io_thread_cb;
+         u->sink->userdata = u;
++#ifdef HAVE_OSSV4
++        if (u->port[PORT_SPEAKERS])
++            u->sink->set_port = sink_set_port_cb;
++#endif
+ 
+         pa_sink_set_asyncmsgq(u->sink, u->thread_mq.inq);
+         pa_sink_set_rtpoll(u->sink, u->rtpoll);
+@@ -1663,6 +2040,10 @@ int pa__init(pa_module*m) {
+             }
+         }
+ 
++        /* see mixer_node_for_dsp(): MIXERINFO may name another device */
++        if (i < si.nummixers)
++            mixer_node_for_dsp(u->device_name, mi.devnode, sizeof(mi.devnode));
++
+         if (i < si.nummixers &&
+            (u->mixer_dsp_fd = pa_oss_open_mixer(mi.devnode)) >= 0) {
+ 
+@@ -1738,13 +2119,15 @@ int pa__init(pa_module*m) {
+                 pa_log_debug ("Setting OSS sink callbacks.");
+                 pa_sink_set_get_volume_callback(u->sink, sink_get_volume);
+                 pa_sink_set_set_volume_callback(u->sink, sink_set_volume);
++                pa_sink_set_get_mute_callback(u->sink, sink_get_mute_cb);
++                pa_sink_set_set_mute_callback(u->sink, sink_set_mute_cb);
+                 u->sink->n_volume_steps = 101;
+                 do_close = false;
+             } else {
+                 pa_log_debug ("Not setting OSS sink callbacks.");
+             }
+ 
+-            for (i=0; i < mi.nrext; i++) {
++            for (i=0; i < u->mixer_cmax; i++) {  /* mi may describe another device */
+                 memset (&(u->source_mixext), 0, sizeof (oss_mixext));
+ #ifdef IGNORE_DEV
+                 /* This will cause dev to be ignored */
+@@ -1838,6 +2221,11 @@ int pa__init(pa_module*m) {
+ 
+ go_on:
+ 
++#ifdef HAVE_OSSV4
++    if ((u->sink && u->sink->get_volume) || (u->source && u->source->get_volume))
++        u->volume_poll = pa_core_rttime_new(m->core, pa_rtclock_now() + VOLUME_POLL_USEC, volume_poll_cb, u);
++#endif
++
+     pa_assert(u->source || u->sink);
+ 
+     pa_memchunk_reset(&u->memchunk);
+@@ -1898,6 +2286,14 @@ void pa__done(pa_module*m) {
+     if (!(u = m->userdata))
+         return;
+ 
++#ifdef HAVE_OSSV4
++    if (u->volume_poll)
++        u->core->mainloop->time_free(u->volume_poll);
++    /* Do not leave the hardware muted when PA goes away. */
++    if (u->sink && u->hw_muted && u->mixer_dsp_fd >= 0)
++        pa_oss_set_volume(u->mixer_dsp_fd, &(u->sink_mixext), &u->sink->sample_spec, &u->sink->real_volume);
++#endif
++
+     if (u->sink)
+         pa_sink_unlink(u->sink);
+ 
+@@ -1955,6 +2351,12 @@ void pa__done(pa_module*m) {
+ #ifdef HAVE_OSSV4
+     if (u->mixer_dsp_fd >= 0)
+         pa_close(u->mixer_dsp_fd);
++    if (u->port_mixer_fd >= 0)
++        pa_close(u->port_mixer_fd);
++    if (u->port[PORT_SPEAKERS])
++        pa_device_port_unref(u->port[PORT_SPEAKERS]);
++    if (u->port[PORT_HEADPHONES])
++        pa_device_port_unref(u->port[PORT_HEADPHONES]);
+ #endif
+     if (u->mixer_fd >= 0)
+         pa_close(u->mixer_fd);

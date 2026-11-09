@@ -1,0 +1,10 @@
+{
+    "dependencies": [
+        "SUNWcs",
+        "shell/ksh93"
+    ],
+    "fmris": [
+        "service/gnome/desktop-cache"
+    ],
+    "name": "desktop-cache"
+}

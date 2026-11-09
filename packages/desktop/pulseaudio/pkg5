@@ -1,0 +1,35 @@
+{
+    "dependencies": [
+        "library/audio/gstreamer",
+        "library/audio/gstreamer/plugin/base",
+        "library/audio/soxr",
+        "library/database/gdbm",
+        "library/fftw-3",
+        "library/glib2",
+        "library/glib2/32",
+        "library/libsndfile",
+        "library/libsndfile/32",
+        "library/libtool/libltdl",
+        "library/orc",
+        "library/python/sip-39",
+        "library/security/openssl-3",
+        "library/speexdsp",
+        "runtime/python-39",
+        "shell/bash",
+        "shell/ksh93",
+        "system/library",
+        "system/library/libdbus",
+        "system/library/math",
+        "system/network/avahi",
+        "x11/library/libice",
+        "x11/library/libsm",
+        "x11/library/libx11",
+        "x11/library/libxcb",
+        "x11/library/libxtst"
+    ],
+    "fmris": [
+        "library/audio/pulseaudio",
+        "library/audio/pulseaudio/32"
+    ],
+    "name": "pulseaudio"
+}

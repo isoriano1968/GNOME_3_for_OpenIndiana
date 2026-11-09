@@ -1,0 +1,44 @@
+Origin: solaris-userland@9d7a655 components/gnome/gnome-control-center/patches/01-user-accounts.patch
+
+Remove user-accounts panel on Solaris since we don't have pwquality library.
+
+Not suitable for upstream as is - would need to convert to check if pwquality
+is present and if not, then disable the module.
+
+Even if that's resolved, we'd need to deal with panels/user-accounts/run-passwd.c
+which currently execs /usr/bin/passwd and looks for the responses it expects
+from the Linux passwd command, instead of using PAM or similar for Solaris.
+
+If this panel is ever restored, then you will also need to remove
+../gnome-shell/patches/07-account-settings.patch to restore its menu entry.
+
+--- a/panels/meson.build.orig   2021-11-22 07:57:58.567732431 -0800
++++ b/panels/meson.build        2021-11-22 07:58:16.180934333 -0800
+@@ -27,7 +27,6 @@
+   'sound',
+   'universal-access',
+   'usage',
+-  'user-accounts',
+   'wwan',
+ ]
+
+--- a/shell/cc-panel-loader.c	2021-02-16 11:08:35.549234870 -0800
++++ b/shell/cc-panel-loader.c	2021-02-16 11:08:46.717511790 -0800
+@@ -125,7 +125,6 @@
+ #endif
+   PANEL_TYPE("universal-access", cc_ua_panel_get_type,                   NULL),
+   PANEL_TYPE("usage",            cc_usage_panel_get_type,                NULL),
+-  PANEL_TYPE("user-accounts",    cc_user_panel_get_type,                 NULL),
+ #ifdef BUILD_WACOM
+   PANEL_TYPE("wacom",            cc_wacom_panel_get_type,                cc_wacom_panel_static_init_func),
+ #endif
+--- a/shell/cc-panel-list.c	2021-02-16 11:09:11.093480385 -0800
++++ b/shell/cc-panel-list.c	2021-02-16 11:09:18.712882235 -0800
+@@ -420,7 +420,6 @@
+   /* Details page */
+   "region",
+   "universal-access",
+-  "user-accounts",
+   "default-apps",
+   "reset-settings",
+   "datetime",

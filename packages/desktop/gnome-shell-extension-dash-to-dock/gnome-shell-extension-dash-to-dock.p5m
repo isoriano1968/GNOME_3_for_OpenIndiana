@@ -1,0 +1,88 @@
+#
+# This file and its contents are supplied under the terms of the
+# Common Development and Distribution License ("CDDL"), version 1.0.
+# You may only use this file in accordance with the terms of version
+# 1.0 of the CDDL.
+#
+# A full copy of the text of the CDDL should have accompanied this
+# source.  A copy of the CDDL is also available via the Internet at
+# http://www.illumos.org/license/CDDL.
+#
+
+#
+# Copyright 2026 isoriano1968
+#
+# Generated with gmake sample-manifest (tools/oi-pipeline.sh).
+#
+
+set name=pkg.fmri value=pkg:/$(COMPONENT_FMRI)@$(IPS_COMPONENT_VERSION),$(BUILD_VERSION)
+set name=pkg.human-version value=$(HUMAN_VERSION)
+set name=pkg.summary value="$(COMPONENT_SUMMARY)"
+set name=info.classification value="$(COMPONENT_CLASSIFICATION)"
+set name=info.upstream-url value=$(COMPONENT_PROJECT_URL)
+set name=info.source-url value=$(COMPONENT_ARCHIVE_URL)
+set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
+
+license $(COMPONENT_LICENSE_FILE) license='$(COMPONENT_LICENSE)'
+
+file path=usr/share/glib-2.0/schemas/10_dash-to-dock.gschema.override
+file path=usr/share/glib-2.0/schemas/org.gnome.shell.extensions.dash-to-dock.gschema.xml
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/COPYING
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/README.md
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/Settings.ui
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/appIconIndicators.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/appIcons.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/appSpread.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/dash.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/dbusmenuUtils.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/dependencies/gi.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/dependencies/shell/extensions/extension.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/dependencies/shell/misc.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/dependencies/shell/ui.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/desktopIconsIntegration.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/docking.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/extension.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/fileManager1API.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/imports.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/intellihide.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/launcherAPI.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/locations.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/locationsWorker.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/media/glossy.svg
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/media/highlight_stacked_bg.svg
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/media/highlight_stacked_bg_h.svg
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/media/logo.svg
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/metadata.json
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/notificationsMonitor.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/prefs.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/stylesheet.css
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/theming.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/utils.js
+file path=usr/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/windowPreview.js
+file path=usr/share/locale/ar/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/cs/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/de/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/el/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/es/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/eu/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/fr/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/gl/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/hu/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/id/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/it/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/ja/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/nb/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/nl/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/pl/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/pt/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/pt_BR/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/ru/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/sk/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/sl/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/sr/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/sr@latin/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/sv/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/tr/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/uk_UA/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/zh_CN/LC_MESSAGES/dashtodock.mo
+file path=usr/share/locale/zh_TW/LC_MESSAGES/dashtodock.mo

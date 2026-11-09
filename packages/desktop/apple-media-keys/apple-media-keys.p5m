@@ -1,0 +1,31 @@
+#
+# This file and its contents are supplied under the terms of the
+# Common Development and Distribution License ("CDDL"), version 1.0.
+# You may only use this file in accordance with the terms of version
+# 1.0 of the CDDL.
+#
+# A full copy of the text of the CDDL should have accompanied this
+# source.  A copy of the CDDL is also available via the Internet at
+# http://www.illumos.org/license/CDDL.
+#
+
+#
+# Copyright 2026 isoriano1968
+#
+
+set name=pkg.fmri value=pkg:/$(COMPONENT_FMRI)@$(COMPONENT_VERSION),$(BUILD_VERSION)
+set name=pkg.summary value="$(COMPONENT_SUMMARY)"
+set name=pkg.description \
+    value="GNOME settings defaults that put the media keys of Apple keyboards on Super (Cmd) + F7-F12, leaving the plain F-keys to applications such as FS-UAE."
+set name=info.classification value="$(COMPONENT_CLASSIFICATION)"
+set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
+
+license $(COMPONENT_LICENSE_FILE) license='$(COMPONENT_LICENSE)'
+
+file files/30_apple-media-keys.gschema.override \
+    path=usr/share/glib-2.0/schemas/30_apple-media-keys.gschema.override \
+    mode=0444
+
+depend type=require fmri=pkg:/gnome/gnome-settings-daemon
+# gconf-cache that compiles override-only packages (patch 11)
+depend type=require fmri=pkg:/service/gnome/desktop-cache@0.2.2-2026.0.0.23

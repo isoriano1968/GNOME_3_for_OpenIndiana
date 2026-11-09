@@ -1,0 +1,42 @@
+#!/sbin/sh
+#
+# This file and its contents are supplied under the terms of the
+# Common Development and Distribution License ("CDDL"), version 1.0.
+# You may only use this file in accordance with the terms of version
+# 1.0 of the CDDL.
+#
+# A full copy of the text of the CDDL should have accompanied this
+# source.  A copy of the CDDL is also available via the Internet at
+# http://www.illumos.org/license/CDDL.
+#
+# Copyright 2026 isoriano1968
+#
+# Method script for svc:/application/graphical-login/gdm, after Solaris
+# 11.4's svc-gdm (OpenIndiana's ConsoleKit has no dsession helper: its
+# static seat "Local" is always configured).
+#
+
+. /lib/svc/share/smf_include.sh
+
+FMRI=svc:/application/graphical-login/gdm
+
+case "$1" in
+'start')
+	arg="$(eval "echo $(/usr/bin/svcprop -p gdm/args $FMRI)")"
+	/usr/sbin/gdm $arg &
+	;;
+'stop')
+	PIDFILE=/var/run/gdm/gdm.pid
+	if [ -f $PIDFILE ]; then
+		kill -TERM $(cat $PIDFILE) && sleep 5
+	fi
+	# whatever gdm did not stop itself
+	smf_kill_contract $2 TERM 1 30
+	[ $? -ne 0 ] && exit 1
+	;;
+*)
+	echo "Usage: $0 { start | stop }"
+	exit $SMF_EXIT_ERR_FATAL
+	;;
+esac
+exit $SMF_EXIT_OK

@@ -1,0 +1,18 @@
+# build trees, downloads and the local package repository: never in git
+build/
+/archives/
+/i386/
+/sparc/
+/work/
+/distfiles/
+# upstream sources unpacked into a component directory by "gmake prep"
+packages/**/gcc-[0-9]*.[0-9]*/
+packages/**/binutils-[0-9]*.[0-9]*/
+packages/**/amix-userland-*/
+*.tar.gz
+*.tar.xz
+*.tar.bz2
+*.zip
+*.log
+*.o
+*.p5p

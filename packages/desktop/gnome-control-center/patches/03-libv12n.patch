@@ -1,0 +1,56 @@
+Origin: solaris-userland@9d7a655 components/gnome/gnome-control-center/patches/03-libv12n.patch
+
+Use libv12n to find virtualization environment instead of asking systemd
+
+Need to submit upstream
+ 
+--- a/panels/info-overview/cc-info-overview-panel.c	2021-02-16 11:16:05.088156140 -0800
++++ b/panels/info-overview/cc-info-overview-panel.c	2021-02-16 11:21:42.867008725 -0800
+@@ -579,6 +579,10 @@
+   const char *id;
+   const char *display;
+ } const virt_tech[] = {
++  { "kernel-zone", "Kernel Zone" },
++  { "logical-domain", "Logical Domain" },
++  { "non-global-zone", "Non-Global Zone" },
++  { "virtualbox", "VirtualBox" },
+   { "kvm", "KVM" },
+   { "qemu", "QEmu" },
+   { "vmware", "VMware" },
+@@ -624,6 +628,28 @@
+ static void
+ info_overview_panel_setup_virt (CcInfoOverviewPanel *self)
+ {
++  char *str = NULL;
++
++#ifdef HAVE_LIBV12N
++  v12n_env_t *env;
++  char *name;
++
++  env = v12n_get_current_env ();
++  if (env == NULL)
++    {
++      g_debug (" v12n_get_current_env failed, bailing: %s", strerror(errno));
++      goto bail;
++    }
++
++  name = v12n_get_env_prop (env, V12N_PROP_NAME);
++  if (name != NULL)
++    {
++      str = g_strdup (name);
++      free (name);
++    }
++  v12n_free_env(env);
++#else /* systemd */
++
+   g_autoptr(GError) error = NULL;
+   g_autoptr(GDBusProxy) systemd_proxy = NULL;
+   g_autoptr(GVariant) variant = NULL;
+@@ -659,6 +685,7 @@
+       return;
+     }
+ 
++#endif
+   g_variant_get (variant, "(v)", &inner);
+   set_virtualization_label (self, g_variant_get_string (inner, NULL));
+ }

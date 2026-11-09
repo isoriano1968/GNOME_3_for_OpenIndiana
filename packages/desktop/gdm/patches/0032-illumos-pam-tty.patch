@@ -1,0 +1,28 @@
+Not from Solaris: OpenIndiana-only.
+
+gdm hands the console tty to PAM (PAM_TTY) in set_up_for_current_vt(),
+which it only calls when logind says "seat0" has VTs.  Without systemd
+that is never the case.  Solaris' pam_unix_session accepts a session
+without PAM_TTY; illumos' refuses it ("Can not make/remove entry for
+session"), and the greeter session then never starts (gdm: "Session never
+registered, failing").  Without systemd, set PAM_TTY (and XDISPLAY,
+XAUTHDATA) from ConsoleKit's display device for every reused-VT session.
+
+--- a/daemon/gdm-session-worker.c
++++ b/daemon/gdm-session-worker.c
+@@ -2862,6 +2862,15 @@
+         g_assert (worker->state == GDM_SESSION_WORKER_STATE_ACCOUNT_DETAILS_SAVED);
+         g_assert (geteuid () == 0);
+ 
++#ifndef WITH_SYSTEMD
++        /* illumos: no logind to report VTs on "seat0"; the display device
++         * comes from ConsoleKit, and pam_unix_session needs it as PAM_TTY. */
++        if (worker->display_mode == GDM_SESSION_DISPLAY_MODE_REUSE_VT &&
++            !set_up_for_current_vt (worker, error)) {
++                return FALSE;
++        }
++#endif
++
+         if (g_strcmp0 (worker->display_seat_id, "seat0") == 0 && worker->seat0_has_vts) {
+                 switch (worker->display_mode) {
+                 case GDM_SESSION_DISPLAY_MODE_REUSE_VT:

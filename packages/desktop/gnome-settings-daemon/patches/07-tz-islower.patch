@@ -1,0 +1,15 @@
+tz_load_db() passes the zone name (a gchar *) to islower(); gcc 14 makes that
+an error (int-conversion).  The check is meant for the zone name's first
+character.  Written for OpenIndiana; suitable for upstream.
+
+--- a/plugins/datetime/tz.c
++++ b/plugins/datetime/tz.c
+@@ -94,7 +94,7 @@
+ 		if (tmpstrarr[3] && *tmpstrarr[3] == '-' && tmpstrarr[4])
+ 			loc->comment = g_strdup (tmpstrarr[4]);
+ 
+-		if (tmpstrarr[3] && *tmpstrarr[3] != '-' && !islower(loc->zone)) {
++		if (tmpstrarr[3] && *tmpstrarr[3] != '-' && !islower((unsigned char) loc->zone[0])) {
+ 			TzLocation *locgrp;
+ 
+ 			/* duplicate entry */

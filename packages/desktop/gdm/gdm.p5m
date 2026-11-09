@@ -1,0 +1,233 @@
+#
+# This file and its contents are supplied under the terms of the
+# Common Development and Distribution License ("CDDL"), version 1.0.
+# You may only use this file in accordance with the terms of version
+# 1.0 of the CDDL.
+#
+# A full copy of the text of the CDDL should have accompanied this
+# source.  A copy of the CDDL is also available via the Internet at
+# http://www.illumos.org/license/CDDL.
+#
+
+#
+# Copyright 2026 isoriano1968
+#
+# The gdm display manager; its client library is library/desktop/libgdm
+# (libgdm.p5m).  From gmake sample-manifest, with modes and preserve
+# attributes as in Solaris 11.4's gdm.p5m.  The gdm user and group (50) come
+# with OpenIndiana's SUNWcs.  The SMF service is installed disabled: see
+# files/gdm.xml for switching from lightdm.
+#
+
+set name=pkg.fmri value=pkg:/$(COMPONENT_FMRI)@$(IPS_COMPONENT_VERSION),$(BUILD_VERSION)
+set name=pkg.human-version value=$(HUMAN_VERSION)
+set name=pkg.summary value="$(COMPONENT_SUMMARY)"
+set name=pkg.description value="The GNOME Display Manager (GDM) manages graphical display servers and handles graphical user logins."
+set name=info.classification value="$(COMPONENT_CLASSIFICATION)"
+set name=info.upstream-url value=$(COMPONENT_PROJECT_URL)
+set name=info.source-url value=$(COMPONENT_ARCHIVE_URL)
+set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
+
+<transform file path=etc/.* -> set pkg.linted.userland.action001.4 true>
+<transform file preserve=(true|renamenew|renameold) -> default overlay allow>
+
+license $(COMPONENT_LICENSE_FILE) license='$(COMPONENT_LICENSE)'
+
+dir  path=var/cache/gdm group=gdm mode=0755
+dir  path=var/lib/gdm owner=gdm group=gdm mode=1770
+dir  path=var/lib/gdm/.local owner=gdm group=gdm mode=0770
+dir  path=var/lib/gdm/.local/share owner=gdm group=gdm mode=0770
+dir  path=var/lib/gdm/.local/share/applications owner=gdm group=gdm mode=0770
+dir  path=var/log/gdm group=gdm mode=0711
+
+file path=etc/dbus-1/system.d/gdm.conf refresh_fmri=svc:/system/dbus:default
+file path=etc/gdm/Init/Default mode=0555 preserve=true
+file path=etc/gdm/PostLogin/Default.sample mode=0555
+file path=etc/gdm/PostSession/Default mode=0555 preserve=true
+file path=etc/gdm/PreSession/Default mode=0555 preserve=true
+file path=etc/gdm/Xsession mode=0555 preserve=true
+file path=etc/gdm/custom.conf mode=0644 preserve=renameold
+file path=lib/svc/manifest/application/graphical-login/gdm.xml
+file path=lib/svc/method/svc-gdm
+file path=usr/bin/gdm-screenshot
+file path=usr/bin/gdmflexiserver
+file path=usr/lib/gdm/gdm-host-chooser mode=0555
+file path=usr/lib/gdm/gdm-runtime-config mode=0555
+file path=usr/lib/gdm/gdm-session-worker mode=0555
+file path=usr/lib/gdm/gdm-simple-chooser mode=0555
+file path=usr/lib/gdm/gdm-x-session mode=0555
+file path=usr/sbin/gdm
+file path=usr/share/dconf/profile/gdm
+file path=usr/share/gdm/gdb-cmd
+file path=usr/share/gdm/gdm.schemas
+file path=usr/share/gdm/greeter-dconf-defaults
+file path=usr/share/gdm/greeter/applications/mime-dummy-handler.desktop
+file path=usr/share/gdm/greeter/applications/mimeapps.list
+file path=usr/share/gdm/greeter/autostart/orca-autostart.desktop
+file path=usr/share/gdm/locale.alias
+file path=usr/share/gnome-session/sessions/gnome-login.session
+file path=usr/share/help/C/gdm/index.docbook
+file path=usr/share/help/C/gdm/legal.xml
+file path=usr/share/help/ca/gdm/index.docbook
+file path=usr/share/help/ca/gdm/legal.xml
+file path=usr/share/help/cs/gdm/index.docbook
+file path=usr/share/help/cs/gdm/legal.xml
+file path=usr/share/help/de/gdm/index.docbook
+file path=usr/share/help/de/gdm/legal.xml
+file path=usr/share/help/el/gdm/index.docbook
+file path=usr/share/help/el/gdm/legal.xml
+file path=usr/share/help/en_GB/gdm/index.docbook
+file path=usr/share/help/en_GB/gdm/legal.xml
+file path=usr/share/help/es/gdm/index.docbook
+file path=usr/share/help/es/gdm/legal.xml
+file path=usr/share/help/eu/gdm/index.docbook
+file path=usr/share/help/eu/gdm/legal.xml
+file path=usr/share/help/fr/gdm/index.docbook
+file path=usr/share/help/fr/gdm/legal.xml
+file path=usr/share/help/gl/gdm/index.docbook
+file path=usr/share/help/gl/gdm/legal.xml
+file path=usr/share/help/hr/gdm/index.docbook
+file path=usr/share/help/hr/gdm/legal.xml
+file path=usr/share/help/hu/gdm/index.docbook
+file path=usr/share/help/hu/gdm/legal.xml
+file path=usr/share/help/id/gdm/index.docbook
+file path=usr/share/help/id/gdm/legal.xml
+file path=usr/share/help/it/gdm/index.docbook
+file path=usr/share/help/it/gdm/legal.xml
+file path=usr/share/help/ka/gdm/index.docbook
+file path=usr/share/help/ka/gdm/legal.xml
+file path=usr/share/help/ko/gdm/index.docbook
+file path=usr/share/help/ko/gdm/legal.xml
+file path=usr/share/help/nl/gdm/index.docbook
+file path=usr/share/help/nl/gdm/legal.xml
+file path=usr/share/help/oc/gdm/index.docbook
+file path=usr/share/help/oc/gdm/legal.xml
+file path=usr/share/help/pt_BR/gdm/index.docbook
+file path=usr/share/help/pt_BR/gdm/legal.xml
+file path=usr/share/help/ro/gdm/index.docbook
+file path=usr/share/help/ro/gdm/legal.xml
+file path=usr/share/help/ru/gdm/index.docbook
+file path=usr/share/help/ru/gdm/legal.xml
+file path=usr/share/help/sl/gdm/index.docbook
+file path=usr/share/help/sl/gdm/legal.xml
+file path=usr/share/help/sv/gdm/index.docbook
+file path=usr/share/help/sv/gdm/legal.xml
+file path=usr/share/help/te/gdm/index.docbook
+file path=usr/share/help/te/gdm/legal.xml
+file path=usr/share/help/tr/gdm/index.docbook
+file path=usr/share/help/tr/gdm/legal.xml
+file path=usr/share/help/uk/gdm/index.docbook
+file path=usr/share/help/uk/gdm/legal.xml
+file path=usr/share/help/zh_CN/gdm/index.docbook
+file path=usr/share/help/zh_CN/gdm/legal.xml
+file path=usr/share/locale/ab/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/af/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/am/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/an/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ar/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/as/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ast/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/az/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/be/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/be@latin/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/bg/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/bn/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/bn_IN/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/br/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/bs/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ca/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ca@valencia/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ckb/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/crh/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/cs/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/csb/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/cy/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/da/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/de/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/dz/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/el/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/en@shaw/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/en_CA/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/en_GB/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/eo/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/es/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/et/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/eu/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/fa/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/fi/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/fr/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/fur/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/fy/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ga/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/gd/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/gl/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/gu/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/gv/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/he/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/hi/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/hr/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/hu/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/hy/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/id/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/is/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/it/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ja/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ka/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/kab/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/kk/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/km/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/kn/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ko/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ku/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ky/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/lt/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/lv/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/mai/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/mg/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/mi/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/mjw/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/mk/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ml/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/mn/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/mr/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ms/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/nb/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/nds/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ne/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/nl/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/nn/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/nso/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/oc/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/or/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/pa/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/pl/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ps/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/pt/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/pt_BR/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ro/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ru/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/rw/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/si/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/sk/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/sl/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/sq/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/sr/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/sr@latin/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/sv/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/sw/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ta/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/te/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/tg/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/th/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/tr/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/ug/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/uk/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/uz/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/uz@cyrillic/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/vi/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/wa/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/xh/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/zh_CN/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/zh_HK/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/zh_TW/LC_MESSAGES/gdm.mo
+file path=usr/share/locale/zu/LC_MESSAGES/gdm.mo

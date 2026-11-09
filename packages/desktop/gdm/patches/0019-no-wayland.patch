@@ -1,0 +1,25 @@
+Origin: solaris-userland@9d7a655 components/gnome/gdm/patches/0019-no-wayland.patch
+
+From da48e745aab98f0081bcc1ca7792b011cecfb237 Mon Sep 17 00:00:00 2001
+From: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date: Sun, 28 Aug 2016 15:04:36 -0700
+Subject: [PATCH 19/19] no wayland
+
+Remove commented out entry in config file about enabling/disabling
+Wayland to avoid confusion, since we don't compile Wayland support
+into the binaries at all.
+---
+ data/gdm.conf-custom.in | 2 --
+ 1 file changed, 2 deletions(-)
+
+--- a/data/gdm.conf-custom.in	2020-03-26 13:49:57.610333504 -0700
++++ b/data/gdm.conf-custom.in	2020-03-26 13:50:15.580930853 -0700
+@@ -1,8 +1,6 @@
+ # GDM configuration storage
+ 
+ [daemon]
+-# Uncomment the line below to force the login screen to use Xorg
+-#WaylandEnable=false
+ 
+ [security]
+ 

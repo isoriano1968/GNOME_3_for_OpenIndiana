@@ -1,0 +1,43 @@
+Load module-oss for every /dev/dspN (default device first), not only for
+$AUDIODEV or /dev/audio: the HDMI/DisplayPort codec of a graphics card was
+never seen.  OpenIndiana project, 2026.
+
+diff --git a/src/modules/module-detect.c b/src/modules/module-detect.c
+index cb52026..74ae4e3 100644
+--- a/src/modules/module-detect.c
++++ b/src/modules/module-detect.c
+@@ -210,6 +210,34 @@ static int detect_oss(pa_core *c, int just_one) {
+ 
+     n++;
+ 
++    /*
++     * The default device is loaded first, so that its sink is the default
++     * one.  Then every other audio device: /dev/dspN for each N, e.g. the
++     * HDMI/DisplayPort output of a graphics card next to the built-in
++     * audio.
++     */
++    if (!just_one) {
++        int i;
++
++        for (i = 0; i < 16; i++) {
++            char dsp[32];
++
++            if (i == device)
++                continue;
++
++            pa_snprintf(dsp, sizeof(dsp), "/dev/dsp%d", i);
++            if (stat(dsp, &s) < 0 || !S_ISCHR(s.st_mode))
++                continue;
++
++            pa_snprintf(args, sizeof(args), "device=%s", dsp);
++            m = NULL;
++            if (pa_module_load(&m, c, "module-oss", args) < 0)
++                continue;
++
++            n++;
++        }
++    }
++
+ #else /* HAVE_OSSV4 */
+ 
+     FILE *f;

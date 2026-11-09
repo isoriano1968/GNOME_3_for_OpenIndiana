@@ -1,0 +1,135 @@
+Port gnome-shell 45 to GLib's girepository-2.0.
+
+gjs 1.79 and later (OpenIndiana has gjs 1.90) use girepository-2.0 from
+GLib, while gnome-shell 45 links libgirepository-1.0 from
+gobject-introspection.  Both register a GIRepository type, so the shell
+aborts at start ("cannot register existing type 'GIRepository'", then
+"Typelib file for namespace 'Meta', version '13' not found" because the
+typelib search path went to the other repository).  Upstream did this port
+for GNOME 47; this is the same change for 45: link girepository-2.0, use
+gi_repository_dup_default() and the gi_repository_* calls.
+
+Written for OpenIndiana (Solaris 11.4 uses gjs 1.78, which does not need it).
+
+--- a/meson.build
++++ b/meson.build
+@@ -78,6 +78,9 @@
+ gcr_dep = dependency('gcr-4', version: gcr_req)
+ gdk_pixbuf_dep = dependency('gdk-pixbuf-2.0')
+ gi_dep = dependency('gobject-introspection-1.0', version: gi_req)
++# gjs >= 1.79 uses GLib's girepository-2.0: link that, not libgirepository-1.0
++# (gi_dep stays for its girdir variable)
++girepository_dep = dependency('girepository-2.0')
+ gio_dep = dependency('gio-2.0', version: gio_req)
+ gio_unix_dep = dependency('gio-unix-2.0', version: gio_req)
+ gjs_dep = dependency('gjs-1.0', version: gjs_req)
+Common subdirectories: a/src and b/src
+--- a/src/main.c
++++ b/src/main.c
+@@ -14,7 +14,7 @@
+ #include <clutter/clutter.h>
+ #include <glib-unix.h>
+ #include <glib/gi18n-lib.h>
+-#include <girepository.h>
++#include <girepository/girepository.h>
+ #include <meta/meta-context.h>
+ #include <meta/meta-plugin.h>
+ #include <meta/prefs.h>
+@@ -211,8 +211,9 @@
+       g_debug ("Prepending RPATH directory '%s' "
+                "to introsepciton library search path",
+                rpath_dir->str);
+-      g_irepository_prepend_search_path (rpath_dir->str);
+-      g_irepository_prepend_library_path (rpath_dir->str);
++      g_autoptr (GIRepository) repo = gi_repository_dup_default ();
++      gi_repository_prepend_search_path (repo, rpath_dir->str);
++      gi_repository_prepend_library_path (repo, rpath_dir->str);
+     }
+ }
+ #endif /* HAVE_EXE_INTROSPECTION */
+@@ -220,9 +221,10 @@
+ static void
+ shell_introspection_init (void)
+ {
++  g_autoptr (GIRepository) repo = gi_repository_dup_default ();
+ 
+-  g_irepository_prepend_search_path (MUTTER_TYPELIB_DIR);
+-  g_irepository_prepend_search_path (GNOME_SHELL_PKGLIBDIR);
++  gi_repository_prepend_search_path (repo, MUTTER_TYPELIB_DIR);
++  gi_repository_prepend_search_path (repo, GNOME_SHELL_PKGLIBDIR);
+ 
+   /* We need to explicitly add the directories where the private libraries are
+    * installed to the GIR's library path, so that they can be found at runtime
+@@ -229,8 +231,8 @@
+    * when linking using DT_RUNPATH (instead of DT_RPATH), which is the default
+    * for some linkers (e.g. gold) and in some distros (e.g. Debian).
+    */
+-  g_irepository_prepend_library_path (MUTTER_TYPELIB_DIR);
+-  g_irepository_prepend_library_path (GNOME_SHELL_PKGLIBDIR);
++  gi_repository_prepend_library_path (repo, MUTTER_TYPELIB_DIR);
++  gi_repository_prepend_library_path (repo, GNOME_SHELL_PKGLIBDIR);
+ 
+ #ifdef HAVE_EXE_INTROSPECTION
+   maybe_add_rpath_introspection_paths ();
+@@ -627,7 +629,7 @@
+   context = meta_create_context (WM_NAME);
+   meta_context_add_option_entries (context, gnome_shell_options,
+                                    GETTEXT_PACKAGE);
+-  meta_context_add_option_group (context, g_irepository_get_option_group ());
++  meta_context_add_option_group (context, gi_repository_get_option_group ());
+ 
+   session_mode = (char *) g_getenv ("GNOME_SHELL_SESSION_MODE");
+ 
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -60,7 +60,7 @@
+   mtk_dep,
+   clutter_dep,
+   cogl_pango_dep,
+-  gi_dep,
++  girepository_dep,
+   polkit_dep,
+   gcr_dep,
+   libsystemd_dep,
+@@ -278,7 +278,7 @@
+ )
+ 
+ executable('run-js-test', 'run-js-test.c',
+-  dependencies: [mutter_dep, mtk_dep, gdk_pixbuf_dep, gio_dep, gi_dep, gjs_dep],
++  dependencies: [mutter_dep, mtk_dep, gdk_pixbuf_dep, gio_dep, girepository_dep, gjs_dep],
+   include_directories: [conf_inc],
+   link_with: libshell,
+   build_rpath: mutter_typelibdir,
+--- a/src/run-js-test.c
++++ b/src/run-js-test.c
+@@ -30,7 +30,7 @@
+ #include <stdlib.h>
+ #include <string.h>
+ 
+-#include <girepository.h>
++#include <girepository/girepository.h>
+ #include <gjs/gjs.h>
+ 
+ #include "shell-global.h"
+--- a/src/shell-global.c
++++ b/src/shell-global.c
+@@ -17,7 +17,7 @@
+ 
+ #include <X11/extensions/Xfixes.h>
+ #include <gio/gio.h>
+-#include <girepository.h>
++#include <girepository/girepository.h>
+ #include <meta/meta-backend.h>
+ #include <meta/meta-context.h>
+ #include <meta/display.h>
+--- a/src/shell-tray-manager.c
++++ b/src/shell-tray-manager.c
+@@ -3,7 +3,7 @@
+ #include "config.h"
+ 
+ #include <clutter/clutter.h>
+-#include <girepository.h>
++#include <girepository/girepository.h>
+ #include <meta/display.h>
+ 
+ #include "shell-tray-manager.h"

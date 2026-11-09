@@ -1,0 +1,27 @@
+Not from Solaris: OpenIndiana-only.
+
+OpenIndiana's ConsoleKit installs ck-get-x11-display-device in /usr/libexec
+(Solaris: /usr/lib).  gdm runs it to find the tty of a local display.
+
+--- a/daemon/gdm-server.c
++++ b/daemon/gdm-server.c
+@@ -130,7 +130,7 @@
+ 
+ 
+         error = NULL;
+-        command = g_strdup_printf ("/usr/lib/ck-get-x11-display-device --display %s",
++        command = g_strdup_printf ("/usr/libexec/ck-get-x11-display-device --display %s",
+                                    server->display_name);
+         g_debug ("GdmServer: Running helper %s", command);
+         out = NULL;
+--- a/daemon/gdm-manager.c
++++ b/daemon/gdm-manager.c
+@@ -2517,7 +2517,7 @@
+                       NULL);                                  
+         
+         error = NULL;
+-        command = g_strdup_printf ("/usr/lib/ck-get-x11-display-device --display %s",   
++        command = g_strdup_printf ("/usr/libexec/ck-get-x11-display-device --display %s",   
+                                    display_name);
+         g_free (display_name);
+                  

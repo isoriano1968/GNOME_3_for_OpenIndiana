@@ -1,0 +1,35 @@
+Origin: solaris-userland@9d7a655 components/gnome/gnome-control-center/patches/05-power-panel.patch
+
+Disable power panel for now, since it comes up blank because we have no
+suitable upower backend for Solaris.
+
+Not suitable for upstream unless made configurable.
+
+--- a/panels/meson.build	2020-03-04 13:26:32.601563186 -0800
++++ b/panels/meson.build	2020-03-04 13:26:38.853092535 -0800
+@@ -11,7 +11,6 @@
+   'mouse',
+   'notifications',
+   'online-accounts',
+-  'power',
+   'printers',
+   'privacy',
+   'region',
+--- a/shell/cc-panel-loader.c	2020-03-04 13:27:01.857324607 -0800
++++ b/shell/cc-panel-loader.c	2020-03-04 13:27:11.253320451 -0800
+@@ -50,7 +50,6 @@
+ #endif /* BUILD_NETWORK */
+ extern GType cc_notifications_panel_get_type (void);
+ extern GType cc_goa_panel_get_type (void);
+-extern GType cc_power_panel_get_type (void);
+ extern GType cc_printers_panel_get_type (void);
+ extern GType cc_privacy_panel_get_type (void);
+ extern GType cc_region_panel_get_type (void);
+@@ -103,7 +102,6 @@
+ #endif
+   PANEL_TYPE("notifications",    cc_notifications_panel_get_type,        NULL),
+   PANEL_TYPE("online-accounts",  cc_goa_panel_get_type,                  NULL),
+-  PANEL_TYPE("power",            cc_power_panel_get_type,                NULL),
+   PANEL_TYPE("printers",         cc_printers_panel_get_type,             NULL),
+   PANEL_TYPE("privacy",          cc_privacy_panel_get_type,              NULL),
+   PANEL_TYPE("region",           cc_region_panel_get_type,               NULL),

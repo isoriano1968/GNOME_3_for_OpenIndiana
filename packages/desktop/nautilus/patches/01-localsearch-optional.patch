@@ -1,0 +1,44 @@
+Not upstream (yet): OpenIndiana.
+
+Nautilus 47 aborts at start when localsearch (the Tracker 3 file indexer)
+is not installed: g_settings_new() on its missing schema
+org.freedesktop.Tracker3.Miner.Files is fatal.  Look the schema up first,
+and treat a missing one as "no indexed folders" (search then uses
+Nautilus' own engines).
+
+--- a/src/nautilus-global-preferences.c
++++ b/src/nautilus-global-preferences.c
+@@ -107,7 +107,17 @@
+     gnome_lockdown_preferences = g_settings_new ("org.gnome.desktop.lockdown");
+     gnome_interface_preferences = g_settings_new ("org.gnome.desktop.interface");
+     gnome_privacy_preferences = g_settings_new ("org.gnome.desktop.privacy");
+-    localsearch_preferences = g_settings_new ("org.freedesktop.Tracker3.Miner.Files");
++    {
++        /* localsearch (the Tracker 3 file indexer) may not be installed:
++         * without its schema, g_settings_new() aborts the program. */
++        g_autoptr (GSettingsSchema) schema = g_settings_schema_source_lookup (
++            g_settings_schema_source_get_default (),
++            "org.freedesktop.Tracker3.Miner.Files", TRUE);
++
++        localsearch_preferences = (schema != NULL) ?
++                                  g_settings_new ("org.freedesktop.Tracker3.Miner.Files") :
++                                  NULL;
++    }
+ 
+     g_signal_connect_swapped (nautilus_preferences,
+                               "changed::" NAUTILUS_PREFERENCES_MOUSE_BACK_BUTTON,
+--- a/src/nautilus-tracker-utilities.c
++++ b/src/nautilus-tracker-utilities.c
+@@ -219,6 +219,12 @@
+     gint idx;
+     GFile *location;
+ 
++    if (localsearch_preferences == NULL)
++    {
++        /* no localsearch installed: nothing is indexed */
++        return NULL;
++    }
++
+     locations = g_settings_get_strv (localsearch_preferences, key);
+ 
+     for (idx = 0; locations[idx] != NULL; idx++)

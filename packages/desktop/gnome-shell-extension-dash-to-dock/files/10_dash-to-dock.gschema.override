@@ -1,0 +1,7 @@
+# OpenIndiana GNOME defaults: Dash to Dock on, dock always visible.
+# Users can change both in the Extensions app or Dash to Dock's settings.
+[org.gnome.shell]
+enabled-extensions=['dash-to-dock@micxgx.gmail.com']
+
+[org.gnome.shell.extensions.dash-to-dock]
+dock-fixed=true

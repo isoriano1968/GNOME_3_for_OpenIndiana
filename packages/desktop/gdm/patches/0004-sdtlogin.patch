@@ -1,0 +1,225 @@
+Origin: solaris-userland@9d7a655 components/gnome/gdm/patches/0004-sdtlogin.patch
+
+From b3b1da1e6dde351b0eb8f72e11933259640229ca Mon Sep 17 00:00:00 2001
+From: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date: Wed, 11 Jan 2017 22:39:59 -0800
+Subject: [PATCH 04/19] sdtlogin
+
+Adds SDTLOGIN interface, which drops the Xserver to user
+perms rather than running as root, for added security on Solaris.
+Original date:2008-05-06 owner:yippi type:feature
+
+For the original definition, see Sun ASARC case 1995/390.
+For the current implementation in the X server, see sun-src/os/dtlogin.c
+and dtlogin-userinfo.patch in open-src/xserver/xorg in the X gate.
+---
+ common/gdm-common.h         |   5 ++
+ daemon/gdm-server.c         |  11 ++++
+ daemon/gdm-session-worker.c | 119 ++++++++++++++++++++++++++++++++++++++++++++
+ daemon/main.c               |  15 ++++++
+ 4 files changed, 150 insertions(+)
+
+diff --git a/common/gdm-common.h b/common/gdm-common.h
+index 19dbbbb..6ac61c0 100644
+
+--- a/common/gdm-common.h	2024-01-17 17:09:29.933557542 -0800
++++ b/common/gdm-common.h	2024-01-17 17:10:12.737265609 -0800
+@@ -50,6 +50,11 @@
+                                      const char *value,
+                                      gpointer user_data);
+ 
++#ifdef __sun
++#define GDM_DT_DIR "/var/dt"
++#define GDM_SDTLOGIN_DIR "/var/dt/sdtlogin"
++#endif  
++
+ G_BEGIN_DECLS
+ 
+ int            gdm_wait_on_pid           (int pid);
+--- a/daemon/gdm-server.c	2024-01-17 17:10:33.613736349 -0800
++++ b/daemon/gdm-server.c	2024-01-17 17:11:26.543818811 -0800
+@@ -776,6 +776,17 @@
+                 goto out;
+         }
+ 
++#if __sun
++        /* Remove old communication pipe, if present */
++        char *display_num = strchr(server->display_name, ':');
++        if (display_num != NULL && display_num[1] != '\0') {
++                char *old_pipe = g_strdup_printf ("%s/%s", GDM_SDTLOGIN_DIR,
++                                                  display_num + 1);
++                VE_IGNORE_EINTR (g_remove (old_pipe));
++                g_free (old_pipe);
++        }
++#endif
++
+         env = get_server_environment (server);
+ 
+         freeme = g_strjoinv (" ", argv);
+--- a/daemon/gdm-session-worker.c	2024-01-17 17:11:40.841143613 -0800
++++ b/daemon/gdm-session-worker.c	2024-01-17 17:13:43.191549389 -0800
+@@ -38,6 +38,7 @@
+ #include <pwd.h>
+ 
+ #if __sun
++#include <sys/param.h>
+ #define GDM_PAM_QUAL
+ #else
+ #define GDM_PAM_QUAL const
+@@ -2185,6 +2186,119 @@
+         return fd;
+ }
+ 
++#ifdef __sun    
++static void     
++solaris_xserver_cred (const char *username, struct passwd *passwd_entry,
++                      const char *x11_display_name)
++{                               
++        static FILE *fp;                   
++        struct stat statbuf;    
++        gid_t  groups[NGROUPS_UMAX];
++        char *tmp, *p, pipe[MAXPATHLEN], info[MAXPATHLEN];
++        int display_number = 0;
++        int fd, i;      
++        int ngroups;               
++                        
++        if (fp == NULL) {       /* Open & setup fp on first access */
++                /* 
++                 * Handshake with server. Make sure it created a pipe.
++                 * Open and write.
++                 */     
++                if ((tmp = strstr (x11_display_name, ":")) != NULL) {
++                        tmp++;
++                        display_number = g_ascii_strtod (tmp, &p);
++        
++                        if (errno != 0) {
++                                g_warning ("solaris_xserver_cred: problem"
++                                           " getting display number\n");
++                                return; 
++                        }
++                }
++                
++                if (stat (GDM_SDTLOGIN_DIR, &statbuf) == 0) {
++                        if (! S_ISDIR(statbuf.st_mode)) {
++                                g_warning ("solaris_xserver_cred: %s is not"
++                                           " a directory\n", GDM_SDTLOGIN_DIR);
++                                return;
++                        }
++                } else {
++                        g_warning ("solaris_xserver_cred: %s: %s\n",
++                                   GDM_SDTLOGIN_DIR, g_strerror(errno));
++                        return;
++                }
++
++                snprintf (pipe, sizeof(pipe), "%s/%d",
++                          GDM_SDTLOGIN_DIR, display_number);
++                fd = open (pipe, O_RDWR | O_CLOEXEC | O_NOFOLLOW);
++
++                if (fd < 0) {
++                        g_warning ("solaris_xserver_cred: could not open"
++                                   " %s: %s\n", pipe, g_strerror(errno));
++                        return;
++                }
++                if (fstat (fd, &statbuf) == 0 ) {
++                        if (! S_ISFIFO(statbuf.st_mode)) {
++                                close (fd);
++                                g_warning ("solaris_xserver_cred: %s is not"
++                                           " a pipe\n", pipe);
++                                return;
++                        }
++                } else {
++                        close (fd);
++                        g_warning ("solaris_xserver_cred: %s: %s\n",
++                                   pipe, g_strerror(errno));
++                        return;
++                }
++                fp = fdopen (fd, "w");
++                if (fp == NULL) {
++                        close (fd);
++                        g_warning ("solaris_xserver_cred: could not fdopen"
++                                   " %s: %s\n", pipe, g_strerror(errno));
++                        return;
++                }
++        }
++
++        snprintf (info, sizeof(info), "GID=\"%d\"; ", passwd_entry->pw_gid);
++        fputs (info, fp);
++        g_debug ("solaris_xserver_cred: %s\n", info);
++
++        if (initgroups (username, passwd_entry->pw_gid) == -1) {
++                ngroups = 0;
++        } else {
++                ngroups = getgroups (NGROUPS_UMAX, groups);
++        }
++
++        for (i=0; i < ngroups; i++) {
++                snprintf (info, sizeof(info), "G_LIST_ID=\"%u\" ", groups[i]);
++                fputs (info, fp);
++                g_debug ("solaris_xserver_cred: %s\n", info);
++        }
++
++        if (ngroups > 0) {
++                fputc (';', fp);
++        }
++
++        snprintf (info, sizeof(info), " HOME=\"%s\" ", passwd_entry->pw_dir);
++        fputs (info, fp);
++        g_debug ("solaris_xserver_cred: %s\n", info);
++
++        snprintf (info, sizeof(info), " UID=\"%d\" EOF=\"\";",
++                  passwd_entry->pw_uid);
++        fputs (info, fp);
++        g_debug ("solaris_xserver_cred: %s\n", info);
++
++        /*
++         * Handshake with server. Make sure it read the pipe.
++         *
++         * Do not close file descriptor, but leave it open for further use.
++         */
++        VE_IGNORE_EINTR (fflush (fp));
++
++        return;
++}
++#endif
++
++
+ static gboolean
+ gdm_session_worker_start_session (GdmSessionWorker  *worker,
+                                   GError           **error)
+@@ -2202,6 +2316,12 @@
+                          worker->arguments[0]);
+         }
+ 
++#ifdef __sun
++        solaris_xserver_cred (worker->username,
++                              passwd_entry,
++                              worker->x11_display_name);
++#endif
++
+         error_code = PAM_SUCCESS;
+ 
+ #ifdef WITH_SYSTEMD
+--- a/daemon/main.c	2024-01-17 17:13:58.725915890 -0800
++++ b/daemon/main.c	2024-01-17 17:14:23.814021065 -0800
+@@ -315,6 +315,21 @@
+ 
+         block_sigusr1 ();
+ 
++#ifdef __sun
++        {
++                struct stat statbuf;
++                int r;
++
++                r = stat (GDM_DT_DIR, &statbuf);
++                if (r < 0) {
++                        g_mkdir (GDM_DT_DIR, 0755);
++                }
++
++                g_remove (GDM_SDTLOGIN_DIR);
++                g_mkdir (GDM_SDTLOGIN_DIR, 0700);
++        }
++#endif
++
+         bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+         textdomain (GETTEXT_PACKAGE);
+         setlocale (LC_ALL, "");

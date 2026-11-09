@@ -1,0 +1,72 @@
+Origin: solaris-userland@9d7a655 components/gnome/gdm/patches/0012-restart-limit.patch
+
+From 1d0cd85ec6ad9ae9886618816605261e8519b731 Mon Sep 17 00:00:00 2001
+From: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date: Tue, 29 Dec 2015 18:50:08 -0800
+Subject: [PATCH 12/19] restart limit
+
+Bug 15745160/SUNBT7096672 GDM should stop restarting the Xserver on the console
+Original owner:yippi date:2011-11-07 type:bug bugster:7096672
+---
+ daemon/gdm-display.c | 33 ++++++++++++++++++++-------------
+ 1 file changed, 20 insertions(+), 13 deletions(-)
+
+--- a/daemon/gdm-display.c	2020-04-03 15:40:25.043553178 -0700
++++ b/daemon/gdm-display.c	2020-04-03 15:55:27.915755577 -0700
+@@ -66,6 +66,8 @@
+         char                 *x11_display_name;
+         int                   status;
+         time_t                creation_time;
++        int                   num_failures;
++        gint64                time_last_start;
+ 
+         char                 *x11_cookie;
+         gsize                 x11_cookie_size;
+@@ -591,6 +593,10 @@
+ 
+         g_debug ("GdmDisplay: Managing display: %s", priv->id);
+ 
++        if (priv->time_last_start == 0) {
++                priv->time_last_start = g_get_monotonic_time();
++        }
++
+         /* If not explicitly prepared, do it now */
+         if (priv->status == GDM_DISPLAY_UNMANAGED) {
+                 res = gdm_display_prepare (self);
+@@ -669,6 +675,8 @@
+ gboolean
+ gdm_display_unmanage (GdmDisplay *self)
+ {
++	 gdouble elapsed;
++
+         GdmDisplayPrivate *priv;
+ 
+         g_return_val_if_fail (GDM_IS_DISPLAY (self), FALSE);
+@@ -691,7 +699,17 @@
+                 priv->access_file = NULL;
+         }
+ 
+-        if (!priv->session_registered) {
++	 elapsed = (g_get_monotonic_time() - priv->time_last_start) / 1000000;
++	 g_debug ("GdmDisplay: Elapsed time since last start: %lf", elapsed);
++        if (elapsed > 60) {
++                priv->num_failures = 0;
++                priv->time_last_start = g_get_monotonic_time();
++        } else {
++                priv->num_failures++;
++                g_debug ("GdmDisplay: Number of failures=%d", priv->num_failures);
++        }
++
++        if (!priv->session_registered || priv->num_failures >= 5) {
+                 g_warning ("GdmDisplay: Session never registered, failing");
+                 _gdm_display_set_status (self, GDM_DISPLAY_FAILED);
+         } else {
+@@ -1401,6 +1419,8 @@
+         priv = gdm_display_get_instance_private (self);
+ 
+         priv->creation_time = time (NULL);
++	 priv->time_last_start = 0;
++	 priv->num_failures = 0;
+ }
+ 
+ static void

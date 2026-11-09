@@ -1,0 +1,128 @@
+From b051ed8243416e87a9f8c07516e7c36aab6fe575 Mon Sep 17 00:00:00 2001
+From: isoriano1968 <81116077+isoriano1968@users.noreply.github.com>
+Date: Mon, 9 Nov 2026 15:01:07 +0100
+Subject: [PATCH] NNNNN hal: storage tools treat FUSE mounts (ntfs-3g) as not
+ mounted
+
+---
+ usr/src/cmd/hal/tools/hal-storage-mount.c  |  5 ++-
+ usr/src/cmd/hal/tools/hal-storage-shared.c | 37 ++++++++++++++++++++--
+ usr/src/cmd/hal/tools/hal-storage-shared.h |  3 ++
+ 3 files changed, 42 insertions(+), 3 deletions(-)
+
+diff --git a/usr/src/cmd/hal/tools/hal-storage-mount.c b/usr/src/cmd/hal/tools/hal-storage-mount.c
+index 910cba8..3d2f6b5 100644
+--- a/usr/src/cmd/hal/tools/hal-storage-mount.c
++++ b/usr/src/cmd/hal/tools/hal-storage-mount.c
+@@ -4,6 +4,7 @@
+  * hal-storage-mount.c : Mount wrapper
+  *
+  * Copyright (C) 2006 David Zeuthen, <david@fubar.dk>
++ * Copyright 2026 isoriano1968
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -615,7 +616,9 @@ handle_mount (LibHalContext *hal_ctx,
+ 
+ 	} else {
+ 		if (volume != NULL) {
+-			if (libhal_volume_is_mounted (volume)) {
++			/* FUSE mounts: see device_in_mnttab() */
++			if (libhal_volume_is_mounted(volume) ||
++			    device_in_mnttab(device, NULL)) {
+ 				already_mounted (device);
+ 			}
+ 		} else {
+diff --git a/usr/src/cmd/hal/tools/hal-storage-shared.c b/usr/src/cmd/hal/tools/hal-storage-shared.c
+index 775e1ed..a40979a 100644
+--- a/usr/src/cmd/hal/tools/hal-storage-shared.c
++++ b/usr/src/cmd/hal/tools/hal-storage-shared.c
+@@ -4,6 +4,7 @@
+  * hal-storage-mount.c : Mount wrapper
+  *
+  * Copyright (C) 2006 David Zeuthen, <david@fubar.dk>
++ * Copyright 2026 isoriano1968
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -255,6 +256,30 @@ permission_denied_volume_ignore (const char *device)
+ 	exit (1);
+ }
+ 
++/*
++ * Is device mounted according to mnttab (at mount_point, if not NULL)?
++ */
++gboolean
++device_in_mnttab(const char *device, const char *mount_point)
++{
++	FILE *fp;
++	struct mnttab m;
++	gboolean found = FALSE;
++
++	if ((fp = fopen(MNTTAB, "r")) == NULL)
++		return (FALSE);
++	while (getmntent(fp, &m) == 0) {
++		if (strcmp(m.mnt_special, device) == 0 &&
++		    (mount_point == NULL ||
++		    strcmp(m.mnt_mountp, mount_point) == 0)) {
++			found = TRUE;
++			break;
++		}
++	}
++	(void) fclose(fp);
++	return (found);
++}
++
+ void
+ handle_unmount (LibHalContext *hal_ctx,
+ #ifdef HAVE_POLKIT
+@@ -311,7 +336,13 @@ handle_unmount (LibHalContext *hal_ctx,
+ 			}
+ 		}
+ 
+-		if (!libhal_volume_is_mounted (volume)) {
++		/*
++		 * hald matches mnttab entries by device number, which a FUSE
++		 * mount (ntfs-3g, exfat) does not carry: look for the device
++		 * name in mnttab too.
++		 */
++		if (!libhal_volume_is_mounted(volume) &&
++		    !device_in_mnttab(device, NULL)) {
+ 			not_mounted ("According to HAL, the volume is not mounted");
+ 		}
+ 	}
+@@ -372,7 +403,9 @@ handle_unmount (LibHalContext *hal_ctx,
+ 			printf ("  mount_point = '%s'\n", line_elements[5]);
+ #endif
+ 
+-			if (strcmp (line_elements[0], device) == 0) {
++			/* skip stale entries of mounts that are gone */
++			if (strcmp (line_elements[0], device) == 0 &&
++			    device_in_mnttab(device, line_elements[5])) {
+ 				char *line_to_free;
+ 
+ 				if (strcmp (line_elements[1], invoked_by_uid) == 0) {
+diff --git a/usr/src/cmd/hal/tools/hal-storage-shared.h b/usr/src/cmd/hal/tools/hal-storage-shared.h
+index 9fa7fae..580d386 100644
+--- a/usr/src/cmd/hal/tools/hal-storage-shared.h
++++ b/usr/src/cmd/hal/tools/hal-storage-shared.h
+@@ -4,6 +4,7 @@
+  * hal-storage-mount.c : Mount wrapper
+  *
+  * Copyright (C) 2006 David Zeuthen, <david@fubar.dk>
++ * Copyright 2026 isoriano1968
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -51,6 +52,8 @@ void unlock_hal_mtab (void);
+ 
+ void unknown_error (const char *detail);
+ 
++gboolean device_in_mnttab(const char *device, const char *mount_point);
++
+ void handle_unmount (LibHalContext *hal_ctx,
+ #ifdef HAVE_POLKIT
+ 		     LibPolKitContext *pol_ctx,
+-- 
+2.47.3
+

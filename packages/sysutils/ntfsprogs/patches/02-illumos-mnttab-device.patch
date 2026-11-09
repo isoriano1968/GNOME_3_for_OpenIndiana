@@ -1,0 +1,30 @@
+Not upstream: OpenIndiana (GNOME port).
+
+ntfs-3g records the realpath of the device in mnttab (on illumos
+/devices/...:b instead of /dev/dsk/c5t0d0s1).  HAL then never sees the
+volume as mounted (it compares block.device with mnttab), so rmvolmgr can
+mount a mounted NTFS partition a second time, and gvfs does not tie the
+mount to its HAL volume (its eject button runs a plain umount, which
+fails for the user).  Keep the name the device was given, as pcfs and
+ufs do.
+
+--- a/src/ntfs-3g_common.c
++++ b/src/ntfs-3g_common.c
+@@ -622,6 +622,17 @@
+ 	
+ 	if (ntfs_strappend(&ret, "fsname="))
+ 		goto err_exit;
++#if defined(__sun) && defined(__SVR4)
++	/*
++	 * illumos: record the device as given (/dev/dsk/cXtYdZsN), not its
++	 * realpath (/devices/...:x), like the native file systems do.  HAL,
++	 * rmvolmgr and gvfs match mounts to volumes by that name.
++	 */
++	if (popts->arg_device && (popts->arg_device[0] == '/')) {
++		if (ntfs_strappend_escaped(&ret, popts->arg_device))
++			goto err_exit;
++	} else
++#endif
+ 	if (ntfs_strappend_escaped(&ret, popts->device)) {
+ 		goto err_exit;
+ 	}

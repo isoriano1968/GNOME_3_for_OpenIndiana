@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+<!--
+    This file and its contents are supplied under the terms of the
+    Common Development and Distribution License ("CDDL"), version 1.0.
+    You may only use this file in accordance with the terms of version
+    1.0 of the CDDL.
+
+    A full copy of the text of the CDDL should have accompanied this
+    source.  A copy of the CDDL is also available via the Internet at
+    http://www.illumos.org/license/CDDL.
+
+    Copyright 2026 isoriano1968
+
+    gdm, the GNOME Display Manager.  Modelled on Solaris 11.4's
+    svc:/application/graphical-login/gdm (solaris-userland
+    components/gnome/gdm/files/gdm.xml) with OpenIndiana's dependencies as
+    in its lightdm service; no self-assembly milestone, no Trusted
+    Extensions clearance and no solaris.smf.manage.dt.login authorization
+    on illumos.  Installed disabled: only one display manager may run, so
+    switching from lightdm is
+
+        svcadm disable lightdm && svcadm enable gdm
+
+    and back the other way round.
+-->
+<service_bundle type='manifest' name='gdm'>
+
+<service name='application/graphical-login/gdm' type='service' version='1'>
+
+	<dependency name='filesystem' grouping='require_all'
+	    restart_on='none' type='service'>
+		<service_fmri value='svc:/system/filesystem/local' />
+	</dependency>
+
+	<dependency name='multi-user' grouping='require_all'
+	    restart_on='error' type='service'>
+		<service_fmri value='svc:/milestone/multi-user:default' />
+	</dependency>
+
+	<dependency name='fc-cache' grouping='require_all'
+	    restart_on='none' type='service'>
+		<service_fmri value='svc:/application/font/fc-cache' />
+	</dependency>
+
+	<dependency name='utmpx' grouping='require_all'
+	    restart_on='none' type='service'>
+		<service_fmri value='svc:/system/utmp' />
+	</dependency>
+
+	<dependency name='hal' grouping='optional_all'
+	    restart_on='none' type='service'>
+		<service_fmri value='svc:/system/hal' />
+	</dependency>
+
+	<dependency name='dbus' grouping='require_all'
+	    restart_on='none' type='service'>
+		<service_fmri value='svc:/system/dbus' />
+	</dependency>
+
+	<dependency name='consolekit' grouping='require_all'
+	    restart_on='none' type='service'>
+		<service_fmri value='svc:/system/consolekit' />
+	</dependency>
+
+	<dependency name='accountsservice' grouping='require_all'
+	    restart_on='none' type='service'>
+		<service_fmri value='svc:/system/accountsservice' />
+	</dependency>
+
+	<dependency name='x11-init' grouping='optional_all'
+	    restart_on='none' type='service'>
+		<service_fmri value='svc:/application/x11/x11-init' />
+	</dependency>
+
+	<dependency name='ogl-select' grouping='optional_all'
+	    restart_on='none' type='service'>
+		<service_fmri value='svc:/application/opengl/ogl-select' />
+	</dependency>
+
+	<exec_method type='method' name='start'
+	    exec='/lib/svc/method/svc-gdm start' timeout_seconds='150' />
+
+	<exec_method type='method' name='stop'
+	    exec='/lib/svc/method/svc-gdm stop %{restarter/contract}'
+	    timeout_seconds='150' />
+
+	<!-- passed to gdm by the method script -->
+	<property_group name='gdm' type='application'>
+		<propval name='args' type='astring' value='' />
+	</property_group>
+
+	<instance name='default' enabled='false' />
+
+	<stability value='Unstable' />
+
+	<template>
+		<common_name>
+			<loctext xml:lang='C'>GNOME Display Manager</loctext>
+		</common_name>
+	</template>
+</service>
+
+</service_bundle>

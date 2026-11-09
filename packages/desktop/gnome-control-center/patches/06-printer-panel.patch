@@ -1,0 +1,46 @@
+Origin: solaris-userland@9d7a655 components/gnome/gnome-control-center/patches/06-printer-panel.patch
+
+We are currently disabling the printer panel cos even though it builds
+successfully using library/samba/smbclient after patching the *.pc check
+and a couple source files to find the right headers, testing showed that
+it was referencing cupspkhelper and /var/samba/cache.  Since it needs 
+further patching and testing, we are currently disabling it in the interim.
+
+Not suitable for upstream
+
+--- a/panels/meson.build	2021-02-16 11:31:26.363914160 -0800
++++ b/panels/meson.build	2021-02-16 11:31:32.667763690 -0800
+@@ -17,7 +17,6 @@
+   'mouse',
+   'notifications',
+   'online-accounts',
+-  'printers',
+   'region',
+   'removable-media',
+   'search',
+--- a/shell/cc-panel-loader.c	2021-02-16 11:31:46.928468840 -0800
++++ b/shell/cc-panel-loader.c	2021-02-16 11:32:03.043121400 -0800
+@@ -49,7 +49,6 @@
+ #endif /* BUILD_NETWORK */
+ extern GType cc_notifications_panel_get_type (void);
+ extern GType cc_goa_panel_get_type (void);
+-extern GType cc_printers_panel_get_type (void);
+ extern GType cc_region_panel_get_type (void);
+ extern GType cc_removable_media_panel_get_type (void);
+ extern GType cc_search_panel_get_type (void);
+@@ -112,7 +111,6 @@
+ #endif
+   PANEL_TYPE("notifications",    cc_notifications_panel_get_type,        NULL),
+   PANEL_TYPE("online-accounts",  cc_goa_panel_get_type,                  NULL),
+-  PANEL_TYPE("printers",         cc_printers_panel_get_type,             NULL),
+   PANEL_TYPE("region",           cc_region_panel_get_type,               NULL),
+   PANEL_TYPE("removable-media",  cc_removable_media_panel_get_type,      NULL),
+   PANEL_TYPE("search",           cc_search_panel_get_type,               NULL),
+--- a/tests/meson.build	2021-02-16 11:32:26.049651060 -0800
++++ b/tests/meson.build	2021-02-16 11:32:31.662229290 -0800
+@@ -6,5 +6,4 @@
+ 
+ subdir('interactive-panels')
+ 
+-subdir('printers')
+ subdir('info')

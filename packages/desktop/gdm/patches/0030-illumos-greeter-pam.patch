@@ -1,0 +1,25 @@
+Not from Solaris: OpenIndiana-only.
+
+Solaris gives the greeter user gdm its own PAM stack through user_attr's
+pam_policy=/etc/gdm/gdm-launch-environment.pam (auth pam_allow).  illumos
+has no pam_policy and reads only /etc/pam.conf, which packages cannot amend.
+OpenIndiana's pam.conf does carry a gdm-autologin stack (auth
+pam_unix_cred + pam_allow, account pam_allow), the same stack Solaris uses
+for the greeter, so the greeter's PAM conversation uses that service name.
+The worker keeps "gdm-launch-environment" as its service everywhere else.
+
+--- a/daemon/gdm-session-worker.c
++++ b/daemon/gdm-session-worker.c
+@@ -1425,7 +1425,11 @@
+         pam_conversation.appdata_ptr = worker;
+ 
+         gdm_session_worker_start_auditor (worker);
+-        error_code = pam_start (service,
++        /* illumos: no pam_policy in user_attr, and pam.conf cannot be
++         * amended by packages; the greeter uses OpenIndiana's existing
++         * gdm-autologin stack (pam_allow), as Solaris' greeter policy does. */
++        error_code = pam_start (strcmp (service, "gdm-launch-environment") == 0 ?
++                                    "gdm-autologin" : service,
+                                 username,
+                                 &pam_conversation,
+                                 &worker->pam_handle);

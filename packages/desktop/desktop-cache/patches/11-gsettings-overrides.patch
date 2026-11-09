@@ -1,0 +1,25 @@
+gconf-cache: rebuild gschemas.compiled when a *.gschema.override is newer,
+or when a file was added to or removed from the schemas directory, not
+only when a *.xml schema is newer.  Packages that only ship an override
+(desktop/gnome/apple-media-keys) were never compiled in.
+OpenIndiana project, 2026.
+
+--- desktop-cache-smf-services-0.2.2/gconf-cache/gconf-cache.orig
++++ desktop-cache-smf-services-0.2.2/gconf-cache/gconf-cache
+@@ -55,8 +55,15 @@
+ redo_gsettings_schemas ()
+ {
+ if [ -a "/usr/share/glib-2.0/schemas/gschemas.compiled" ]; then
++  # Vendor overrides (*.gschema.override) count as well as schemas, and
++  # so does a file added to or removed from the directory (its mtime).
+   SCHEMAS=`/usr/bin/find /usr/share/glib-2.0/schemas -follow ! -type d \
+-    -name '*.xml' -newer /usr/share/glib-2.0/schemas/gschemas.compiled`
++    \( -name '*.xml' -o -name '*.override' \) \
++    -newer /usr/share/glib-2.0/schemas/gschemas.compiled`
++  if [ /usr/share/glib-2.0/schemas -nt \
++      /usr/share/glib-2.0/schemas/gschemas.compiled ]; then
++    SCHEMAS="$SCHEMAS DIR"
++  fi
+ else
+   SCHEMAS="NEW"
+ fi
