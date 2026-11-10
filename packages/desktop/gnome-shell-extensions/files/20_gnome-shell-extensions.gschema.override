@@ -1,0 +1,7 @@
+# OpenIndiana GNOME defaults: Removable Drive Menu on (the eject button for
+# mounted USB disks in the top bar), next to Dash to Dock.  This key is also
+# set by 10_dash-to-dock.gschema.override; this file sorts later and wins,
+# so it repeats Dash to Dock (an uuid that is not installed is ignored).
+# Users can change both in the Extensions app.
+[org.gnome.shell]
+enabled-extensions=['dash-to-dock@micxgx.gmail.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com']
