@@ -1,0 +1,29 @@
+From 3b54741e9f3b974d53ea7b69c8188ef4755adcb3 Mon Sep 17 00:00:00 2001
+From: isoriano1968 <81116077+isoriano1968@users.noreply.github.com>
+Date: Fri, 13 Nov 2026 08:43:27 +0100
+Subject: [PATCH 4/4] NNNNN hald does not see FUSE mounts of whole-slice
+ volumes (match block.device too)
+
+---
+ usr/src/cmd/hal/hald/solaris/devinfo_storage.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/usr/src/cmd/hal/hald/solaris/devinfo_storage.c b/usr/src/cmd/hal/hald/solaris/devinfo_storage.c
+index af91c83b..d448c78d 100644
+--- a/usr/src/cmd/hal/hald/solaris/devinfo_storage.c
++++ b/usr/src/cmd/hal/hald/solaris/devinfo_storage.c
+@@ -1498,9 +1498,12 @@ devinfo_storage_mnttab_event (HalDevice *hal_volume)
+ 				 */
+ 				const char *pdev = hal_device_property_get_string (d,
+ 				    "volume.solaris.partition_device");
++				const char *bdev = hal_device_property_get_string (d,
++				    "block.device");
+ 
+-				if (pdev == NULL || m.mnt_special == NULL ||
+-				    strcmp (m.mnt_special, pdev) != 0) {
++				if (m.mnt_special == NULL ||
++				    ((pdev == NULL || strcmp (m.mnt_special, pdev) != 0) &&
++				    (bdev == NULL || strcmp (m.mnt_special, bdev) != 0))) {
+ 					continue;
+ 				}
+ 			}

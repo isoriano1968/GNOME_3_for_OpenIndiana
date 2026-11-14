@@ -1,0 +1,24 @@
+From 3950c530d655ba4b4ec5f0897f734ea1dc5ac7f9 Mon Sep 17 00:00:00 2001
+From: isoriano1968 <81116077+isoriano1968@users.noreply.github.com>
+Date: Fri, 13 Nov 2026 08:43:24 +0100
+Subject: [PATCH 1/4] NNNNN hal ignores NTFS partitions on MBR disks
+ (is_dos_drive lacks FDISK_IFS)
+
+---
+ usr/src/cmd/hal/utils/fsutils.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/usr/src/cmd/hal/utils/fsutils.c b/usr/src/cmd/hal/utils/fsutils.c
+index 7e1f6601..783913cd 100644
+--- a/usr/src/cmd/hal/utils/fsutils.c
++++ b/usr/src/cmd/hal/utils/fsutils.c
+@@ -84,7 +84,8 @@ boolean_t
+ is_dos_drive(uchar_t type)
+ {
+ 	return ((type == DOSOS12) || (type == DOSOS16) ||
+-	    (type == DOSHUGE) || (type == FDISK_WINDOWS) ||
++	    (type == DOSHUGE) || (type == FDISK_IFS) ||
++	    (type == FDISK_WINDOWS) ||
+ 	    (type == FDISK_EXT_WIN) || (type == FDISK_FAT95) ||
+ 	    (type == DIAGPART));
+ }

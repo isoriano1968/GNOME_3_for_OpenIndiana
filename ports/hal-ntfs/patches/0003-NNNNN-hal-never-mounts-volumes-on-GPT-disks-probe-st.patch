@@ -1,0 +1,27 @@
+From ba6334af2a0ac99be2a9905d0a232a8d205ec01f Mon Sep 17 00:00:00 2001
+From: isoriano1968 <81116077+isoriano1968@users.noreply.github.com>
+Date: Fri, 13 Nov 2026 08:43:26 +0100
+Subject: [PATCH 3/4] NNNNN hal never mounts volumes on GPT disks
+ (probe-storage leaves vtoc_slices FALSE)
+
+---
+ usr/src/cmd/hal/probing/storage/probe-storage.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/usr/src/cmd/hal/probing/storage/probe-storage.c b/usr/src/cmd/hal/probing/storage/probe-storage.c
+index 50bd78ce..9bc749c1 100644
+--- a/usr/src/cmd/hal/probing/storage/probe-storage.c
++++ b/usr/src/cmd/hal/probing/storage/probe-storage.c
+@@ -455,6 +455,12 @@ main (int argc, char *argv[])
+ 		 */
+ 		is_gpt = TRUE;
+ 		scheme = "gpt";
++		/*
++		 * GPT partitions are the disk's slices (s0..s6): let hald
++		 * probe them, as for a VTOC label.  Without this hald skips
++		 * every slice but s2 and no GPT volume is ever mounted.
++		 */
++		vtoc_slices = TRUE;
+ 		efi_free(gpt);
+ 	}
+ 

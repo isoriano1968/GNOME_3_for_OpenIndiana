@@ -1,0 +1,27 @@
+From: isoriano1968 <81116077+isoriano1968@users.noreply.github.com>
+Date: Sat, 14 Nov 2026 11:55:00 +0100
+Subject: [PATCH] NNNNN hal offers ZFS pool members as volumes
+
+hald-probe-volume reports a ZFS vdev (e.g. the root pool on a USB disk,
+storage.removable true) as volume.fstype zfs, volume.fsusage filesystem,
+with volume.ignore false, so desktops (gvfs/nautilus) list "rpool" as a
+mountable volume that can never be mounted.  ZFS imports pool members
+itself; mark them volume.ignore on any disk.
+
+---
+--- a/usr/src/cmd/hal/fdi/policy/10osvendor/20-storage-methods.fdi
++++ b/usr/src/cmd/hal/fdi/policy/10osvendor/20-storage-methods.fdi
+@@ -83,6 +83,13 @@
+         <merge key="volume.ignore" type="bool">true</merge>
+       </match>
+ 
++      <!-- ZFS pool members (vdevs, e.g. the root pool on a USB disk): -->
++      <!-- ZFS imports them, they are never mounted as a volume, so -->
++      <!-- desktops must not offer them in their volume lists -->
++      <match key="volume.fstype" string="zfs">
++        <merge key="volume.ignore" type="bool">true</merge>
++      </match>
++
+       <match key="@block.storage_device:storage.removable" bool="false">
+ 
+         <!-- Should always ignore Apple Bootstrap partitions (it would be -->

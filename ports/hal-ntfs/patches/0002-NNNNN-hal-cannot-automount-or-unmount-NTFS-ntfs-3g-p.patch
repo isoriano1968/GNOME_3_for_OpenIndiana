@@ -1,0 +1,263 @@
+From d99bae3583649408bfb9b00128f74e867dd3b7bd Mon Sep 17 00:00:00 2001
+From: isoriano1968 <81116077+isoriano1968@users.noreply.github.com>
+Date: Fri, 13 Nov 2026 08:43:25 +0100
+Subject: [PATCH 2/4] NNNNN hal cannot automount or unmount NTFS (ntfs-3g)
+ partitions on MBR disks
+
+---
+ .../cmd/hal/hald/solaris/devinfo_storage.c    | 18 ++++-
+ usr/src/cmd/hal/probing/volume/probe-volume.c | 21 +++++
+ usr/src/cmd/hal/tools/hal-storage-mount.c     | 76 ++++++++++++++++++-
+ usr/src/cmd/hal/tools/hal-storage-shared.c    |  8 ++
+ usr/src/cmd/hal/utils/fsutils.c               | 22 ++++++
+ usr/src/cmd/hal/utils/fsutils.h               |  1 +
+ 6 files changed, 144 insertions(+), 2 deletions(-)
+
+diff --git a/usr/src/cmd/hal/hald/solaris/devinfo_storage.c b/usr/src/cmd/hal/hald/solaris/devinfo_storage.c
+index 80f3085e..af91c83b 100644
+--- a/usr/src/cmd/hal/hald/solaris/devinfo_storage.c
++++ b/usr/src/cmd/hal/hald/solaris/devinfo_storage.c
+@@ -23,6 +23,9 @@
+ #include <sys/stat.h>
+ #include <sys/mntent.h>
+ #include <sys/mnttab.h>
++#include <sys/dktp/fdisk.h>
++#include <fcntl.h>
++#include <unistd.h>
+ 
+ #include "../osspec.h"
+ #include "../logger.h"
+@@ -1438,6 +1441,7 @@ devinfo_storage_cleanup_mountpoint_cb (HalDevice *d, guint32 exit_type,
+ }
+ 
+ 
++
+ void
+ devinfo_storage_mnttab_event (HalDevice *hal_volume)
+ {
+@@ -1486,7 +1490,19 @@ devinfo_storage_mnttab_event (HalDevice *hal_volume)
+ 			}
+ 
+ 			if (m.mnt_major != major || m.mnt_minor != minor) {
+-				continue;
++				/*
++				 * ntfs-3g, exfat (FUSE): mounted on the fdisk
++				 * partition device recorded by hald-probe-volume;
++				 * mnttab's dev= is the FUSE file system, not the
++				 * disk, so match the device name instead.
++				 */
++				const char *pdev = hal_device_property_get_string (d,
++				    "volume.solaris.partition_device");
++
++				if (pdev == NULL || m.mnt_special == NULL ||
++				    strcmp (m.mnt_special, pdev) != 0) {
++					continue;
++				}
+ 			}
+ 
+ 			/* this volume matches the mnttab entry */
+diff --git a/usr/src/cmd/hal/probing/volume/probe-volume.c b/usr/src/cmd/hal/probing/volume/probe-volume.c
+index a6dcd08b..2a329574 100644
+--- a/usr/src/cmd/hal/probing/volume/probe-volume.c
++++ b/usr/src/cmd/hal/probing/volume/probe-volume.c
+@@ -18,6 +18,7 @@
+ #include <stdio.h>
+ #include <sys/ioctl.h>
+ #include <sys/types.h>
++#include <sys/param.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+ #include <unistd.h>
+@@ -559,6 +560,26 @@ main (int argc, char *argv[])
+ 		partition_scheme = "mbr";
+ 		partition_start = (dbus_uint64_t)probe_offset;
+ 		partition_number = dos_num;
++		{
++			/*
++			 * Non-pcfs file systems (ntfs-3g, exfat) are mounted
++			 * on the fdisk partition device, not on p0:N.
++			 */
++			int pidx = dos_drive_primary_index(fd, dos_num);
++			size_t dl = strlen(devpath);
++
++			if (pidx > 0 && dl >= 2 && devpath[dl - 2] == 'p' &&
++			    devpath[dl - 1] == '0') {
++				char pdev[MAXPATHLEN];
++
++				(void) snprintf(pdev, sizeof (pdev), "%.*s%d",
++				    (int)(dl - 1), devpath, pidx);
++				dbus_error_init(&error);
++				libhal_device_set_property_string(ctx, udi,
++				    "volume.solaris.partition_device", pdev, &error);
++				my_dbus_error_free(&error);
++			}
++		}
+ 	} else {
+ 		if ((partition_number = read_extvtoc(rfd, &vtoc)) >= 0) {
+ 			if (!vtoc_one_slice_entire_disk(&vtoc)) {
+diff --git a/usr/src/cmd/hal/tools/hal-storage-mount.c b/usr/src/cmd/hal/tools/hal-storage-mount.c
+index 910cba8c..9f4fcdc6 100644
+--- a/usr/src/cmd/hal/tools/hal-storage-mount.c
++++ b/usr/src/cmd/hal/tools/hal-storage-mount.c
+@@ -441,6 +441,66 @@ map_fstype (const char *fstype)
+ 	return fstype;
+ }
+ 
++
++#ifdef sun
++#include <fcntl.h>
++#include <sys/dktp/fdisk.h>
++
++/*
++ * HAL names DOS partitions as "<disk>p0:N" (the Nth DOS drive of the whole
++ * disk), a notation only pcfs understands.  For other file systems (ntfs-3g,
++ * exfat) map a primary DOS drive back to its fdisk partition device <disk>pM.
++ * Returns a new string, or NULL to keep the device as it is.
++ */
++static char *
++dos_drive_to_partition (const char *device)
++{
++	const char *colon = strrchr (device, ':');
++	char *rdev = NULL, *result = NULL;
++	struct mboot mb;
++	struct ipart part[FD_NUMPART];
++	int n, i, count = 0, fd;
++	size_t baselen;
++
++	if (colon == NULL || colon - device < 2 || colon[-2] != 'p' ||
++	    colon[-1] != '0' || (n = atoi (colon + 1)) < 1)
++		return (NULL);
++	baselen = (size_t)(colon - device) - 1;	/* up to and with the 'p' */
++
++	/* /dev/dsk/cXtYdZp0 -> /dev/rdsk/cXtYdZp0 */
++	if (strncmp (device, "/dev/dsk/", 9) == 0)
++		rdev = g_strdup_printf ("/dev/rdsk/%.*s0", (int)(baselen - 9), device + 9);
++	else
++		return (NULL);
++	if ((fd = open (rdev, O_RDONLY | O_NDELAY)) < 0)
++		goto out;
++	if (pread (fd, &mb, sizeof (mb), 0) != sizeof (mb)) {
++		(void) close (fd);
++		goto out;
++	}
++	(void) close (fd);
++	if (mb.signature != MBB_MAGIC)	/* little endian on x86 */
++		goto out;
++	(void) memcpy (part, mb.parts, sizeof (part));
++	for (i = 0; i < FD_NUMPART; i++) {
++		uchar_t t = part[i].systid;
++
++		if (t == DOSOS12 || t == DOSOS16 || t == DOSHUGE ||
++		    t == FDISK_IFS || t == FDISK_WINDOWS ||
++		    t == FDISK_EXT_WIN || t == FDISK_FAT95 || t == DIAGPART) {
++			if (++count == n) {
++				result = g_strdup_printf ("%.*s%d",
++				    (int)baselen, device, i + 1);
++				break;
++			}
++		}
++	}
++out:
++	g_free (rdev);
++	return (result);
++}
++#endif
++
+ static void
+ handle_mount (LibHalContext *hal_ctx,
+ #ifdef HAVE_POLKIT
+@@ -866,6 +926,7 @@ handle_mount (LibHalContext *hal_ctx,
+ 	}
+ 
+ 	char *mount_option_commasep = NULL;
++	char *mount_device = NULL;
+ 	char *mount_do_fstype = "auto";
+ 
+ 	/* construct arguments to mount */
+@@ -895,7 +956,20 @@ handle_mount (LibHalContext *hal_ctx,
+ #endif
+ 	mount_option_commasep = g_string_free (mount_option_str, FALSE); /* leak! */
+ 	args[na++] = mount_option_commasep;
+-	args[na++] = (char *) device;
++	mount_device = (char *) device;
++#ifdef sun
++	if (strcmp (mount_do_fstype, "pcfs") != 0) {
++		/*
++		 * Only the mount command gets the fdisk partition device;
++		 * /media/.hal-mtab keeps HAL's name, which unmount looks up.
++		 */
++		char *pdev = dos_drive_to_partition (device);
++
++		if (pdev != NULL)
++			mount_device = pdev;	/* leak, as the options above */
++	}
++#endif
++	args[na++] = mount_device;
+ 	args[na++] = mount_dir;
+ 	args[na++] = NULL;
+ 
+diff --git a/usr/src/cmd/hal/tools/hal-storage-shared.c b/usr/src/cmd/hal/tools/hal-storage-shared.c
+index 775e1ed1..7ecbe7a0 100644
+--- a/usr/src/cmd/hal/tools/hal-storage-shared.c
++++ b/usr/src/cmd/hal/tools/hal-storage-shared.c
+@@ -453,7 +453,15 @@ line_found:
+ 		args[na++] = "-l";
+ 	if (option_force)
+ 		args[na++] = "-f";
++#ifdef sun
++	/*
++	 * Unmount by mount point: a DOS drive mounted as its fdisk partition
++	 * (ntfs-3g, exfat) is not in mnttab under HAL's <disk>p0:N name.
++	 */
++	args[na++] = mount_point_to_unmount;
++#else
+ 	args[na++] = (char *) device;
++#endif
+ 	args[na++] = NULL;
+ 
+ #ifdef DEBUG
+diff --git a/usr/src/cmd/hal/utils/fsutils.c b/usr/src/cmd/hal/utils/fsutils.c
+index 783913cd..201b493c 100644
+--- a/usr/src/cmd/hal/utils/fsutils.c
++++ b/usr/src/cmd/hal/utils/fsutils.c
+@@ -207,6 +207,28 @@ get_num_dos_drives_cb(void *arg, int systid, uint_t relsect, uint_t numsect)
+ 	return (WALK_CONTINUE);
+ }
+ 
++/*
++ * Index (1..FD_NUMPART) of the primary fdisk partition that is DOS drive
++ * number num (as counted by find_dos_drive), or -1 (logical drive, none).
++ */
++int
++dos_drive_primary_index(int fd, int num)
++{
++	struct mboot mb;
++	struct ipart part[FD_NUMPART];
++	int i, count = 0;
++
++	if (pread(fd, &mb, sizeof (mb), 0) != sizeof (mb) ||
++	    ltohs(mb.signature) != MBB_MAGIC)
++		return (-1);
++	(void) memcpy(part, mb.parts, sizeof (part));
++	for (i = 0; i < FD_NUMPART; i++) {
++		if (is_dos_drive(part[i].systid) && ++count == num)
++			return (i + 1);
++	}
++	return (-1);
++}
++
+ int
+ get_num_dos_drives(int fd, uint_t secsz)
+ {
+diff --git a/usr/src/cmd/hal/utils/fsutils.h b/usr/src/cmd/hal/utils/fsutils.h
+index 92491f55..4f3522fc 100644
+--- a/usr/src/cmd/hal/utils/fsutils.h
++++ b/usr/src/cmd/hal/utils/fsutils.h
+@@ -20,6 +20,7 @@ char *get_slice_name(char *devlink);
+ boolean_t is_dos_drive(uchar_t id);
+ boolean_t is_dos_extended(uchar_t id);
+ boolean_t find_dos_drive(int fd, int num, uint_t secsz, off_t *offset);
++int dos_drive_primary_index(int fd, int num);
+ int get_num_dos_drives(int fd, uint_t);
+ boolean_t vtoc_one_slice_entire_disk(struct extvtoc *vtoc);
+ 
