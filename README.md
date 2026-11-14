@@ -10,8 +10,11 @@ command.
 
 It runs on real hardware: an iMac13,2 (NVIDIA GTX 675MX, NVIDIA 470
 driver) under OpenIndiana 2026.10. It also runs in VirtualBox, using software GL.
+Since November 2026 it also runs accelerated on a Mac Pro 2013 with AMD
+FirePro D500 GPUs; see [Mac Pro 2013 status](#mac-pro-2013-status).
 
 - [What you get](#what-you-get)
+- [Mac Pro 2013 status](#mac-pro-2013-status)
 - [How it was done](#how-it-was-done)
 - [Build and install](#build-and-install)
 - [Security](#security), with details in [SECURITY.md](SECURITY.md)
@@ -34,6 +37,39 @@ Not included:
 - **systemd and logind.** ConsoleKit takes their place.
 - **udisks2, NetworkManager, Bluetooth panels and GNOME Online Accounts.**
 - **localsearch**, the file indexer. Search in Files still works without it.
+
+## Mac Pro 2013 status
+
+Status on 2026-11-14, on a Mac Pro 2013 (MacPro6,1) with two AMD FirePro
+D500 GPUs (Tahiti, Southern Islands) and a Dell monitor on DisplayPort.
+
+What works for me now, day to day:
+- **Accelerated GNOME.** I ported Linux's amdgpu driver for Southern
+  Islands to illumos (on top of the illumos-drm work) and use Mesa's
+  radeonsi driver on top of it. Both GPUs come up; the display GPU drives
+  the Dell monitor.
+- **Sound through the monitor and the internal speaker.** The volume menu
+  and Settings > Sound list both outputs, and I can switch between them.
+  The DisplayPort output carries the monitor's name and disappears when
+  no monitor is connected (PulseAudio patches `32`-`34` here, plus
+  changes to the illumos audiohd driver).
+- **Text consoles.** Ctrl-Alt-F2 to F6 open text consoles next to the
+  graphical session, and Ctrl-Alt-F7 goes back.
+
+Not public yet: the amdgpu driver changes and the audiohd changes are
+still in my local trees. I will publish them once they are cleaned up and
+the GPU runs at full speed. Until then, the PulseAudio patches alone do
+not give you sound over DisplayPort.
+
+Known limits:
+- **The GPUs run at their boot clocks** (450 MHz engine, 150 MHz memory,
+  instead of about 725 and 1270 MHz): power management is still off, and
+  the CPU writes into GPU memory without write-combining. This is what I
+  am working on next.
+- Video decode and encode on the GPU (UVD/VCE) are off.
+- After switching back from a text console, the unlock prompt asks for
+  root's password instead of the user's. I have a fix for illumos' vtxlock
+  that locks through ConsoleKit, so GNOME's own lock screen asks the user.
 
 ## How it was done
 
@@ -63,7 +99,10 @@ Not included:
      logind (`0030`–`0032`).
    - **accountsservice:** wtmpx, and the `noaccess` user.
    - **PulseAudio:** finds every OSS device and exposes names, ports and
-     volume (`30`, `31`).
+     volume (`30`, `31`); a card per device so GNOME can list and switch
+     the outputs (`32`); playback-only HDMI/DisplayPort devices opened
+     write-only (`33`); HDMI/DisplayPort outputs named after the connected
+     monitor and hidden when none is connected (`34`).
    - **ntfsprogs:** writes the device to mnttab the way gvfs expects.
    - **HAL:** two fixes that are also prepared for illumos-gate (`ports/`).
      - **GPT disks:** HAL never created volumes for removable GPT disks.

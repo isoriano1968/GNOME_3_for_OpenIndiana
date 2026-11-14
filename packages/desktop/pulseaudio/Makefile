@@ -19,7 +19,10 @@
 # on illumos: every /dev/dspN (e.g. HDMI next to the built-in audio),
 # "Built-in Audio (codec)" names, Speakers/Headphones ports on audiohd's
 # speaker/headphones controls, and the hardware volume polled every second.
-# COMPONENT_REVISION 4 is one above OI's.  See notes/imac2019-network.md.
+# Patch 32 puts those ports on a card per device, which GNOME needs to list
+# them at all.  COMPONENT_REVISION 4 was one above OI's (see
+# notes/imac2019-network.md); 5 adds patch 32, 6 patch 33 (playback-only
+# devices opened write-only), 7 patch 34 (HDMI monitor name and presence).
 
 # SunRay utaudio needs 32bit library
 BUILD_BITS= 64_and_32
@@ -30,7 +33,7 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		pulseaudio
 COMPONENT_VERSION=	17.0
-COMPONENT_REVISION=	4
+COMPONENT_REVISION=	7
 COMPONENT_SUMMARY=	Sample Rate Converter for audio
 COMPONENT_SRC=		$(COMPONENT_NAME)-$(COMPONENT_VERSION)
 COMPONENT_ARCHIVE=	$(COMPONENT_SRC).tar.xz

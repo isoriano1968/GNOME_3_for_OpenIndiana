@@ -1,0 +1,45 @@
+module-oss (OSSv4, illumos): open a playback-only device write-only.
+module-oss opens every device O_RDWR first and falls back to O_WRONLY when
+that fails.  On illumos the audio framework logs each refused open
+("audiohd#2: open failed (rv 19)"), so a playback-only device such as the
+HDMI/DisplayPort audio of a graphics card filled the system log on every
+PulseAudio start.  Ask the device's mixer (SNDCTL_AUDIOINFO, dev -1) for
+its capabilities and open a device without PCM_CAP_INPUT write-only.
+OpenIndiana project, 2026.
+
+--- a/src/modules/oss/module-oss.c
++++ b/src/modules/oss/module-oss.c
+@@ -1821,7 +1821,32 @@
+         goto fail;
+     }
+ 
+-    if ((fd = pa_oss_open(dev = pa_modargs_get_value(ma, "device", DEFAULT_DEVICE), &mode, &caps)) < 0)
++    dev = pa_modargs_get_value(ma, "device", DEFAULT_DEVICE);
++#ifdef HAVE_OSSV4
++    /*
++     * A playback-only device (e.g. the HDMI/DisplayPort audio of a graphics
++     * card) refuses O_RDWR, and the failed open is logged by the driver
++     * framework every time.  Ask its mixer first and open it write-only.
++     */
++    if (mode == O_RDWR) {
++        int mfd = open_device_mixer(dev);
++
++        if (mfd >= 0) {
++            oss_audioinfo ai;
++
++            memset(&ai, 0, sizeof(ai));
++            ai.dev = -1;
++            if (ioctl(mfd, SNDCTL_AUDIOINFO, &ai) >= 0 &&
++                (ai.caps & PCM_CAP_OUTPUT) && !(ai.caps & PCM_CAP_INPUT)) {
++                pa_log_info("%s has no input, opening it for playback only.", dev);
++                mode = O_WRONLY;
++            }
++            pa_close(mfd);
++        }
++    }
++#endif
++
++    if ((fd = pa_oss_open(dev, &mode, &caps)) < 0)
+         goto fail;
+ 
+     if (use_mmap && (!(caps & DSP_CAP_MMAP) || !(caps & DSP_CAP_TRIGGER))) {

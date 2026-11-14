@@ -1,0 +1,164 @@
+module-oss (illumos): a card per device, holding the output ports.
+libgnome-volume-control (GNOME Shell's volume menu, Settings > Sound) makes
+an output entry for a sink with ports only through a port of its card, so
+the ports added in patch 31 made every OSS output vanish from GNOME. Now
+each device with output ports gets a card "oss_card.dspN" with one output
+profile, the ports move onto the card and the sink refers to them, as
+module-alsa-card does. Digital devices (one per GPU) are numbered after
+their dsp node ("HDMI / DisplayPort Audio 2") until the codec reports the
+monitor's ELD.
+OpenIndiana project, 2026.
+
+--- a/src/modules/oss/module-oss.c
++++ b/src/modules/oss/module-oss.c
+@@ -67,6 +67,7 @@
+ #include <pulsecore/rtpoll.h>
+ #include <pulsecore/poll.h>
+ #include <pulsecore/device-port.h>
++#include <pulsecore/card.h>
+ #include <pulse/rtclock.h>
+ #include <pulse/timeval.h>
+ 
+@@ -145,6 +146,7 @@
+     int port_max[2];
+     int port_saved[2];
+     pa_device_port *port[2];
++    pa_card *card;      /* holds the ports, so that clients list them */
+ 
+     pa_time_event *volume_poll;
+     bool hw_muted;      /* sink mute done in the mixer: control at 0 */
+@@ -1548,7 +1550,7 @@
+     return 0;
+ }
+ 
+-static void add_output_ports(struct userdata *u, pa_sink_new_data *data) {
++static void add_output_ports(struct userdata *u, pa_hashmap *ports_map) {
+     pa_device_port_new_data pd;
+     static const struct { const char *name, *desc; unsigned prio; } ports[2] = {
+         { "analog-output-speaker", "Speakers", 10000 },
+@@ -1565,12 +1567,12 @@
+         u->port[k] = pa_device_port_new(u->core, &pd, 0);
+         pa_device_port_new_data_done(&pd);
+         u->port[k]->priority = ports[k].prio;
+-        pa_hashmap_put(data->ports, u->port[k]->name, u->port[k]);
++        pa_hashmap_put(ports_map, u->port[k]->name, u->port[k]);
+         pa_device_port_ref(u->port[k]);
+     }
+ }
+ 
+-static void add_hdmi_port(pa_core *c, pa_sink_new_data *data) {
++static void add_hdmi_port(pa_core *c, pa_hashmap *ports_map) {
+     pa_device_port_new_data pd;
+     pa_device_port *port;
+ 
+@@ -1581,7 +1583,63 @@
+     pa_device_port_new_data_set_available(&pd, PA_AVAILABLE_UNKNOWN);
+     port = pa_device_port_new(c, &pd, 0);
+     pa_device_port_new_data_done(&pd);
+-    pa_hashmap_put(data->ports, port->name, port);
++    pa_hashmap_put(ports_map, port->name, port);
++}
++
++/*
++ * A card for the device with one output profile and the output ports.
++ * Clients such as libgnome-volume-control list a sink's ports only
++ * through its card: without one, a sink that has ports shows up nowhere.
++ */
++static pa_card *new_card(struct userdata *u, const char *dev, bool analog,
++                         const char *desc, const char *product,
++                         const char *form_factor, const char *icon) {
++    pa_card_new_data data;
++    pa_card_profile *profile;
++    pa_device_port *port;
++    pa_card *card;
++    void *state;
++    char *name;
++
++    pa_card_new_data_init(&data);
++    data.driver = __FILE__;
++    data.module = u->module;
++    name = pa_sprintf_malloc("oss_card.%s", pa_path_get_filename(dev));
++    pa_card_new_data_set_name(&data, name);
++    pa_xfree(name);
++    pa_proplist_sets(data.proplist, PA_PROP_DEVICE_STRING, dev);
++    pa_proplist_sets(data.proplist, PA_PROP_DEVICE_API, "oss");
++    pa_proplist_sets(data.proplist, PA_PROP_DEVICE_DESCRIPTION, desc);
++    if (product[0])
++        pa_proplist_sets(data.proplist, PA_PROP_DEVICE_PRODUCT_NAME, product);
++    if (form_factor)
++        pa_proplist_sets(data.proplist, PA_PROP_DEVICE_FORM_FACTOR, form_factor);
++    pa_proplist_sets(data.proplist, PA_PROP_DEVICE_ICON_NAME, icon);
++
++    if (analog)
++        add_output_ports(u, data.ports);
++    else
++        add_hdmi_port(u->core, data.ports);
++
++    profile = pa_card_profile_new(analog ? "output:analog-stereo" : "output:hdmi-stereo",
++                                  analog ? "Analog Stereo Output" : "Digital Stereo (HDMI) Output", 0);
++    profile->output_name = pa_xstrdup(analog ? "analog-stereo" : "hdmi-stereo");
++    profile->priority = 1;
++    profile->n_sinks = 1;
++    profile->max_sink_channels = 2;
++    profile->available = PA_AVAILABLE_UNKNOWN;
++    pa_hashmap_put(data.profiles, profile->name, profile);
++    PA_HASHMAP_FOREACH(port, data.ports, state)
++        pa_hashmap_put(port->profiles, profile->name, profile);
++
++    card = pa_card_new(u->core, &data);
++    pa_card_new_data_done(&data);
++    if (!card)
++        return NULL;
++
++    pa_card_choose_initial_profile(card);
++    pa_card_put(card);
++    return card;
+ }
+ 
+ /* Description and form factor from the driver's hardware info. */
+@@ -1962,10 +2020,31 @@
+                 pa_proplist_sets(sink_new_data.proplist, PA_PROP_DEVICE_FORM_FACTOR, form_factor);
+             pa_proplist_sets(sink_new_data.proplist, PA_PROP_DEVICE_ICON_NAME, icon);
+ 
+-            if (u->port_ctrl[PORT_SPEAKERS] >= 0 && u->port_ctrl[PORT_HEADPHONES] >= 0)
+-                add_output_ports(u, &sink_new_data);
+-            else if (!analog)
+-                add_hdmi_port(m->core, &sink_new_data);
++            /* Several digital devices (one per GPU) would all have the same
++             * name: number them after their dsp node, "... Audio 2". */
++            if (!analog) {
++                const char *f = pa_path_get_filename(dev);
++                size_t n = strcspn(f, "0123456789");
++
++                if (f[n])
++                    pa_snprintf(desc + strlen(desc), sizeof(desc) - strlen(desc), " %s", f + n);
++                pa_proplist_sets(sink_new_data.proplist, PA_PROP_DEVICE_DESCRIPTION, desc);
++            }
++
++            if ((u->port_ctrl[PORT_SPEAKERS] >= 0 && u->port_ctrl[PORT_HEADPHONES] >= 0) || !analog) {
++                pa_device_port *port;
++                void *state;
++
++                if (!(u->card = new_card(u, dev, analog, desc, product, form_factor, icon))) {
++                    pa_log("Failed to create card object");
++                    pa_sink_new_data_done(&sink_new_data);
++                    pa_xfree(name_buf);
++                    goto fail;
++                }
++                sink_new_data.card = u->card;
++                PA_HASHMAP_FOREACH(port, u->card->ports, state)
++                    pa_assert_se(pa_hashmap_put(sink_new_data.ports, port->name, pa_device_port_ref(port)) >= 0);
++            }
+         }
+ #endif
+         pa_proplist_sets(sink_new_data.proplist, PA_PROP_DEVICE_ACCESS_MODE, use_mmap ? "mmap" : "serial");
+@@ -2357,6 +2436,9 @@
+         pa_device_port_unref(u->port[PORT_SPEAKERS]);
+     if (u->port[PORT_HEADPHONES])
+         pa_device_port_unref(u->port[PORT_HEADPHONES]);
++    /* After the sink (pa_card_free wants the card without sinks). */
++    if (u->card)
++        pa_card_free(u->card);
+ #endif
+     if (u->mixer_fd >= 0)
+         pa_close(u->mixer_fd);

@@ -1,0 +1,198 @@
+module-oss (OSSv4, illumos): monitor name and presence on HDMI/DisplayPort.
+A digital device takes the connected monitor's name as its description
+("DELL U2713HM" instead of "HDMI / DisplayPort Audio 2"): audiohd puts it
+into the device description, so CARDINFO's longname reads
+"DisplayPort: DELL U2713HM (a)" or "HDMI: <name> (a)" (several joined with
+", "); without a name it is the plain description and nothing changes.
+The driver's "hdmi-connected" mixer control (1 = a monitor sensed) sets the
+HDMI port's availability, so desktops hide an output without a monitor.
+Both are re-read in the existing one-second volume poll, so hot-plugging a
+monitor updates them.  With an older audiohd (no hdmi-connected, no names)
+availability stays unknown and the numbered description is kept.
+OpenIndiana project, 2026.
+
+--- a/src/modules/oss/module-oss.c
++++ b/src/modules/oss/module-oss.c
+@@ -68,6 +68,7 @@
+ #include <pulsecore/poll.h>
+ #include <pulsecore/device-port.h>
+ #include <pulsecore/card.h>
++#include <pulsecore/core-subscribe.h>
+ #include <pulse/rtclock.h>
+ #include <pulse/timeval.h>
+ 
+@@ -148,6 +149,13 @@
+     pa_device_port *port[2];
+     pa_card *card;      /* holds the ports, so that clients list them */
+ 
++    /* HDMI/DisplayPort: audiohd's "hdmi-connected" control and the
++     * monitor names in CARDINFO's hw_info ("HDMI: name" lines). */
++    int hdmi_ctrl;
++    int hdmi_connected;
++    pa_device_port *hdmi_port;
++    char hdmi_fallback[128];    /* "HDMI / DisplayPort Audio N" */
++
+     pa_time_event *volume_poll;
+     bool hw_muted;      /* sink mute done in the mixer: control at 0 */
+ #else
+@@ -1464,6 +1472,7 @@
+     int i, n = -1;
+ 
+     u->port_ctrl[0] = u->port_ctrl[1] = -1;
++    u->hdmi_ctrl = -1;
+     *analog = false;
+ 
+     if (u->port_mixer_fd < 0 || ioctl(u->port_mixer_fd, SNDCTL_MIX_NREXT, &n) < 0)
+@@ -1484,6 +1493,9 @@
+             pa_streq(e.extname, "rear") || pa_streq(e.extname, "surround"))
+             *analog = true;
+ 
++        if (pa_streq(e.extname, "hdmi-connected") && e.type == MIXT_ONOFF)
++            u->hdmi_ctrl = i;
++
+         for (k = 0; k < 2; k++)
+             if (pa_streq(e.extname, port_ctrl_names[k]) &&
+                 (e.type == MIXT_STEREOSLIDER || e.type == MIXT_MONOSLIDER)) {
+@@ -1572,7 +1584,7 @@
+     }
+ }
+ 
+-static void add_hdmi_port(pa_core *c, pa_hashmap *ports_map) {
++static pa_device_port *add_hdmi_port(pa_core *c, pa_hashmap *ports_map, pa_available_t available) {
+     pa_device_port_new_data pd;
+     pa_device_port *port;
+ 
+@@ -1580,10 +1592,77 @@
+     pa_device_port_new_data_set_name(&pd, "hdmi-output-0");
+     pa_device_port_new_data_set_description(&pd, "HDMI / DisplayPort");
+     pa_device_port_new_data_set_direction(&pd, PA_DIRECTION_OUTPUT);
+-    pa_device_port_new_data_set_available(&pd, PA_AVAILABLE_UNKNOWN);
++    pa_device_port_new_data_set_available(&pd, available);
+     port = pa_device_port_new(c, &pd, 0);
+     pa_device_port_new_data_done(&pd);
+     pa_hashmap_put(ports_map, port->name, port);
++    return port;
++}
++
++static pa_available_t hdmi_available(struct userdata *u) {
++    if (u->hdmi_ctrl < 0)
++        return PA_AVAILABLE_UNKNOWN;
++    return u->hdmi_connected ? PA_AVAILABLE_YES : PA_AVAILABLE_NO;
++}
++
++/* audiohd's "hdmi-connected": 1 when a monitor is sensed on an HDMI/DP pin. */
++static int read_hdmi_connected(struct userdata *u) {
++    oss_mixer_value v;
++
++    memset(&v, 0, sizeof(v));
++    v.dev = -1;
++    v.ctrl = u->hdmi_ctrl;
++    if (u->hdmi_ctrl < 0 || ioctl(u->port_mixer_fd, SNDCTL_MIX_READ, &v) < 0)
++        return -1;
++    return v.value ? 1 : 0;
++}
++
++/*
++ * The connected monitors' names.  audiohd puts them into the device
++ * description, so CARDINFO's longname reads "DisplayPort: DELL U2713HM (a)"
++ * ("HDMI: <name>", several joined with ", ", or "<controller>, HDMI: <name>"
++ * on a mixed controller); without a monitor name it is the plain
++ * description ("onboard1 (a)").  Names are the items after "HDMI: " or
++ * "DisplayPort: ", joined with ", ".  Empty when there is none.
++ */
++static void hdmi_monitor_names(int fd, char *names, size_t l) {
++    oss_card_info ci;
++    char *item, *next, *paren;
++    size_t n;
++
++    names[0] = 0;
++    memset(&ci, 0, sizeof(ci));
++    ci.card = -1;
++    if (fd < 0 || ioctl(fd, SNDCTL_CARDINFO, &ci) < 0)
++        return;
++    ci.longname[sizeof(ci.longname) - 1] = 0;
++    if ((paren = strrchr(ci.longname, '(')) && paren > ci.longname && paren[-1] == ' ')
++        paren[-1] = 0;
++
++    for (item = ci.longname; item && *item; item = next) {
++        const char *name = NULL;
++
++        if ((next = strstr(item, ", "))) {
++            *next = 0;
++            next += 2;
++        }
++        if (pa_startswith(item, "HDMI: "))
++            name = item + strlen("HDMI: ");
++        else if (pa_startswith(item, "DisplayPort: "))
++            name = item + strlen("DisplayPort: ");
++        if (!name || !*name)
++            continue;
++        n = strlen(names);
++        pa_snprintf(names + n, l - n, "%s%s", n ? ", " : "", name);
++    }
++}
++
++/* The description of a digital device: its monitors, else the fallback. */
++static void hdmi_description(struct userdata *u, char *desc, size_t l) {
++    char names[128];
++
++    hdmi_monitor_names(u->port_mixer_fd, names, sizeof(names));
++    pa_strlcpy(desc, names[0] ? names : u->hdmi_fallback, l);
+ }
+ 
+ /*
+@@ -1619,7 +1698,7 @@
+     if (analog)
+         add_output_ports(u, data.ports);
+     else
+-        add_hdmi_port(u->core, data.ports);
++        u->hdmi_port = add_hdmi_port(u->core, data.ports, hdmi_available(u));
+ 
+     profile = pa_card_profile_new(analog ? "output:analog-stereo" : "output:hdmi-stereo",
+                                   analog ? "Analog Stereo Output" : "Digital Stereo (HDMI) Output", 0);
+@@ -1752,6 +1831,26 @@
+     if (u->source && u->source->get_volume && PA_SOURCE_IS_LINKED(u->source->state))
+         pa_source_get_volume(u->source, true);
+ 
++    /* Monitor plugged in or out: port availability and the name. */
++    if (u->hdmi_port && u->sink && PA_SINK_IS_LINKED(u->sink->state)) {
++        int c = read_hdmi_connected(u);
++        char desc[128];
++
++        if (c >= 0 && c != u->hdmi_connected) {
++            u->hdmi_connected = c;
++            pa_log_info("%s: monitor %s", u->device_name, c ? "connected" : "disconnected");
++            pa_device_port_set_available(u->hdmi_port, hdmi_available(u));
++        }
++        hdmi_description(u, desc, sizeof(desc));
++        if (!pa_safe_streq(desc, pa_proplist_gets(u->sink->proplist, PA_PROP_DEVICE_DESCRIPTION))) {
++            pa_sink_set_description(u->sink, desc);
++            if (u->card) {
++                pa_proplist_sets(u->card->proplist, PA_PROP_DEVICE_DESCRIPTION, desc);
++                pa_subscription_post(u->core, PA_SUBSCRIPTION_EVENT_CARD|PA_SUBSCRIPTION_EVENT_CHANGE, u->card->index);
++            }
++        }
++    }
++
+     pa_core_rttime_restart(u->core, e, pa_rtclock_now() + VOLUME_POLL_USEC);
+ }
+ 
+@@ -1898,6 +1997,7 @@
+     u->device_name = pa_xstrdup(dev);
+ #ifdef HAVE_OSSV4
+     u->port_mixer_fd = -1;
++    u->hdmi_ctrl = -1;
+ #endif
+     u->in_nfrags = u->out_nfrags = (uint32_t) (u->nfrags = nfrags);
+     u->out_fragment_size = u->in_fragment_size = (uint32_t) (u->frag_size = frag_size);
+@@ -2053,6 +2153,10 @@
+ 
+                 if (f[n])
+                     pa_snprintf(desc + strlen(desc), sizeof(desc) - strlen(desc), " %s", f + n);
++                pa_strlcpy(u->hdmi_fallback, desc, sizeof(u->hdmi_fallback));
++                /* The connected monitor's name, when the driver knows it. */
++                u->hdmi_connected = read_hdmi_connected(u) > 0;
++                hdmi_description(u, desc, sizeof(desc));
+                 pa_proplist_sets(sink_new_data.proplist, PA_PROP_DEVICE_DESCRIPTION, desc);
+             }
+ 
