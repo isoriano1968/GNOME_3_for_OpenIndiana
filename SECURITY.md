@@ -146,6 +146,12 @@ illumos has no udisks2. These changes are optional packages:
   - They take effect only after you set `HALD_RUNNER_PATH` on
     `svc:/system/hal`.
   - The same patches are prepared for illumos-gate in `ports/`.
+- **`service/hal` from `ports/hal-ntfs`** (optional) replaces
+  OpenIndiana's own `service/hal` of the same OS build: eleven HAL programs
+  rebuilt from the matching illumos-gate snapshot with six patches, the
+  rest of the package (fdi files, scripts, SMF manifests) unchanged from
+  OpenIndiana. It adds no privileges; its rules make HAL ignore EFI system
+  partitions and ZFS pool members.
 - **`system/file-system/fstyp-ntfs`** lets libfstyp recognise NTFS. It
   only reads the filesystem.
 - **NTFS volumes** are mounted by rmvolmgr under `/media/<label>`. They

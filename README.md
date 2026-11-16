@@ -25,11 +25,11 @@ FirePro D500 GPUs; see [Mac Pro 2013 status](#mac-pro-2013-status).
 
 | Layer | Components |
 |---|---|
-| Session | gnome-shell 45.9, mutter 45.7 (X11), gnome-session 45.0, gnome-settings-daemon 45.1, **gdm 45.0.1** as the login screen, gnome-control-center 41.7, Dash to Dock 90 |
+| Session | gnome-shell 45.9, mutter 45.7 (X11), gnome-session 45.0, gnome-settings-daemon 45.1, **gdm 45.0.1** as the login screen, gnome-control-center 41.7, Dash to Dock 90, the default gnome-shell-extensions 45.2 (Removable Drive Menu on) |
 | Services | polkit 125 (duktape JS engine), accountsservice 0.6.55, colord 1.4.7, geoclue 2.7.2, evolution-data-server 3.50.3, PulseAudio 17.0 |
 | Libraries | libgweather 4.4.4, geocode-glib 3.26.4, gsound 1.0.3, gnome-autoar 0.4.5, colord-gtk 0.3.1, duktape 2.7.0, libportal 0.11.0, libspelling 0.4.11, tinysparql 3.8.2, Cantarell 0.301 |
 | Applications | Files (nautilus 47.6), Terminal 3.60.0, Text Editor 47.4, Calculator 47.3, Disk Usage Analyzer 47.0, File Roller 44.7, Image Viewer (eog 45.4), Document Viewer (evince 48.4), System Monitor 42.0, Screenshot 41.0, GNOME backgrounds 47.0 |
-| Removable drives | NTFS and other USB drives mount automatically under `/media/<label>`, and the user can eject them from the desktop. This uses HAL, rmvolmgr and gvfs, because illumos has no udisks2. It needs four small packages (see below). |
+| Removable drives | NTFS and other USB drives mount automatically under `/media/<label>`, and the user can eject them from the desktop. This uses HAL, rmvolmgr and gvfs, because illumos has no udisks2. It needs four small packages (see below); the top bar's Removable Drive Menu ejects them. |
 | Hardware | volume, mute and media keys work through PulseAudio. Apple keyboards get a gsettings override for Super+F7..F12. |
 
 Not included:
@@ -208,6 +208,14 @@ pfexec svcadm refresh system/hal
 pfexec svcadm restart system/hal rmvolmgr
 ```
 
+For NTFS partitions on MBR disks, GPT volumes, FUSE whole-slice mounts, and
+to hide EFI system partitions and ZFS pool members, `ports/hal-ntfs`
+rebuilds OpenIndiana's `service/hal` with six patches (prepared for
+illumos-gate). It replaces the stock `service/hal` of the same OS build:
+rebuild it after an OS update, and go back with `pkg update` from the
+openindiana.org publisher or by activating the previous boot environment.
+Findings about eject and unmount: [docs/removable-media-eject.md](docs/removable-media-eject.md).
+
 ## Security
 
 People reasonably ask what a desktop port changes on a system. In short:
@@ -264,9 +272,9 @@ to report a problem.
 | `packages/library/` | libraries that are not yet in OpenIndiana |
 | `packages/sysutils/` | polkit, accountsservice, the HAL fixes, NTFS |
 | `packages/fonts/` | Cantarell |
-| `ports/` | the two HAL changes, prepared as illumos-gate patches with issue text and test notes |
+| `ports/` | the HAL changes, prepared as illumos-gate patches with issue text and test notes; `hal-ntfs` builds the patched `service/hal` |
 | `tools/` | `oi-sync.sh` copies the components into an oi-userland checkout; `oi-pipeline.sh` builds, publishes and installs; `oi-deps.sh` and `sample-to-p5m.py` help write manifests; `new-meson-component.py` creates a skeleton for a new component |
-| `docs/` | the engineering log |
+| `docs/` | the engineering log, removable-media findings |
 | `legacy-2024/` | the 2024 dependency survey |
 
 ## The 2024 attempt

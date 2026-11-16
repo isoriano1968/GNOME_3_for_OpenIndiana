@@ -16,3 +16,7 @@ packages/**/amix-userland-*/
 *.log
 *.o
 *.p5p
+# private files (addresses, access details, correspondence): the name
+# carries ".local", and they are never published
+*.local
+*.local.*
