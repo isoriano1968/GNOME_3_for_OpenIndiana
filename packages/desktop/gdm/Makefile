@@ -22,12 +22,13 @@
 #   system/display-manager/gdm   the display manager: daemon, session
 #                                worker, greeter session, SMF service
 #                                (installed disabled next to lightdm).
-# OpenIndiana differences (patches 0030-0032):
+# OpenIndiana differences (patches 0030-0033):
 #   - the greeter's PAM service: Solaris uses user_attr pam_policy, which
 #     illumos lacks; the greeter uses OI's existing gdm-autologin stack;
 #   - ConsoleKit's ck-get-x11-display-device is in /usr/libexec on OI;
 #   - PAM_TTY for every session without systemd (illumos pam_unix_session
 #     needs it; 0032);
+#   - the session gets TZ like login(1) (GLib reads no /etc/default/init; 0033);
 #   - the gdm user and group (uid/gid 50) already come with OI (SUNWcs), so
 #     the manifest does not create them.
 
@@ -38,6 +39,8 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		gdm
 HUMAN_VERSION=		45.0.1
+# excludes OI's GNOME 2 gdm-2 (same paths)
+COMPONENT_REVISION=	4
 COMPONENT_SUMMARY=	GNOME Display Manager (GDM)
 COMPONENT_ARCHIVE_HASH=	\
 	sha256:6572578c05e3c6569d6ed269f7de2aaf3a035657654586d8243907bb7a6ffa85
@@ -56,6 +59,8 @@ CFLAGS +=		-D__EXTENSIONS__ -D_POSIX_PTHREAD_SEMANTICS
 # Solaris' gdm patches use Solaris' non-const PAM prototypes; illumos has
 # both and gives these with _PAM_LEGACY_NONCONST.
 CFLAGS +=		-D_PAM_LEGACY_NONCONST
+# per-thread errno on illumos (GLib programs are threaded)
+CFLAGS +=		-D_REENTRANT
 # bind() & co. (XDMCP) are in libsocket/libnsl on illumos
 LDFLAGS +=		-lsocket -lnsl
 

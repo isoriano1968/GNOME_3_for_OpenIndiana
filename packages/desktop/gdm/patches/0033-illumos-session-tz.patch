@@ -1,0 +1,39 @@
+Give the user session a TZ, as login(1) and sshd do on illumos.
+
+The session worker builds the session environment from scratch, so TZ
+(set for gdm by init from /etc/default/init) did not reach the session.
+libc's localtime() still finds the zone in /etc/default/init, but GLib's
+GTimeZone only looks at TZ and /etc/localtime (absent on illumos) and
+falls back to UTC: the GNOME clock and every GDateTime showed UTC.
+
+Take TIMEZONE= from /etc/default/login when set (login(1)'s key), else
+gdm's own TZ. Needs 0006-etc-default-login.patch (gdm_read_default).
+
+--- a/daemon/gdm-session-worker.c	2026-11-11 08:44:02.776290764 +0100
++++ b/daemon/gdm-session-worker.c	2026-11-11 08:44:02.891208008 +0100
+@@ -1920,6 +1920,25 @@
+ 
+ 	gdm_session_worker_set_environment_variable (worker, "PATH", path_str);
+ 
++#ifdef __sun
++        /*
++         * Like login(1) and sshd: give the session a TZ, from TIMEZONE= in
++         * /etc/default/login, else gdm's own (init's, /etc/default/init).
++         * GLib's GTimeZone does not read /etc/default/init and falls back
++         * to UTC without TZ.
++         */
++        if (!gdm_session_worker_environment_variable_is_set (worker, "TZ")) {
++                g_autofree char *tz_str = gdm_read_default ("TIMEZONE=");
++
++                if (tz_str == NULL || tz_str[0] == '\0') {
++                        g_free (tz_str);
++                        tz_str = g_strdup (g_getenv ("TZ"));
++                }
++                if (tz_str != NULL && tz_str[0] != '\0')
++                        gdm_session_worker_set_environment_variable (worker, "TZ", tz_str);
++        }
++#endif
++
+         if (! _change_user (worker, uid, gid)) {
+                 g_debug ("GdmSessionWorker: Unable to change to user");
+                 error_code = PAM_SYSTEM_ERR;

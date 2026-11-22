@@ -33,6 +33,17 @@ set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
 
 license $(COMPONENT_LICENSE_FILE) license='$(COMPONENT_LICENSE)'
 
+# OpenIndiana's GNOME 2 display manager (renamed gdm-2) delivers the same
+# paths (etc/gdm, the SMF service, gdmflexiserver); the two exclude each other.
+depend type=exclude fmri=system/display-manager/gdm-2
+# pkglint ignores exclude dependencies and reports every shared path and
+# directory against gdm-2 (dupaction001/007/009); with the exclude above the
+# two are never installed together.
+<transform file dir link hardlink -> default pkg.linted.pkglint.dupaction true>
+# dupaction007 (reference-counted dirs with other attributes in gdm-2) is
+# judged per package, not per action.
+set name=pkg.linted.pkglint.dupaction007 value=true
+
 dir  path=var/cache/gdm group=gdm mode=0755
 dir  path=var/lib/gdm owner=gdm group=gdm mode=1770
 dir  path=var/lib/gdm/.local owner=gdm group=gdm mode=0770
