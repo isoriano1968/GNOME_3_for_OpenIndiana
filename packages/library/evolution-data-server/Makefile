@@ -27,6 +27,8 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		evolution-data-server
 HUMAN_VERSION=		3.50.3
+# rebuilt with -D_REENTRANT (per-thread errno)
+COMPONENT_REVISION=	2
 COMPONENT_PROJECT_URL=	https://gitlab.gnome.org/GNOME/evolution-data-server
 COMPONENT_SUMMARY=	Evolution Data Server - address book and calendar backends
 COMPONENT_ARCHIVE_HASH=	\
@@ -44,6 +46,8 @@ include $(WS_MAKE_RULES)/common.mk
 CFLAGS +=		-D__EXTENSIONS__ -D_POSIX_PTHREAD_SEMANTICS
 # POSIX iconv() prototype (char **), as Solaris: illumos gives it with _XPG6.
 CFLAGS +=		$(XPG6MODE)
+# per-thread errno on illumos (GLib programs are threaded)
+CFLAGS +=		-D_REENTRANT
 # getaddrinfo() & co. are in libsocket/libnsl on illumos (in libc on Solaris 11.4)
 LDFLAGS +=		-lsocket -lnsl
 # camel needs libicuuc too (its CMake links only ICU_LDFLAGS for icu-i18n);
@@ -85,7 +89,7 @@ REQUIRED_PACKAGES += library/desktop/gtk4
 REQUIRED_PACKAGES += library/desktop/json-glib
 REQUIRED_PACKAGES += library/desktop/libgweather
 REQUIRED_PACKAGES += library/glib2
-REQUIRED_PACKAGES += library/icu-78
+REQUIRED_PACKAGES += library/icu-79
 REQUIRED_PACKAGES += library/libical
 # iconv-detect needs ISO-2022-JP <-> UTF-8 (also used at run time by camel)
 REQUIRED_PACKAGES += system/library/iconv/extra

@@ -25,6 +25,8 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		tinysparql
 HUMAN_VERSION=		3.8.2
+# rebuilt with -D_REENTRANT (per-thread errno)
+COMPONENT_REVISION=	2
 COMPONENT_SUMMARY=	TinySPARQL (Tracker 3) - SPARQL triple store library
 COMPONENT_PROJECT_URL=	https://gnome.pages.gitlab.gnome.org/tinysparql/
 COMPONENT_ARCHIVE_HASH=	\
@@ -44,6 +46,8 @@ CFLAGS +=		-D__EXTENSIONS__ -D_POSIX_PTHREAD_SEMANTICS
 # bzero() (tracker-resource.c, tracker-vtab-*.c) is declared in <strings.h>
 # on illumos, which those files do not include
 CFLAGS +=		-include strings.h
+# per-thread errno on illumos (GLib programs are threaded)
+CFLAGS +=		-D_REENTRANT
 
 CONFIGURE_OPTIONS +=	--libexecdir=$(USRLIBEXECDIR)
 CONFIGURE_OPTIONS +=	-Ddocs=false
@@ -64,7 +68,7 @@ REQUIRED_PACKAGES += database/sqlite-3
 REQUIRED_PACKAGES += library/desktop/gobject/gobject-introspection
 REQUIRED_PACKAGES += library/desktop/json-glib
 REQUIRED_PACKAGES += library/glib2
-REQUIRED_PACKAGES += library/icu-78
+REQUIRED_PACKAGES += library/icu-79
 REQUIRED_PACKAGES += library/libsoup3
 REQUIRED_PACKAGES += library/libxml2
 REQUIRED_PACKAGES += system/library

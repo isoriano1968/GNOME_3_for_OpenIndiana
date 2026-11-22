@@ -24,6 +24,8 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		libportal
 HUMAN_VERSION=		0.11.0
+# rebuilt with -D_REENTRANT (per-thread errno)
+COMPONENT_REVISION=	1
 COMPONENT_SUMMARY=	libportal - GIO-style async API for the XDG desktop portals
 COMPONENT_PROJECT_URL=	https://github.com/flatpak/libportal
 COMPONENT_ARCHIVE_HASH=	\
@@ -40,6 +42,8 @@ include $(WS_MAKE_RULES)/gnome.mk
 include $(WS_MAKE_RULES)/common.mk
 
 CFLAGS +=		-D__EXTENSIONS__ -D_POSIX_PTHREAD_SEMANTICS
+# per-thread errno on illumos (GLib programs are threaded)
+CFLAGS +=		-D_REENTRANT
 
 CONFIGURE_OPTIONS +=	--libexecdir=$(USRLIBEXECDIR)
 CONFIGURE_OPTIONS +=	-Dbackend-gtk3=enabled

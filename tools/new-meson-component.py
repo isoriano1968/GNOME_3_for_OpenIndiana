@@ -63,7 +63,9 @@ lines = [head + comment, "",
          f"COMPONENT_ARCHIVE_URL=\t{spec['url']}",
          "include $(WS_MAKE_RULES)/gnome.mk",
          "include $(WS_MAKE_RULES)/common.mk", "",
-         "CFLAGS +=\t\t-D__EXTENSIONS__ -D_POSIX_PTHREAD_SEMANTICS"]
+         "CFLAGS +=\t\t-D__EXTENSIONS__ -D_POSIX_PTHREAD_SEMANTICS",
+         "# per-thread errno on illumos (GLib programs are threaded)",
+         "CFLAGS +=\t\t-D_REENTRANT"]
 if spec.get("cflags"):
     lines.append(f"CFLAGS +=\t\t{spec['cflags']}")
 if spec.get("ldflags"):

@@ -33,7 +33,8 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		pulseaudio
 COMPONENT_VERSION=	17.0
-COMPONENT_REVISION=	7
+# rebuilt with -D_REENTRANT (per-thread errno)
+COMPONENT_REVISION=	9
 COMPONENT_SUMMARY=	Sample Rate Converter for audio
 COMPONENT_SRC=		$(COMPONENT_NAME)-$(COMPONENT_VERSION)
 COMPONENT_ARCHIVE=	$(COMPONENT_SRC).tar.xz
@@ -51,11 +52,16 @@ PATH= $(PATH.gnu)
 CFLAGS += -Wno-error=incompatible-pointer-types
 CFLAGS += -Wno-error=implicit-function-declaration
 CFLAGS += -Wno-error=int-conversion
+# per-thread errno on illumos (GLib programs are threaded)
+CFLAGS +=		-D_REENTRANT
 
 # MESON_BUILDTYPE = debug
 # COMPONENT_BUILD_ARGS += --verbose
 LDFLAGS += -lnsl -lsocket
 
+# Not run from the build tree: without this, meson compiles the build
+# directory into libpulsecommon (PA_BUILDDIR), a build host path.
+CONFIGURE_OPTIONS += -Drunning-from-build-tree=false
 
 CONFIGURE_OPTIONS.32 += -Davahi=disabled
 CONFIGURE_OPTIONS.32 += -Ddbus=disabled

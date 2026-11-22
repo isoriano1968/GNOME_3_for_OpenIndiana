@@ -27,6 +27,8 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		geocode-glib
 HUMAN_VERSION=		3.26.4
+# rebuilt with -D_REENTRANT (per-thread errno)
+COMPONENT_REVISION=	1
 COMPONENT_SUMMARY=	geocode-glib (libsoup 3 API 2.0) - geocoding and reverse geocoding
 COMPONENT_ARCHIVE_HASH=	\
 	sha256:2d9a6826d158470449a173871221596da0f83ebdcff98b90c7049089056a37aa
@@ -40,6 +42,9 @@ TEST_TARGET=		$(NO_TESTS)
 
 include $(WS_MAKE_RULES)/gnome.mk
 include $(WS_MAKE_RULES)/common.mk
+
+# per-thread errno on illumos (GLib programs are threaded)
+CFLAGS +=		-D_REENTRANT
 
 CONFIGURE_OPTIONS +=	--libexecdir=$(USRLIBEXECDIR)
 CONFIGURE_OPTIONS +=	-Dsoup2=false

@@ -25,6 +25,8 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		gnome-calculator
 HUMAN_VERSION=		47.3
+# rebuilt with -D_REENTRANT (per-thread errno)
+COMPONENT_REVISION=	1
 COMPONENT_SUMMARY=	GNOME Calculator
 COMPONENT_PROJECT_URL=	https://gitlab.gnome.org/GNOME/gnome-calculator
 COMPONENT_ARCHIVE_HASH=	\
@@ -41,6 +43,8 @@ include $(WS_MAKE_RULES)/gnome.mk
 include $(WS_MAKE_RULES)/common.mk
 
 CFLAGS +=		-D__EXTENSIONS__ -D_POSIX_PTHREAD_SEMANTICS
+# per-thread errno on illumos (GLib programs are threaded)
+CFLAGS +=		-D_REENTRANT
 
 CONFIGURE_OPTIONS +=	--libexecdir=$(USRLIBEXECDIR)
 CONFIGURE_OPTIONS +=	-Ddoc=false
