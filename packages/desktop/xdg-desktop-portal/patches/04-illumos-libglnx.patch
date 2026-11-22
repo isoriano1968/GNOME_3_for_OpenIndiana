@@ -1,0 +1,232 @@
+illumos port of libglnx (FreeBSD's fork arrowd/libglnx at c210033e, which
+the component unpacks into subprojects/libglnx, as FreeBSD's port does):
+- its raw Linux system calls (statx, openat2, open_tree, renameat2, ...)
+  fail with ENOSYS instead of raising SIGSYS with unknown numbers;
+- no O_TMPFILE fallback bit (it means something else on illumos), an
+  AT_EMPTY_PATH value no illumos flag uses, no O_PATH (open for reading);
+- no FICLONE ioctl, no sendfile() (read/write is used), TIOCGWINSZ from
+  <sys/termios.h>, no Linux fstatfs() automount check;
+- struct dirent has no d_type: new glnx_dirent_is_dir() for the callers.
+
+Not upstream yet; meant for https://gitlab.gnome.org/GNOME/libglnx
+
+diff -ruN a/subprojects/libglnx/glnx-chase.c b/subprojects/libglnx/glnx-chase.c
+--- a/subprojects/libglnx/glnx-chase.c
++++ b/subprojects/libglnx/glnx-chase.c
+@@ -27,6 +27,11 @@
+ #include <glnx-local-alloc.h>
+ #include <glnx-missing.h>
+ 
++#if defined(__sun) && !defined(O_PATH)
++/* illumos has no O_PATH: open for reading instead */
++#define O_PATH 0
++#endif
++
+ #include <glnx-chase.h>
+ 
+ #ifndef AT_NO_AUTOMOUNT
+@@ -214,6 +219,7 @@
+   if (fd < 0)
+     return glnx_fd_throw_errno_prefix (error, "openat in open_tree fallback");
+ 
++#ifndef __sun
+   /* openat does not trigger automounts, so we have to manually do so
+    * unless NO_AUTOMOUNT was specified */
+   if ((flags & GLNX_CHASE_NO_AUTOMOUNT) == 0)
+@@ -264,6 +270,7 @@
+           return g_steal_fd (&new_fd);
+         }
+     }
++#endif
+ 
+   return g_steal_fd (&fd);
+ }
+diff -ruN a/subprojects/libglnx/glnx-console.c b/subprojects/libglnx/glnx-console.c
+--- a/subprojects/libglnx/glnx-console.c
++++ b/subprojects/libglnx/glnx-console.c
+@@ -29,6 +29,9 @@
+ #include <stdio.h>
+ #include <errno.h>
+ #include <sys/ioctl.h>
++#ifdef __sun
++#include <sys/termios.h> /* TIOCGWINSZ, struct winsize */
++#endif
+ 
+ /* For people with widescreen monitors and maximized terminals, it looks pretty
+  * bad to have an enormous progress bar. For much the same reason as web pages
+diff -ruN a/subprojects/libglnx/glnx-dirfd.c b/subprojects/libglnx/glnx-dirfd.c
+--- a/subprojects/libglnx/glnx-dirfd.c
++++ b/subprojects/libglnx/glnx-dirfd.c
+@@ -214,6 +214,7 @@
+   if (!glnx_dirfd_iterator_next_dent (dfd_iter, out_dent, cancellable, error))
+     return FALSE;
+ 
++#ifndef GLNX_DIRENT_NO_D_TYPE
+   struct dirent *ret_dent = *out_dent;
+   if (ret_dent)
+     {
+@@ -226,6 +227,7 @@
+           ret_dent->d_type = IFTODT (stbuf.st_mode);
+         }
+     }
++#endif
+ 
+   return TRUE;
+ }
+diff -ruN a/subprojects/libglnx/glnx-dirfd.h b/subprojects/libglnx/glnx-dirfd.h
+--- a/subprojects/libglnx/glnx-dirfd.h
++++ b/subprojects/libglnx/glnx-dirfd.h
+@@ -26,6 +26,12 @@
+ #include <glnx-errors.h>
+ #include <limits.h>
+ #include <dirent.h>
++#ifdef __sun
++/* illumos: struct dirent has no d_type, so
++ * glnx_dirfd_iterator_next_dent_ensure_dtype() cannot fill it in; use
++ * glnx_dirent_is_dir() to ask whether an entry is a directory. */
++#define GLNX_DIRENT_NO_D_TYPE 1
++#endif
+ #include <sys/stat.h>
+ #include <fcntl.h>
+ 
+@@ -136,4 +142,24 @@
+ gboolean glnx_mkdtemp (const char *tmpl, int      mode,
+                        GLnxTmpDir *out_tmpdir, GError **error);
+ 
++/**
++ * glnx_dirent_is_dir:
++ * @dfd: The directory the entry was read from
++ * @dent: An entry from glnx_dirfd_iterator_next_dent_ensure_dtype()
++ *
++ * Returns: %TRUE if @dent is a directory (not following symlinks)
++ */
++static inline gboolean
++glnx_dirent_is_dir (int dfd, struct dirent *dent)
++{
++#ifdef GLNX_DIRENT_NO_D_TYPE
++  struct stat stbuf;
++  return fstatat (dfd, dent->d_name, &stbuf, AT_SYMLINK_NOFOLLOW) == 0 &&
++         S_ISDIR (stbuf.st_mode);
++#else
++  (void) dfd;
++  return dent->d_type == DT_DIR;
++#endif
++}
++
+ G_END_DECLS
+diff -ruN a/subprojects/libglnx/glnx-fdio.c b/subprojects/libglnx/glnx-fdio.c
+--- a/subprojects/libglnx/glnx-fdio.c
++++ b/subprojects/libglnx/glnx-fdio.c
+@@ -45,6 +45,11 @@
+ #include <glnx-local-alloc.h>
+ #include <glnx-missing.h>
+ 
++#if defined(__sun) && !defined(O_PATH)
++/* illumos has no O_PATH: open for reading instead */
++#define O_PATH 0
++#endif
++
+ /* From systemd mountpoint-util.c at d2b27a7:
+  * This is the original MAX_HANDLE_SZ definition from the kernel, when the API
+  * was introduced. We use that in place of any more currently defined value to
+@@ -58,7 +63,7 @@
+ #define ORIGINAL_MAX_HANDLE_SZ 128
+ 
+ /* The standardized version of BTRFS_IOC_CLONE */
+-#ifndef FICLONE
++#if !defined(FICLONE) && !defined(__sun)
+ #define FICLONE _IOW(0x94, 9, int)
+ #endif
+ 
+@@ -829,6 +834,7 @@
+       lseek (fdf, 0, SEEK_CUR) == 0 &&
+       lseek (fdt, 0, SEEK_CUR) == 0)
+     {
++#ifdef FICLONE
+       if (ioctl (fdt, FICLONE, fdf) == 0)
+         {
+           /* All the other methods advance the fds. Do it here too for consistency. */
+@@ -839,6 +845,7 @@
+ 
+           return 0;
+         }
++#endif /* FICLONE: no reflink ioctl on illumos */
+ 
+       /* Fall through */
+       struct stat stbuf;
+@@ -902,7 +909,14 @@
+        */
+       if (try_sendfile && max_bytes != (off_t) -1)
+         {
++#ifdef __sun
++          /* illumos' sendfile() lives in libsendfile; plain read()/write()
++           * is enough here */
++          n = -1;
++          errno = ENOSYS;
++#else
+           n = sendfile (fdt, fdf, NULL, max_bytes);
++#endif
+           if (n < 0)
+             {
+               if (G_IN_SET (errno, EINVAL, ENOSYS))
+diff -ruN a/subprojects/libglnx/glnx-missing-syscall.h b/subprojects/libglnx/glnx-missing-syscall.h
+--- a/subprojects/libglnx/glnx-missing-syscall.h
++++ b/subprojects/libglnx/glnx-missing-syscall.h
+@@ -35,6 +35,14 @@
+ #include <glib.h>
+ #include <stdint.h>
+ 
++#ifdef __sun
++/* illumos has none of the Linux system calls wrapped below, and a system
++ * call number it does not know raises SIGSYS.  Make every one of them fail
++ * with ENOSYS, which the callers already handle.  (#undef at the end.) */
++#include <errno.h>
++#define syscall(...) (errno = ENOSYS, -1)
++#endif
++
+ #if !HAVE_DECL_RENAMEAT2
+ #  ifndef __NR_renameat2
+ #    if defined __x86_64__
+@@ -692,3 +700,7 @@
+ }
+ 
+ #endif
++
++#ifdef __sun
++#undef syscall
++#endif
+diff -ruN a/subprojects/libglnx/glnx-missing.h b/subprojects/libglnx/glnx-missing.h
+--- a/subprojects/libglnx/glnx-missing.h
++++ b/subprojects/libglnx/glnx-missing.h
+@@ -78,10 +78,18 @@
+ #endif
+ 
+ /* a horrid kludge trying to make sure that this will fail on old kernels */
+-#ifndef O_TMPFILE
++/* (not on illumos: the Linux bit would mean something else there) */
++#if !defined(O_TMPFILE) && !defined(__sun)
+ #define O_TMPFILE (__O_TMPFILE | O_DIRECTORY)
+ #endif
+ 
++#if defined(__sun) && !defined(AT_EMPTY_PATH)
++/* illumos has no AT_EMPTY_PATH; a bit no illumos AT_* flag uses, so that
++ * the flag checks compile.  It only reaches the Linux system calls, which
++ * fail with ENOSYS on illumos (glnx-missing-syscall.h). */
++#define AT_EMPTY_PATH 0x40000000
++#endif
++
+ #ifndef RENAME_NOREPLACE
+ #define RENAME_NOREPLACE (1 << 0)
+ #endif
+diff -ruN a/subprojects/libglnx/glnx-shutil.c b/subprojects/libglnx/glnx-shutil.c
+--- a/subprojects/libglnx/glnx-shutil.c
++++ b/subprojects/libglnx/glnx-shutil.c
+@@ -56,7 +56,7 @@
+       if (dent == NULL)
+         break;
+ 
+-      if (dent->d_type == DT_DIR)
++      if (glnx_dirent_is_dir (dfd_iter->fd, dent))
+         {
+           g_auto(GLnxDirFdIterator) child_dfd_iter = { 0, };
+ 

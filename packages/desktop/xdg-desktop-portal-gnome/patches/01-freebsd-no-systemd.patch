@@ -1,0 +1,53 @@
+No systemd: from FreeBSD's x11/xdg-desktop-portal-gnome
+(files/patch-meson.build, patch-data_meson.build, patch-src_screencastwidget.c
+and the post-patch that comments out SystemdService=):
+https://github.com/freebsd/freebsd-ports/tree/main/x11/xdg-desktop-portal-gnome
+-Dsystemduserunitdir=no then installs no user unit and does not look for
+systemd; D-Bus session activation starts the backend.  "ulong" is not a
+type everywhere; gulong is.
+
+diff -ruN a/data/meson.build b/data/meson.build
+--- a/data/meson.build
++++ b/data/meson.build
+@@ -42,7 +42,7 @@
+ )
+ 
+ # systemd unit
+-if systemduserunitdir != ''
++if systemduserunitdir != 'no'
+   configure_file(
+     input: 'xdg-desktop-portal-gnome.service.in',
+     output: 'xdg-desktop-portal-gnome.service',
+diff -ruN a/data/org.freedesktop.impl.portal.desktop.gnome.service.in b/data/org.freedesktop.impl.portal.desktop.gnome.service.in
+--- a/data/org.freedesktop.impl.portal.desktop.gnome.service.in
++++ b/data/org.freedesktop.impl.portal.desktop.gnome.service.in
+@@ -1,4 +1,4 @@
+ [D-BUS Service]
+ Name=org.freedesktop.impl.portal.desktop.gnome
+ Exec=@libexecdir@/xdg-desktop-portal-gnome
+-SystemdService=xdg-desktop-portal-gnome.service
++#SystemdService=xdg-desktop-portal-gnome.service
+diff -ruN a/meson.build b/meson.build
+--- a/meson.build
++++ b/meson.build
+@@ -13,7 +13,7 @@
+ 
+ build_systemd_service = get_option('systemd')
+ systemduserunitdir = get_option('systemduserunitdir')
+-if systemduserunitdir == ''
++if systemduserunitdir != 'no'
+   systemd = dependency('systemd', version: '>= 242', required: build_systemd_service)
+   if build_systemd_service.allowed() and systemd.found()
+     systemduserunitdir = systemd.get_variable(
+diff -ruN a/src/screencastwidget.c b/src/screencastwidget.c
+--- a/src/screencastwidget.c
++++ b/src/screencastwidget.c
+@@ -57,7 +57,7 @@
+   ScreenCastPersistMode  persist_mode;
+ 
+   DisplayStateTracker   *display_state_tracker;
+-  ulong                  monitors_changed_handler_id;
++  gulong                 monitors_changed_handler_id;
+ 
+   ShellIntrospect       *shell_introspect;
+   GListModel            *filter_model;

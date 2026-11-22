@@ -1,0 +1,270 @@
+illumos port of the portal itself:
+- no memfd_create() and no file sealing: sealed fds (icons, sounds) are
+  refused with G_IO_ERROR_NOT_SUPPORTED instead of being taken unsealed;
+- no O_PATH: only regular fds are accepted; the path of an fd is read from
+  /proc/self/path/N (on illumos /proc/self/fd/N are not symlinks);
+- no Linux statfs(): the NFS check of the permission store uses statvfs()
+  f_basetype; the FUSE root checks of the (disabled) Flatpak/Linyaps code
+  are left out;
+- no d_type in struct dirent; _IO() comes from <sys/ioccom.h>;
+- libglnx: loff_t for its copy_file_range() fallback, no fallocate();
+- the trash portal is not registered: it needs Linux statx().
+
+Not upstream yet; meant for https://github.com/flatpak/xdg-desktop-portal
+(and libglnx, https://gitlab.gnome.org/GNOME/libglnx)
+
+diff -ruN a/document-portal/permission-db.c b/document-portal/permission-db.c
+--- a/document-portal/permission-db.c
++++ b/document-portal/permission-db.c
+@@ -39,6 +39,9 @@
+ #if HAVE_SYS_MOUNT_H
+ #include <sys/mount.h>
+ #endif
++#ifdef __sun
++#include <sys/statvfs.h>
++#endif
+ 
+ struct PermissionDb
+ {
+@@ -244,11 +247,24 @@
+ 
+   dirname = g_path_get_dirname (path);
+ 
++#ifdef __sun
++  /* illumos: the SVR4 statfs() has no f_type; statvfs() names the type */
++  {
++    struct statvfs statvfs_buffer;
++
++    (void) statfs_buffer;
++    (void) statfs_result;
++    if (statvfs (dirname, &statvfs_buffer) != 0)
++      return FALSE;
++    return strncmp (statvfs_buffer.f_basetype, "nfs", 3) == 0;
++  }
++#else
+   statfs_result = statfs (dirname, &statfs_buffer);
+   if (statfs_result != 0)
+     return FALSE;
+ 
+   return statfs_buffer.f_type == 0x6969;
++#endif
+ }
+ 
+ static gboolean
+diff -ruN a/src/trash.c b/src/trash.c
+--- a/src/trash.c
++++ b/src/trash.c
+@@ -103,7 +103,7 @@
+           return FALSE;
+         }
+ 
+-      if (dent->d_type == DT_DIR)
++      if (glnx_dirent_is_dir (dfd_iter.fd, dent))
+         {
+           g_autofd int child = -1;
+           struct glnx_statx stx;
+diff -ruN a/src/xdp-app-info-flatpak.c b/src/xdp-app-info-flatpak.c
+--- a/src/xdp-app-info-flatpak.c
++++ b/src/xdp-app-info-flatpak.c
+@@ -658,6 +658,7 @@
+   root_fd = openat (AT_FDCWD, root_path, O_RDONLY | O_NONBLOCK | O_DIRECTORY | O_CLOEXEC | O_NOCTTY);
+   if (root_fd == -1)
+     {
++#ifndef __sun /* no statfs() on illumos, and no FUSE root here */
+       if (errno == EACCES)
+         {
+           struct statfs buf;
+@@ -675,6 +676,7 @@
+               return -1;
+             }
+         }
++#endif
+ 
+       /* Otherwise, we should be able to open the root dir. Probably the app died and
+          we're failing due to /proc/$pid not existing. In that case fail instead
+diff -ruN a/src/xdp-app-info-linyaps.c b/src/xdp-app-info-linyaps.c
+--- a/src/xdp-app-info-linyaps.c
++++ b/src/xdp-app-info-linyaps.c
+@@ -127,6 +127,7 @@
+   root_fd = openat (AT_FDCWD, root_path, O_RDONLY | O_NONBLOCK | O_DIRECTORY | O_CLOEXEC | O_NOCTTY);
+   if (root_fd == -1)
+     {
++#ifndef __sun /* no statfs() on illumos, and no FUSE root here */
+       if (errno == EACCES)
+         {
+           struct statfs buf;
+@@ -139,6 +140,7 @@
+             return -1;
+           }
+         }
++#endif
+ 
+       g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED, "Unable to open %s",
+                    root_path);
+diff -ruN a/src/xdp-app-info.c b/src/xdp-app-info.c
+--- a/src/xdp-app-info.c
++++ b/src/xdp-app-info.c
+@@ -741,7 +741,13 @@
+         }
+     }
+ 
++#ifdef __sun
++  /* illumos: /proc/self/fd/N are the files themselves, the symlinks to
++   * their paths are /proc/self/path/N */
++  proc_path = g_strdup_printf ("/proc/self/path/%d", fd);
++#else
+   proc_path = g_strdup_printf ("/proc/self/fd/%d", fd);
++#endif
+ 
+   /* Must be able to read valid path from /proc/self/fd */
+   /* This is an absolute and (at least at open time) symlink-expanded path */
+@@ -749,6 +755,7 @@
+   if (path == NULL)
+     return NULL;
+ 
++#ifdef O_PATH /* illumos has no O_PATH: only regular fds are passed */
+   if ((fd_flags & O_PATH) == O_PATH)
+     {
+       int read_access_mode;
+@@ -799,6 +806,7 @@
+         writable = TRUE;
+     }
+   else /* Regular file with no O_PATH */
++#endif
+     {
+       int accmode = fd_flags & O_ACCMODE;
+ 
+diff -ruN a/src/xdp-context.c b/src/xdp-context.c
+--- a/src/xdp-context.c
++++ b/src/xdp-context.c
+@@ -386,7 +386,12 @@
+   init_power_profile_monitor (context);
+   init_network_monitor (context);
+   init_proxy_resolver (context);
++#ifndef __sun
++  /* The trash portal checks files with Linux statx(), which illumos does
++   * not have (libglnx returns ENOSYS); applications on the host trash
++   * through GIO directly. */
+   init_trash (context);
++#endif
+   init_game_mode (context);
+   init_realtime (context);
+   init_settings (context);
+diff -ruN a/src/xdp-sealed-fd.c b/src/xdp-sealed-fd.c
+--- a/src/xdp-sealed-fd.c
++++ b/src/xdp-sealed-fd.c
+@@ -34,7 +34,16 @@
+ 
+ #include "xdp-utils.h"
+ 
++#ifdef F_ADD_SEALS
+ #define REQUIRED_SEALS (F_SEAL_GROW | F_SEAL_WRITE | F_SEAL_SHRINK)
++#else
++/* illumos has no memfd_create() and no file sealing: sealed fds (icons and
++ * sounds passed by apps) are refused instead of being accepted unsealed. */
++#define XDP_NO_SEALED_FDS 1
++#define XDP_NO_SEALED_FDS_ERROR(error) \
++  g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED, \
++                       "Sealed file descriptors are not supported on this system")
++#endif
+ 
+ struct _XdpSealedFd
+ {
+@@ -82,6 +91,11 @@
+ 
+   g_return_val_if_fail (fd != -1, NULL);
+ 
++#ifdef XDP_NO_SEALED_FDS
++  XDP_NO_SEALED_FDS_ERROR (error);
++  return NULL;
++#else
++
+   seals = fcntl (fd, F_GET_SEALS);
+   if (seals == -1)
+    {
+@@ -113,6 +127,7 @@
+   sealed_fd->fd = g_steal_fd (&fd);
+ 
+   return g_steal_pointer (&sealed_fd);
++#endif
+ }
+ 
+ XdpSealedFd *
+@@ -129,6 +144,11 @@
+ 
+   g_return_val_if_fail (bytes != NULL, NULL);
+ 
++#ifdef XDP_NO_SEALED_FDS
++  XDP_NO_SEALED_FDS_ERROR (error);
++  return NULL;
++#else
++
+   fd = memfd_create ("xdp-sealed-fd", MFD_ALLOW_SEALING);
+   if (fd == -1)
+     {
+@@ -197,6 +217,7 @@
+   sealed_fd->fd = g_steal_fd (&fd);
+ 
+   return g_steal_pointer (&sealed_fd);
++#endif
+ }
+ 
+ XdpSealedFd *
+diff -ruN a/src/xdp-utils.c b/src/xdp-utils.c
+--- a/src/xdp-utils.c
++++ b/src/xdp-utils.c
+@@ -46,6 +46,10 @@
+ #include <sys/syscall.h>
+ #endif
+ 
++#ifdef __sun
++#include <sys/ioccom.h>
++#endif
++
+ #define PIDFS_IOCTL_MAGIC 0xFF
+ #define PIDFD_GET_PID_NAMESPACE _IO(PIDFS_IOCTL_MAGIC, 5)
+ 
+@@ -1257,8 +1261,10 @@
+       ino_t ns = 0;
+       int r;
+ 
++#ifdef DT_DIR /* no d_type on illumos; the O_DIRECTORY open below checks it */
+       if (de->d_type != DT_DIR)
+         continue;
++#endif
+ 
+       pid_dirfd = openat (dirfd (proc), de->d_name,
+                           O_RDONLY | O_NONBLOCK | O_DIRECTORY | O_CLOEXEC | O_NOCTTY);
+diff -ruN a/subprojects/libglnx/glnx-fdio.h b/subprojects/libglnx/glnx-fdio.h
+--- a/subprojects/libglnx/glnx-fdio.h
++++ b/subprojects/libglnx/glnx-fdio.h
+@@ -234,6 +234,7 @@
+   if (size == 0)
+     return TRUE;
+ 
++#ifndef __sun
+   if (fallocate (fd, 0, offset, size) < 0)
+     {
+       if (G_IN_SET(errno, ENOSYS, EOPNOTSUPP))
+@@ -241,6 +242,7 @@
+       else
+         return glnx_throw_errno_prefix (error, "fallocate");
+     }
++#endif /* illumos has no fallocate(); it is only a hint here */
+ 
+   return TRUE;
+ }
+diff -ruN a/subprojects/libglnx/glnx-missing-syscall.h b/subprojects/libglnx/glnx-missing-syscall.h
+--- a/subprojects/libglnx/glnx-missing-syscall.h
++++ b/subprojects/libglnx/glnx-missing-syscall.h
+@@ -123,6 +123,10 @@
+    CommitDate: Thu Jul 27 07:22:54 2017 -0400
+ */
+ #if !HAVE_DECL_COPY_FILE_RANGE
++#  if defined(__sun)
++/* illumos has neither copy_file_range() nor loff_t */
++typedef off_t loff_t;
++#  endif
+ #  ifndef __NR_copy_file_range
+ #    if defined(__x86_64__)
+ #      define __NR_copy_file_range 326

@@ -1,0 +1,63 @@
+From FreeBSD's deskutils/xdg-desktop-portal (files/patch-src_xdp-utils.c,
+patch-src_xdp-app-info-flatpak.c, patch-src_xdp-app-info-linyaps.c):
+https://github.com/freebsd/freebsd-ports/tree/main/deskutils/xdg-desktop-portal/files
+pidfd_open() is not available (D-Bus credentials are used instead), and no
+process is a Flatpak or Linyaps app (their /proc/PID/root checks are Linux
+only).
+
+diff -ruN a/src/xdp-app-info-flatpak.c b/src/xdp-app-info-flatpak.c
+--- a/src/xdp-app-info-flatpak.c
++++ b/src/xdp-app-info-flatpak.c
+@@ -27,6 +27,7 @@
+ 
+ #include <errno.h>
+ #include <fcntl.h>
++#include <sys/mount.h>
+ 
+ #include <json-glib/json-glib.h>
+ 
+@@ -645,6 +646,10 @@
+ open_flatpak_info (int      pid,
+                    GError **error)
+ {
++  g_set_error (error, XDP_APP_INFO_ERROR, XDP_APP_INFO_ERROR_WRONG_APP_KIND,
++                           "Certainly not a flatpak");
++  return -1;
++
+   g_autofree char *root_path = NULL;
+   g_autofd int root_fd = -1;
+   g_autofd int info_fd = -1;
+diff -ruN a/src/xdp-app-info-linyaps.c b/src/xdp-app-info-linyaps.c
+--- a/src/xdp-app-info-linyaps.c
++++ b/src/xdp-app-info-linyaps.c
+@@ -26,6 +26,7 @@
+ 
+ #include <errno.h>
+ #include <fcntl.h>
++#include <sys/mount.h>
+ 
+ #if HAVE_SYS_VFS_H
+ #include <sys/vfs.h>
+@@ -118,6 +119,10 @@
+   g_autofd int root_fd = -1;
+   g_autofd int info_fd = -1;
+ 
++  g_set_error (error, XDP_APP_INFO_ERROR, XDP_APP_INFO_ERROR_WRONG_APP_KIND,
++                           "Certainly not a linyaps");
++  return -1;
++
+   root_path = g_strdup_printf ("/proc/%u/root", pid);
+   root_fd = openat (AT_FDCWD, root_path, O_RDONLY | O_NONBLOCK | O_DIRECTORY | O_CLOEXEC | O_NOCTTY);
+   if (root_fd == -1)
+diff -ruN a/src/xdp-utils.c b/src/xdp-utils.c
+--- a/src/xdp-utils.c
++++ b/src/xdp-utils.c
+@@ -54,7 +54,7 @@
+ pidfd_open (pid_t        pid,
+             unsigned int flags)
+ {
+-   return syscall (SYS_pidfd_open, pid, flags);
++   return -1;
+ }
+ #endif
+ 

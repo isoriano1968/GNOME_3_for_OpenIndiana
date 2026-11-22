@@ -1,0 +1,259 @@
+Make FUSE 3 and PipeWire optional: new feature options "document-portal"
+and "pipewire" (both enabled by default, so nothing changes where the
+libraries exist).  Without FUSE 3 the document and file transfer portals are
+not built (the permission store still is); without PipeWire the camera,
+screen cast, remote desktop and clipboard portals are left out and not
+registered.  OpenIndiana has neither library; for applications on the host
+the FileChooser portal hands out plain paths and needs neither.
+
+Not upstream yet; meant for https://github.com/flatpak/xdg-desktop-portal
+
+diff -ruN a/document-portal/meson.build b/document-portal/meson.build
+--- a/document-portal/meson.build
++++ b/document-portal/meson.build
+@@ -44,60 +44,62 @@
+   install_dir: systemd_userunit_dir,
+ )
+ 
+-document_portal_built_sources = gnome.gdbus_codegen(
+-  'document-portal-dbus',
+-  sources: [
+-      '../data/org.freedesktop.portal.Documents.xml',
+-      '../data/org.freedesktop.portal.FileTransfer.xml',
+-  ],
+-  interface_prefix: 'org.freedesktop.portal',
+-  namespace: 'XdpDbus',
+-)
+-
+-xdg_document_portal_sources = [
+-  'document-portal.c',
+-  'file-transfer.c',
+-  'document-store.c',
+-  'document-portal-fuse.c',
+-  xdp_utils_sources,
+-  db_sources,
+-  sd_escape_sources,
+-  document_portal_built_sources,
+-  permission_store_built_sources,
+-]
+-
+-xdg_document_portal_deps = [
+-  xdg_desktop_portal_deps,
+-  fuse3_dep,
+-  db_deps,
+-]
+-
+-xdg_document_portal = executable(
+-  'xdg-document-portal',
+-  xdg_document_portal_sources,
+-  dependencies: xdg_document_portal_deps,
+-  include_directories: incs_xdg_desktop_portal,
+-  install: true,
+-  install_dir: libexecdir,
+-)
+-
+-configure_file(
+-  input: 'xdg-document-portal.service.in',
+-  output: '@BASENAME@',
+-  configuration: base_config,
+-  install: true,
+-  install_dir: systemd_userunit_dir,
+-)
+-
+-
+-doc_portal_service_file_sources = files('org.freedesktop.portal.Documents.service.in')
+-doc_portal_service_file = configure_file(
+-  input: doc_portal_service_file_sources,
+-  output: '@BASENAME@',
+-  configuration: base_config,
+-  install: true,
+-  install_dir: dbus_service_dir,
+-)
++if have_document_portal
++  document_portal_built_sources = gnome.gdbus_codegen(
++    'document-portal-dbus',
++    sources: [
++        '../data/org.freedesktop.portal.Documents.xml',
++        '../data/org.freedesktop.portal.FileTransfer.xml',
++    ],
++    interface_prefix: 'org.freedesktop.portal',
++    namespace: 'XdpDbus',
++  )
++
++  xdg_document_portal_sources = [
++    'document-portal.c',
++    'file-transfer.c',
++    'document-store.c',
++    'document-portal-fuse.c',
++    xdp_utils_sources,
++    db_sources,
++    sd_escape_sources,
++    document_portal_built_sources,
++    permission_store_built_sources,
++  ]
++
++  xdg_document_portal_deps = [
++    xdg_desktop_portal_deps,
++    fuse3_dep,
++    db_deps,
++  ]
++
++  xdg_document_portal = executable(
++    'xdg-document-portal',
++    xdg_document_portal_sources,
++    dependencies: xdg_document_portal_deps,
++    include_directories: incs_xdg_desktop_portal,
++    install: true,
++    install_dir: libexecdir,
++  )
++
++  configure_file(
++    input: 'xdg-document-portal.service.in',
++    output: '@BASENAME@',
++    configuration: base_config,
++    install: true,
++    install_dir: systemd_userunit_dir,
++  )
++
++
++  doc_portal_service_file_sources = files('org.freedesktop.portal.Documents.service.in')
++  doc_portal_service_file = configure_file(
++    input: doc_portal_service_file_sources,
++    output: '@BASENAME@',
++    configuration: base_config,
++    install: true,
++    install_dir: dbus_service_dir,
++  )
++endif
+ 
+ permission_portal_service_file_sources = files('org.freedesktop.impl.portal.PermissionStore.service.in')
+ permission_portal_service_file = configure_file(
+diff -ruN a/meson_options.txt b/meson_options.txt
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -46,6 +46,14 @@
+        type: 'feature',
+        value: 'auto',
+        description: 'Build man pages (requires rst2man)')
++option('document-portal',
++       type: 'feature',
++       value: 'enabled',
++       description: 'Build the document portal and the file transfer portal (requires FUSE 3)')
++option('pipewire',
++       type: 'feature',
++       value: 'enabled',
++       description: 'Build the camera, screen cast, remote desktop and clipboard portals (requires PipeWire)')
+ option('sandboxed-image-validation',
+        type: 'feature',
+        value: 'enabled',
+diff -ruN a/meson.build b/meson.build
+--- a/meson.build
++++ b/meson.build
+@@ -130,7 +130,7 @@
+ gio_dep = dependency('gio-2.0')
+ gio_unix_dep = dependency('gio-unix-2.0')
+ json_glib_dep = dependency('json-glib-1.0')
+-fuse3_dep = dependency('fuse3', version: '>= 3.10.0')
++fuse3_dep = dependency('fuse3', version: '>= 3.10.0', required: get_option('document-portal'))
+ gdk_pixbuf_dep = dependency('gdk-pixbuf-2.0')
+ gst_pbutils_dep = dependency('gstreamer-pbutils-1.0')
+ geoclue_dep = dependency(
+@@ -138,7 +138,7 @@
+   version: '>= 2.5.2',
+   required: get_option('geoclue'),
+ )
+-pipewire_dep = dependency('libpipewire-0.3', version: '>= 0.2.90')
++pipewire_dep = dependency('libpipewire-0.3', version: '>= 0.2.90', required: get_option('pipewire'))
+ libsystemd_dep = dependency('libsystemd', required: get_option('systemd'))
+ gudev_dep = dependency('gudev-1.0', required: get_option('gudev'))
+ umockdev_dep = dependency('umockdev-1.0', required: get_option('tests'))
+@@ -183,6 +183,11 @@
+ have_gudev = gudev_dep.found()
+ config_h.set10('HAVE_GUDEV', have_gudev)
+ 
++have_pipewire = pipewire_dep.found()
++config_h.set10('HAVE_PIPEWIRE', have_pipewire)
++
++have_document_portal = fuse3_dep.found()
++
+ add_project_arguments(['-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_72'], language: 'c')
+ 
+ build_documentation = false
+@@ -255,6 +260,8 @@
+     'Enable libsystemd support': have_libsystemd,
+     'Enable geoclue support': have_geoclue,
+     'Enable gudev support': have_gudev,
++    'Enable PipeWire portals': have_pipewire,
++    'Enable document portal': have_document_portal,
+     'Enable test suite': enable_tests,
+     'Enable installed tests:': enable_installed_tests,
+     'Build man pages': rst2man.found(),
+diff -ruN a/src/meson.build b/src/meson.build
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -85,8 +85,6 @@
+ xdg_desktop_portal_sources = files(
+   'account.c',
+   'background.c',
+-  'camera.c',
+-  'clipboard.c',
+   'dynamic-launcher.c',
+   'email.c',
+   'file-chooser.c',
+@@ -99,14 +97,11 @@
+   'network-monitor.c',
+   'notification.c',
+   'open-uri.c',
+-  'pipewire.c',
+   'power-profile-monitor.c',
+   'print.c',
+   'proxy-resolver.c',
+   'realtime.c',
+   'registry.c',
+-  'remote-desktop.c',
+-  'screen-cast.c',
+   'screenshot.c',
+   'secret.c',
+   'settings.c',
+@@ -147,6 +142,16 @@
+   )
+ endif
+ 
++if have_pipewire
++  xdg_desktop_portal_sources += files(
++    'camera.c',
++    'clipboard.c',
++    'pipewire.c',
++    'remote-desktop.c',
++    'screen-cast.c',
++  )
++endif
++
+ common_deps = [
+   glib_dep,
+   gio_dep,
+diff -ruN a/src/xdp-context.c b/src/xdp-context.c
+--- a/src/xdp-context.c
++++ b/src/xdp-context.c
+@@ -398,7 +398,9 @@
+ #if HAVE_GEOCLUE
+   init_location (context);
+ #endif
++#if HAVE_PIPEWIRE
+   init_camera (context);
++#endif
+   init_screenshot (context);
+   init_background (context);
+   init_wallpaper (context);
+@@ -407,9 +409,11 @@
+   init_secret (context, context->cancellable);
+   init_global_shortcuts (context);
+   init_dynamic_launcher (context);
++#if HAVE_PIPEWIRE
+   init_screen_cast (context);
+   init_remote_desktop (context);
+   init_clipboard (context);
++#endif
+   init_input_capture (context);
+ #if HAVE_GUDEV
+   init_usb (context);
