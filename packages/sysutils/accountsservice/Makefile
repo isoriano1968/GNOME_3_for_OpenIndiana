@@ -27,6 +27,8 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		accountsservice
 COMPONENT_VERSION=	0.6.55
+# rebuilt without the real name in the delivered files
+COMPONENT_REVISION=	1
 COMPONENT_PROJECT_URL=	https://www.freedesktop.org/wiki/Software/AccountsService/
 COMPONENT_SUMMARY=	AccountsService - D-Bus interface for user account query and manipulation
 COMPONENT_SRC=		$(COMPONENT_NAME)-$(COMPONENT_VERSION)

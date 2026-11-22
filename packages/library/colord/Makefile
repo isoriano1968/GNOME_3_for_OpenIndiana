@@ -29,6 +29,8 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		colord
 COMPONENT_VERSION=	1.4.7
+# rebuilt without the real name in the delivered files
+COMPONENT_REVISION=	1
 COMPONENT_PROJECT_URL=	https://www.freedesktop.org/software/colord/
 COMPONENT_SUMMARY=	colord - color management daemon and library
 COMPONENT_SRC=		$(COMPONENT_NAME)-$(COMPONENT_VERSION)

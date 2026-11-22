@@ -25,6 +25,8 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		geoclue
 COMPONENT_VERSION=	2.7.2
+# rebuilt without the real name in the delivered files
+COMPONENT_REVISION=	1
 COMPONENT_PROJECT_URL=	https://gitlab.freedesktop.org/geoclue/geoclue/-/wikis/home
 COMPONENT_SUMMARY=	GeoClue - D-Bus geoinformation service
 COMPONENT_SRC=		$(COMPONENT_NAME)-$(COMPONENT_VERSION)
