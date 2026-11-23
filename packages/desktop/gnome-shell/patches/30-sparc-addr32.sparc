@@ -1,0 +1,58 @@
+gnome-shell on 64-bit SPARC illumos: link gnome-shell (and the run-js-test
+helper) with the ADDR32 software capability.
+
+libmozjs-140 is tagged ADDR32 on sparcv9 (library/mozjs-140 in this repo,
+patches/10-sparc-addr32.patch), because SpiderMonkey's Values need pointers
+below 2^47 and 64-bit SPARC maps near the top of the address space
+(https://bugzilla.mozilla.org/show_bug.cgi?id=577056).  The runtime linker
+refuses an ADDR32 library in a process that is not ADDR32 itself.
+Oracle Solaris does the same with a RESERVE_SEGMENT mapfile
+(oracle/solaris-userland components/gnome/gnome-shell/patches/08_VM.sparc);
+illumos ld has no RESERVE_SEGMENT.  Only active for host sunos/sparc64.
+Applied on SPARC only (Makefile, ADDITIONAL_PATCHES).  Not submitted upstream.
+
+--- a/meson.build
++++ b/meson.build
+@@ -308,6 +308,13 @@
+ po_dir = join_paths(meson.current_source_dir(), 'po')
+ 
+ subdir('js')
++# 64-bit SPARC on illumos/Solaris: libmozjs (through gjs) is tagged ADDR32,
++# so programs linking it must be too (src/sparc-addr32.mapfile).
++addr32_link_args = []
++if host_machine.system() == 'sunos' and host_machine.cpu_family() == 'sparc64'
++  addr32_link_args = ['-Wl,-M,' + (meson.project_source_root() / 'src' / 'sparc-addr32.mapfile')]
++endif
++
+ subdir('src')
+ subdir('po')
+ subdir('data')
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -254,6 +254,7 @@
+   ],
+   dependencies: gnome_shell_deps + [libshell_dep, libst_dep, mutter_dep],
+   include_directories: [conf_inc, st_inc, include_directories('tray')],
++  link_args: addr32_link_args,
+   build_rpath: mutter_typelibdir,
+   install_rpath: install_rpath,
+   install: true
+@@ -280,6 +281,7 @@
+ executable('run-js-test', 'run-js-test.c',
+   dependencies: [mutter_dep, mtk_dep, gdk_pixbuf_dep, gio_dep, girepository_dep, gjs_dep],
+   include_directories: [conf_inc],
++  link_args: addr32_link_args,
+   link_with: libshell,
+   build_rpath: mutter_typelibdir,
+ )
+--- /dev/null
++++ b/src/sparc-addr32.mapfile
+@@ -0,0 +1,8 @@
++# illumos/Solaris 64-bit SPARC: SpiderMonkey's Values hold pointers of at
++# most 47 bits, and libmozjs is tagged ADDR32, so every program that loads
++# it must run in a 32-bit address space (the runtime linker refuses
++# libmozjs otherwise).
++$mapfile_version 2
++CAPABILITY {
++	SF += ADDR32;
++};

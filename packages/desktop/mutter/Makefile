@@ -24,6 +24,11 @@ BUILD_STYLE=		meson
 
 include ../../../make-rules/shared-macros.mk
 
+# SPARC: keep upstream GSK_RENDERER=cairo in mutter-x11-frames, as Solaris SPARC.
+ifeq ($(MACH),sparc)
+ADDITIONAL_PATCHES += patches/30-sparc-gsk-renderer.sparc
+endif
+
 COMPONENT_NAME=		mutter
 HUMAN_VERSION=		45.7
 COMPONENT_PROJECT_URL=	https://gitlab.gnome.org/GNOME/mutter

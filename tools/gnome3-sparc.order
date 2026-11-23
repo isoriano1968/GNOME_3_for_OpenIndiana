@@ -1,0 +1,42 @@
+# GNOME 3 (GNOME 45, X11 session) for OpenIndiana SPARC: build order of
+# this repo's packages/ components, from their REQUIRED_PACKAGES.
+# One component at a time:  tools/u45-build.sh <component>
+# Each must be published (local test repository) and its packages installed in the
+# build environment before the components that need it are built.
+# Not built for SPARC: library/gtk4 (ours needs Mesa 26 EGL; SPARC uses the
+# repository's gtk4 4.16.13).  Everything else comes from the SPARC
+# repository (glib, gtk3, gcr-4, libsoup3, ConsoleKit, upower, ...).
+#
+# Build tools needed in the build environment first (OI SPARC repository):
+#   developer/lang/rustc (needs facet.version-lock.library/libgit2=false and
+#   ...openssl-3=false: the incorporation pins versions the repo no longer
+#   has), developer/rust/cbindgen, developer/build/autoconf-213,
+#   library/python/psutil-39, library/http-parser, web/browser/lynx,
+#   developer/build/meson, ninja, cmake (installed already).
+#
+# component                        # needs (ours)            # milestone
+library/mozjs-140                  # -                        # JS
+library/gjs                        # mozjs-140                # JS
+library/duktape                    # -                        # M1
+sysutils/polkit                    # duktape                  # M1
+sysutils/accountsservice           # polkit                   # M1
+library/colord                     # polkit                   # M1
+library/colord-gtk                 # colord                   # M1
+library/geoclue                    # -                        # M1
+library/geocode-glib-2             # -                        # M1
+library/libgweather                # geocode-glib-2           # M1
+library/gsound                     # -                        # M1
+desktop/mutter                     # colord                   # M2 (mutter --replace in MATE)
+library/evolution-data-server      # libgweather              # M3
+desktop/gnome-session              # -                        # M3
+desktop/gdm                        # (run time: gnome-shell)  # M3: install only library/desktop/libgdm now
+desktop/gnome-settings-daemon      # colord geoclue geocode-glib-2 libgweather polkit  # M3
+library/gnome-autoar               # -                        # M3
+desktop/gnome-shell                # gjs mutter e-d-s g-s-d libgdm accountsservice polkit geoclue libgweather gnome-autoar  # M3
+fonts/cantarell                    # -                        # M3
+desktop/gnome-backgrounds          # -                        # M3
+desktop/gnome-control-center       # g-s-d colord-gtk gsound accountsservice polkit  # M4
+desktop/gnome-shell-extensions     # gnome-shell              # M4 (then install system/display-manager/gdm)
+fonts/adwaita-fonts                # -                        # M4
+library/tinysparql                 # -                        # M4 (apps)
+library/libportal                  # -                        # M4 (apps)

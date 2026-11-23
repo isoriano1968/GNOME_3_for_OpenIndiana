@@ -27,6 +27,11 @@ BUILD_STYLE=		meson
 
 include ../../../make-rules/shared-macros.mk
 
+# SPARC: gnome-shell carries the ADDR32 capability (libmozjs needs it).
+ifeq ($(MACH),sparc)
+ADDITIONAL_PATCHES += patches/30-sparc-addr32.sparc
+endif
+
 COMPONENT_NAME=		gnome-shell
 HUMAN_VERSION=		45.9
 COMPONENT_SUMMARY=	GNOME Shell - the GNOME desktop user interface
