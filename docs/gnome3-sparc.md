@@ -333,3 +333,88 @@ port, compared with ours:
 - Others are outside GNOME: firefox (webrender off, freebl, nspr asm),
   libvpx decode fix, python fpstructs, Xorg/Xvnc/ast/mga, Mesa llvmpipe
   (05-llvmpipe-nir-sparc, with LLVM's 033-solaris-LLVM-JIT for llvmpipe).
+
+## 5. llvmpipe on SPARC: LLVM 21 JIT analysis (2026-11-23)
+
+Question: can Mesa's llvmpipe (and gallivm, which r300 also uses for
+vertex shaders) run on sparcv9 with LLVM 21?
+
+- gallivm compiles shaders at run time with **MCJIT**, which loads the
+  generated ELF object through **RuntimeDyld** (`RuntimeDyldELF`). Mesa's
+  optional ORC path (`-Dllvm-orcjit`) also needs an object linker
+  (RuntimeDyld or JITLink).
+- LLVM 21.1.0 `RuntimeDyldELF.cpp` handles aarch64, arm, bpf, loongarch64,
+  mips, ppc, riscv, systemz and x86 only: **no Sparc**, so every SPARC
+  relocation hits the default case. JITLink has no Sparc backend either.
+  The Sparc *code generator* is complete (Oracle builds llvm-21 with
+  `LLVM_TARGETS_TO_BUILD=Sparc`). Only the run-time linker part is missing.
+- Oracle's fix: `components/llvm-13/patches/033-solaris-LLVM-JIT.patch`
+  (633 added lines in 10 hunks): SPARC relocations in RuntimeDyldELF
+  (`resolveSPARC64Relocation`, the stub/GOT handling), the missing
+  R_SPARC_* numbers in Sparc.def, and the elf32-sparc32plus name. Its
+  header: gnome-shell crashed on sparc when Mesa used LLVM without it.
+  Oracle's **llvm-21 carries only two patches** (D35755-2, firefox) and
+  no JIT patch. Oracle's Mesa (21.3.8) still uses llvm-13 for exactly
+  this reason. Its `05-llvmpipe-nir-sparc.patch` (65 lines) is the Mesa
+  side.
+- So the work is: **port 033 to LLVM 21's RuntimeDyld** (the API moved
+  since 13: `Expected<>` returns, `RelocationValueRef`, stub handling),
+  in our llvm-21 recipe as a clean patch for both architectures (x86
+  output unchanged: the code only runs for `Triple::sparcv9`). Then port
+  Mesa's 05 patch to Mesa 26, and build Mesa with `gallium-drivers`
+  including llvmpipe for SPARC, together with the SPARC driver work
+  (one Mesa for x86 and SPARC).
+- Tests: LLVM's own `ExecutionEngine/MCJIT` tests on sparcv9 (currently
+  marked unsupported there), then Mesa `lp_test_*` (lp_test_arit,
+  lp_test_blend, lp_test_conv, lp_test_format), then glxgears/shadercube
+  under llvmpipe.
+- Upstreamable: yes. A SPARC RuntimeDyld port is a missing feature, not
+  a Solaris quirk, and helps Linux sparc64 too.
+
+### gcc 14 on SPARC
+
+solaris-userland has gcc14 (14.2.0), gcc15 and gcc16 building on SPARC.
+gcc 14 on OI SPARC would let the x86 recipes keep their gcc 14 settings
+and remove `GCC_VERSION=13` from tools/u45-build.sh. It is a long build
+(bootstrap) on the U45: a T4-2 job.
+
+## 6. C++ exceptions abort on OI SPARC (found 2026-11-24, FS-UAE test)
+
+Symptom: every `throw` aborts in libgcc's `uw_init_context_1`, even a
+five-line test program (-m64 and -m32, shared or static libgcc);
+`_Unwind_Backtrace` aborts too. FS-UAE dies as soon as a 68040/060 MMU is
+enabled (UAE raises MMU bus errors as C++ exceptions).
+
+Cause, step by step:
+1. illumos ld (osnet of January 2026, system/library
+   0.5.11-2025.0.0.21764) refuses an unaligned `R_SPARC_DISP32`. gcc's own
+   configure test, by hand: GNU as 2.46.1 `-K PIC` on
+   `.data; .align 4; .byte 0; .uaword %r_disp32(foo)`, then `ld -G`:
+   `ld: fatal: relocation error: R_SPARC_DISP32: file ua.o: symbol foo:
+   offset 0xffffffff6e6005d1 is non-aligned` (32- and 64-bit alike; the
+   offset printed is a host address, a cosmetic bug of its own).
+2. gcc 13.4.0's configure test "unaligned pcrel relocs" therefore failed:
+   auto-host.h has `/* #undef HAVE_AS_SPARC_UA_PCREL */`.
+3. Without it gcc writes EH pointers as absptr / DW_EH_PE_aligned (0x50)
+   instead of pcrel|sdata4.
+4. For those FDEs illumos ld builds an `.eh_frame_hdr` whose search table
+   has FdeCnt 0 (libgcc_s.so.1: FdeCnt 0; PT_SUNW_UNWIND p_memsz 0xc while
+   the section is 0x18c).
+5. libgcc (unwind-dw2-fde-dip.c) treats fde_count 0 as "no FDEs in this
+   object", so no frame is ever found.
+
+Reproducer: `g++ -m64 -O2` of `static void f(int x){ if (x) throw
+std::runtime_error("x"); } int main(int c, char**){ try { f(c); } catch
+(const std::exception&) { puts("caught"); } }` aborts (SIGABRT, stack:
+abort < uw_init_context_1 < _Unwind_RaiseException < __cxa_throw);
+`elfdump -u /usr/gcc/13/lib/sparcv9/libgcc_s.so.1` shows
+`FdeCnt: 0` and the warning "file size does not match PT_SUNW_UNWIND
+segment: sh_size=18c: p_filesz=c". Affected: gcc-13-runtime
+13.4.0-2026.0.0.2 (the only version in the repository).
+
+Fix at the cause: an osnet linker with illumos-gate 44a46dab27 (2026-11-20,
+"Linker support unaligned DISP32/TLS DTPOFF relocations on SPARC"), then a
+gcc built against it (configure then defines HAVE_AS_SPARC_UA_PCREL); our
+gcc 14 for SPARC must be built that way and checked with a throw/catch
+test and `elfdump -u libgcc_s.so.1` (FdeCnt > 0) before anything else.
+

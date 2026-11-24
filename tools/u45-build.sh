@@ -19,6 +19,15 @@
 #           background on the box if it is not running yet; log in
 #           <component>/build.log
 #   status  is it running, last log lines, done stamp
+#   mounts  (only with U45_ROOT) lofs mounts that a build inside the mounted
+#           boot environment needs: /dev, /devices, /proc, /system/contract,
+#           /etc/mnttab, the home directory; idempotent
+#
+# With U45_ROOT (the mount point of a non-booted build boot environment, e.g.
+# from "beadm mount gnome3 /a/gnome3") deps asks "pkg -R U45_ROOT" and build
+# runs in "chroot U45_ROOT" as the login user, so the build sees that boot
+# environment's libraries and headers, not the booted one's.  mounts runs
+# first then (default steps mounts,sync,deps,build).
 #
 # Build order of the GNOME 3 components: tools/gnome3-sparc.order.
 # gcc: OpenIndiana SPARC's newest is gcc 13, so every gmake call gets
@@ -32,6 +41,8 @@
 set -e
 JOBS=2
 STEPS=sync,deps,build
+ROOT="${U45_ROOT:-}"
+[ -n "$ROOT" ] && STEPS=mounts,sync,deps,build
 while getopts j:s: o; do
 	case $o in j) JOBS=$OPTARG ;; s) STEPS=$OPTARG ;; *) exit 2 ;; esac
 done
@@ -46,6 +57,29 @@ TOP="$(cd "$(dirname "$0")/.." && pwd)"
 E="ssh -o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=30 $HOST"
 has() { case ",$STEPS," in *",$1,"*) return 0 ;; esac; return 1; }
 [ -f "$TOP/packages/$c/Makefile" ] || { echo "u45-build.sh: no packages/$c" >&2; exit 1; }
+
+# run a shell command in the build environment: the booted system, or the
+# chroot of $ROOT as the login user (the home directory is lofs-mounted there)
+if [ -n "$ROOT" ]; then
+	PKG="pkg -R $ROOT"
+	IN() { printf '%s\n' "cd && $1" |
+		$E "pfexec /usr/sbin/chroot $ROOT /usr/bin/su \$(id -un) -c '/bin/sh -s'"; }
+else
+	PKG=pkg
+	IN() { $E "$1"; }
+fi
+
+if has mounts && [ -n "$ROOT" ]; then
+	$E "for m in /dev /devices /proc /system/contract /etc/mnttab \$HOME; do
+		mount -p | awk '{print \$3}' | grep -qx $ROOT\$m && continue
+		case \$m in
+		/proc) pfexec mount -F proc proc $ROOT/proc ;;
+		/system/contract) pfexec mount -F ctfs ctfs $ROOT/system/contract ;;
+		/etc/mnttab) pfexec mount -F mntfs mnttab $ROOT/etc/mnttab ;;
+		*) pfexec mkdir -p $ROOT\$m && pfexec mount -F lofs \$m $ROOT\$m ;;
+		esac || exit 1
+	done; echo 'mounts ready in $ROOT'"
+fi
 
 if has sync; then
 	[ -f "$BASE/make-rules/shared-macros.mk" ] ||
@@ -65,13 +99,13 @@ fi
 
 if has deps; then
 	$E "cd $TREE/components/$c && L=\$(gmake -s $GCC print-value-REQUIRED_PACKAGES 2>/dev/null); M=''
-		for p in \$L; do pkg list -H \$p >/dev/null 2>&1 || M=\"\$M \$p\"; done
+		for p in \$L; do $PKG list -H \$p >/dev/null 2>&1 || M=\"\$M \$p\"; done
 		if [ -n \"\$M\" ]; then echo \"missing on the box:\$M\"; exit 3; fi; echo 'build deps: all installed'" ||
 		{ [ $? = 3 ] && has build && { echo "u45-build.sh: not building with missing deps" >&2; exit 3; }; }
 fi
 
 if has build; then
-	$E "cd $TREE/components/$c && if pgrep -u \$(id -u) -f 'gmake.*JOBS=$JOBS build' >/dev/null; then
+	IN "cd $TREE/components/$c && if pgrep -u \$(id -u) -f 'gmake.*JOBS=$JOBS build' >/dev/null; then
 			echo 'build already running'
 		else
 			nohup nice -n 19 gmake $GCC JOBS=$JOBS build >> build.log 2>&1 < /dev/null &
