@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE service_bundle SYSTEM "/usr/share/lib/xml/dtd/service_bundle.dtd.1">
+<!--
+    This file and its contents are supplied under the terms of the
+    Common Development and Distribution License ("CDDL"), version 1.0.
+    You may only use this file in accordance with the terms of version
+    1.0 of the CDDL.
+
+    Copyright 2026 isoriano1968
+
+    Site profile delivered by system/hal/probe-storage-gpt: hald-runner
+    looks in HALD_RUNNER_PATH before /usr/lib/hal, so hald uses the GPT
+    capable prober and mount helpers in /usr/lib/hal/oi.  Removing the
+    package removes this profile and the property with it.
+-->
+<service_bundle type="profile" name="system/hal/probe-storage-gpt">
+	<service name="system/hal" version="1" type="service">
+		<property_group name="start" type="method">
+			<property name="environment" type="astring">
+				<astring_list>
+					<value_node value="HALD_RUNNER_PATH=/usr/lib/hal/oi"/>
+				</astring_list>
+			</property>
+		</property_group>
+	</service>
+</service_bundle>

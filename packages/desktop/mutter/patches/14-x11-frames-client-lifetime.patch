@@ -1,0 +1,125 @@
+X11 frames client: exit when the compositor is gone; take frames only
+from our own frames client.
+
+mutter stops mutter-x11-frames with SIGTERM when it exits cleanly
+(meta_x11_display dispose). After a gnome-shell crash nothing stops it:
+there is no PR_SET_PDEATHSIG on illumos. The orphan (ppid 1) keeps
+watching _MUTTER_NEEDS_FRAME and frames the new compositor's windows too,
+and the MapRequest handler takes any window with _MUTTER_FRAME_FOR as the
+frame. On the MacBook Pro (2026-11-20) new windows got the orphan's frames
+(their _NET_WM_PID was the orphan's): no resize borders, and clicks raised
+the window below.
+
+1. src/frames/main.c: remember the parent pid; exit once getppid ()
+   changes (checked every second).
+2. src/x11/events.c: take a _MUTTER_FRAME_FOR window as a frame only if
+   its _NET_WM_PID is our frames client's pid (GTK sets _NET_WM_PID on
+   the frame toplevels); otherwise ignore it.
+
+Upstream: https://gitlab.gnome.org/GNOME/mutter (not reported yet).
+
+--- mutter-45.7/src/frames/main.c.orig	Mon Nov  9 00:59:26 2026
++++ mutter-45.7/src/frames/main.c	Fri Nov 20 06:44:16 2026
+@@ -23,6 +23,7 @@
+ 
+ #include <gdk/x11/gdkx.h>
+ #include <glib-unix.h>
++#include <unistd.h>
+ #include <X11/extensions/Xfixes.h>
+ 
+ static gboolean
+@@ -33,6 +34,22 @@
+   return G_SOURCE_REMOVE;
+ }
+ 
++/* The compositor stops us with SIGTERM when it exits cleanly. If it
++ * crashes, nothing does (there is no PR_SET_PDEATHSIG on illumos), and an
++ * orphaned frames client keeps framing the new compositor's windows.
++ * Exit once we have been reparented away from the process that started
++ * us.
++ */
++static pid_t parent_pid;
++
++static gboolean
++check_parent (gpointer user_data)
++{
++  if (getppid () != parent_pid)
++    exit (0);
++  return G_SOURCE_CONTINUE;
++}
++
+ int
+ main (int   argc,
+       char *argv[])
+@@ -63,6 +80,9 @@
+ 
+   loop = g_main_loop_new (NULL, FALSE);
+   g_unix_signal_add (SIGTERM, on_sigterm, NULL);
++  parent_pid = getppid ();
++  if (parent_pid != 1)
++    g_timeout_add_seconds (1, check_parent, NULL);
+   g_main_loop_run (loop);
+   g_main_loop_unref (loop);
+ 
+--- mutter-45.7/src/x11/events.c.orig	Sun May 26 14:54:55 2024
++++ mutter-45.7/src/x11/events.c	Fri Nov 20 06:44:16 2026
+@@ -1266,6 +1266,39 @@
+     }
+ }
+ 
++static gboolean
++frame_is_from_our_client (MetaX11Display *x11_display,
++                          Window          xwindow)
++{
++  Atom type;
++  int format;
++  unsigned long nitems, bytes_after;
++  unsigned char *data = NULL;
++  const char *ident;
++  gboolean ours = FALSE;
++
++  if (!x11_display->frames_client)
++    return FALSE;
++  ident = g_subprocess_get_identifier (x11_display->frames_client);
++  if (!ident)
++    return FALSE;
++
++  meta_x11_error_trap_push (x11_display);
++  if (XGetWindowProperty (x11_display->xdisplay, xwindow,
++                          x11_display->atom__NET_WM_PID,
++                          0, 1, False, XA_CARDINAL,
++                          &type, &format, &nitems, &bytes_after,
++                          &data) == Success &&
++      type == XA_CARDINAL && format == 32 && nitems == 1)
++    ours = ((unsigned long) *(long *) data ==
++            g_ascii_strtoull (ident, NULL, 10));
++  meta_x11_error_trap_pop (x11_display);
++
++  if (data)
++    XFree (data);
++  return ours;
++}
++
+ static void
+ handle_other_xevent (MetaX11Display *x11_display,
+                      XEvent         *event)
+@@ -1481,6 +1514,19 @@
+               window = meta_x11_display_lookup_x_window (x11_display,
+                                                          client_window);
+ 
++              /* Only take frames from the frames client we started: an
++               * orphaned one from a previous compositor (it survives a
++               * crash) must not frame our windows.
++               */
++              if (window != NULL &&
++                  !frame_is_from_our_client (x11_display,
++                                             event->xmaprequest.window))
++                {
++                  meta_verbose ("Ignoring frame 0x%lx for 0x%lx: not from our frames client",
++                                event->xmaprequest.window, client_window);
++                  break;
++                }
++
+               if (window != NULL && window->decorated && !window->frame)
+                 {
+                   meta_window_set_frame_xwindow (window,

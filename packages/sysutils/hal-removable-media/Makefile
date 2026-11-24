@@ -25,8 +25,10 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		hal-removable-media
 COMPONENT_VERSION=	1.0
+# rebuilt without the real name in the delivered files
+COMPONENT_REVISION=	1
 COMPONENT_SUMMARY=	D-Bus policy: desktop users may mount and unmount removable media through HAL
-COMPONENT_PROJECT_URL=	https://github.com/isoriano1968/GNOME_3_for_OpenIndiana
+COMPONENT_PROJECT_URL=	https://github.com/isoriano1968
 COMPONENT_FMRI=		system/hal/removable-media-policy
 COMPONENT_CLASSIFICATION=	System/Hardware
 COMPONENT_LICENSE=	CDDL-1.0

@@ -12,8 +12,10 @@
 #
 # Copyright 2026 isoriano1968
 #
-# Takes effect once hald runs with HALD_RUNNER_PATH=/usr/lib/hal/oi (see the
-# Makefile).
+# hald uses these once it runs with HALD_RUNNER_PATH=/usr/lib/hal/oi, which
+# the site profile below sets (applied by manifest-import).  hal is not
+# restarted on install: a hald restart unmounts the user's removable disks;
+# the setting takes effect at the next boot or hal restart.
 #
 
 set name=pkg.fmri value=pkg:/$(COMPONENT_FMRI)@$(IPS_COMPONENT_VERSION),$(BUILD_VERSION)
@@ -26,3 +28,6 @@ set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
 license $(COMPONENT_LICENSE_FILE) license='$(COMPONENT_LICENSE)'
 
 file path=usr/lib/hal/oi/hald-probe-storage mode=0555
+file files/hal-probe-storage-gpt.xml \
+    path=etc/svc/profile/site/hal-probe-storage-gpt.xml mode=0444 \
+    restart_fmri=svc:/system/manifest-import:default

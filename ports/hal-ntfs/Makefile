@@ -55,8 +55,9 @@ COMPONENT_ARCHIVE_URL=	\
 PKG_TIMESTAMP=		20261110T223555Z
 OI_REPO=		https://pkg.openindiana.org/hipster/
 # .1: patches 0001-0004; .2: + 0005 (EFI system partitions ignored);
-# .3: + 0006 (ZFS pool members ignored)
-PKG_VERSION=		$(OSNET_VERSION).3
+# .3: + 0006 (ZFS pool members ignored); .4: no build host paths (linked
+# in $(OUT) with a relative -o, prefix maps), the publish gate
+PKG_VERSION=		$(OSNET_VERSION).4
 GATE_SHORT=		$(shell echo $(GATE_COMMIT) | cut -c1-10)
 
 ARCHIVE_DIR?=		$(HOME)/src/oi-userland/archives
@@ -67,13 +68,22 @@ H=			$(S)/cmd/hal
 OUT=			$(BUILD_DIR)/bin
 RAW_DIR=		$(BUILD_DIR)/raw
 PROTO=			$(BUILD_DIR)/proto
-REPO?=			$(HOME)/oi-repo
+REPO?=			$(HOME)/oi-local-repo
+# the publish gate (tools/oi-manifest-gate.sh of the OpenIndiana repo): new
+# version, no build host paths or names
+GATE?=			$(HOME)/src/oi-userland/tools/oi-manifest-gate
 GTAR=			/usr/bin/gtar
 GPATCH=			/usr/bin/gpatch
 
 # usr/src/cmd/hal/Makefile.hal (HAL_CONFIG/DBUS/GLIB_CPPFLAGS), CSTD_GNU99,
 # 32-bit; the gate's CERRWARN for hal as -Wno-* (no -Werror out of tree).
 CC=		/usr/gcc/14/bin/gcc -m32 -std=gnu99 -O2
+# No build host paths (__FILE__): the maps; the programs are linked in
+# $(OUT) with a relative -o (illumos ld names the output in a FILE symbol).
+CC+=		-ffile-prefix-map=$(HOME)=/build \
+		-ffile-prefix-map=$(CURDIR)=/usr/src/hal-ntfs \
+		-Wa,--debug-prefix-map,$(HOME)=/build \
+		-Wa,--debug-prefix-map,$(CURDIR)=/usr/src/hal-ntfs
 CWARN=		-Wall -Wno-unused-variable -Wno-unused-value -Wno-parentheses \
 		-Wno-address -Wno-unused-function -Wno-pointer-sign
 CPPFLAGS=	-DPACKAGE_DATA_DIR='"/usr/share"' \
@@ -151,29 +161,30 @@ $(BUILD_DIR)/.built: $(BUILD_DIR)/.patched
 	mkdir -p $(OUT)
 	cd $(H)/hald && \
 	    glib-genmarshal --prefix=hald_marshal hald_marshal.list --header > hald_marshal.h && \
-	    glib-genmarshal --prefix=hald_marshal hald_marshal.list --body > hald_marshal.c && \
-	    $(CC) $(CWARN) $(CPPFLAGS) -o $(OUT)/hald $(HALD_SRCS) \
+	    glib-genmarshal --prefix=hald_marshal hald_marshal.list --body > hald_marshal.c
+	cd $(OUT) && \
+	    $(CC) $(CWARN) $(CPPFLAGS) -o hald $(HALD_SRCS:%=$(H)/hald/%) \
 		$(S)/common/hexdump/hexdump.c $(S)/common/ilstr/ilstr.c $(HALD_LIBS)
-	cd $(H)/probing/storage && \
-	    $(CC) $(CWARN) $(CPPFLAGS) -o $(OUT)/hald-probe-storage probe-storage.c \
+	cd $(OUT) && \
+	    $(CC) $(CWARN) $(CPPFLAGS) -o hald-probe-storage $(H)/probing/storage/probe-storage.c \
 		$(H)/utils/cdutils.c $(H)/utils/fsutils.c $(H)/hald/logger.c \
 		-lc -ldbus-1 -lhal -ladm -lefi
-	cd $(H)/probing/volume && \
-	    $(CC) $(CWARN) $(CPPFLAGS) -o $(OUT)/hald-probe-volume probe-volume.c \
+	cd $(OUT) && \
+	    $(CC) $(CWARN) $(CPPFLAGS) -o hald-probe-volume $(H)/probing/volume/probe-volume.c \
 		$(H)/utils/cdutils.c $(H)/utils/fsutils.c $(H)/hald/logger.c \
 		-lc -ldbus-1 -lhal -lfstyp -lnvpair -ladm -lefi
-	cd $(H)/tools && for p in $(METHOD_PROGS); do \
-	    $(CC) $(CWARN) $(CPPFLAGS) -o $(OUT)/$$p $$p.c hal-storage-shared.c \
+	cd $(OUT) && for p in $(METHOD_PROGS); do \
+	    $(CC) $(CWARN) $(CPPFLAGS) -o $$p $(H)/tools/$$p.c $(H)/tools/hal-storage-shared.c \
 		$(H)/utils/adt_data.c $(STORAGE_LIBS) -lpolkit || exit 1; \
 	done
-	cd $(H)/tools && for c in export import; do \
+	cd $(OUT) && for c in export import; do \
 	    $(CC) $(CWARN) $(CPPFLAGS) -DZPOOL_SUBCMD="\"$$c\"" \
-		-o $(OUT)/hal-storage-zpool-$$c hal-storage-zpool.c \
-		hal-storage-shared.c $(H)/utils/adt_data.c \
+		-o hal-storage-zpool-$$c $(H)/tools/hal-storage-zpool.c \
+		$(H)/tools/hal-storage-shared.c $(H)/utils/adt_data.c \
 		$(STORAGE_LIBS) -lpolkit || exit 1; \
 	done
-	cd $(H)/tools && for p in $(CLEANUP_PROGS); do \
-	    $(CC) $(CWARN) $(CPPFLAGS) -o $(OUT)/$$p $$p.c hal-storage-shared.c \
+	cd $(OUT) && for p in $(CLEANUP_PROGS); do \
+	    $(CC) $(CWARN) $(CPPFLAGS) -o $$p $(H)/tools/$$p.c $(H)/tools/hal-storage-shared.c \
 		$(H)/utils/adt_data.c $(STORAGE_LIBS) || exit 1; \
 	done
 	touch $@
@@ -216,6 +227,7 @@ publish: check $(BUILD_DIR)/.raw
 	    --depend system/file-system/fstyp-ntfs < $$m > $(BUILD_DIR)/manifest
 	/usr/bin/pkglint $(BUILD_DIR)/manifest
 	r=`ls -d $(RAW_DIR)/service%2Fhal/*` && \
+	$(GATE) $(REPO) $(BUILD_DIR)/manifest $(PROTO) $$r && \
 	/usr/bin/pkgsend -s $(REPO) publish -d $(PROTO) -d $$r \
 	    --fmri-in-manifest $(BUILD_DIR)/manifest
 

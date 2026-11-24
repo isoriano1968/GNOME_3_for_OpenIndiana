@@ -22,10 +22,10 @@
 # slice of a GPT disk.  The proper place for the fix is illumos-gate (one
 # line, see the patch); until it is there, this package delivers the patched
 # prober as /usr/lib/hal/oi/hald-probe-storage, next to illumos' own
-# /usr/lib/hal/hald-probe-storage, and hald is pointed at it with
-#   svccfg -s system/hal setenv HALD_RUNNER_PATH /usr/lib/hal/oi
-#   svcadm refresh system/hal; svcadm restart system/hal
-# (hald_runner.c puts HALD_RUNNER_PATH in front of /usr/lib/hal).  Only
+# /usr/lib/hal/hald-probe-storage, and points hald at it with an SMF site
+# profile (files/hal-probe-storage-gpt.xml: start/environment
+# HALD_RUNNER_PATH=/usr/lib/hal/oi; hald_runner.c puts HALD_RUNNER_PATH in
+# front of /usr/lib/hal), applied at install by manifest-import.  Only
 # probing/storage, utils and hald/logger.c of the tarball are built; 64-bit
 # (illumos' prober is 32-bit, both work).
 
@@ -38,6 +38,7 @@ ILLUMOS_COMMIT=		b1c424a261b16b9c81280c0eb6de8b2f9f4ffacb
 
 COMPONENT_NAME=		hal-probe-storage-gpt
 COMPONENT_VERSION=	0.5.8.1
+COMPONENT_REVISION=	3
 COMPONENT_SUMMARY=	HAL storage prober with GPT partitions (illumos hald-probe-storage, patched)
 COMPONENT_PROJECT_URL=	https://illumos.org/
 COMPONENT_SRC=		illumos-gate-$(ILLUMOS_COMMIT)
@@ -66,10 +67,12 @@ HAL_CPPFLAGS=		-DPACKAGE_DATA_DIR=\"/usr/share\" \
 			-I/usr/include/dbus-1.0 -I/usr/lib/$(MACH64)/dbus-1.0/include \
 			-I/usr/include/hal -I$(HAL_SRC)/utils -I$(HAL_SRC)/hald
 
+# Link in the build directory with a relative -o: illumos ld names the
+# output file, as given, in a FILE symbol and in .dynstr (no build path).
 COMPONENT_BUILD_ACTION = \
 	$(MKDIR) $(@D) ; \
-	$(CC) $(CC_BITS) -std=gnu99 $(CFLAGS) $(HAL_CPPFLAGS) \
-	    -o $(@D)/hald-probe-storage \
+	cd $(@D) && $(CC) $(CC_BITS) -std=gnu99 $(CFLAGS) $(HAL_CPPFLAGS) \
+	    -o hald-probe-storage \
 	    $(HAL_SRC)/probing/storage/probe-storage.c \
 	    $(HAL_SRC)/utils/cdutils.c $(HAL_SRC)/utils/fsutils.c \
 	    $(HAL_SRC)/hald/logger.c \

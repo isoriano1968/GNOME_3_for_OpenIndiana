@@ -25,7 +25,7 @@ COMPONENT_VERSION= 2026.9.28
 # patches/02-illumos-mnttab-device.patch (mnttab keeps /dev/dsk names, so
 # HAL, rmvolmgr and gvfs recognize NTFS mounts).  Taken from oi-userland
 # components/sysutils/ntfsprogs @2cadaa12.
-COMPONENT_REVISION= 1
+COMPONENT_REVISION=	2
 COMPONENT_SUMMARY= ntfsprogs - Utilities that provide access to NTFS
 COMPONENT_SRC= ntfs-3g-$(COMPONENT_VERSION)
 COMPONENT_ARCHIVE= $(COMPONENT_SRC).tar.gz

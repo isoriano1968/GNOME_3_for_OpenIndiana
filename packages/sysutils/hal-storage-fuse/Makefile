@@ -37,6 +37,7 @@ ILLUMOS_COMMIT=		b1c424a261b16b9c81280c0eb6de8b2f9f4ffacb
 
 COMPONENT_NAME=		hal-storage-fuse
 COMPONENT_VERSION=	0.5.8.1
+COMPONENT_REVISION=	1
 COMPONENT_SUMMARY=	HAL mount and unmount helpers that recognize FUSE mounts (illumos hal-storage-*, patched)
 COMPONENT_PROJECT_URL=	https://illumos.org/
 COMPONENT_SRC=		illumos-gate-$(ILLUMOS_COMMIT)
@@ -68,13 +69,15 @@ HAL_CPPFLAGS=		-DPACKAGE_DATA_DIR=\"/usr/share\" \
 			-I$(HAL_SRC)/utils -I$(HAL_SRC)/tools -I$(HAL_SRC)/hald
 HAL_LIBS=		-ldbus-1 -lglib-2.0 -lhal -lhal-storage -lbsm -lpolkit
 
+# Link in the build directory with a relative -o: illumos ld names the
+# output file, as given, in a FILE symbol and in .dynstr (no build path).
 COMPONENT_BUILD_ACTION = \
 	$(MKDIR) $(@D) ; \
 	for p in mount unmount ; do \
-	    $(CC) $(CC_BITS) -std=gnu99 $(CFLAGS) $(HAL_CPPFLAGS) \
-		-o $(@D)/hal-storage-$$p $(HAL_SRC)/tools/hal-storage-$$p.c \
+	    ( cd $(@D) && $(CC) $(CC_BITS) -std=gnu99 $(CFLAGS) $(HAL_CPPFLAGS) \
+		-o hal-storage-$$p $(HAL_SRC)/tools/hal-storage-$$p.c \
 		$(HAL_SRC)/tools/hal-storage-shared.c $(HAL_SRC)/utils/adt_data.c \
-		$(LDFLAGS) $(HAL_LIBS) || exit 1 ; \
+		$(LDFLAGS) $(HAL_LIBS) ) || exit 1 ; \
 	done
 
 COMPONENT_INSTALL_ACTION = \

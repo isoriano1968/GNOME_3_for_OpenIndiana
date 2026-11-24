@@ -31,6 +31,7 @@ endif
 
 COMPONENT_NAME=		mutter
 HUMAN_VERSION=		45.7
+COMPONENT_REVISION=	1
 COMPONENT_PROJECT_URL=	https://gitlab.gnome.org/GNOME/mutter
 COMPONENT_SUMMARY=	mutter - GNOME window manager and compositor
 COMPONENT_ARCHIVE_HASH=	\

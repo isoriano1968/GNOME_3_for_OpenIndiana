@@ -28,8 +28,9 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		fstyp-ntfs
 COMPONENT_VERSION=	1.0
+COMPONENT_REVISION=	1
 COMPONENT_SUMMARY=	libfstyp module for NTFS (lets HAL identify NTFS volumes)
-COMPONENT_PROJECT_URL=	https://github.com/isoriano1968/GNOME_3_for_OpenIndiana
+COMPONENT_PROJECT_URL=	https://github.com/isoriano1968
 COMPONENT_FMRI=		system/file-system/fstyp-ntfs
 COMPONENT_CLASSIFICATION=	System/File System
 COMPONENT_LICENSE=	CDDL-1.0
@@ -37,11 +38,13 @@ COMPONENT_LICENSE_FILE=	$(COMPONENT_NAME).license
 
 include $(WS_MAKE_RULES)/common.mk
 
+# Link in the build directory with a relative -o: illumos ld names the
+# output file, as given, in a FILE symbol and in .dynstr (no build path).
 COMPONENT_POST_INSTALL_ACTION += \
 	$(MKDIR) $(BUILD_DIR_32) ; \
-	$(CC) $(CC_BITS) $(CFLAGS) -shared -fPIC -Wall \
-	    -o $(BUILD_DIR_32)/fstyp.so.1 $(COMPONENT_DIR)/files/fstyp-ntfs.c \
-	    $(LDFLAGS) -lnvpair -lc ; \
+	( cd $(BUILD_DIR_32) && $(CC) $(CC_BITS) $(CFLAGS) -shared -fPIC -Wall \
+	    -o fstyp.so.1 $(COMPONENT_DIR)/files/fstyp-ntfs.c \
+	    $(LDFLAGS) -lnvpair -lc ) ; \
 	$(INSTALL) -D -m 0555 $(BUILD_DIR_32)/fstyp.so.1 \
 	    $(PROTO_DIR)/usr/lib/fs/ntfs-3g/fstyp.so.1 ;
 
