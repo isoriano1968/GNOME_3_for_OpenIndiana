@@ -1,0 +1,17 @@
+{
+    "dependencies": [
+        "library/audio/gstreamer",
+        "library/audio/gstreamer/plugin/base",
+        "library/audio/liba52",
+        "library/audio/libcdio",
+        "library/glib2",
+        "library/video/libdvdread",
+        "library/video/libmpeg2",
+        "library/video/x264",
+        "system/library"
+    ],
+    "fmris": [
+        "library/audio/gstreamer/plugin/ugly"
+    ],
+    "name": "gst-plugins-ugly"
+}

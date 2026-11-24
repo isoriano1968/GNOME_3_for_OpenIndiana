@@ -1,0 +1,46 @@
+VA-API (va plugin and libgstva) on illumos: use the DRM display and the
+/dev/dri/renderD* scan, as on Linux.  illumos has libva-drm and DRM render
+nodes; without gudev the plugin probes renderD128.. directly.
+
+Not yet upstream (OpenIndiana local patch).
+
+--- gst-plugins-bad-1.28.9/gst-libs/gst/va/meson.build.orig
++++ gst-plugins-bad-1.28.9/gst-libs/gst/va/meson.build
+@@ -54,7 +54,7 @@
+               '-DBUILDING_GST_VA',
+               '-DG_LOG_DOMAIN="GStreamer-VA"']
+ 
+-if host_system not in ['linux', 'windows']
++if host_system not in ['linux', 'sunos', 'windows']
+   subdir_done()
+ endif
+ 
+@@ -83,7 +83,7 @@
+   subdir_done()
+ endif
+ 
+-if host_system == 'linux'
++if host_system in ['linux', 'sunos']
+   libva_drm_dep = dependency('libva-drm', version: libva_req, required: va_required)
+   if not libva_drm_dep.found()
+     subdir_done()
+--- gst-plugins-bad-1.28.9/sys/va/meson.build.orig
++++ gst-plugins-bad-1.28.9/sys/va/meson.build
+@@ -78,7 +78,7 @@
+   'va': pathsep.join(doc_sources)
+ }
+ 
+-if host_system not in ['linux', 'windows']
++if host_system not in ['linux', 'sunos', 'windows']
+   subdir_done()
+ endif
+ 
+@@ -99,7 +99,7 @@
+ extra_dep = []
+ c_std_arg = ['c_std=c99']
+ 
+-if host_system == 'linux'
++if host_system in ['linux', 'sunos']
+   libgudev_dep = dependency('gudev-1.0', required: get_option('udev'), allow_fallback: true)
+   if libgudev_dep.found()
+     extra_args += ['-DHAVE_GUDEV']

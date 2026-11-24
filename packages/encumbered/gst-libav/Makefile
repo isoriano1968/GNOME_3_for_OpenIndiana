@@ -1,0 +1,59 @@
+#
+# This file and its contents are supplied under the terms of the
+# Common Development and Distribution License ("CDDL"), version 1.0.
+# You may only use this file in accordance with the terms of version
+# 1.0 of the CDDL.
+#
+# A full copy of the text of the CDDL should have accompanied this
+# source.  A copy of the CDDL is also available via the Internet at
+# http://www.illumos.org/license/CDDL.
+#
+
+#
+# Copyright 2016 Aurelien Larcher.  All rights reserved.
+# Copyright 2017 Alexander Pyhalov
+# Copyright 2019 Michal Nowak
+# Copyright 2021 Tim Mooney.  All rights reserved.
+# Copyright 2022-2023 Niklas Poslovski
+#
+
+# OpenIndiana project: oi-userland's encumbered/gst-libav (2cadaa12) built
+# with -D_REENTRANT, so that <errno.h> gives the per-thread errno
+# (___errno()) instead of the global errno, which the libav plugin reads on
+# GStreamer's streaming threads (notes/gstreamer-errno.md).
+# COMPONENT_REVISION 1 is one above OI's.
+
+BUILD_STYLE= meson
+USE_DEFAULT_TEST_TRANSFORMS = yes
+
+include ../../../make-rules/shared-macros.mk
+
+COMPONENT_NAME=         gst-libav
+COMPONENT_VERSION=	1.28.9
+COMPONENT_REVISION=	1
+COMPONENT_SUMMARY=      GNOME streaming media framework plugins
+COMPONENT_SRC=          $(COMPONENT_SRC_NAME)-$(COMPONENT_VERSION)
+COMPONENT_ARCHIVE=      $(COMPONENT_SRC).tar.xz
+COMPONENT_ARCHIVE_HASH=	sha256:4b3df21fa70972a80891d2298cf32c14a62c3db4483d545c7ac018230399186b
+COMPONENT_PROJECT_URL=  https://gstreamer.freedesktop.org
+COMPONENT_ARCHIVE_URL=	$(COMPONENT_PROJECT_URL)/src/$(COMPONENT_SRC_NAME)/$(COMPONENT_ARCHIVE)
+COMPONENT_FMRI=         library/audio/gstreamer/plugin/libav
+COMPONENT_CLASSIFICATION=	System/Multimedia Libraries
+COMPONENT_LICENSE=	LGPL-2.1-only
+COMPONENT_LICENSE_FILE= COPYING
+
+include $(WS_MAKE_RULES)/encumbered.mk
+include $(WS_MAKE_RULES)/common.mk
+
+# Per-thread errno (see the top of this file).
+CPPFLAGS += -D_REENTRANT
+
+CONFIGURE_OPTIONS += -Dpackage-origin="https://github.com/OpenIndiana/oi-userland"
+
+# Auto-generated dependencies
+REQUIRED_PACKAGES += developer/ffmpeg-9
+REQUIRED_PACKAGES += library/audio/gstreamer
+REQUIRED_PACKAGES += library/audio/gstreamer/plugin/base
+REQUIRED_PACKAGES += library/ffmpeg-9
+REQUIRED_PACKAGES += library/glib2
+REQUIRED_PACKAGES += system/library
