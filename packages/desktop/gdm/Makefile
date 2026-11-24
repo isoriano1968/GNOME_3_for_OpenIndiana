@@ -111,5 +111,10 @@ REQUIRED_PACKAGES += x11/library/libxcb
 REQUIRED_PACKAGES += x11/library/libxdmcp
 REQUIRED_PACKAGES += gnome/gnome-session
 REQUIRED_PACKAGES += gnome/gnome-shell
+# gdm and gnome-shell need each other only at run time (the greeter is a
+# gnome-shell session); "gmake BOOTSTRAP=yes" builds gdm before the shell
+# exists (oi-userland's mechanism for dependency cycles), e.g. for libgdm,
+# which GNOME Flashback's panel needs.  Without BOOTSTRAP nothing changes.
+BOOTSTRAP_SKIP_REQUIRED_PACKAGES += gnome/gnome-shell
 REQUIRED_PACKAGES += library/desktop/gdk-pixbuf
 REQUIRED_PACKAGES += system/library/fontconfig

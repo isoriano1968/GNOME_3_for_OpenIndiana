@@ -44,6 +44,8 @@ CONFIGURE_OPTIONS +=	--libexecdir=$(USRLIBEXECDIR)
 
 CONFIGURE_ENV +=	PATH="$(GNUBIN):$(PATH)"
 
+# build tool: meson.build requires update-desktop-database
+REQUIRED_PACKAGES += library/desktop/desktop-file-utils
 REQUIRED_PACKAGES += developer/vala
 REQUIRED_PACKAGES += library/desktop/gtk4
 REQUIRED_PACKAGES += library/desktop/libadwaita

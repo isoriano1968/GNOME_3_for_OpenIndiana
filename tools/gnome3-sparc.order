@@ -37,6 +37,7 @@ fonts/cantarell                    # -                        # M3
 desktop/gnome-backgrounds          # -                        # M3
 desktop/gnome-control-center       # g-s-d colord-gtk gsound accountsservice polkit  # M4
 desktop/gnome-shell-extensions     # gnome-shell              # M4 (then install system/display-manager/gdm)
+desktop/gnome-shell-extension-dash-to-dock # gnome-shell        # M4 (as on the Macs: dock always visible)
 fonts/adwaita-fonts                # -                        # M4
 library/tinysparql                 # -                        # M4 (apps)
 library/libportal                  # -                        # M4 (apps)

@@ -1,0 +1,31 @@
+--- vte-0.84.1/src/reaper.cc.orig
++++ vte-0.84.1/src/reaper.cc
+@@ -187,7 +187,7 @@
+                         _exit(30);
+                         break;
+                 default:
+-                        g_print("[parent] Starting to wait for %d.\n", p);
++                        g_print("[parent] Starting to wait for %ld.\n", (long) p);
+                         vte_reaper_add_child(p);
+                         child = p;
+                         g_signal_connect(reaper,
+@@ -211,7 +211,7 @@
+                         _exit(5);
+                         break;
+                 default:
+-                        g_print("[parent] Not waiting for %d.\n", q);
++                        g_print("[parent] Not waiting for %ld.\n", (long) q);
+                         break;
+         }
+ 
+--- vte-0.84.1/src/widget.cc.orig
++++ vte-0.84.1/src/widget.cc
+@@ -20,7 +20,7 @@
+ 
+ #include "widget.hh"
+ 
+-#include <sys/wait.h> // for W_EXITCODE
++#define W_EXITCODE(ret, sig) ((ret) << 8 | (sig))
+ 
+ #include <exception>
+ #include <new>

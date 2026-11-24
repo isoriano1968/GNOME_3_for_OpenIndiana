@@ -1,0 +1,10 @@
+#
+# PAM configuration for GNOME Flashback's screen lock (service
+# "gnome-flashback").  The screensaver locks only when this file exists;
+# illumos PAM uses /etc/pam.d/<service> when present, else /etc/pam.conf.
+# Same authentication stack as OpenIndiana's "other" service in pam.conf.
+#
+auth requisite		pam_authtok_get.so.1
+auth required		pam_dhkeys.so.1
+auth required		pam_unix_cred.so.1
+auth required		pam_unix_auth.so.1

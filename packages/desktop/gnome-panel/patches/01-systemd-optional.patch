@@ -1,0 +1,194 @@
+gnome-panel: make libsystemd optional
+
+The launcher, menu and lock-screen applets use libsystemd only to send the
+output of the programs they start to the journal (sd_journal_stream_fd()
+in child_setup()).  Systems without systemd (illumos, the BSDs) then cannot
+build gnome-panel at all.  Check for libsystemd once, optionally
+(--with-systemd=auto|yes|no), define HAVE_SYSTEMD, and without it leave the
+started program's stdout/stderr as they are (the panel's, i.e. the session
+log).  With libsystemd the result is the same as before.
+
+Upstream: not yet sent (https://gitlab.gnome.org/GNOME/gnome-panel).
+
+--- gnome-panel-3.50.0/configure.ac
++++ gnome-panel-3.50.0/configure.ac
+@@ -166,10 +166,24 @@
+   gio-unix-2.0 >= $GLIB_REQUIRED
+   gtk+-3.0 >= $GTK_REQUIRED
+   libgnome-menu-3.0 >= $LIBGNOME_MENU_REQUIRED
+-  libsystemd >= $LIBSYSTEMD_REQUIRED
+   x11
+ ])
+ 
++dnl libsystemd is optional: with it, programs started from the panel log to
++dnl the journal; without it (no systemd), they keep the panel's stdout/stderr.
++AC_ARG_WITH([systemd],
++            [AS_HELP_STRING([--without-systemd],
++                            [do not send the output of started programs to the systemd journal])],
++            [with_systemd="$withval"], [with_systemd="auto"])
++AS_IF([test "x$with_systemd" != "xno"], [
++  PKG_CHECK_MODULES([SYSTEMD], [libsystemd >= $LIBSYSTEMD_REQUIRED],
++                    [have_systemd="yes"], [have_systemd="no"])
++  AS_IF([test "x$have_systemd" = "xno" && test "x$with_systemd" = "xyes"],
++        [AC_MSG_ERROR([libsystemd requested but not found])])
++], [have_systemd="no"])
++AS_IF([test "x$have_systemd" = "xyes"],
++      [AC_DEFINE([HAVE_SYSTEMD], [1], [Define if libsystemd is available])])
++
+ PKG_CHECK_MODULES(FISH, gtk+-3.0 >= $GTK_REQUIRED cairo >= $CAIRO_REQUIRED)
+ AC_SUBST(FISH_CFLAGS)
+ AC_SUBST(FISH_LIBS)
+@@ -178,7 +192,6 @@
+   gio-unix-2.0 >= $GLIB_REQUIRED
+   gtk+-3.0 >= $GTK_REQUIRED
+   libgnome-menu-3.0 >= $LIBGNOME_MENU_REQUIRED
+-  libsystemd >= $LIBSYSTEMD_REQUIRED
+ ])
+ 
+ PKG_CHECK_MODULES([MENU], [
+@@ -186,7 +199,6 @@
+   gio-unix-2.0 >= $GLIB_REQUIRED
+   gtk+-3.0 >= $GTK_REQUIRED
+   libgnome-menu-3.0 >= $LIBGNOME_MENU_REQUIRED
+-  libsystemd >= $LIBSYSTEMD_REQUIRED
+ ])
+ 
+ PKG_CHECK_MODULES([NOTIFICATION_AREA], [
+--- gnome-panel-3.50.0/modules/action-button/gp-lock-screen-applet.c
++++ gnome-panel-3.50.0/modules/action-button/gp-lock-screen-applet.c
+@@ -20,7 +20,9 @@
+ 
+ #include <gio/gdesktopappinfo.h>
+ #include <glib/gi18n-lib.h>
++#ifdef HAVE_SYSTEMD
+ #include <systemd/sd-journal.h>
++#endif
+ 
+ #include "gpab-screensaver-gen.h"
+ 
+@@ -209,6 +211,7 @@
+ static void
+ child_setup (gpointer user_data)
+ {
++#ifdef HAVE_SYSTEMD
+   GAppInfo *info;
+   const gchar *id;
+   gint stdout_fd;
+@@ -230,6 +233,7 @@
+       dup2 (stderr_fd, STDERR_FILENO);
+       close (stderr_fd);
+     }
++#endif
+ }
+ 
+ static void
+--- gnome-panel-3.50.0/modules/action-button/Makefile.am
++++ gnome-panel-3.50.0/modules/action-button/Makefile.am
+@@ -15,6 +15,7 @@
+ org_gnome_gnome_panel_action_button_la_CFLAGS = \
+ 	$(LIBGNOME_PANEL_CFLAGS) \
+ 	$(ACTION_BUTTON_CFLAGS) \
++	$(SYSTEMD_CFLAGS) \
+ 	$(WARN_CFLAGS) \
+ 	$(AM_CFLAGS) \
+ 	$(NULL)
+@@ -47,6 +48,7 @@
+ 	$(top_builddir)/libpanel-util/libpanel-util.la \
+ 	$(LIBGNOME_PANEL_LIBS) \
+ 	$(ACTION_BUTTON_LIBS) \
++	$(SYSTEMD_LIBS) \
+ 	$(NULL)
+ 
+ org_gnome_gnome_panel_action_button_la_LDFLAGS = \
+--- gnome-panel-3.50.0/modules/launcher/gp-launcher-applet.c
++++ gnome-panel-3.50.0/modules/launcher/gp-launcher-applet.c
+@@ -32,7 +32,9 @@
+ 
+ #include <glib/gi18n-lib.h>
+ #include <gmenu-tree.h>
++#ifdef HAVE_SYSTEMD
+ #include <systemd/sd-journal.h>
++#endif
+ 
+ #include "gp-launcher-button.h"
+ #include "gp-launcher-properties.h"
+@@ -757,6 +759,7 @@
+ static void
+ child_setup (gpointer user_data)
+ {
++#ifdef HAVE_SYSTEMD
+   GAppInfo *info;
+   const gchar *id;
+   gint stdout_fd;
+@@ -778,6 +781,7 @@
+       dup2 (stderr_fd, STDERR_FILENO);
+       close (stderr_fd);
+     }
++#endif
+ }
+ 
+ static void
+--- gnome-panel-3.50.0/modules/launcher/Makefile.am
++++ gnome-panel-3.50.0/modules/launcher/Makefile.am
+@@ -16,6 +16,7 @@
+ org_gnome_gnome_panel_launcher_la_CFLAGS = \
+ 	$(LIBGNOME_PANEL_CFLAGS) \
+ 	$(LAUNCHER_CFLAGS) \
++	$(SYSTEMD_CFLAGS) \
+ 	$(WARN_CFLAGS) \
+ 	$(AM_CFLAGS) \
+ 	$(NULL)
+@@ -43,6 +44,7 @@
+ 	$(top_builddir)/libgnome-panel/libgnome-panel.la \
+ 	$(LIBGNOME_PANEL_LIBS) \
+ 	$(LAUNCHER_LIBS) \
++	$(SYSTEMD_LIBS) \
+ 	$(NULL)
+ 
+ org_gnome_gnome_panel_launcher_la_LDFLAGS = \
+--- gnome-panel-3.50.0/modules/menu/gp-menu-utils.c
++++ gnome-panel-3.50.0/modules/menu/gp-menu-utils.c
+@@ -19,7 +19,9 @@
+ 
+ #include <glib/gi18n-lib.h>
+ #include <gtk/gtk.h>
++#ifdef HAVE_SYSTEMD
+ #include <systemd/sd-journal.h>
++#endif
+ 
+ #include "gp-menu-utils.h"
+ 
+@@ -261,6 +263,7 @@
+ static void
+ child_setup (gpointer user_data)
+ {
++#ifdef HAVE_SYSTEMD
+   GAppInfo *info;
+   const gchar *id;
+   gint stdout_fd;
+@@ -282,6 +285,7 @@
+       dup2 (stderr_fd, STDERR_FILENO);
+       close (stderr_fd);
+     }
++#endif
+ }
+ 
+ static void
+--- gnome-panel-3.50.0/modules/menu/Makefile.am
++++ gnome-panel-3.50.0/modules/menu/Makefile.am
+@@ -15,6 +15,7 @@
+ org_gnome_gnome_panel_menu_la_CFLAGS = \
+ 	$(LIBGNOME_PANEL_CFLAGS) \
+ 	$(MENU_CFLAGS) \
++	$(SYSTEMD_CFLAGS) \
+ 	$(WARN_CFLAGS) \
+ 	$(AM_CFLAGS) \
+ 	$(NULL)
+@@ -56,6 +57,7 @@
+ 	$(top_builddir)/libgnome-panel/libgnome-panel.la \
+ 	$(LIBGNOME_PANEL_LIBS) \
+ 	$(MENU_LIBS) \
++	$(SYSTEMD_LIBS) \
+ 	$(NULL)
+ 
+ org_gnome_gnome_panel_menu_la_LDFLAGS = \

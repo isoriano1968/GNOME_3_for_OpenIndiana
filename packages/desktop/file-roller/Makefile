@@ -51,6 +51,8 @@ CONFIGURE_OPTIONS +=	-Dapi_docs=disabled
 
 CONFIGURE_ENV +=	PATH="$(GNUBIN):$(PATH)"
 
+# build tool: meson.build requires update-desktop-database
+REQUIRED_PACKAGES += library/desktop/desktop-file-utils
 REQUIRED_PACKAGES += library/desktop/gtk4
 REQUIRED_PACKAGES += library/desktop/libadwaita
 REQUIRED_PACKAGES += library/desktop/json-glib

@@ -53,6 +53,8 @@ CONFIGURE_OPTIONS +=	-Dnautilus=false
 
 CONFIGURE_ENV +=	PATH="$(GNUBIN):$(PATH)"
 
+# build tool: meson.build requires update-desktop-database
+REQUIRED_PACKAGES += library/desktop/desktop-file-utils
 REQUIRED_PACKAGES += library/libpoppler
 REQUIRED_PACKAGES += gnome/config/gsettings-desktop-schemas
 REQUIRED_PACKAGES += image/library/libtiff

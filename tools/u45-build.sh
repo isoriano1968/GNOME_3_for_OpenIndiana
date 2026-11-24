@@ -70,12 +70,16 @@ else
 fi
 
 if has mounts && [ -n "$ROOT" ]; then
-	$E "for m in /dev /devices /proc /system/contract /etc/mnttab \$HOME; do
+	# /var/run/opengl: ogl-select fills it at boot (GL/gl.h links there); a
+	# boot environment that is not booted needs the running system's
+	$E "for m in /dev /dev/fd /devices /proc /system/contract /etc/mnttab /var/run/opengl \$HOME; do
 		mount -p | awk '{print \$3}' | grep -qx $ROOT\$m && continue
 		case \$m in
 		/proc) pfexec mount -F proc proc $ROOT/proc ;;
+		/dev/fd) pfexec mount -F fd fd $ROOT/dev/fd ;;
 		/system/contract) pfexec mount -F ctfs ctfs $ROOT/system/contract ;;
 		/etc/mnttab) pfexec mount -F mntfs mnttab $ROOT/etc/mnttab ;;
+		/var/run/opengl) pfexec mkdir -p $ROOT\$m && pfexec mount -F lofs -o ro \$m $ROOT\$m ;;
 		*) pfexec mkdir -p $ROOT\$m && pfexec mount -F lofs \$m $ROOT\$m ;;
 		esac || exit 1
 	done; echo 'mounts ready in $ROOT'"
@@ -90,10 +94,18 @@ if has sync; then
 		--include='/transforms/***' --include='/doc/***' --include='/.git/***' \
 		--include='/Makefile' --include='/LICENSE' --exclude='*' \
 		"$BASE/" "$HOST:$TREE/"
-	rsync -a --delete -e "ssh -o BatchMode=yes" \
-		--exclude='/build/' --exclude='/build.log' --exclude='/*.tar.*' \
+	# P /*/: keep the unpacked source tree(s) on the box (pkgdepend reads
+	# the source directory as a proto directory), only the recipe is synced
+	rsync -a --delete -e "ssh -o BatchMode=yes" --filter='P /*/' \
+		--exclude='/build/' --exclude='/build.log' --exclude='/build.pid' --exclude='/*.tar.*' \
 		--exclude='/.prep' --exclude='/.unpacked' --exclude='/firefox-*' \
 		"$TOP/packages/$c/" "$HOST:$TREE/components/$c/"
+	# pkglint (userland.manifest1001) refuses dependencies on packages from
+	# publishers it does not know; ours depend on each other, so the local
+	# publisher is allowed in this tree's tools/pkglintrc (as tools/oi-sync.sh
+	# does for oi-local on x86)
+	$E "cd $TREE/tools && grep '^userland.manifest.allowed_pubs = ' pkglintrc | grep -qw oi-local-sparc ||
+		sed -i 's/^\(userland.manifest.allowed_pubs = .*\)\$/\1 oi-local-sparc/' pkglintrc"
 	echo "synced $c (oi-userland base $(git -C "$BASE" log -1 --format=%h))"
 fi
 
@@ -105,15 +117,16 @@ if has deps; then
 fi
 
 if has build; then
-	IN "cd $TREE/components/$c && if pgrep -u \$(id -u) -f 'gmake.*JOBS=$JOBS build' >/dev/null; then
+	IN "cd $TREE/components/$c && if [ -f build.pid ] && ps -p \$(cat build.pid) >/dev/null 2>&1; then
 			echo 'build already running'
 		else
-			nohup nice -n 19 gmake $GCC JOBS=$JOBS build >> build.log 2>&1 < /dev/null &
+			nohup nice -n 19 gmake $GCC USE_PARALLEL_BUILD=yes PARALLEL_JOBS=$JOBS build >> build.log 2>&1 < /dev/null &
+			echo \$! > build.pid
 			echo \"build started (pid \$!), log: ~/$TREE/components/$c/build.log\"
 		fi"
 fi
 
 if has status; then
-	$E "cd $TREE/components/$c && { pgrep -u \$(id -u) -f 'gmake.*build' >/dev/null && echo running || echo 'not running'; }
+	$E "cd $TREE/components/$c && { [ -f build.pid ] && ps -p \$(cat build.pid) >/dev/null 2>&1 && echo running || echo 'not running'; }
 		ls build/*/.built 2>/dev/null && echo 'built: yes'; tail -5 build.log 2>/dev/null | cut -c1-200"
 fi

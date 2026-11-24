@@ -418,3 +418,60 @@ gcc built against it (configure then defines HAVE_AS_SPARC_UA_PCREL); our
 gcc 14 for SPARC must be built that way and checked with a throw/catch
 test and `elfdump -u libgcc_s.so.1` (FdeCnt > 0) before anything else.
 
+
+## 8. gcc 14 for SPARC (recipe ready 2026-11-24, waits for the linker)
+
+Plan: developer/linker (ld + libld from current illumos-gate with the
+unaligned-DISP32 fix 44a46dab27, plus a NOBITS fix) installed only in build
+boot environments, and gcc 14 built against it.
+
+packages/developer/gcc-14: oi-userland's recipe (14.3.0 rev 4, its 14
+patches incl. the illumos .eh_frame_hdr enablement), SPARC-only:
+- triplet sparcv9-sun-solaris2.11, --with-cpu=ultrasparc, build-time tools
+  /usr/gnu/sparcv9-sun-solaris2.11/bin (as OI SPARC's gcc 13);
+- COMPONENT_BOOTSTRAP=yes (first build with gcc 13; gcc's own 3-stage
+  bootstrap then rebuilds libgcc with gcc 14);
+- HAVE_AS_SPARC_UA_PCREL must come out of configure (check auto-host.h);
+  nothing is forced;
+- one recipe for x86 and SPARC (no guard): the SPARC parts are
+  ifeq/.$(MACH) blocks in OI's own recipe; x86 expansion checked on the OI
+  VM: 20 variables (CONFIGURE_OPTIONS, CC/CXX, flags, PKG_MACROS, patches,
+  REQUIRED_PACKAGES, ...) identical to OI's recipe except the temporary
+  directory name.
+Second SPARC unwinder issue to test: GCC PR 110955 (SIGSEGV in
+classify_object_over_fdes on Solaris SPARC with the GCC 13 runtime; still
+open).  Oracle's gcc14 reverts libgcc/unwind-dw2-fde.[ch] to GCC 12
+(libgcc.patch, "temporary workaround").  Not taken blindly: the gate runs a
+registered-frames case too, and the revert becomes a .sparc patch only if
+that case fails.
+Gate before anything uses gcc 14: C++ throw/catch -m64/-m32, elfdump -u
+libgcc_s.so.1 FdeCnt > 0, Rust catch_unwind links and runs, then rustc
+against gcc 14.  Manifests: the x86 p5m list i386 paths; SPARC ones come
+from gmake sample-manifest on SPARC (arch-conditional where they differ).
+
+## 9. C++ components built with gcc 13 (rebuild with gcc 14, new revision)
+
+Built for SPARC before the C++ exception fix; analysed: no throw in normal
+use, an error path that throws aborts the program instead.  To rebuild as a
+new revision as soon as gcc 14 with the fixed linker passes the gate:
+- desktop/gnome-system-monitor 42.0 (throws only on an invalid search
+  regex);
+- library/desktop/vte-291 0.84.1 (UUID/format parsing of malformed
+  terminal properties, impossible-case runtime_errors, std::bad_alloc);
+- the repository's library/c++/glibmm, library/desktop/c++/gtkmm3,
+  library/c++/sigcpp (the OI SPARC packages, built with gcc 13);
+- every later C++ component until the toolchain is fixed.
+
+## 10. vte 0.84 needs illumos headers with POSIX 2024 (2026-11-24)
+
+vte 0.84.1 (gnome-terminal 3.60 needs >= 0.84; OI SPARC has 0.82.3) does not
+compile on SPARC: libstdc++'s <cwchar> reports btowc/fwide "not declared".
+vte's config.h sets _XOPEN_SOURCE 800 (POSIX 2024).  OI SPARC's system/header
+0.5.11-2025.0.0.2176 predates illumos-gate d0b93cc368 (16610 "headers ...
+should know about c17, POSIX 2024"; 3801 "_XOPEN_SOURCE value is ignored if
+_XOPEN_SOURCE_EXTENDED is set"): it knows 500/600/700 only, so 800 enables
+just XPG4_2 and hides the XPG5 wide-character functions.  Reproducer:
+`#include <config.h>` (vte's) + `#include <cwchar>`, g++ -std=gnu++23.
+x86 OI's system/header 2026.0.0.2339 has 16610, so the same recipe builds
+there.  Fix: current illumos headers on SPARC (with the linker update);
+vte-291 and gnome-terminal wait for them.

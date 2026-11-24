@@ -1,0 +1,139 @@
+gnome-flashback: make libsystemd optional
+
+libsystemd is used in two places: libdesktop sends the output of the
+programs it starts to the journal (sd_journal_stream_fd() in
+child_setup()), and libscreensaver asks sd-login for its own X11 session to
+follow logind's Lock/Unlock signals.  Systems without systemd (illumos, the
+BSDs) cannot build gnome-flashback at all.  Check for libsystemd once,
+optionally (--with-systemd=auto|yes|no), define HAVE_SYSTEMD; without it the
+started programs keep the session's stdout/stderr, and
+gf_find_systemd_session() reports no session, the path the listener already
+takes when it cannot determine one.  With libsystemd nothing changes.
+
+Upstream: not yet sent (https://gitlab.gnome.org/GNOME/gnome-flashback).
+
+--- gnome-flashback-3.50.0/configure.ac
++++ gnome-flashback-3.50.0/configure.ac
+@@ -158,7 +158,6 @@
+   gio-unix-2.0 >= $GLIB_REQUIRED
+   gnome-desktop-3.0 >= $LIBGNOME_DESKTOP_REQUIRED
+   gtk+-3.0 >= $GTK_REQUIRED
+-  libsystemd
+   x11
+ ])
+ 
+@@ -230,10 +229,24 @@
+   glib-2.0 >= $GLIB_REQUIRED
+   gnome-desktop-3.0 >= $LIBGNOME_DESKTOP_REQUIRED
+   gtk+-3.0 >= $GTK_REQUIRED
+-  libsystemd
+   xxf86vm >= $XXF86VM_REQUIRED
+ ])
+ 
++dnl libsystemd is optional: the desktop sends the output of programs it
++dnl starts to the journal, and the screensaver looks up its logind session.
++dnl Without systemd the programs keep the session's stdout/stderr, and the
++dnl screensaver runs without logind (as it does when logind is absent).
++AC_ARG_WITH([systemd],
++            [AS_HELP_STRING([--without-systemd], [build without libsystemd])],
++            [with_systemd="$withval"], [with_systemd="auto"])
++AS_IF([test "x$with_systemd" != "xno"], [
++  PKG_CHECK_MODULES([SYSTEMD], [libsystemd], [have_systemd="yes"], [have_systemd="no"])
++  AS_IF([test "x$have_systemd" = "xno" && test "x$with_systemd" = "xyes"],
++        [AC_MSG_ERROR([libsystemd requested but not found])])
++], [have_systemd="no"])
++AS_IF([test "x$have_systemd" = "xyes"],
++      [AC_DEFINE([HAVE_SYSTEMD], [1], [Define if libsystemd is available])])
++
+ PKG_CHECK_MODULES([SCREENSHOT], [
+   gio-unix-2.0 >= $GLIB_REQUIRED
+   gtk+-3.0 >= $GTK_REQUIRED
+--- gnome-flashback-3.50.0/gnome-flashback/libdesktop/gf-utils.c
++++ gnome-flashback-3.50.0/gnome-flashback/libdesktop/gf-utils.c
+@@ -19,11 +19,14 @@
+ #include "gf-utils.h"
+ 
+ #include <gio/gdesktopappinfo.h>
++#ifdef HAVE_SYSTEMD
+ #include <systemd/sd-journal.h>
++#endif
+ 
+ static void
+ child_setup (gpointer user_data)
+ {
++#ifdef HAVE_SYSTEMD
+   GAppInfo *app_info;
+   const gchar *id;
+   gint stdout_fd;
+@@ -45,6 +48,7 @@
+       dup2 (stderr_fd, STDERR_FILENO);
+       close (stderr_fd);
+     }
++#endif
+ }
+ 
+ static void
+--- gnome-flashback-3.50.0/gnome-flashback/libdesktop/Makefile.am
++++ gnome-flashback-3.50.0/gnome-flashback/libdesktop/Makefile.am
+@@ -17,6 +17,7 @@
+ 
+ libdesktop_la_CFLAGS = \
+ 	$(DESKTOP_CFLAGS) \
++	$(SYSTEMD_CFLAGS) \
+ 	$(WARN_CFLAGS) \
+ 	$(AM_CFLAGS) \
+ 	$(NULL)
+@@ -64,6 +65,7 @@
+ 	$(top_builddir)/backends/libbackends.la \
+ 	$(top_builddir)/gnome-flashback/libcommon/libcommon.la \
+ 	$(DESKTOP_LIBS) \
++	$(SYSTEMD_LIBS) \
+ 	$(NULL)
+ 
+ ENUM_TYPES = \
+--- gnome-flashback-3.50.0/gnome-flashback/libscreensaver/gf-screensaver-utils.c
++++ gnome-flashback-3.50.0/gnome-flashback/libscreensaver/gf-screensaver-utils.c
+@@ -18,12 +18,15 @@
+ #include "config.h"
+ #include "gf-screensaver-utils.h"
+ 
++#ifdef HAVE_SYSTEMD
+ #include <systemd/sd-login.h>
++#endif
+ #include <unistd.h>
+ 
+ gboolean
+ gf_find_systemd_session (char **session_id)
+ {
++#ifdef HAVE_SYSTEMD
+   int n_sessions;
+   char **sessions;
+   char *session;
+@@ -71,4 +74,9 @@
+   free (sessions);
+ 
+   return session != NULL;
++#else
++  g_debug ("Built without libsystemd, no logind session");
++
++  return FALSE;
++#endif
+ }
+--- gnome-flashback-3.50.0/gnome-flashback/libscreensaver/Makefile.am
++++ gnome-flashback-3.50.0/gnome-flashback/libscreensaver/Makefile.am
+@@ -19,6 +19,7 @@
+ 
+ libscreensaver_la_CFLAGS = \
+ 	$(SCREENSAVER_CFLAGS) \
++	$(SYSTEMD_CFLAGS) \
+ 	$(WARN_CFLAGS) \
+ 	$(AM_CFLAGS) \
+ 	$(NULL)
+@@ -66,6 +67,7 @@
+ 	$(top_builddir)/gnome-flashback/libcommon/libcommon.la \
+ 	$(top_builddir)/gnome-flashback/libinput-sources/libinput-sources.la \
+ 	$(SCREENSAVER_LIBS) \
++	$(SYSTEMD_LIBS) \
+ 	$(NULL)
+ 
+ ENUM_TYPES = \
