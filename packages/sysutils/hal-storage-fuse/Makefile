@@ -38,6 +38,12 @@ ILLUMOS_COMMIT=		b1c424a261b16b9c81280c0eb6de8b2f9f4ffacb
 COMPONENT_NAME=		hal-storage-fuse
 COMPONENT_VERSION=	0.5.8.1
 COMPONENT_REVISION=	1
+ifeq ($(MACH),sparc)
+# SPARC only: the first SPARC build (2026-11-23) had the build host's home
+# path in its files; rebuilt with neutral paths as the next revision (x86 is
+# unchanged)
+COMPONENT_REVISION=	2
+endif
 COMPONENT_SUMMARY=	HAL mount and unmount helpers that recognize FUSE mounts (illumos hal-storage-*, patched)
 COMPONENT_PROJECT_URL=	https://illumos.org/
 COMPONENT_SRC=		illumos-gate-$(ILLUMOS_COMMIT)

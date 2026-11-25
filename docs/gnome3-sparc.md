@@ -195,9 +195,10 @@ in this repo (x86 keeps OI's package):
   - `--disable-jit` on sparc;
   - `-msave-args` and the rustup/cargo-install block only on i386; SPARC
     uses the system rustc 1.95 and cbindgen 0.29.4;
-  - `AR=/usr/bin/ar`, `STRIP=/usr/bin/strip` on sparc: GNU ar dies with
-    SIGBUS there (x11/mesa), and GNU strip might drop the capabilities
-    section that carries ADDR32;
+  - no AR/STRIP override (removed 2026-11-24): GNU ar works on the SPARC
+    build host (the SIGBUS seen on one machine is an illumos linker NOBITS
+    bug, fixed in osnet), and GNU strip keeps ADDR32 (tested: elfdump -H
+    after /usr/gnu/bin/strip);
   - nodejs-24 and header-audio build deps only on i386 (a js-only build
     does not include node.configure; header-audio does not exist on
     SPARC); developer/rust/cbindgen added on sparc.
@@ -475,3 +476,25 @@ just XPG4_2 and hides the XPG5 wide-character functions.  Reproducer:
 x86 OI's system/header 2026.0.0.2339 has 16610, so the same recipe builds
 there.  Fix: current illumos headers on SPARC (with the linker update);
 vte-291 and gnome-terminal wait for them.
+
+## 10. vte 0.84 needs illumos headers with POSIX 2024 (2026-11-24)
+
+vte 0.84.1 (gnome-terminal 3.60 needs >= 0.84; OI SPARC has 0.82.3) does not
+compile on SPARC: libstdc++'s <cwchar> reports btowc/fwide "not declared".
+vte's config.h sets _XOPEN_SOURCE 800 (POSIX 2024).  OI SPARC's system/header
+0.5.11-2025.0.0.2176 predates illumos-gate d0b93cc368 (16610 "headers ...
+should know about c17, POSIX 2024"; 3801 "_XOPEN_SOURCE value is ignored if
+_XOPEN_SOURCE_EXTENDED is set"): it knows 500/600/700 only, so 800 enables
+just XPG4_2 and hides the XPG5 wide-character functions.  Reproducer:
+`#include <config.h>` (vte's) + `#include <cwchar>`, g++ -std=gnu++23.
+x86 OI's system/header 2026.0.0.2339 has 16610, so the same recipe builds
+there.  Fix: current illumos headers on SPARC (with the linker update);
+vte-291 and gnome-terminal wait for them.
+Second component hit by the old headers: nautilus 47.6 fails with
+-Werror=format=2 (format-nonliteral) on g_strdup_printf (_("..."), ...) with
+-std=c11.  x86's newer illumos <libintl.h> declares dcgettext/gettext with
+__attribute__((format_arg(2))); SPARC's system/header 2025.0.0.2176 does
+not, and in strict ISO mode gcc has no gettext builtin to fall back on.
+Reproducer: gi18n.h + g_strdup_printf (_("Open With %s"), s), gcc -std=c11
+-Werror=format=2: an error on SPARC, none on x86 (gcc 13 and 14 alike).
+Same fix as for vte: current illumos headers on SPARC.

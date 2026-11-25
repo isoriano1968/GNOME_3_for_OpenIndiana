@@ -26,6 +26,12 @@ COMPONENT_VERSION= 2026.9.28
 # HAL, rmvolmgr and gvfs recognize NTFS mounts).  Taken from oi-userland
 # components/sysutils/ntfsprogs @2cadaa12.
 COMPONENT_REVISION=	2
+ifeq ($(MACH),sparc)
+# SPARC only: the first SPARC build (2026-11-23) had the build host's home
+# path in its files; rebuilt with neutral paths as the next revision (x86 is
+# unchanged)
+COMPONENT_REVISION=	3
+endif
 COMPONENT_SUMMARY= ntfsprogs - Utilities that provide access to NTFS
 COMPONENT_SRC= ntfs-3g-$(COMPONENT_VERSION)
 COMPONENT_ARCHIVE= $(COMPONENT_SRC).tar.gz

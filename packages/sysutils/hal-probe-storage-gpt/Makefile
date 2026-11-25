@@ -39,6 +39,12 @@ ILLUMOS_COMMIT=		b1c424a261b16b9c81280c0eb6de8b2f9f4ffacb
 COMPONENT_NAME=		hal-probe-storage-gpt
 COMPONENT_VERSION=	0.5.8.1
 COMPONENT_REVISION=	3
+ifeq ($(MACH),sparc)
+# SPARC only: the first SPARC build (2026-11-23) had the build host's home
+# path in its files; rebuilt with neutral paths as the next revision (x86 is
+# unchanged)
+COMPONENT_REVISION=	4
+endif
 COMPONENT_SUMMARY=	HAL storage prober with GPT partitions (illumos hald-probe-storage, patched)
 COMPONENT_PROJECT_URL=	https://illumos.org/
 COMPONENT_SRC=		illumos-gate-$(ILLUMOS_COMMIT)

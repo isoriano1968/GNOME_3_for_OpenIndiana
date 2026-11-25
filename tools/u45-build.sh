@@ -100,6 +100,18 @@ if has sync; then
 		--exclude='/build/' --exclude='/build.log' --exclude='/build.pid' --exclude='/*.tar.*' \
 		--exclude='/.prep' --exclude='/.unpacked' --exclude='/firefox-*' \
 		"$TOP/packages/$c/" "$HOST:$TREE/components/$c/"
+	# neutral build paths and the publish gate, as tools/oi-sync.sh does on
+	# x86 (tools/oi-userland-neutral-paths.patch: -ffile-prefix-map etc., no
+	# home path in any object; tools/oi-manifest-gate before every pkgsend;
+	# tools/dtrace-neutral).  Re-applied after every sync of make-rules.
+	$E "cat > $TREE/tools/oi-manifest-gate && chmod 0755 $TREE/tools/oi-manifest-gate" \
+		< "$TOP/tools/oi-manifest-gate.sh"
+	$E "cat > $TREE/tools/dtrace-neutral && chmod 0755 $TREE/tools/dtrace-neutral" \
+		< "$TOP/tools/dtrace-neutral.sh"
+	$E "cat > $TREE/.neutral-paths.patch" < "$TOP/tools/oi-userland-neutral-paths.patch"
+	$E "cd $TREE && { git apply --reverse --check .neutral-paths.patch 2>/dev/null ||
+		git apply .neutral-paths.patch; } && rm -f .neutral-paths.patch" ||
+		{ echo "u45-build.sh: neutral-paths patch does not apply" >&2; exit 1; }
 	# pkglint (userland.manifest1001) refuses dependencies on packages from
 	# publishers it does not know; ours depend on each other, so the local
 	# publisher is allowed in this tree's tools/pkglintrc (as tools/oi-sync.sh

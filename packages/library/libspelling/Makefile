@@ -56,4 +56,4 @@ REQUIRED_PACKAGES += library/glib2
 REQUIRED_PACKAGES += library/spell-checking/enchant
 REQUIRED_PACKAGES += system/library
 REQUIRED_PACKAGES += library/desktop/pango
-REQUIRED_PACKAGES += library/icu-78
+REQUIRED_PACKAGES += $(ICU_LIBRARY_PKG)

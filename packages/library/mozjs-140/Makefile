@@ -230,15 +230,11 @@ COMPONENT_PRE_CONFIGURE_ACTION += ( \
         );
 endif
 
-ifeq ($(MACH),sparc)
-# rustup has no build for sparcv9 illumos: use the system rustc (target
-# sparcv9-unknown-illumos) and cbindgen.  GNU ar from binutils dies with
-# SIGBUS on SPARC (illumos ld puts _end inside the binutils binaries' own
-# data, see x11/mesa), so use the illumos ar.  The illumos strip also keeps
-# the capabilities section that carries ADDR32 (patches/10-sparc-addr32).
-ENV += AR=/usr/bin/ar
-ENV += STRIP=/usr/bin/strip
-endif
+# SPARC: rustup has no build for sparcv9 illumos, so the system rustc
+# (target sparcv9-unknown-illumos) and cbindgen are used (see above).  GNU ar
+# and strip are fine: ar works on the build host (its SIGBUS on one machine
+# is an illumos linker bug, fixed there), and strip keeps the capabilities
+# section with ADDR32 (checked with elfdump -H).
 
 ENV += CC="$(CC)"
 ENV += CFLAGS="$(CFLAGS)"
