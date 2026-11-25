@@ -39,6 +39,17 @@
 		<service_fmri value='svc:/system/dbus' />
 	</dependency>
 
+	<!--
+	    OI's upower (stock, no polkit dependency of its own) was seen to
+	    hang past its 60 s start timeout into maintenance when started
+	    before polkitd (2026-11-22; that it waits for polkit is likely,
+	    not traced).  So upower starts after polkit; optional_all: not
+	    when polkit is disabled.
+	-->
+	<dependent name='polkit' grouping='optional_all' restart_on='none'>
+		<service_fmri value='svc:/system/upower' />
+	</dependent>
+
 	<exec_method type='method' name='start'
 	    exec='/lib/svc/method/svc-polkit' timeout_seconds='60' />
 

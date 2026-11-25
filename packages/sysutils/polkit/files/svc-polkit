@@ -22,6 +22,18 @@ args=""
 debug=`/usr/bin/svcprop -p options/debug "$SMF_FMRI" 2>/dev/null`
 [ "$debug" = "true" ] || args="--no-debug"
 
+# polkitd's uid moved from 63 (Solaris' number, clamav's on OpenIndiana) to
+# 64.  pkg changes the user but not the owner of the rules.d directories it
+# had already delivered (same owner name, new uid: no chown; tested in a
+# scratch image), so hand both over here.
+# The rule files inside belong to root and stay as they are.
+uid=`/usr/bin/getent passwd polkitd | /usr/bin/cut -d: -f3`
+for d in /etc/polkit-1/rules.d /usr/share/polkit-1/rules.d; do
+	[ -n "$uid" -a -d $d ] || continue
+	owner=`/usr/bin/ls -nd $d | /usr/bin/awk '{print $3}'`
+	[ "$owner" = "$uid" ] || /usr/bin/chown polkitd $d
+done
+
 /usr/lib/polkit-1/polkitd $args &
 
 exit $SMF_EXIT_OK

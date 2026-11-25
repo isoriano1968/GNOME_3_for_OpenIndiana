@@ -26,6 +26,10 @@ include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		polkit
 COMPONENT_VERSION=	125
+# polkitd uid 63 -> 64 (63 is clamav's on OpenIndiana); rev 4: svc-polkit
+# fixes the owner of both rules.d dirs after an upgrade, and upower starts
+# after polkit (dependent in polkit.xml)
+COMPONENT_REVISION=	4
 COMPONENT_PROJECT_URL=	https://github.com/polkit-org/polkit
 COMPONENT_SUMMARY=	polkit authorization toolkit
 COMPONENT_SRC=		$(COMPONENT_NAME)-$(COMPONENT_VERSION)
@@ -47,13 +51,15 @@ CFLAGS +=		-std=gnu11
 # illumos headers: POSIX getpwuid_r() (not the old Solaris draft), and the
 # netgroup functions (setnetgrent & co. in <netdb.h>) need __EXTENSIONS__.
 CFLAGS +=		-D_POSIX_PTHREAD_SEMANTICS -D__EXTENSIONS__
+# per-thread errno on illumos (GLib programs are threaded)
+CFLAGS +=		-D_REENTRANT
 
 CONFIGURE_OPTIONS +=	-Dauthfw=pam
 CONFIGURE_OPTIONS +=	-Dos_type=solaris
 CONFIGURE_OPTIONS +=	-Djs_engine=duktape
 CONFIGURE_OPTIONS +=	-Dsession_tracking=ConsoleKit
 CONFIGURE_OPTIONS +=	-Dpolkitd_user=polkitd
-CONFIGURE_OPTIONS +=	-Dpolkitd_uid=63
+CONFIGURE_OPTIONS +=	-Dpolkitd_uid=64
 CONFIGURE_OPTIONS +=	-Dintrospection=true
 CONFIGURE_OPTIONS +=	-Dman=true
 CONFIGURE_OPTIONS +=	-Dgtk_doc=false
