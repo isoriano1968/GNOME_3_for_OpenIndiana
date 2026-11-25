@@ -1,0 +1,100 @@
+oi-userland-neutral-paths.patch: neutral build paths for every component
+built in an oi-userland checkout on the build VM (OI Mac r1 clean rebuild,
+2026-11-20; user rule: no home path or host name in any package).
+
+- gcc/g++/gfortran: -ffile-prefix-map (debug info, __FILE__, assert
+  messages) and gas's --debug-prefix-map (gas writes the working directory
+  into .debug_line with --gdwarf-5); the workspace maps to
+  /usr/src/oi-userland, anything else under $HOME to /build.
+- rustc (cargo.mk): the same through --remap-path-prefix in RUSTFLAGS.
+- Python byte code: compileall -s PROTO_DIR -p / (the .pyc files name the
+  installed path, not the proto area).
+- ips.mk: every publish first runs tools/oi-manifest-gate (from
+  tools/oi-manifest-gate.sh): no version that WS_REPO already has, no home
+  path, login or host name in the manifest or in a delivered file.
+
+Applied by tools/oi-sync.sh to the checkout it syncs (git apply, skipped
+when already applied).  A candidate for OpenIndiana/oi-userland upstream
+(reproducible builds); not proposed yet.
+
+diff --git a/make-rules/cargo.mk b/make-rules/cargo.mk
+index ba6a6a37..bef5eb42 100644
+--- a/make-rules/cargo.mk
++++ b/make-rules/cargo.mk
+@@ -23,6 +23,7 @@
+ # Common cargo environment
+ CARGO_ENV += CARGO_TARGET_$(shell echo $(RUST_TRIPLET) | $(TR) '[a-z]-' '[A-Z]_')_LINKER=$(CARGO_TARGET_LINKER)
+ CARGO_ENV += PKG_CONFIG_PATH="$(PKG_CONFIG_PATH)"
++CARGO_ENV += RUSTFLAGS="$(strip $(RUSTFLAGS) $(RUST_PATH_MAP))"
+ 
+ # Configure
+ # Some tests fails with the default symlink cloney mode
+diff --git a/make-rules/ips.mk b/make-rules/ips.mk
+index 4984d2c6..1d78487f 100644
+--- a/make-rules/ips.mk
++++ b/make-rules/ips.mk
+@@ -604,8 +604,14 @@ $(MANIFEST_BASE)-%.pre-published:	$(MANIFEST_BASE)-%.depend.res $(BUILD_DIR)/.li
+ $(MANIFEST_BASE)-%.histogrified: $(MANIFEST_BASE)-%.p5m
+ 	$(PKGMOGRIFY) -D CONSOLIDATION="$(CONSOLIDATION)" $< > $@
+ 
++# The publish gate (tools/oi-manifest-gate): refuses a version that is
++# already in $(WS_REPO), and any home path, login or host name in the
++# manifest or the files it delivers.
++OI_PUBLISH_GATE ?=	$(WS_TOOLS)/oi-manifest-gate
++
+ # Push to the repo
+ $(MANIFEST_BASE)-%.published:	$(MANIFEST_BASE)-%.pre-published
++	$(OI_PUBLISH_GATE) $(WS_REPO) $< $(PKG_PROTO_DIRS)
+ 	$(PKGSEND) $(PKGSEND_PUBLISH_OPTIONS) $<
+ 	$(PKGFMT) <$< >$@
+ 
+diff --git a/make-rules/pyproject.mk b/make-rules/pyproject.mk
+index fb46c139..3ba86847 100644
+--- a/make-rules/pyproject.mk
++++ b/make-rules/pyproject.mk
+@@ -34,7 +34,7 @@ COMPONENT_INSTALL_ARGS +=	--destdir $(PROTO_DIR)
+ # pyproject_installer does not bytecompile after the install.  Since we need
+ # pyc files we need to force that.
+ COMPONENT_POST_INSTALL_ACTION += \
+-	$(PYTHON) -m compileall $(PROTOPYTHONSITEDIR) $(PROTOPYTHONVENDORDIR) ;
++	$(PYTHON) -m compileall -s $(PROTO_DIR) -p / $(PROTOPYTHONSITEDIR) $(PROTOPYTHONVENDORDIR) ;
+ else
+ COMPONENT_BUILD_CMD =		$(PYTHON) -m build
+ COMPONENT_BUILD_ARGS =
+diff --git a/make-rules/shared-macros.mk b/make-rules/shared-macros.mk
+index 4a497e6e..bb5c06f4 100644
+--- a/make-rules/shared-macros.mk
++++ b/make-rules/shared-macros.mk
+@@ -838,7 +838,7 @@ PYTHON_SCRIPT_SHEBANG_FIX_FUNC = \
+         -e '1s@/usr/bin/env python3\.[0-9]\{1,\}@$(PYTHON)@' \
+         -e '1s@/usr/bin/env python3\{0,1\}@$(PYTHON)@' \
+ 	$(PROTO_DIR)/$(1); \
+-    $(PYTHON) -m compileall $(PROTO_DIR)/$(1);
++    $(PYTHON) -m compileall -s $(PROTO_DIR) -p / $(PROTO_DIR)/$(1);
+ 
+ # PYTHON_SCRIPTS is a list of files from the calling Makefile.
+ PYTHON_SCRIPTS_PROCESS= \
+@@ -1375,6 +1375,23 @@ CXXFLAGS.gcc +=	$(gcc_XREGS)
+ FCFLAGS.gcc +=	$(gcc_OPT)
+ FCFLAGS.gcc +=	$(gcc_XREGS)
+ 
++# Neutral build paths: no build host home directory or workspace path in
++# the objects (debug info, __FILE__, assert messages).  The workspace maps
++# to $(BUILD_PATH_MAP), anything else under $(HOME) to /build.  GCC uses
++# the last matching map, so the workspace one comes last.  RUST_PATH_MAP
++# is the same for rustc (cargo.mk adds it to RUSTFLAGS).
++BUILD_PATH_MAP ?=	/usr/src/oi-userland
++gcc_PATH_MAP =		-ffile-prefix-map=$(HOME)=/build
++gcc_PATH_MAP +=		-ffile-prefix-map=$(WS_TOP)=$(BUILD_PATH_MAP)
++# gas (--gdwarf-5) writes the working directory into .debug_line itself
++gcc_PATH_MAP +=		-Wa,--debug-prefix-map,$(HOME)=/build
++gcc_PATH_MAP +=		-Wa,--debug-prefix-map,$(WS_TOP)=$(BUILD_PATH_MAP)
++CFLAGS.gcc +=	$(gcc_PATH_MAP)
++CXXFLAGS.gcc +=	$(gcc_PATH_MAP)
++FCFLAGS.gcc +=	$(gcc_PATH_MAP)
++RUST_PATH_MAP =		--remap-path-prefix=$(HOME)=/build
++RUST_PATH_MAP +=	--remap-path-prefix=$(WS_TOP)=$(BUILD_PATH_MAP)
++
+ # Build 32 or 64 bit objects.
+ CFLAGS +=	$(CC_BITS)
+ 
